@@ -1,0 +1,19 @@
+
+.page{
+    height: 100vh;
+    background: var(--background-light-mode);
+    display: flex;
+    justify-content:  center;
+    align-items: center;    
+
+}
+
+.container{
+    width: 352px;
+    height: 464px;
+    flex-shrink: 0;
+    border-radius: 2px;
+    background: #FFF;
+    box-shadow: 2px 9px 12px 4px rgba(25, 40, 71, 0.25);     
+    
+}
