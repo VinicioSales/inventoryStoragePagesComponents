@@ -3,6 +3,16 @@ body{
     height: 100%;
 }
 
-::root{
-    --background-light-mode: #F9F9F9
+button{
+    background: none;
+    cursor: pointer;
+}
+:root{
+    --background: #F9F9F9;
+    --drop_shadow: rgba(25, 40, 71, 0.25); 
+}
+
+:root .dark-theme{
+    --background: #141414;
+    --drop_shadow:#000000;
 }
