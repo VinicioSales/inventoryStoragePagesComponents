@@ -2,7 +2,14 @@
 
 Todas as mudanças do projeto serão documentados neste arquivo.
 
-## [1.0] - 24-08-2023 
+## [0.0] - 25-08-2023 
+### Added
+- Design Tela requisição de produto
+- Modal pdf
+- Tela devolução de produto
+- Modal devolução de produto
+
+## [0.0] - 24-08-2023 
 ### Added
 - Criado componente da pagina de registro
 - Criado rota de registro
