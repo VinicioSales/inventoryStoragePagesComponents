@@ -1,3 +1,43 @@
+
+
+@font-face {
+    font-family: 'Blinker-Bold';
+    src: url('assets/fonts/Blinker-Black.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Blinker-Bold';
+    src: url('/assets/fonts/Blinker-Bold.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Blinker';
+    src: url('assets/fonts/Blinker-ExtraBold.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Blinker';
+    src: url('assets/fonts/Blinker-ExtraLight.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Blinker-Light';
+    src: url('assets/fonts/Blinker-ExtraLight.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Blinker-Regular';
+    src: url('assets/fonts/Blinker-Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Blinker-SemiBold';
+    src: url('assets/fonts/Blinker-SemiBold.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Blinker';
+    src: url('assets/fonts/Blinker-Thin.ttf') format('truetype');
+
+}
+
+
+
+
+
 body{
     margin: 0;
     height: 100%;
@@ -9,10 +49,16 @@ button{
 }
 :root{
     --background: #F9F9F9;
-    --drop_shadow: rgba(25, 40, 71, 0.25); 
+    --drop_shadow: rgba(25, 40, 71, 0.25);
+    --font-regular: 'Blinker-Regular';
+    --font-semiBold: 'Blinker-SemiBold';
+    --font-bold: 'Blinker-Bold';
+    --font-light: 'Blinker-Light';
+ 
 }
 
 :root .dark-theme{
     --background: #141414;
     --drop_shadow:#000000;
+    
 }

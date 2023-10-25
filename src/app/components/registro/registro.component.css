@@ -9,11 +9,37 @@
 }
 
 .container{
-    width: 352px;
-    height: 464px;
+    width: 25%;
+    height: 65%;
     flex-shrink: 0;
     border-radius: 2px;
     background:var(--background);
-    box-shadow: 2px 9px 12px 4px var(--drop_shadow);     
-    
+    box-shadow: 2px 9px 12px 4px var(--drop_shadow);   
+    display: grid;                 
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;   
+    grid-template-columns: 1fr;
+    grid-template-areas:    "header"
+                            "title"
+                            "name"
+                            "email"
+                            "password"
+                            "confirm_password"
+                            "footer";
+}
+
+.header{
+    grid-area: header;
+    display: flex;
+    justify-self: center;
+    align-self: center;
+}
+
+.title{
+    padding-top: 20px;
+    grid-area: header;
+    display: flex;
+    justify-self: center;
+    align-self: center;  
+    font-size: 200%;
+    font-family: var(--font-regular);
 }
