@@ -1,0 +1,6 @@
+.classe-main-teste {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-left: 20px;
+}

@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { InputComponent } from './components/input/input.component';
+import { BotaoComponent } from './components/botao/botao.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegistroComponent,
-    InputComponent
+    InputComponent,
+    BotaoComponent
   ],
   imports: [
     BrowserModule,

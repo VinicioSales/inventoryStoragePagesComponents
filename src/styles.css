@@ -41,6 +41,9 @@
 body{
     margin: 0;
     height: 100%;
+    font-size: 16px; 
+    --cor-botao: #141414;
+    --cor-texto-botao: #FFF;
 }
 
 button{
@@ -56,6 +59,7 @@ button{
     --font: 'Blinker-Light';
     --cor-primaria: #FFF;
     --cor-secundaria: #141414;
+    --cor-terceira: #2B2B2B;
 }
 
 :root .dark-theme{
