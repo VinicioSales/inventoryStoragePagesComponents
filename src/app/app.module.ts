@@ -9,6 +9,7 @@ import { BotaoComponent } from './components/botao/botao.component';
 import { BotaoSairComponent } from './components/botao-sair/botao-sair.component';
 import { BotaoTemaComponent } from './components/botao-tema/botao-tema.component';
 import { BotaoEditarComponent } from './components/botao-editar/botao-editar.component';
+import { BotaoHomeComponent } from './components/botao-home/botao-home.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { BotaoEditarComponent } from './components/botao-editar/botao-editar.com
     BotaoComponent,
     BotaoSairComponent,
     BotaoTemaComponent,
-    BotaoEditarComponent
+    BotaoEditarComponent,
+    BotaoHomeComponent
   ],
   imports: [
     BrowserModule,
