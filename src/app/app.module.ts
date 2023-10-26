@@ -8,6 +8,7 @@ import { InputComponent } from './components/input/input.component';
 import { BotaoComponent } from './components/botao/botao.component';
 import { BotaoSairComponent } from './components/botao-sair/botao-sair.component';
 import { BotaoTemaComponent } from './components/botao-tema/botao-tema.component';
+import { BotaoEditarComponent } from './components/botao-editar/botao-editar.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { BotaoTemaComponent } from './components/botao-tema/botao-tema.component
     InputComponent,
     BotaoComponent,
     BotaoSairComponent,
-    BotaoTemaComponent
+    BotaoTemaComponent,
+    BotaoEditarComponent
   ],
   imports: [
     BrowserModule,

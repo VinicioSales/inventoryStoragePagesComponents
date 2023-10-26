@@ -1,17 +1,15 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { TemaService } from '../../services/tema.service';
 
-
 @Component({
-  selector: 'app-botao-sair',
-  templateUrl: './botao-sair.component.html',
-  styleUrls: ['./botao-sair.component.css']
+  selector: 'app-botao-editar',
+  templateUrl: './botao-editar.component.html',
+  styleUrls: ['./botao-editar.component.css']
 })
-export class BotaoSairComponent {
+export class BotaoEditarComponent {
   public imgSrc?: string;
-  private imgTemaClaro: string = 'assets/img/exit-light-mode.png';
-  private imgTemaEscuro: string = 'assets/img/exit-dark-mode.png';
-  private imgHover: string = 'assets/img/exit-hover.png';  // imagem de hover
+  private imgTemaClaro: string = 'assets/img/editar-light-mode.png';
+  private imgTemaEscuro: string = 'assets/img/editar-dark-mode.png';
   
   @Output() botaoClicado = new EventEmitter<void>();
   
@@ -28,19 +26,9 @@ export class BotaoSairComponent {
     this.imgSrc = this.temaService.temaEscuroLigado ? this.imgTemaEscuro : this.imgTemaClaro;
   }
 
-  onHover() {
-    console.log("hover");
-    console.log(this.imgHover);
-    this.imgSrc = this.imgHover;
-  }
-
-  onLeave() {
-    console.log("leave");
-    this.atualizarImg();
-  }
-
   //NOTE - onClick
   onClick() {
     this.botaoClicado.emit();
   }
+
 }
