@@ -2,6 +2,10 @@
 
 Todas as mudanças do projeto serão documentados neste arquivo.
 
+## [0.0] - 26-08-2023 
+### Added
+- Criado componentes
+
 ## [0.0] - 25-08-2023 
 ### Added
 - Design Tela requisição de produto
