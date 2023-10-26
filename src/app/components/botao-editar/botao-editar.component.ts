@@ -22,6 +22,7 @@ export class BotaoEditarComponent {
     });
   }
 
+  //NOTE - atualizarImg
   atualizarImg() {
     this.imgSrc = this.temaService.temaEscuroLigado ? this.imgTemaEscuro : this.imgTemaClaro;
   }

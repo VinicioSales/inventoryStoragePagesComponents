@@ -3,21 +3,21 @@ import { TemaService } from '../../services/tema.service';
 
 
 @Component({
-  selector: 'app-botao-home',
-  templateUrl: './botao-home.component.html',
-  styleUrls: ['./botao-home.component.css']
+  selector: 'app-botao-remover',
+  templateUrl: './botao-remover.component.html',
+  styleUrls: ['./botao-remover.component.css']
 })
-export class BotaoHomeComponent {
+export class BotaoRemoverComponent {
   public imgSrc?: string;
-  private imgTemaClaro: string = 'assets/img/home-light-mode.png';
-  private imgTemaEscuro: string = 'assets/img/home-dark-mode.png';
+  private imgTemaClaro: string = 'assets/img/remover-light-mode.png';
+  private imgTemaEscuro: string = 'assets/img/remover-dark-mode.png';
+  private imgHover: string = 'assets/img/remover-hover.png';
   
   @Output() botaoClicado = new EventEmitter<void>();
   
   constructor(private temaService: TemaService) {
     this.atualizarImg();
 
-    // Escute as mudanças do tema
     this.temaService.temaEscuroLigado$.subscribe(estaEscuro => {
       this.atualizarImg();
     });
@@ -28,9 +28,23 @@ export class BotaoHomeComponent {
     this.imgSrc = this.temaService.temaEscuroLigado ? this.imgTemaEscuro : this.imgTemaClaro;
   }
 
+  //NOTE - onHover
+  onHover() {
+    console.log("hover");
+    console.log(this.imgHover);
+    this.imgSrc = this.imgHover;
+  }
+
+  //NOTE - onLeave
+  onLeave() {
+    console.log("leave");
+    this.atualizarImg();
+  }
+
   //NOTE - onClick
   onClick() {
     this.botaoClicado.emit();
   }
+
 
 }

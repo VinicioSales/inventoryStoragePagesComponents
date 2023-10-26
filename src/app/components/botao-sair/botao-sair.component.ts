@@ -24,16 +24,19 @@ export class BotaoSairComponent {
     });
   }
 
+  //NOTE - atualizarImg
   atualizarImg() {
     this.imgSrc = this.temaService.temaEscuroLigado ? this.imgTemaEscuro : this.imgTemaClaro;
   }
 
+  //NOTE - onHover
   onHover() {
     console.log("hover");
     console.log(this.imgHover);
     this.imgSrc = this.imgHover;
   }
 
+  //NOTE - onLeave
   onLeave() {
     console.log("leave");
     this.atualizarImg();
