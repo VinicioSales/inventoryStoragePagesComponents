@@ -12,6 +12,7 @@ export class BotaoComponent {
 
   @Output() botaoClicado = new EventEmitter<void>();
 
+  //NOTE - onClick
   onClick() {
     this.botaoClicado.emit();
   }
