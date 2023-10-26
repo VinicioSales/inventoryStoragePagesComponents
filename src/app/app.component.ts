@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'frontend-BF';
+
+  public toggle(){
+    document.body.classList.toggle('dark-theme');
+  }
 }

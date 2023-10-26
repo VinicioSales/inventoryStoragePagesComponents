@@ -53,12 +53,15 @@ button{
     --font-regular: 'Blinker-Regular';
     --font-semiBold: 'Blinker-SemiBold';
     --font-bold: 'Blinker-Bold';
-    --font-light: 'Blinker-Light';
- 
+    --font: 'Blinker-Light';
+    --cor-primaria: #FFF;
+    --cor-secundaria: #141414;
 }
 
 :root .dark-theme{
     --background: #141414;
     --drop_shadow:#000000;
+    --cor-primaria: #000000;
+    --cor-secundaria: #FFF;
     
 }
