@@ -1,6 +1,6 @@
 .componente-input {
     display: flex;
-    padding: 10px;
+    padding: 9px;
     align-items: center;
     gap: 10px;
     flex-shrink: 0;
@@ -12,6 +12,7 @@
 }
 
 .componente-input:focus {
-    border: 2px solid rgba(25, 25, 25, 0.80);
-
+    outline: none; /* Remove o contorno padrão */
+    box-shadow: 0 0 0 2px rgba(25, 25, 25, 0.80); 
+    border: 1px solid rgba(25, 25, 25, 0.80); 
 }

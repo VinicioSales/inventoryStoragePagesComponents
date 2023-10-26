@@ -1,7 +1,9 @@
 <button
-    class="componente-botao-sair">
+    class="componente-botao-sair"
+    (mouseover)="onHover()"
+    (mouseout)="onLeave()">
     <img class="img-sair"
-    [src]="imgSrc"
-    alt="Sair"
-    (click)="onClick()">
+        [src]="imgSrc"
+        alt="Sair"
+        (click)="onClick()">
 </button>

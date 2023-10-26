@@ -9,7 +9,12 @@ import { TemaService } from '../../services/tema.service';
 })
 export class BotaoSairComponent {
   public imgSrc?: string;
-
+  private imgTemaClaro: string = 'assets/img/exit-light-mode.png';
+  private imgTemaEscuro: string = 'assets/img/exit-dark-mode.png';
+  private imgHover: string = 'assets/img/exit-hover.png';  // imagem de hover
+  
+  @Output() botaoClicado = new EventEmitter<void>();
+  
   constructor(private temaService: TemaService) {
     this.atualizarImg();
 
@@ -20,10 +25,20 @@ export class BotaoSairComponent {
   }
 
   atualizarImg() {
-    this.imgSrc = this.temaService.temaEscuroLigado ? 'assets/img/exit-dark-mode.png' : 'assets/img/exit-light-mode.png';
+    this.imgSrc = this.temaService.temaEscuroLigado ? this.imgTemaEscuro : this.imgTemaClaro;
   }
 
-  @Output() botaoClicado = new EventEmitter<void>();
+  onHover() {
+    console.log("hover");
+    console.log(this.imgHover);
+    this.imgSrc = this.imgHover;
+  }
+
+  onLeave() {
+    console.log("leave");
+    this.atualizarImg();
+  }
+
 
   //NOTE - onClick
   onClick() {
