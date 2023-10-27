@@ -13,9 +13,11 @@ export class InputDropdownComponent {
   //NOTE - varáveis
   imgSrc?: string;
   itemSelecionado: string = '';
+  textoPesquisado: string = '';
   borderRadius: string = '10px';
   mostrarDropdown: boolean = false;
   itens: string[] = ['Item 1', 'Item 2', 'Item 3'];
+  itensFiltrados: string[] = [...this.itens];
   imgTemaEscuro: string = 'assets/img/dropdown-dark-mode.png';
   imgTemaClaro: string = 'assets/img/dropdown-light-mode.png';
 
@@ -74,9 +76,21 @@ export class InputDropdownComponent {
       div.classList.remove('focused');
   }
 
+  //NOTE - filtrarItens
+  filtrarItens() {
+    if (this.textoPesquisado.trim() === '') {
+      this.itensFiltrados = [...this.itens];
+    } else {
+      const textoPesquisadoMinusculo = this.textoPesquisado.toLowerCase();
+      this.itensFiltrados = this.itens.filter(item => item.toLowerCase().includes(textoPesquisadoMinusculo));
+    }
+  }
+  
+
   //NOTE - selecionarItem
   selecionarItem(item: string) {
     this.itemSelecionado = item;
+    this.textoPesquisado = item;
     this.itemSelecionadoChange.emit(item);
     this.onClick();
   }

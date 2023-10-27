@@ -69,6 +69,7 @@
     width: 100%;
     max-height: 150px;
     overflow-y: auto;
+    color: var(--cor-secundaria);
     background-color: var(--cor-primaria);
     border-radius: 0 0 8px 8px;
     box-shadow: 

@@ -1,16 +1,17 @@
 <div
     class="container-input-dropdown"
-    [style.width]="width"
-    [style.height]="height"
     tabindex="0"
+    #containerRef
     #inputDropdownDiv
-    #containerRef>
+    [style.width]="width"
+    [style.height]="height">
     <div class="container-relativo">
         <input
             type="text"
             class="input-dropdown"
             [placeholder]="placeholder"
-            [(ngModel)]="itemSelecionado"
+            [(ngModel)]="textoPesquisado"
+            (ngModelChange)="filtrarItens()"
             (blur)="onInputBlur(inputDropdownDiv)"
             (focus)="onInputFocus(inputDropdownDiv)"
             [style.border-bottom-left-radius]="borderRadius">
@@ -24,7 +25,7 @@
                 class="img">
         </button>
         <div class="dropdown-list" [ngClass]="{'active': mostrarDropdown}">
-            <div *ngFor="let item of itens" class="dropdown-item" (click)="selecionarItem(item)">
+            <div *ngFor="let item of itensFiltrados" class="dropdown-item" (click)="selecionarItem(item)">
                 {{ item }}
             </div>
         </div>
