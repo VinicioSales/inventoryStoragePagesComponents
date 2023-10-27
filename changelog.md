@@ -2,6 +2,12 @@
 
 Todas as mudanças do projeto serão documentados neste arquivo.
 
+## [0.0] - 27-08-2023 
+### Added
+- Criado frontend tela de regirstro (victor)
+- criado verificação nome usuario (victor)
+
+
 ## [0.0] - 26-08-2023 
 ### Added
 - Criado componentes
