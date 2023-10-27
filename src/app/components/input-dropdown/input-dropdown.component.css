@@ -38,7 +38,8 @@
 .botao {
     border: none;
     display: flex;
-    margin-left: -30px;
+    width: 30px;
+    /* margin-left: -30px; */
 
 }
 
