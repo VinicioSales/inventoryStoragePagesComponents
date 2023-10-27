@@ -1,0 +1,20 @@
+<div
+    class="container-input-dropdown"
+    [style.width]="width"
+    [style.height]="height"
+    tabindex="0"
+    #inputDropdownDiv>
+    <input
+        type="text"
+        class="input-dropdown"
+        [placeholder]="placeholder"
+        (focus)="onInputFocus(inputDropdownDiv)"
+        (blur)="onInputBlur(inputDropdownDiv)">
+    <button
+        class="botao">
+        <img
+            [src]="imgSrc"
+            alt="Dropdown"
+            class="img">
+    </button>
+</div>

@@ -1,0 +1,52 @@
+.container-input-dropdown {
+    display: flex;
+    border: 1px solid rgba(0, 0, 0, 0.10);
+    border-radius: 8px;
+    box-shadow: 0px 0px 8px 0px rgba(25, 40, 71, 0.08);
+}
+
+.container-input-dropdown:focus {
+    outline: none; /* Remove o contorno padrão */
+    box-shadow: 0 0 0 2px rgba(25, 25, 25, 0.80); 
+}
+
+.container-input-dropdown.focused {
+    outline: none; /* Remove o contorno padrão */
+    box-shadow: 0 0 0 2px rgba(25, 25, 25, 0.80); 
+}
+
+
+.input-dropdown {
+    display: flex;
+    padding: 9px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+    flex: 1 0 0;
+    align-self: stretch;
+    border: none;
+    background: var(--primaria);
+    color: var(--cor-secundaria);
+
+}
+
+.input-dropdown:focus {
+    outline: none;
+}
+
+.botao {
+    border: none;
+    display: flex;
+    margin-left: -30px;
+
+}
+
+.img {
+    width: 10px;
+    transform: rotate(180deg);
+    /* position: absolute; */
+    display: flex;
+    justify-self: center;
+    align-self: center;
+}

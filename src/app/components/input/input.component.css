@@ -14,5 +14,4 @@
 .componente-input:focus {
     outline: none; /* Remove o contorno padrão */
     box-shadow: 0 0 0 2px rgba(25, 25, 25, 0.80); 
-    border: 1px solid rgba(25, 25, 25, 0.80); 
 }

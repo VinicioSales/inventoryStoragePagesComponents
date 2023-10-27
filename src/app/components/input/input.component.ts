@@ -8,5 +8,6 @@ import { Component, Input } from '@angular/core';
 export class InputComponent {
   @Input() width: string = '293px'
   @Input() height: string = '30px'
+  @Input() placeholder: string = 'input'
 
 }

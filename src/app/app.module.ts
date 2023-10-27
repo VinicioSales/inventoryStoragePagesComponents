@@ -12,6 +12,7 @@ import { BotaoEditarComponent } from './components/botao-editar/botao-editar.com
 import { BotaoHomeComponent } from './components/botao-home/botao-home.component';
 import { BotaoRemoverComponent } from './components/botao-remover/botao-remover.component';
 import { BotaoAjudaComponent } from './components/botao-ajuda/botao-ajuda.component';
+import { InputDropdownComponent } from './components/input-dropdown/input-dropdown.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { BotaoAjudaComponent } from './components/botao-ajuda/botao-ajuda.compon
     BotaoHomeComponent,
     BotaoRemoverComponent,
     BotaoAjudaComponent,
+    InputDropdownComponent,
   ],
   imports: [
     BrowserModule,
