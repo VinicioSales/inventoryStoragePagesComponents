@@ -2,14 +2,14 @@ import { TemaService } from '../../services/tema.service';
 import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'app-botao-editar',
-  templateUrl: './botao-editar.component.html',
-  styleUrls: ['./botao-editar.component.css']
+  selector: 'app-botao-ajuda',
+  templateUrl: './botao-ajuda.component.html',
+  styleUrls: ['./botao-ajuda.component.css']
 })
-export class BotaoEditarComponent {
+export class BotaoAjudaComponent {
   public imgSrc?: string;
-  private imgTemaClaro: string = 'assets/img/editar-light-mode.png';
-  private imgTemaEscuro: string = 'assets/img/editar-dark-mode.png';
+  private imgTemaClaro: string = 'assets/img/ajuda.png';
+  private imgTemaEscuro: string = 'assets/img/ajuda.png';
   
   @Output() botaoClicado = new EventEmitter<void>();
   
@@ -31,5 +31,4 @@ export class BotaoEditarComponent {
   onClick() {
     this.botaoClicado.emit();
   }
-
 }
