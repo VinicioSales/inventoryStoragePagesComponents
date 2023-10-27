@@ -7,9 +7,12 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./input-dropdown.component.css']
 })
 export class InputDropdownComponent {
-  public imgSrc?: string;
-  private imgTemaClaro: string = 'assets/img/dropdown-light-mode.png';
-  private imgTemaEscuro: string = 'assets/img/dropdown-dark-mode.png';
+  imgSrc?: string;
+  imgTemaClaro: string = 'assets/img/dropdown-light-mode.png';
+  imgTemaEscuro: string = 'assets/img/dropdown-dark-mode.png';
+  itens: string[] = ['Item 1', 'Item 2', 'Item 3'];
+  mostrarDropdown: boolean = false;
+
   
   @Input() width: string = '293px'
   @Input() height: string = '50px'
@@ -33,7 +36,8 @@ export class InputDropdownComponent {
 
   //NOTE - onClick
   onClick() {
-    this.botaoClicado.emit();
+    // this.botaoClicado.emit();
+    this.mostrarDropdown = !this.mostrarDropdown;
   }
 
   //NOTE - onInputFocus

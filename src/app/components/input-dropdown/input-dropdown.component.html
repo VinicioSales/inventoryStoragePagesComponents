@@ -4,17 +4,25 @@
     [style.height]="height"
     tabindex="0"
     #inputDropdownDiv>
-    <input
-        type="text"
-        class="input-dropdown"
-        [placeholder]="placeholder"
-        (focus)="onInputFocus(inputDropdownDiv)"
-        (blur)="onInputBlur(inputDropdownDiv)">
-    <button
-        class="botao">
-        <img
-            [src]="imgSrc"
-            alt="Dropdown"
-            class="img">
-    </button>
+    <div class="container-relativo">
+        <input
+            type="text"
+            class="input-dropdown"
+            [placeholder]="placeholder"
+            (focus)="onInputFocus(inputDropdownDiv)"
+            (blur)="onInputBlur(inputDropdownDiv)">
+        <button
+            class="botao"
+            (click)="onClick()">
+            <img
+                [src]="imgSrc"
+                alt="Dropdown"
+                class="img">
+        </button>
+        <div class="dropdown-list" [ngClass]="{'active': mostrarDropdown}">
+            <div *ngFor="let item of itens" class="dropdown-item">
+                {{ item }}
+            </div>
+        </div>
+    </div>
 </div>
