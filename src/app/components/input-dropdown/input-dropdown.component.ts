@@ -10,26 +10,30 @@ import { Component, ElementRef, Input, Output, EventEmitter, ViewChild } from '@
   },
 })
 export class InputDropdownComponent {
+  //NOTE - varáveis
   imgSrc?: string;
-  imgTemaClaro: string = 'assets/img/dropdown-light-mode.png';
-  imgTemaEscuro: string = 'assets/img/dropdown-dark-mode.png';
-  itens: string[] = ['Item 1', 'Item 2', 'Item 3'];
-  mostrarDropdown: boolean = false;
+  itemSelecionado: string = '';
   borderRadius: string = '10px';
+  mostrarDropdown: boolean = false;
+  itens: string[] = ['Item 1', 'Item 2', 'Item 3'];
+  imgTemaEscuro: string = 'assets/img/dropdown-dark-mode.png';
+  imgTemaClaro: string = 'assets/img/dropdown-light-mode.png';
 
-  
+  //NOTE - Inputs
   @Input() width: string = '293px'
   @Input() height: string = '50px'
   @Input() placeholder: string = 'input'
 
+  //NOTE - Outputs
   @Output() botaoClicado = new EventEmitter<void>();
 
+  //NOTE - Viewchild
   @ViewChild('containerRef') containerRef!: ElementRef;
   
+  //NOTE - constructor
   constructor(private temaService: TemaService) {
     this.atualizarImg();
 
-    // Escute as mudanças do tema
     this.temaService.temaEscuroLigado$.subscribe(estaEscuro => {
       this.atualizarImg();
     });
@@ -69,4 +73,9 @@ export class InputDropdownComponent {
       div.classList.remove('focused');
   }
 
+  //NOTE - selecionarItem
+  selecionarItem(item: string) {
+    this.itemSelecionado = item;
+    this.onClick();
+  }
 }

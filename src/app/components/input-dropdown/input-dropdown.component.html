@@ -10,6 +10,7 @@
             type="text"
             class="input-dropdown"
             [placeholder]="placeholder"
+            [(ngModel)]="itemSelecionado"
             (blur)="onInputBlur(inputDropdownDiv)"
             (focus)="onInputFocus(inputDropdownDiv)"
             [style.border-bottom-left-radius]="borderRadius">
@@ -23,7 +24,7 @@
                 class="img">
         </button>
         <div class="dropdown-list" [ngClass]="{'active': mostrarDropdown}">
-            <div *ngFor="let item of itens" class="dropdown-item">
+            <div *ngFor="let item of itens" class="dropdown-item" (click)="selecionarItem(item)">
                 {{ item }}
             </div>
         </div>
