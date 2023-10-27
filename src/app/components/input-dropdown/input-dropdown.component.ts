@@ -26,6 +26,7 @@ export class InputDropdownComponent {
 
   //NOTE - Outputs
   @Output() botaoClicado = new EventEmitter<void>();
+  @Output() itemSelecionadoChange = new EventEmitter<string>();
 
   //NOTE - Viewchild
   @ViewChild('containerRef') containerRef!: ElementRef;
@@ -76,6 +77,7 @@ export class InputDropdownComponent {
   //NOTE - selecionarItem
   selecionarItem(item: string) {
     this.itemSelecionado = item;
+    this.itemSelecionadoChange.emit(item);
     this.onClick();
   }
 }
