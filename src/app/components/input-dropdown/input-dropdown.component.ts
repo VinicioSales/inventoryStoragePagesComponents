@@ -1,10 +1,13 @@
 import { TemaService } from '../../services/tema.service';
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, ElementRef, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-input-dropdown',
   templateUrl: './input-dropdown.component.html',
-  styleUrls: ['./input-dropdown.component.css']
+  styleUrls: ['./input-dropdown.component.css'],
+  host: {
+    '(document:click)': 'handleClick($event)',
+  },
 })
 export class InputDropdownComponent {
   imgSrc?: string;
@@ -20,6 +23,8 @@ export class InputDropdownComponent {
   @Input() placeholder: string = 'input'
 
   @Output() botaoClicado = new EventEmitter<void>();
+
+  @ViewChild('containerRef') containerRef!: ElementRef;
   
   constructor(private temaService: TemaService) {
     this.atualizarImg();
@@ -30,6 +35,19 @@ export class InputDropdownComponent {
     });
   }
 
+  //NOTE - handleBorderRadius
+  handleBorderRadius() {
+    this.borderRadius = this.mostrarDropdown ? '0px' : '10px';
+  }
+
+  //NOTE - handleClick
+  handleClick(event: Event) {
+    if (this.containerRef && !this.containerRef.nativeElement.contains(event.target)) {
+      this.mostrarDropdown = false;
+      this.handleBorderRadius();
+    }
+  }
+
   //NOTE - atualizarImg
   atualizarImg() {
     this.imgSrc = this.temaService.temaEscuroLigado ? this.imgTemaEscuro : this.imgTemaClaro;
@@ -38,9 +56,7 @@ export class InputDropdownComponent {
   //NOTE - onClick
   onClick() {
     this.mostrarDropdown = !this.mostrarDropdown;
-    console.log(this.mostrarDropdown);
-    this.borderRadius = this.mostrarDropdown ? '0px' : '10px';
-    console.log(this.borderRadius);
+    this.handleBorderRadius();
   }
 
   //NOTE - onInputFocus
