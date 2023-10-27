@@ -13,6 +13,7 @@ import { BotaoHomeComponent } from './components/botao-home/botao-home.component
 import { BotaoRemoverComponent } from './components/botao-remover/botao-remover.component';
 import { BotaoAjudaComponent } from './components/botao-ajuda/botao-ajuda.component';
 import { InputDropdownComponent } from './components/input-dropdown/input-dropdown.component';
+import { TelaRegistroComponent } from './components/tela-registro/tela-registro.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { InputDropdownComponent } from './components/input-dropdown/input-dropdo
     BotaoRemoverComponent,
     BotaoAjudaComponent,
     InputDropdownComponent,
+    TelaRegistroComponent,
   ],
   imports: [
     BrowserModule,

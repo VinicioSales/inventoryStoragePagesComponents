@@ -26,14 +26,16 @@ export class BotaoTemaComponent {
   }
 
   @Output() darkModeChanged = new EventEmitter<boolean>();
+  
 
 
   toggleTema() {
     this.temaService.toggleTema();
+   
     if (this.temaService.temaEscuroLigado) {
-      document.body.classList.add('dark-theme');
+    document.body.classList.add('dark-theme');
     } else {
-      document.body.classList.remove('dark-theme');
+    document.body.classList.remove('dark-theme');
     }
   }
 }

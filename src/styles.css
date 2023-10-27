@@ -42,7 +42,7 @@ body{
     margin: 0;
     height: 100%;
     font-size: 16px; 
-    --cor-botao: #141414;
+    --cor-botao: #0E0E0E;
     --cor-texto-botao: #FFF;
 }
 
@@ -60,12 +60,18 @@ button{
     --cor-primaria: #FFF;
     --cor-secundaria: #141414;
     --cor-terceira: #2B2B2B;
+    --cor-quarta: #F9F9F9;
+  
+    
 }
 
 :root .dark-theme{
     --background: #141414;
     --drop_shadow:#000000;
-    --cor-primaria: #000000;
+    --cor-primaria: #141414;
     --cor-secundaria: #FFF;
+    --cor-quarta:#262626;
+    --cor-terceira: #141414;
+  
     
 }

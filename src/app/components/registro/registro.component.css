@@ -10,16 +10,15 @@
 
 .container{
     width: 25%;
-    height: 65%;
+    height: 75%;
     flex-shrink: 0;
     border-radius: 2px;
-    background:var(--background);
+    background:var(--cor-quarta);
     box-shadow: 2px 9px 12px 4px var(--drop_shadow);   
     display: grid;                 
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;   
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;   
     grid-template-columns: 1fr;
-    grid-template-areas:    "header"
-                            "title"
+    grid-template-areas:    "header"                            
                             "name"
                             "email"
                             "password"
@@ -28,18 +27,103 @@
 }
 
 .header{
+    position: relative;
     grid-area: header;
     display: flex;
     justify-self: center;
     align-self: center;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    
 }
 
-.title{
-    padding-top: 20px;
-    grid-area: header;
+.logo{
+    width: 68px;
+    height: 39px;
+    flex-shrink: 0;     
+    margin-top: 6px; 
+    margin-bottom: 0px;   
+    
+}
+
+h2{    
+    font-family: var(--font-semiBold);
+    margin-top: 0px;
+    margin-bottom: 2px;
+    font-size: 38px;   
+    color: var(--cor-secundaria);
+    
+}
+
+
+.botao_change_mode{
+    position: absolute;    
+    margin-top: 6px;
+    margin-left: 280px;
+}
+
+.inputs{    
     display: flex;
     justify-self: center;
-    align-self: center;  
-    font-size: 200%;
-    font-family: var(--font-regular);
+    align-self: center;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;   
+    color: var(--cor-secundaria);
+
+}
+
+.name{
+    margin-top: 29px;    
+    margin-bottom: 11px;
+    background: --background;
+   
+}
+.email{
+    margin-top:3px;
+    background: --background;
+}
+
+.password{
+    margin-top: 11px;
+    background: --background;
+}
+
+.confirm_password{
+    margin-top: 11px;
+    margin-bottom: 0px;
+    background: --background;
+}
+
+
+
+.footer{
+    grid-area: footer;
+    display: flex;
+    justify-self: center;
+    align-self: center;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+}
+
+.botao_registrar{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.rodape{
+    font-size: 12px;
+    margin-top: 5px;
+    margin-bottom: 17px;
+    font-family: var(--font);  
+    color: var(--cor-secundaria);  
+}
+
+.name::placeholder,
+.email::placeholder,
+.password::placeholder,
+.confirm_password::placeholder {
+    color: var(--place-holder);
 }
