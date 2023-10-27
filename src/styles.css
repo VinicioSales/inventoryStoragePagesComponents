@@ -42,8 +42,10 @@ body{
     margin: 0;
     height: 100%;
     font-size: 16px; 
+    font-family: "Blinker-Regular";
     --cor-botao: #141414;
     --cor-texto-botao: #FFF;
+    
 }
 
 button{

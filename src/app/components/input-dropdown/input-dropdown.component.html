@@ -9,11 +9,13 @@
             type="text"
             class="input-dropdown"
             [placeholder]="placeholder"
+            (blur)="onInputBlur(inputDropdownDiv)"
             (focus)="onInputFocus(inputDropdownDiv)"
-            (blur)="onInputBlur(inputDropdownDiv)">
+            [style.border-bottom-left-radius]="borderRadius">
         <button
             class="botao"
-            (click)="onClick()">
+            (click)="onClick()"
+            [style.border-bottom-right-radius]="borderRadius">
             <img
                 [src]="imgSrc"
                 alt="Dropdown"

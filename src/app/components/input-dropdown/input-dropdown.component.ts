@@ -12,6 +12,7 @@ export class InputDropdownComponent {
   imgTemaEscuro: string = 'assets/img/dropdown-dark-mode.png';
   itens: string[] = ['Item 1', 'Item 2', 'Item 3'];
   mostrarDropdown: boolean = false;
+  borderRadius: string = '10px';
 
   
   @Input() width: string = '293px'
@@ -36,8 +37,10 @@ export class InputDropdownComponent {
 
   //NOTE - onClick
   onClick() {
-    // this.botaoClicado.emit();
     this.mostrarDropdown = !this.mostrarDropdown;
+    console.log(this.mostrarDropdown);
+    this.borderRadius = this.mostrarDropdown ? '0px' : '10px';
+    console.log(this.borderRadius);
   }
 
   //NOTE - onInputFocus

@@ -3,6 +3,7 @@
     border: 1px solid rgba(0, 0, 0, 0.10);
     border-radius: 8px;
     box-shadow: 0px 0px 8px 0px rgba(25, 40, 71, 0.08);
+    font-size: 0.8rem;
 }
 
 .container-input-dropdown:focus {
@@ -36,7 +37,6 @@
     background: var(--cor-primaria);
     color: var(--cor-secundaria);
     border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
 }
 
 .input-dropdown:focus {
@@ -49,7 +49,6 @@
     width: 30px;
     background: var(--cor-primaria);
     border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
 }
 
 .img {
@@ -69,10 +68,12 @@
     width: 100%;
     max-height: 150px;
     overflow-y: auto;
-    background-color: var(--primaria);
+    background-color: var(--cor-primaria);
     border-radius: 0 0 8px 8px;
-    border: 1px solid rgba(0, 0, 0, 0.10);
-    box-shadow: 0px 0px 8px 0px rgba(25, 40, 71, 0.08);
+    box-shadow: 
+        -4px 0 4px -2px rgba(25, 40, 71, 0.08),   /* Esquerda */
+        4px 0 4px -2px rgba(25, 40, 71, 0.08),    /* Direita */
+        0 4px 4px rgba(25, 40, 71, 0.08);         /* Inferior */
 }
 
 .dropdown-list.active {
@@ -82,7 +83,6 @@
 .dropdown-item {
     padding: 10px;
     cursor: pointer;
-    /* border-bottom: 1px solid rgba(0, 0, 0, 0.10); */
     border-bottom: none;
 }
 
