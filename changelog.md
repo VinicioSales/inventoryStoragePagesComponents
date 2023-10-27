@@ -6,6 +6,7 @@ Todas as mudanças do projeto serão documentados neste arquivo.
 ### Added
 - Criado frontend tela de regirstro (victor)
 - criado verificação nome usuario (victor)
+- Criado componente input-dropdown (vinicio)
 
 
 ## [0.0] - 26-08-2023 
