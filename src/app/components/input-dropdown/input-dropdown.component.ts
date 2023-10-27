@@ -1,5 +1,5 @@
 import { TemaService } from '../../services/tema.service';
-import { Component, ElementRef, Input, Output, EventEmitter, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, Output, EventEmitter, ViewChild, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-input-dropdown',
@@ -9,22 +9,28 @@ import { Component, ElementRef, Input, Output, EventEmitter, ViewChild } from '@
     '(document:click)': 'handleClick($event)',
   },
 })
-export class InputDropdownComponent {
+export class InputDropdownComponent implements OnInit {
+  ngOnInit(): void {
+    this.itensFiltrados = [...this.itens];
+  }
+
+  //NOTE - Inputs
+  @Input() width: string = '293px'
+  @Input() height: string = '50px'
+  @Input() itens: string[] = [];
+  @Input() placeholder: string = 'input'
+
   //NOTE - varáveis
   imgSrc?: string;
   itemSelecionado: string = '';
   textoPesquisado: string = '';
   borderRadius: string = '10px';
   mostrarDropdown: boolean = false;
-  itens: string[] = ['Item 1', 'Item 2', 'Item 3'];
-  itensFiltrados: string[] = [...this.itens];
+  itensFiltrados?: string[];
   imgTemaEscuro: string = 'assets/img/dropdown-dark-mode.png';
   imgTemaClaro: string = 'assets/img/dropdown-light-mode.png';
 
-  //NOTE - Inputs
-  @Input() width: string = '293px'
-  @Input() height: string = '50px'
-  @Input() placeholder: string = 'input'
+
 
   //NOTE - Outputs
   @Output() botaoClicado = new EventEmitter<void>();

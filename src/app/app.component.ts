@@ -8,8 +8,10 @@ import { TemaService } from './services/tema.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'frontend-BF';
   background?: string;
+  title = 'frontend-BF';
+  itens: string[] = ['Item Pai 1', 'Item Pai 2', 'Item Pai 3'];
+
 
   constructor(private temaService: TemaService) {
     this.atualizarBackground();
