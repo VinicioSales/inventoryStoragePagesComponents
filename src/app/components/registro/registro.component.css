@@ -121,9 +121,3 @@ h2{
     color: var(--cor-secundaria);  
 }
 
-.name::placeholder,
-.email::placeholder,
-.password::placeholder,
-.confirm_password::placeholder {
-    color: var(--place-holder);
-}

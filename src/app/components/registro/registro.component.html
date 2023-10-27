@@ -8,20 +8,20 @@
             <h2>Registrar</h2>
         </div>
     <div class="inputs">
-        <app-input placeholder="Nome" class="name"></app-input>
+        <!-- <app-input #nomeInput placeholder="nome" class="name"></app-input>       -->
+        <app-input #nomeInput placeholder="nome" class="name" (valueChanged)="onNomeValueChanged($event)"></app-input>
         <app-input placeholder="email" class="email"></app-input>
         <app-input placeholder="senha" class="password"></app-input>
         <app-input placeholder="confirmar senha" class="confirm_password"></app-input>
         
+
     </div>
     <div class="footer"> 
         <app-botao class="botao_registrar" texto="Registrar"  ></app-botao>     
         <p class="rodape">Feito por Parceiro Soluções</p>      
         
     </div>
-    
-       
+           
     </div>
-   
-     
+        
 </div>
