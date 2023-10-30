@@ -2,6 +2,12 @@
 
 Todas as mudanças do projeto serão documentados neste arquivo.
 
+## [0.0] - 30-08-2023 
+### Added
+- Design telas (vinício)
+- Testes unitarios (vinício)
+- Fronte tela re registro (victor)
+
 ## [0.0] - 27-08-2023 
 ### Added
 - Criado frontend tela de regirstro (victor)
