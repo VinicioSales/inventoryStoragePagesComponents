@@ -66,6 +66,8 @@ export class InputDropdownComponent implements OnInit {
     this.imgSrc = this.temaService.temaEscuroLigado ? this.imgTemaEscuro : this.imgTemaClaro;
   }
 
+  
+
   //NOTE - onClick
   onClick() {
     this.mostrarDropdown = !this.mostrarDropdown;
