@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, } from '@angular/core';
 import { TemaService } from '../../services/tema.service';
 
 
@@ -9,8 +9,7 @@ import { TemaService } from '../../services/tema.service';
 })
 export class BotaoTemaComponent {
   temaEscuro = false;
-
-  public imgSrc?: string;
+  imgSrc?: string;
 
   constructor(private temaService: TemaService) {
     this.atualizarImg();
@@ -21,13 +20,14 @@ export class BotaoTemaComponent {
     });
   }
 
+  //NOTE - atualizarImg
   atualizarImg() {
+    console.log(this.imgSrc);
     this.imgSrc = this.temaService.temaEscuroLigado ? 'assets/img/button-to-light-mode.png' : 'assets/img/button-to-dark-mode.png';
+    console.log(this.imgSrc);
   }
 
-  @Output() darkModeChanged = new EventEmitter<boolean>();
-
-
+  //NOTE - toggleTema
   toggleTema() {
     this.temaService.toggleTema();
     if (this.temaService.temaEscuroLigado) {
