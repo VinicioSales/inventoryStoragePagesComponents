@@ -80,6 +80,7 @@
 
 .dropdown-list.active {
     display: block;
+    z-index: 1000;
 }
 
 .dropdown-item {

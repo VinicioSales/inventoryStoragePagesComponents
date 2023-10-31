@@ -1,13 +1,9 @@
-<!-- <div
-    class="container-input-dropdown"
-    tabindex="0"
-    #containerRef
+<div
+    class="container-input-contador"
     #inputDropdownDiv
     [style.width]="width"
-    [style.height]="height"> -->
-    <div class="container"
-        [style.width]="width"
-        [style.height]="height">
+    [style.height]="height">
+    <div class="container">
         <button
             id="botao-diminuir"
             (click)="onClick()">
@@ -21,6 +17,8 @@
             class="input"
             [placeholder]="placeholder"
             [(ngModel)]="textoPesquisado"
+            (blur)="onInputBlur(inputDropdownDiv)"
+            (focus)="onInputFocus(inputDropdownDiv)"
             (ngModelChange)="filtrarItens()">
         <button
             id="botao-aumentar"
@@ -31,4 +29,4 @@
                 id="img-aumentar">
         </button>
     </div>
-<!-- </div> -->
+</div>
