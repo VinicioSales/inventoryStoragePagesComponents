@@ -44,19 +44,21 @@ describe('InputDropdownComponent', () => {
 
 
   //SECTION - handleBorderRadius
-  //NOTE - deve definir borderRadius como "0px" quando mostrarDropdown for verdadeiro
-  it('deve definir borderRadius como "0px" quando mostrarDropdown for verdadeiro', () => {
-    component.mostrarDropdown = true;
-    component.handleBorderRadius();
-    expect(component.borderRadius).toBe('0px');
-  });
-
-  //NOTE - deve definir borderRadius como "10px" quando mostrarDropdown for falso
-  it('deve definir borderRadius como "10px" quando mostrarDropdown for falso', () => {
-    component.mostrarDropdown = false;
-    component.handleBorderRadius();
-    expect(component.borderRadius).toBe('10px');
-  });
+  describe('handleBorderRadius', () => {
+    //NOTE - deve definir borderRadius como "0px" quando mostrarDropdown for verdadeiro
+    it('deve definir borderRadius como "0px" quando mostrarDropdown for verdadeiro', () => {
+      component.mostrarDropdown = true;
+      component.handleBorderRadius();
+      expect(component.borderRadius).toBe('0px');
+    });
+  
+    //NOTE - deve definir borderRadius como "10px" quando mostrarDropdown for falso
+    it('deve definir borderRadius como "10px" quando mostrarDropdown for falso', () => {
+      component.mostrarDropdown = false;
+      component.handleBorderRadius();
+      expect(component.borderRadius).toBe('10px');
+    });
+  })
   //!SECTION
 
 
@@ -64,39 +66,41 @@ describe('InputDropdownComponent', () => {
 
   
   //SECTION - handleClick
-  //NOTE - Deve fechar o dropdown ao clicar fora do container
-  it('Deve fechar o dropdown ao clicar fora do container', () => {
-    component.mostrarDropdown = true;
-    const event = { target: document.createElement('div') };
-    component.handleClick(event as any);
-    expect(component.mostrarDropdown).toBe(false);
-  });
-
-  //NOTE - Não deve fechar o dropdown ao clicar dentro do container
-  it('Não deve fechar o dropdown ao clicar dentro do container', () => {
-    component.mostrarDropdown = true;
-    const event = { target: component.containerRef.nativeElement };
-    component.handleClick(event as any);
-    expect(component.mostrarDropdown).toBe(true);
-  });
+  describe('handleClick', () => {
+    //NOTE - Deve fechar o dropdown ao clicar fora do container
+    it('Deve fechar o dropdown ao clicar fora do container', () => {
+      component.mostrarDropdown = true;
+      const event = { target: document.createElement('div') };
+      component.handleClick(event as any);
+      expect(component.mostrarDropdown).toBe(false);
+    });
   
-  //NOTE - Deve chamar handleBorderRadius ao fechar o dropdown
-  it('Deve chamar handleBorderRadius ao fechar o dropdown', () => {
-    const handleBorderRadiusSpy = spyOn(component, 'handleBorderRadius');
-    component.mostrarDropdown = true;
-    const event = { target: document.createElement('div') };
-    component.handleClick(event as any);
-    expect(handleBorderRadiusSpy).toHaveBeenCalled();
-  });
-  
-  //NOTE - Não deve chamar handleBorderRadius se o dropdown não fechar
-  it('Não deve chamar handleBorderRadius se o dropdown não fechar', () => {
-    const handleBorderRadiusSpy = spyOn(component, 'handleBorderRadius');
-    component.mostrarDropdown = true;
-    const event = { target: component.containerRef.nativeElement };
-    component.handleClick(event as any);
-    expect(handleBorderRadiusSpy).not.toHaveBeenCalled();
-  });
+    //NOTE - Não deve fechar o dropdown ao clicar dentro do container
+    it('Não deve fechar o dropdown ao clicar dentro do container', () => {
+      component.mostrarDropdown = true;
+      const event = { target: component.containerRef.nativeElement };
+      component.handleClick(event as any);
+      expect(component.mostrarDropdown).toBe(true);
+    });
+    
+    //NOTE - Deve chamar handleBorderRadius ao fechar o dropdown
+    it('Deve chamar handleBorderRadius ao fechar o dropdown', () => {
+      const handleBorderRadiusSpy = spyOn(component, 'handleBorderRadius');
+      component.mostrarDropdown = true;
+      const event = { target: document.createElement('div') };
+      component.handleClick(event as any);
+      expect(handleBorderRadiusSpy).toHaveBeenCalled();
+    });
+    
+    //NOTE - Não deve chamar handleBorderRadius se o dropdown não fechar
+    it('Não deve chamar handleBorderRadius se o dropdown não fechar', () => {
+      const handleBorderRadiusSpy = spyOn(component, 'handleBorderRadius');
+      component.mostrarDropdown = true;
+      const event = { target: component.containerRef.nativeElement };
+      component.handleClick(event as any);
+      expect(handleBorderRadiusSpy).not.toHaveBeenCalled();
+    });
+  })
   //!SECTION
 
 
@@ -104,24 +108,51 @@ describe('InputDropdownComponent', () => {
 
 
   //SECTION - atualizarImg
-  // NOTE - deve atualizar imgSrc para o tema claro
-  it('deve atualizar imgSrc para o tema claro', () => {
-    component.atualizarImg(false);
-    expect(component.imgSrc).toBe(component.imgTemaClaro);
-  });
+  describe('atualizarImg', () => {
+    // NOTE - deve atualizar imgSrc para o tema claro
+    it('deve atualizar imgSrc para o tema claro', () => {
+      component.atualizarImg(false);
+      expect(component.imgSrc).toBe(component.imgTemaClaro);
+    });
+  
+    // NOTE - deve atualizar imgSrc para o tema escuro
+    it('deve atualizar imgSrc para o tema escuro', () => {
+      component.atualizarImg(true);
+      expect(component.imgSrc).toBe(component.imgTemaEscuro);
+    });
+  
+    // NOTE - deve atualizar imgSrc quando o tema é alterado
+    it('deve atualizar imgSrc quando o tema é alterado', () => {
+      component.atualizarImg(false);
+      expect(component.imgSrc).toBe(component.imgTemaClaro);
+  
+      component.atualizarImg(true);
+      expect(component.imgSrc).toBe(component.imgTemaEscuro);
+    });
+  })
 
-  // NOTE - deve atualizar imgSrc para o tema escuro
-  it('deve atualizar imgSrc para o tema escuro', () => {
-    component.atualizarImg(true);
-    expect(component.imgSrc).toBe(component.imgTemaEscuro);
-  });
 
-  // NOTE - deve atualizar imgSrc quando o tema é alterado
-  it('deve atualizar imgSrc quando o tema é alterado', () => {
-    component.atualizarImg(false);
-    expect(component.imgSrc).toBe(component.imgTemaClaro);
 
-    component.atualizarImg(true);
-    expect(component.imgSrc).toBe(component.imgTemaEscuro);
+
+  //SECTION - onClick
+  describe('onClick', () => {
+    //NOTE - deve abrir o dropdown e chamar handleBorderRadius
+    it('deve abrir o dropdown e chamar handleBorderRadius', () => {
+      component.mostrarDropdown = false;
+      spyOn(component, 'handleBorderRadius');
+      component.onClick();
+      expect(component.mostrarDropdown).toBe(true);
+      expect(component.handleBorderRadius).toHaveBeenCalled();
+    });
+
+    //NOTE - deve fechar o dropdown e chamar handleBorderRadius
+    it('deve fechar o dropdown e chamar handleBorderRadius', () => {
+      component.mostrarDropdown = true;
+      spyOn(component, 'handleBorderRadius');
+      component.onClick();
+      expect(component.mostrarDropdown).toBe(false);
+      expect(component.handleBorderRadius).toHaveBeenCalled();
+    });
   });
+  //!SECTION
 });
