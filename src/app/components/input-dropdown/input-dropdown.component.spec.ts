@@ -173,5 +173,48 @@ describe('InputDropdownComponent', () => {
 
 
 
+  //SECTION - filtrarItens
+  describe('filtrarItens', () => {
+    beforeEach(() => {
+      // Configuração inicial do componente, se necessário
+      component.itens = ['Maçã', 'Banana', 'Laranja'];
+    });
+    
+    //NOTE - deve retornar todos os itens quando o texto pesquisado é uma string vazia
+    it('deve retornar todos os itens quando o texto pesquisado é uma string vazia', () => {
+      component.textoPesquisado = '';
+      component.filtrarItens();
+      expect(component.itensFiltrados).toEqual(component.itens);
+    });
   
+    //NOTE - deve retornar todos os itens quando o texto pesquisado é apenas espaços
+    it('deve retornar todos os itens quando o texto pesquisado é apenas espaços', () => {
+      component.textoPesquisado = '    ';
+      component.filtrarItens();
+      expect(component.itensFiltrados).toEqual(component.itens);
+    });
+  
+    //NOTE - deve filtrar itens com base no texto pesquisado
+    it('deve filtrar itens com base no texto pesquisado', () => {
+      component.textoPesquisado = 'ma';
+      component.filtrarItens();
+      expect(component.itensFiltrados).toEqual(['Maçã']);
+    });
+  
+    //NOTE - deve retornar um array vazio quando nenhum item corresponde ao texto pesquisado
+    it('deve retornar um array vazio quando nenhum item corresponde ao texto pesquisado', () => {
+      component.textoPesquisado = 'xyz';
+      component.filtrarItens();
+      expect(component.itensFiltrados).toEqual([]);
+    });
+  
+    //NOTE - deve ser insensível a maiúsculas e minúsculas
+    it('deve ser insensível a maiúsculas e minúsculas', () => {
+      component.textoPesquisado = 'MA';
+      component.filtrarItens();
+      expect(component.itensFiltrados).toEqual(['Maçã']);
+    });
+  });
+  
+  //!SECTION
 });
