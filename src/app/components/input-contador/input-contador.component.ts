@@ -1,13 +1,23 @@
-import { Component, Input } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { TemaService } from 'src/app/services/tema.service'
 import { ImagemService } from 'src/app/services/imagem.service';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-input-contador',
   templateUrl: './input-contador.component.html',
   styleUrls: ['./input-contador.component.css']
 })
-export class InputContadorComponent {
+export class InputContadorComponent implements OnInit, OnDestroy {
+  ngOnInit(): void {
+    this.subscription.add(
+      this.temaService.temaEscuroLigado$.subscribe(() => {
+        this.atualizarImg();
+      })
+    );
+  }
+  private subscription = new Subscription();
+
   @Input() placeholder: string = 'input';
 
   imgSrc?: string;
@@ -21,6 +31,10 @@ export class InputContadorComponent {
     });
   
     this.atualizarImg();
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   //NOTE - atualizarImg

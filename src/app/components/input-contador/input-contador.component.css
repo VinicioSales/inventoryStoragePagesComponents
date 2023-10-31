@@ -1,0 +1,19 @@
+.botao {
+    border: none;
+    /* display: flex; */
+    width: 30px;
+    background: var(--cor-primaria);
+    border-top-right-radius: 10px;
+}
+
+#diminuir,
+#aumentar {
+    width: 10px;
+    display: flex;
+    justify-self: center;
+    align-self: center;
+}
+
+#diminuir {
+    transform: rotate(180deg);
+}
