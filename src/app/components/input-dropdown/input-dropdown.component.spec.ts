@@ -215,6 +215,44 @@ describe('InputDropdownComponent', () => {
       expect(component.itensFiltrados).toEqual(['Maçã']);
     });
   });
-  
+  //!SECTION
+
+
+
+
+  //SECTION - selecionarItem
+  describe('selecionarItem', () => {
+    let onClickSpy: jasmine.Spy;
+
+    beforeEach(() => {
+      onClickSpy = spyOn(component, 'onClick');
+    });
+
+    //NOTE - deve definir itemSelecionado corretamente
+    it('deve definir itemSelecionado corretamente', () => {
+      component.selecionarItem('item');
+      expect(component.itemSelecionado).toBe('item');
+    });
+
+    //NOTE - deve definir textoPesquisado corretamente
+    it('deve definir textoPesquisado corretamente', () => {
+      component.selecionarItem('item');
+      expect(component.textoPesquisado).toBe('item');
+    })
+
+    //NOTE - deve emitir itemSelecionadoChange coretamente
+    it('deve emitir o evento itemSelecionadoChange corretamente', () => {
+      let itemEmitido: string = '';
+      component.itemSelecionadoChange.subscribe(item => itemEmitido = item);
+      component.selecionarItem('algumItem');
+      expect(itemEmitido).toBe('algumItem');
+    });
+
+    //NOTE - deve chamar onClick
+    it('deve chamar onClick', () => {
+      component.selecionarItem('algumItem');
+      expect(onClickSpy).toHaveBeenCalled();
+    });
+  });
   //!SECTION
 });
