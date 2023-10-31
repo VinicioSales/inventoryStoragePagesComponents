@@ -1,7 +1,7 @@
+import { BehaviorSubject } from 'rxjs';
+import { TemaService } from '../../services/tema.service';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BotaoRemoverComponent } from './botao-remover.component';
-import { TemaService } from '../../services/tema.service';
-import { BehaviorSubject } from 'rxjs';
 
 describe('BotaoRemoverComponent', () => {
   let component: BotaoRemoverComponent;
@@ -68,7 +68,7 @@ describe('BotaoRemoverComponent', () => {
 
 
 
-  
+
 
   //SECTION - onClick
   describe('onClick', () => {
