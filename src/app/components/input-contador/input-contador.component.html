@@ -1,16 +1,34 @@
-<div class="container-contador">
-    <button class="botao">
-        <img
-            [src]="imgSrc"
-            alt="diminuir"
-            id="diminuir">
-    </button>
-    <input
-        type="text">
-    <button class="botao">
-        <img
-            [src]="imgSrc"
-            alt="aumentar"
-            id="aumentar">
-    </button>
-</div>
+<!-- <div
+    class="container-input-dropdown"
+    tabindex="0"
+    #containerRef
+    #inputDropdownDiv
+    [style.width]="width"
+    [style.height]="height"> -->
+    <div class="container"
+        [style.width]="width"
+        [style.height]="height">
+        <button
+            id="botao-diminuir"
+            (click)="onClick()">
+            <img
+                [src]="imgSrc"
+                alt="Dropdown"
+                id="img-diminuir">
+        </button>
+        <input
+            type="text"
+            class="input"
+            [placeholder]="placeholder"
+            [(ngModel)]="textoPesquisado"
+            (ngModelChange)="filtrarItens()">
+        <button
+            id="botao-aumentar"
+            (click)="onClick()">
+            <img
+                [src]="imgSrc"
+                alt="Dropdown"
+                id="img-aumentar">
+        </button>
+    </div>
+<!-- </div> -->
