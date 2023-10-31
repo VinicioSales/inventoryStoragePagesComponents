@@ -46,4 +46,28 @@ fdescribe('InputContadorComponent', () => {
     });
   });
   //!SECTION
+
+  
+
+
+    //SECTION - onAumentar
+    describe('onAumentar', () => {
+
+      //NOTE - deve incrementar o valor
+      it('deve incrementar o valor', () => {
+        component.valor = 0;
+        component.onAumentar();
+        expect(component.valor).toBe(1);
+      })
+
+      //NOTE - deve funcionar com valores negativos
+      it('deve funcionar com valores negativos', () => {
+        component.valor = -5;
+        component.onAumentar();
+        expect(component.valor).toBe(-4);
+      });
+      
+      
+    });
+    //!SECTION
 });

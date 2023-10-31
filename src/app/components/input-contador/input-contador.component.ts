@@ -62,4 +62,9 @@ export class InputContadorComponent implements OnInit, OnDestroy {
       this.valor = this.valor - 1;
     }
   }
+
+  //NOTE - onAumentar
+  onAumentar() {
+    this.valor = this.valor + 1;
+  }
 }
