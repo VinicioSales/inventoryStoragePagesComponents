@@ -23,20 +23,27 @@ fdescribe('InputContadorComponent', () => {
   //SECTION - onDiminuir
   describe('onDiminuir', () => {
 
-    //NOTE - deve subtrair o valor
-    it('deve subtrair o valor', () => {
-      component.valor = 1;
-      const valorAnterior = component.valor;
+    //NOTE - deve decrementar o valor quando valor > 0
+    it('deve decrementar o valor quando valor > 0', () => {
+      component.valor = 5;
       component.onDiminuir();
-      expect(component.valor).toBe(valorAnterior - 1);
-    })
+      expect(component.valor).toBe(4);
+    });
+    
 
-    //NOTE - nao deve subtrair quando valor for menor ou igual a 0
-    it('nao deve subtrair quando valor for menor ou igual a 0', () => {
+    //NOTE - não deve alterar o valor quando valor = 0
+    it('não deve alterar o valor quando valor = 0', () => {
       component.valor = 0;
-      const valorAnterior = component.valor;
       component.onDiminuir();
-      expect(component.valor).toBe(valorAnterior);
-    })
+      expect(component.valor).toBe(0);
+    });
+
+    //NOTE - não deve alterar o valor quando valor < 0
+    it('não deve alterar o valor quando valor < 0', () => {
+      component.valor = -1;
+      component.onDiminuir();
+      expect(component.valor).toBe(-1);
+    });
   });
+  //!SECTION
 });
