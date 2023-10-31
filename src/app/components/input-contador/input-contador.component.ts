@@ -102,25 +102,6 @@ export class InputContadorComponent implements OnInit, OnDestroy {
     this.imgSrc = this.imagemService.atualizarImg(this.imgTemaClaro, this.imgTemaEscuro);
   }
 
-  //NOTE - handleBorderRadius
-  handleBorderRadius() {
-    this.borderRadius = this.mostrarDropdown ? '0px' : '10px';
-  }
-
-  //NOTE - handleClick
-  handleClick(event: Event) {
-    if (this.containerRef && !this.containerRef.nativeElement.contains(event.target)) {
-      this.mostrarDropdown = false;
-      this.handleBorderRadius();
-    }
-  }
-
-  //NOTE - onClick
-  onClick() {
-    this.mostrarDropdown = !this.mostrarDropdown;
-    this.handleBorderRadius();
-  }
-
   //NOTE - onInputFocus
   onInputFocus(div: HTMLElement) {
     div.classList.add('focused');
@@ -130,23 +111,4 @@ export class InputContadorComponent implements OnInit, OnDestroy {
   onInputBlur(div: HTMLElement) {
     div.classList.remove('focused');
   }
-
-  //NOTE - filtrarItens
-  filtrarItens() {
-    if (this.textoPesquisado.trim() === '') {
-      this.itensFiltrados = [...this.itens];
-    } else {
-      const textoPesquisadoMinusculo = this.textoPesquisado.toLowerCase();
-      this.itensFiltrados = this.itens.filter(item => item.toLowerCase().includes(textoPesquisadoMinusculo));
-    }
-  }
-
-  //NOTE - selecionarItem
-  selecionarItem(item: string) {
-    this.itemSelecionado = item;
-    this.textoPesquisado = item;
-    this.itemSelecionadoChange.emit(item);
-    this.onClick();
-  }
-
 }

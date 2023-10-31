@@ -36,7 +36,6 @@
     border: none;
     background: var(--cor-primaria);
     color: var(--cor-secundaria);
-    border-top-left-radius: 10px;
     font-family: var(--font-regular);
     text-align: center;
 }

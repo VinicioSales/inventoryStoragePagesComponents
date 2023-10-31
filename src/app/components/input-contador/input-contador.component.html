@@ -5,8 +5,7 @@
     [style.height]="height">
     <div class="container">
         <button
-            id="botao-diminuir"
-            (click)="onClick()">
+            id="botao-diminuir">
             <img
                 [src]="imgSrc"
                 alt="Dropdown"
@@ -18,11 +17,9 @@
             [placeholder]="placeholder"
             [(ngModel)]="textoPesquisado"
             (blur)="onInputBlur(inputDropdownDiv)"
-            (focus)="onInputFocus(inputDropdownDiv)"
-            (ngModelChange)="filtrarItens()">
+            (focus)="onInputFocus(inputDropdownDiv)">
         <button
-            id="botao-aumentar"
-            (click)="onClick()">
+            id="botao-aumentar">
             <img
                 [src]="imgSrc"
                 alt="Dropdown"
