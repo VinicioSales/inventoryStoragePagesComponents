@@ -155,4 +155,23 @@ describe('InputDropdownComponent', () => {
     });
   });
   //!SECTION
+
+
+
+
+  //SECTION - onInputFocus
+  describe('onInputFocus', () => {
+    //NOTE - deve adicionar a classe "focused" ao elemento div
+    it('deve adicionar a classe "focused" ao elemento div', () => {
+      const div = document.createElement('div');
+      component.onInputFocus(div);
+      expect(div.classList.contains('focused')).toBeTrue();
+    })
+  })
+  //!SECTION
+
+
+
+
+  
 });
