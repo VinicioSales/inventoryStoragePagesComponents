@@ -1,5 +1,6 @@
+import { Subscription } from 'rxjs';
 import { TemaService } from '../../services/tema.service';
-import { Component, ElementRef, Input, Output, EventEmitter, ViewChild, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, Output, EventEmitter, ViewChild, OnInit, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-input-dropdown',
@@ -9,9 +10,19 @@ import { Component, ElementRef, Input, Output, EventEmitter, ViewChild, OnInit }
     '(document:click)': 'handleClick($event)',
   },
 })
-export class InputDropdownComponent implements OnInit {
+export class InputDropdownComponent implements OnInit, OnDestroy {
+  private subscription = new Subscription();
   ngOnInit(): void {
     this.itensFiltrados = [...this.itens];
+    this.subscription.add(
+      this.temaService.temaEscuroLigado$.subscribe(isDark => {
+        this.atualizarImg(isDark);
+      })
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   //NOTE - Inputs
@@ -41,11 +52,11 @@ export class InputDropdownComponent implements OnInit {
   
   //NOTE - constructor
   constructor(private temaService: TemaService) {
-    this.atualizarImg();
-
-    this.temaService.temaEscuroLigado$.subscribe(estaEscuro => {
-      this.atualizarImg();
+    this.temaService.temaEscuroLigado$.subscribe(isDark => {
+      this.atualizarImg(isDark);
     });
+  
+    this.atualizarImg(this.temaService.temaEscuroLigado);
   }
 
   //NOTE - handleBorderRadius
@@ -62,8 +73,8 @@ export class InputDropdownComponent implements OnInit {
   }
 
   //NOTE - atualizarImg
-  atualizarImg() {
-    this.imgSrc = this.temaService.temaEscuroLigado ? this.imgTemaEscuro : this.imgTemaClaro;
+  atualizarImg(isDark: boolean) {
+    this.imgSrc = isDark ? this.imgTemaEscuro : this.imgTemaClaro;
   }
 
   

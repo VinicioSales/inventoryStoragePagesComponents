@@ -6,19 +6,18 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { InputDropdownComponent } from './input-dropdown.component';
 
 describe('InputDropdownComponent', () => {
+  let temaService: TemaService;
   let component: InputDropdownComponent;
   let temaServiceSpy: jasmine.SpyObj<TemaService>;
   let temaEscuroSubject: BehaviorSubject<boolean>;
   let fixture: ComponentFixture<InputDropdownComponent>;
 
   beforeEach(async () => {
-    temaServiceSpy = jasmine.createSpyObj('TemaService', ['toggleTema'], {
+    temaServiceSpy = jasmine.createSpyObj('TemaService', [], {
       temaEscuroLigado$: of(false),
     });
-    Object.defineProperty(temaServiceSpy, 'temaEscuroLigado$', {
-      get: () => temaEscuroSubject.asObservable(),
-    });
-
+    temaEscuroSubject = new BehaviorSubject<boolean>(false);
+  
     await TestBed.configureTestingModule({
       declarations: [InputDropdownComponent],
       imports: [FormsModule],
@@ -26,11 +25,23 @@ describe('InputDropdownComponent', () => {
         { provide: TemaService, useValue: temaServiceSpy }
       ]
     }).compileComponents();
-
+  
     fixture = TestBed.createComponent(InputDropdownComponent);
     component = fixture.componentInstance;
+    temaService = TestBed.inject(TemaService);
+    
+    // Aqui, você está espionando o getter `temaEscuroLigado$` e fazendo-o retornar o valor do BehaviorSubject
+    Object.defineProperty(temaService, 'temaEscuroLigado$', {
+      get: jasmine.createSpy('temaEscuroLigado$').and.returnValue(temaEscuroSubject.asObservable())
+    });
+  
     fixture.detectChanges();
   });
+  
+
+
+
+
 
   //SECTION - handleBorderRadius
   //NOTE - deve definir borderRadius como "0px" quando mostrarDropdown for verdadeiro
@@ -93,27 +104,24 @@ describe('InputDropdownComponent', () => {
 
 
   //SECTION - atualizarImg
+  // NOTE - deve atualizar imgSrc para o tema claro
   it('deve atualizar imgSrc para o tema claro', () => {
-    temaEscuroSubject.next(false);
-    component.atualizarImg();
+    component.atualizarImg(false);
     expect(component.imgSrc).toBe(component.imgTemaClaro);
   });
 
-  //NOTE - deve atualizar imgSrc para o tema escuro
+  // NOTE - deve atualizar imgSrc para o tema escuro
   it('deve atualizar imgSrc para o tema escuro', () => {
-    temaEscuroSubject.next(true);
-    component.atualizarImg();
+    component.atualizarImg(true);
     expect(component.imgSrc).toBe(component.imgTemaEscuro);
   });
 
-  //NOTE - deve atualizar imgSrc quando o tema é alterado
+  // NOTE - deve atualizar imgSrc quando o tema é alterado
   it('deve atualizar imgSrc quando o tema é alterado', () => {
-    temaEscuroSubject.next(false);
-    component.atualizarImg();
+    component.atualizarImg(false);
     expect(component.imgSrc).toBe(component.imgTemaClaro);
 
-    temaEscuroSubject.next(true);
-    component.atualizarImg();
+    component.atualizarImg(true);
     expect(component.imgSrc).toBe(component.imgTemaEscuro);
   });
 });
