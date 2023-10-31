@@ -1,5 +1,6 @@
-import { TemaService } from '../../services/tema.service';
 import { Component, Output, EventEmitter } from '@angular/core';
+import { TemaService } from '../../services/tema.service';
+import { ImagemService } from '../../services/imagem.service'; // Importe o ImagemService
 
 @Component({
   selector: 'app-botao-ajuda',
@@ -13,18 +14,18 @@ export class BotaoAjudaComponent {
   
   @Output() botaoClicado = new EventEmitter<void>();
   
-  constructor(private temaService: TemaService) {
+  constructor(private temaService: TemaService, private imagemService: ImagemService) { // Adicione o ImagemService ao construtor
     this.atualizarImg();
 
     // Escute as mudanças do tema
-    this.temaService.temaEscuroLigado$.subscribe(estaEscuro => {
+    this.temaService.temaEscuroLigado$.subscribe(() => {
       this.atualizarImg();
     });
   }
 
   //NOTE - atualizarImg
   atualizarImg() {
-    this.imgSrc = this.temaService.temaEscuroLigado ? this.imgTemaEscuro : this.imgTemaClaro;
+    this.imgSrc = this.imagemService.atualizarImg(this.imgTemaClaro, this.imgTemaEscuro);
   }
 
   //NOTE - onClick

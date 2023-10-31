@@ -1,6 +1,7 @@
+import { Component, ElementRef, Input, Output, EventEmitter, ViewChild, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { TemaService } from '../../services/tema.service';
-import { Component, ElementRef, Input, Output, EventEmitter, ViewChild, OnInit, OnDestroy } from '@angular/core';
+import { ImagemService } from 'src/app/services/imagem.service';
 
 @Component({
   selector: 'app-input-dropdown',
@@ -12,51 +13,54 @@ import { Component, ElementRef, Input, Output, EventEmitter, ViewChild, OnInit, 
 })
 export class InputDropdownComponent implements OnInit, OnDestroy {
   private subscription = new Subscription();
-  ngOnInit(): void {
-    this.itensFiltrados = [...this.itens];
-    this.subscription.add(
-      this.temaService.temaEscuroLigado$.subscribe(isDark => {
-        this.atualizarImg(isDark);
-      })
-    );
-  }
-
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-  }
-
-  //NOTE - Inputs
-  @Input() width: string = '293px'
-  @Input() height: string = '50px'
+  
+  // Inputs
+  @Input() width: string = '293px';
+  @Input() height: string = '50px';
   @Input() itens: string[] = [];
-  @Input() placeholder: string = 'input'
+  @Input() placeholder: string = 'input';
 
-  //NOTE - varáveis
+  // Variáveis
   imgSrc?: string;
   itemSelecionado: string = '';
   textoPesquisado: string = '';
   borderRadius: string = '10px';
   mostrarDropdown: boolean = false;
   itensFiltrados?: string[];
+
+  // Imagens para os temas claro e escuro
   imgTemaEscuro: string = 'assets/img/dropdown-dark-mode.png';
   imgTemaClaro: string = 'assets/img/dropdown-light-mode.png';
 
-
-
-  //NOTE - Outputs
+  // Outputs
   @Output() botaoClicado = new EventEmitter<void>();
   @Output() itemSelecionadoChange = new EventEmitter<string>();
 
-  //NOTE - Viewchild
+  // Viewchild
   @ViewChild('containerRef') containerRef!: ElementRef;
   
-  //NOTE - constructor
-  constructor(private temaService: TemaService) {
-    this.temaService.temaEscuroLigado$.subscribe(isDark => {
-      this.atualizarImg(isDark);
-    });
-  
-    this.atualizarImg(this.temaService.temaEscuroLigado);
+  constructor(private temaService: TemaService, private imagemService: ImagemService) {
+    this.atualizarImg(); // Atualizar a imagem quando o componente é criado
+  }
+
+  //NOTE - ngOnInit
+  ngOnInit(): void {
+    this.itensFiltrados = [...this.itens];
+    this.subscription.add(
+      this.temaService.temaEscuroLigado$.subscribe(() => {
+        this.atualizarImg();
+      })
+    );
+  }
+
+  //NOTE - ngOnDestroy
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
+  //NOTE - atualizarImg
+  atualizarImg() {
+    this.imgSrc = this.imagemService.atualizarImg(this.imgTemaClaro, this.imgTemaEscuro);
   }
 
   //NOTE - handleBorderRadius
@@ -72,13 +76,6 @@ export class InputDropdownComponent implements OnInit, OnDestroy {
     }
   }
 
-  //NOTE - atualizarImg
-  atualizarImg(isDark: boolean) {
-    this.imgSrc = isDark ? this.imgTemaEscuro : this.imgTemaClaro;
-  }
-
-  
-
   //NOTE - onClick
   onClick() {
     this.mostrarDropdown = !this.mostrarDropdown;
@@ -92,7 +89,7 @@ export class InputDropdownComponent implements OnInit, OnDestroy {
 
   //NOTE - onInputBlur
   onInputBlur(div: HTMLElement) {
-      div.classList.remove('focused');
+    div.classList.remove('focused');
   }
 
   //NOTE - filtrarItens
@@ -104,7 +101,6 @@ export class InputDropdownComponent implements OnInit, OnDestroy {
       this.itensFiltrados = this.itens.filter(item => item.toLowerCase().includes(textoPesquisadoMinusculo));
     }
   }
-  
 
   //NOTE - selecionarItem
   selecionarItem(item: string) {

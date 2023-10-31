@@ -13,3 +13,13 @@
 	b. Caso usuario comum, input fica inativo
         
 
+
+1. Colaborador vizualizar apenas a solicitação dele
+2. Pode aparecer quem reprovou
+3. Devolução apenas pelo almoxarifado e gestão
+4. Tela de administrador para alterar poder de usuário (?)
+5. Notificação por email
+	a. Para o solicitante
+	b. Para o usuario do almoxarifado
+6. Preço médio devolução com o preço da saída
+7. Aparecer o valor do produto no PDF (?) Retorno amanha

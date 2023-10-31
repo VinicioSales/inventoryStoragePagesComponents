@@ -1,6 +1,6 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { TemaService } from '../../services/tema.service';
-
+import { ImagemService } from '../../services/imagem.service';
 
 @Component({
   selector: 'app-botao-remover',
@@ -11,33 +11,30 @@ export class BotaoRemoverComponent {
   public imgSrc?: string;
   private imgTemaClaro: string = 'assets/img/remover-light-mode.png';
   private imgTemaEscuro: string = 'assets/img/remover-dark-mode.png';
-  private imgHover: string = 'assets/img/remover-hover.png';
   
   @Output() botaoClicado = new EventEmitter<void>();
   
-  constructor(private temaService: TemaService) {
+  constructor(private temaService: TemaService, private imagemService: ImagemService) {
     this.atualizarImg();
 
-    this.temaService.temaEscuroLigado$.subscribe(estaEscuro => {
+    // Escute as mudanças do tema
+    this.temaService.temaEscuroLigado$.subscribe(() => {
       this.atualizarImg();
     });
   }
 
   //NOTE - atualizarImg
   atualizarImg() {
-    this.imgSrc = this.temaService.temaEscuroLigado ? this.imgTemaEscuro : this.imgTemaClaro;
+    this.imgSrc = this.imagemService.atualizarImg(this.imgTemaClaro, this.imgTemaEscuro);
   }
 
   //NOTE - onHover
   onHover() {
-    console.log("hover");
-    console.log(this.imgHover);
-    this.imgSrc = this.imgHover;
+    this.imgSrc = this.imagemService.getRemoverHoverImg();
   }
 
   //NOTE - onLeave
   onLeave() {
-    console.log("leave");
     this.atualizarImg();
   }
 
@@ -45,6 +42,4 @@ export class BotaoRemoverComponent {
   onClick() {
     this.botaoClicado.emit();
   }
-
-
 }

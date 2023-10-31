@@ -1,6 +1,6 @@
-import { Component, } from '@angular/core';
+import { Component } from '@angular/core';
 import { TemaService } from '../../services/tema.service';
-
+import { ImagemService } from 'src/app/services/imagem.service';
 
 @Component({
   selector: 'app-botao-tema',
@@ -8,23 +8,22 @@ import { TemaService } from '../../services/tema.service';
   styleUrls: ['./botao-tema.component.css']
 })
 export class BotaoTemaComponent {
-  temaEscuro = false;
   imgSrc?: string;
+  private imgTemaClaro: string = 'assets/img/button-to-dark-mode.png';
+  private imgTemaEscuro: string = 'assets/img/button-to-light-mode.png';
 
-  constructor(private temaService: TemaService) {
+  constructor(private temaService: TemaService, private imagemService: ImagemService) {
     this.atualizarImg();
 
     // Escute as mudanças do tema
-    this.temaService.temaEscuroLigado$.subscribe(estaEscuro => {
+    this.temaService.temaEscuroLigado$.subscribe(() => {
       this.atualizarImg();
     });
   }
 
   //NOTE - atualizarImg
   atualizarImg() {
-    console.log(this.imgSrc);
-    this.imgSrc = this.temaService.temaEscuroLigado ? 'assets/img/button-to-light-mode.png' : 'assets/img/button-to-dark-mode.png';
-    console.log(this.imgSrc);
+    this.imgSrc = this.imagemService.atualizarImg(this.imgTemaClaro, this.imgTemaEscuro);
   }
 
   //NOTE - toggleTema

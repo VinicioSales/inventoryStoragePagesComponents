@@ -1,40 +1,35 @@
 import { of, BehaviorSubject  } from 'rxjs';
 import { FormsModule } from '@angular/forms';
-import { By } from '@angular/platform-browser';
-import { TemaService } from '../../services/tema.service';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { InputDropdownComponent } from './input-dropdown.component';
+import { TemaService } from '../../services/tema.service';
+import { ImagemService } from '../../services/imagem.service'; // Importe o serviço de imagem
 
 describe('InputDropdownComponent', () => {
-  let temaService: TemaService;
-  let component: InputDropdownComponent;
   let temaServiceSpy: jasmine.SpyObj<TemaService>;
+  let imagemServiceSpy: jasmine.SpyObj<ImagemService>; // Crie um espião para o ImagemService
   let temaEscuroSubject: BehaviorSubject<boolean>;
+  let component: InputDropdownComponent;
   let fixture: ComponentFixture<InputDropdownComponent>;
 
   beforeEach(async () => {
-    temaServiceSpy = jasmine.createSpyObj('TemaService', [], {
-      temaEscuroLigado$: of(false),
-    });
     temaEscuroSubject = new BehaviorSubject<boolean>(false);
-  
+    temaServiceSpy = jasmine.createSpyObj('TemaService', [], {
+      temaEscuroLigado$: temaEscuroSubject.asObservable(),
+    });
+    imagemServiceSpy = jasmine.createSpyObj('ImagemService', ['atualizarImg']); // Inicialize o espião do ImagemService
+
     await TestBed.configureTestingModule({
       declarations: [InputDropdownComponent],
       imports: [FormsModule],
       providers: [
-        { provide: TemaService, useValue: temaServiceSpy }
+        { provide: TemaService, useValue: temaServiceSpy },
+        { provide: ImagemService, useValue: imagemServiceSpy } // Adicione o ImagemService ao array de providers
       ]
     }).compileComponents();
-  
+
     fixture = TestBed.createComponent(InputDropdownComponent);
     component = fixture.componentInstance;
-    temaService = TestBed.inject(TemaService);
-    
-    // Aqui, você está espionando o getter `temaEscuroLigado$` e fazendo-o retornar o valor do BehaviorSubject
-    Object.defineProperty(temaService, 'temaEscuroLigado$', {
-      get: jasmine.createSpy('temaEscuroLigado$').and.returnValue(temaEscuroSubject.asObservable())
-    });
-  
     fixture.detectChanges();
   });
   
@@ -109,27 +104,25 @@ describe('InputDropdownComponent', () => {
 
   //SECTION - atualizarImg
   describe('atualizarImg', () => {
-    // NOTE - deve atualizar imgSrc para o tema claro
-    it('deve atualizar imgSrc para o tema claro', () => {
-      component.atualizarImg(false);
-      expect(component.imgSrc).toBe(component.imgTemaClaro);
+    it('deve atualizar imgSrc corretamente para o tema claro', () => {
+      imagemServiceSpy.atualizarImg.and.returnValue('caminho/para/imagem/clara.png');
+      component.imgTemaClaro = 'caminho/para/imagem/clara.png';
+      component.imgTemaEscuro = 'caminho/para/imagem/escura.png';
+      temaEscuroSubject.next(false); // Configura o tema para claro
+      component.atualizarImg();
+      expect(component.imgSrc).toBe('caminho/para/imagem/clara.png');
     });
-  
-    // NOTE - deve atualizar imgSrc para o tema escuro
-    it('deve atualizar imgSrc para o tema escuro', () => {
-      component.atualizarImg(true);
-      expect(component.imgSrc).toBe(component.imgTemaEscuro);
+
+    it('deve atualizar imgSrc corretamente para o tema escuro', () => {
+      imagemServiceSpy.atualizarImg.and.returnValue('caminho/para/imagem/escura.png');
+      component.imgTemaClaro = 'caminho/para/imagem/clara.png';
+      component.imgTemaEscuro = 'caminho/para/imagem/escura.png';
+      temaEscuroSubject.next(true); // Configura o tema para escuro
+      component.atualizarImg();
+      expect(component.imgSrc).toBe('caminho/para/imagem/escura.png');
     });
-  
-    // NOTE - deve atualizar imgSrc quando o tema é alterado
-    it('deve atualizar imgSrc quando o tema é alterado', () => {
-      component.atualizarImg(false);
-      expect(component.imgSrc).toBe(component.imgTemaClaro);
-  
-      component.atualizarImg(true);
-      expect(component.imgSrc).toBe(component.imgTemaEscuro);
-    });
-  })
+  });
+  //!SECTION
 
 
 

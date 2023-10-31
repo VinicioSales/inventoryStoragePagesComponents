@@ -1,5 +1,6 @@
-import { Component, Output, EventEmitter } from '@angular/core';
 import { TemaService } from '../../services/tema.service';
+import { ImagemService } from '../../services/imagem.service';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 
 @Component({
@@ -14,18 +15,17 @@ export class BotaoHomeComponent {
   
   @Output() botaoClicado = new EventEmitter<void>();
   
-  constructor(private temaService: TemaService) {
+  constructor(private temaService: TemaService, private imagemService: ImagemService) {
     this.atualizarImg();
 
     // Escute as mudanças do tema
-    this.temaService.temaEscuroLigado$.subscribe(estaEscuro => {
+    this.temaService.temaEscuroLigado$.subscribe(() => {
       this.atualizarImg();
     });
   }
 
-  //NOTE - atualizarImg
   atualizarImg() {
-    this.imgSrc = this.temaService.temaEscuroLigado ? this.imgTemaEscuro : this.imgTemaClaro;
+    this.imgSrc = this.imagemService.atualizarImg(this.imgTemaClaro, this.imgTemaEscuro);
   }
 
   //NOTE - onClick
