@@ -19,9 +19,7 @@ export class InputContadorComponent implements OnInit, OnDestroy {
 
   // Variáveis
   imgSrc?: string;
-  mostrarDropdown: boolean = false;
-
-  // Imagens para os temas claro e escuro
+  valor: number = 1;
   imgTemaEscuro: string = 'assets/img/dropdown-dark-mode.png';
   imgTemaClaro: string = 'assets/img/dropdown-light-mode.png';
 
@@ -56,5 +54,12 @@ export class InputContadorComponent implements OnInit, OnDestroy {
   //NOTE - onInputBlur
   onInputBlur(div: HTMLElement) {
     div.classList.remove('focused');
+  }
+
+  //NOTE - onDiminuir
+  onDiminuir() {
+    if(this.valor > 0) {
+      this.valor = this.valor - 1;
+    }
   }
 }

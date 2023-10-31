@@ -11,6 +11,7 @@ import { BotaoAjudaComponent } from 'src/app/components/botao-ajuda/botao-ajuda.
 import { BotaoEditarComponent } from 'src/app/components/botao-editar/botao-editar.component';
 import { BotaoRemoverComponent } from 'src/app/components/botao-remover/botao-remover.component';
 import { InputDropdownComponent } from 'src/app/components/input-dropdown/input-dropdown.component';
+import { InputContadorComponent } from 'src/app/components/input-contador/input-contador.component';
 
 
 describe('AppComponent', () => {
@@ -28,7 +29,8 @@ describe('AppComponent', () => {
       BotaoAjudaComponent,
       BotaoEditarComponent,
       BotaoRemoverComponent,
-      InputDropdownComponent,]
+      InputDropdownComponent,
+      InputContadorComponent]
   }));
 
   it('should create the app', () => {

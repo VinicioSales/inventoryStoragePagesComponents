@@ -5,7 +5,8 @@
     [style.height]="height">
     <div class="container">
         <button
-            id="botao-diminuir">
+            id="botao-diminuir"
+            (click)="onDiminuir()">
             <img
                 [src]="imgSrc"
                 alt="diminuir"
@@ -14,6 +15,7 @@
         <input
             type="text"
             class="input"
+            [(ngModel)]="valor"
             [placeholder]="placeholder"
             (blur)="onInputBlur(inputDropdownDiv)"
             (focus)="onInputFocus(inputDropdownDiv)">
