@@ -2,6 +2,11 @@
 
 Todas as mudanças do projeto serão documentados neste arquivo.
 
+## [0.0] - 01-11-2023 
+### Added
+- Terminado de criar os componentes gerais (vinício)
+- Terminado testes dos componentes (vinício)
+
 ## [0.0] - 31-10-2023 
 ### Added
 - Reunião alinhamento sobre design e funcionalidades do sistema (vinício)
