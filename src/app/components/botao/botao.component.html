@@ -2,6 +2,9 @@
     class="componente-botao"
     [style.width]="width"
     [style.height]="height"
-    (click)="onClick()">
+    (click)="onClick()"
+    (mouseenter)="hover = true"
+    (mouseleave)="hover = false"
+    [style.background]="hover ? backgroundHover : background">
     {{ texto }}
 </button>

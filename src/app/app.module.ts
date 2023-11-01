@@ -16,6 +16,7 @@ import { BotaoAjudaComponent } from './components/botao-ajuda/botao-ajuda.compon
 import { InputDropdownComponent } from './components/input-dropdown/input-dropdown.component';
 import { InputContadorComponent } from './components/input-contador/input-contador.component';
 import { InputPesquisarComponent } from './components/input-pesquisar/input-pesquisar.component';
+import { ModalGeralComponent } from './components/modal-geral/modal-geral.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { InputPesquisarComponent } from './components/input-pesquisar/input-pesq
     InputDropdownComponent,
     InputContadorComponent,
     InputPesquisarComponent,
+    ModalGeralComponent,
   ],
   imports: [
     FormsModule ,
