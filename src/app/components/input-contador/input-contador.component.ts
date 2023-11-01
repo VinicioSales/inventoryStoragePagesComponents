@@ -44,6 +44,7 @@ export class InputContadorComponent implements OnInit, OnDestroy {
   //NOTE - atualizarImg
   atualizarImg() {
     this.imgSrc = this.imagemService.atualizarImg(this.imgTemaClaro, this.imgTemaEscuro);
+    console.log(this.imgSrc);
   }
 
   //NOTE - onInputFocus
@@ -58,7 +59,6 @@ export class InputContadorComponent implements OnInit, OnDestroy {
 
   //NOTE - onInput
   onInput(event: any) {
-    debugger;
     const input = event.target;
     let value = input.value;
 
