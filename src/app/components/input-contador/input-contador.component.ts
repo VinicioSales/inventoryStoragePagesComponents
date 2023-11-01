@@ -24,7 +24,7 @@ export class InputContadorComponent implements OnInit, OnDestroy {
   imgTemaClaro: string = 'assets/img/dropdown-light-mode.png';
 
   constructor(private temaService: TemaService, private imagemService: ImagemService) {
-    this.atualizarImg(); // Atualizar a imagem quando o componente é criado
+    this.atualizarImg(); 
   }
 
   //NOTE - ngOnInit

@@ -13,7 +13,7 @@
 
 .container-input-pesquisar.focused {
     outline: none;
-    box-shadow: 0 0 0 2px rgba(25, 25, 25, 0.80); 
+    box-shadow: var(--box-shadow); 
 }
 
 .container {
@@ -37,7 +37,6 @@
     background: var(--cor-primaria);
     color: var(--cor-secundaria);
     font-family: var(--font-regular);
-    text-align: center;
     border-bottom-left-radius: 10px;
     border-top-left-radius: 10px;
 }
