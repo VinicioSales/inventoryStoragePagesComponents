@@ -56,14 +56,14 @@ export class InputContadorComponent implements OnInit, OnDestroy {
     div.classList.remove('focused');
   }
 
+  //NOTE - onInput
   onInput(event: any) {
+    debugger;
     const input = event.target;
     let value = input.value;
 
-    // Remove caracteres não numéricos, exceto ponto (.)
     value = value.replace(/[^0-9.]/g, '');
 
-    // Substituir pontos adicionais
     const match = value.match(/\./g);
     if (match && match.length > 1) {
         value = value.replace(/\./g, (char: any, index: any, string: string) => {
@@ -71,7 +71,6 @@ export class InputContadorComponent implements OnInit, OnDestroy {
         });
     }
 
-    // Remove zeros à esquerda, exceto antes do ponto (.)
     value = value.replace(/^0+(?=[1-9])/g, '');
     value = value.replace(/^0+(?=\.\d)/g, '0');
 
@@ -83,7 +82,7 @@ export class InputContadorComponent implements OnInit, OnDestroy {
     if (!isNaN(numericValue)) {
         this.valor = numericValue;
     } else {
-        this.valor = 0; // ou outro valor padrão de sua escolha
+        this.valor = 0;
     }
   }
 
