@@ -13,9 +13,11 @@
                 id="img-diminuir">
         </button>
         <input
-            type="text"
+            min="0"
+            type="number"
             class="input"
             [(ngModel)]="valor"
+            (input)="onInput($event)"
             [placeholder]="placeholder"
             (blur)="onInputBlur(inputDropdownDiv)"
             (focus)="onInputFocus(inputDropdownDiv)">

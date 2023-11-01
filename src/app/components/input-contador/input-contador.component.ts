@@ -1,7 +1,7 @@
 import { Subscription } from 'rxjs';
 import { TemaService } from '../../services/tema.service';
 import { ImagemService } from 'src/app/services/imagem.service';
-import { Component, ElementRef, Input, Output, EventEmitter, ViewChild, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, HostListener } from '@angular/core';
 
 
 @Component({
@@ -19,7 +19,7 @@ export class InputContadorComponent implements OnInit, OnDestroy {
 
   // Variáveis
   imgSrc?: string;
-  valor: number = 1;
+  valor: number = 0;
   imgTemaEscuro: string = 'assets/img/dropdown-dark-mode.png';
   imgTemaClaro: string = 'assets/img/dropdown-light-mode.png';
 
@@ -56,10 +56,45 @@ export class InputContadorComponent implements OnInit, OnDestroy {
     div.classList.remove('focused');
   }
 
+  onInput(event: any) {
+    const input = event.target;
+    let value = input.value;
+
+    // Remove caracteres não numéricos, exceto ponto (.)
+    value = value.replace(/[^0-9.]/g, '');
+
+    // Substituir pontos adicionais
+    const match = value.match(/\./g);
+    if (match && match.length > 1) {
+        value = value.replace(/\./g, (char: any, index: any, string: string) => {
+        return (string.indexOf('.') === index) ? '.' : '';
+        });
+    }
+
+    // Remove zeros à esquerda, exceto antes do ponto (.)
+    value = value.replace(/^0+(?=[1-9])/g, '');
+    value = value.replace(/^0+(?=\.\d)/g, '0');
+
+    if (value !== input.value) {
+        input.value = value;
+    }
+
+    const numericValue = parseFloat(value);
+    if (!isNaN(numericValue)) {
+        this.valor = numericValue;
+    } else {
+        this.valor = 0; // ou outro valor padrão de sua escolha
+    }
+}
+
   //NOTE - onDiminuir
   onDiminuir() {
     if(this.valor > 0) {
       this.valor = this.valor - 1;
+    }
+
+    if(this.valor < 0) {
+      this.valor = 0;
     }
   }
 
