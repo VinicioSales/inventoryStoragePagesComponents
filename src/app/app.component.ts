@@ -8,6 +8,8 @@ import { TemaService } from './services/tema.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  //FIXME - REMOVER TESTES
+
   background?: string;
   title = 'frontend-BF';
   itens: string[] = ['Item Pai 1', 'Item Pai 2', 'Item Pai 3'];
@@ -24,6 +26,11 @@ export class AppComponent {
   
   atualizarBackground() {
     this.background = this.temaService.temaEscuroLigado ? '#262626' : '#FFF';
+  }
+
+  mostrarModal: boolean = true;
+  handleModal() {
+    this.mostrarModal = false;
   }
 
 }

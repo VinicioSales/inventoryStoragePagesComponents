@@ -10,7 +10,7 @@
     <app-input-dropdown [itens]="itens"></app-input-dropdown>
     <app-input-contador></app-input-contador>
     <app-input-pesquisar></app-input-pesquisar>
-    <app-modal-geral></app-modal-geral>
+    <app-modal-geral *ngIf="mostrarModal" (fecharModal)="handleModal()"></app-modal-geral>
 
     <app-botao-tema></app-botao-tema>
 </div>

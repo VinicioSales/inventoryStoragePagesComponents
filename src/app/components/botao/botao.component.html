@@ -1,8 +1,8 @@
 <button
-    class="componente-botao"
+    (click)="onClick()"
     [style.width]="width"
     [style.height]="height"
-    (click)="onClick()"
+    class="componente-botao"
     (mouseenter)="hover = true"
     (mouseleave)="hover = false"
     [style.background]="hover ? backgroundHover : background">
