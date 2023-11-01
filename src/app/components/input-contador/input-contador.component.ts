@@ -85,21 +85,32 @@ export class InputContadorComponent implements OnInit, OnDestroy {
     } else {
         this.valor = 0; // ou outro valor padrão de sua escolha
     }
-}
+  }
 
   //NOTE - onDiminuir
   onDiminuir() {
-    if(this.valor > 0) {
-      this.valor = this.valor - 1;
+    const valorNumerico = Number(this.valor);
+    
+    if (isNaN(valorNumerico)) {
+      this.valor = 0;
+    } else if (valorNumerico > 0) {
+      this.valor = valorNumerico - 1;
     }
-
-    if(this.valor < 0) {
+  
+    if (this.valor < 0) {
       this.valor = 0;
     }
   }
-
+  
   //NOTE - onAumentar
   onAumentar() {
-    this.valor = this.valor + 1;
+    const valorNumerico = Number(this.valor);
+  
+    if (isNaN(valorNumerico)) {
+      this.valor = 1;
+    } else {
+      this.valor = valorNumerico + 1;
+    }
   }
+  
 }
