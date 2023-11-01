@@ -2,7 +2,7 @@ import { FormsModule } from '@angular/forms';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { InputContadorComponent } from './input-contador.component';
 
-fdescribe('InputContadorComponent', () => {
+describe('InputContadorComponent', () => {
   let component: InputContadorComponent;
   let fixture: ComponentFixture<InputContadorComponent>;
 

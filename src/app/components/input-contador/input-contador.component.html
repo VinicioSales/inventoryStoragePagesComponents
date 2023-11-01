@@ -1,6 +1,6 @@
 <div
     class="container-input-contador"
-    #inputDropdownDiv
+    #inputContadorDiv
     [style.width]="width"
     [style.height]="height">
     <div class="container">
@@ -19,8 +19,8 @@
             [(ngModel)]="valor"
             (input)="onInput($event)"
             [placeholder]="placeholder"
-            (blur)="onInputBlur(inputDropdownDiv)"
-            (focus)="onInputFocus(inputDropdownDiv)">
+            (blur)="onInputBlur(inputContadorDiv)"
+            (focus)="onInputFocus(inputContadorDiv)">
         <button
             id="botao-aumentar"
             (click)="onAumentar()">

@@ -1,4 +1,4 @@
-.container-input-contador {
+.container-input-pesquisar {
     display: flex;
     border: 1px solid rgba(0, 0, 0, 0.10);
     border-radius: 8px;
@@ -6,12 +6,12 @@
     font-size: 0.8rem;
 }
 
-.container-input-contador:focus {
+.container-input-pesquisar:focus {
     outline: none; /* Remove o contorno padrão */
     box-shadow: 0 0 0 2px rgba(25, 25, 25, 0.80); 
 }
 
-.container-input-contador.focused {
+.container-input-pesquisar.focused {
     outline: none;
     box-shadow: 0 0 0 2px rgba(25, 25, 25, 0.80); 
 }
@@ -38,58 +38,30 @@
     color: var(--cor-secundaria);
     font-family: var(--font-regular);
     text-align: center;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
 }
 
 .input:focus {
     outline: none;
 }
 
-#botao-diminuir,
-#botao-aumentar {
+#botao-pesquisar {
     border: none;
     display: flex;
-    width: 30px;
+    width: 40px;
     background: var(--cor-primaria);
-}
-
-#botao-diminuir {
-    justify-content: end;
-    border-bottom-left-radius: 10px;
-    border-top-left-radius: 10px;
-
-}
-
-#botao-diminuir:hover #img-diminuir {
-    transform: scale(1.2) rotate(180deg);
-
-}
-
-#botao-aumentar {
     justify-content: start;
     border-bottom-right-radius: 10px;
     border-top-right-radius: 10px;
 }
 
-#botao-aumentar:hover #img-aumentar {
+#botao-pesquisar:hover #img-pesquisar {
     transform: scale(1.2);
-
 }
 
-#img-diminuir,
-#img-aumentar {
-    width: 10px;
+#img-pesquisar {
+    width: 20px;
     display: flex;
-    justify-self: center;
     align-self: center;
-}
-
-#img-diminuir {
-    transform: rotate(180deg);
-}
-
-/* Para navegadores baseados em WebKit como Chrome, Safari, etc. */
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
 }

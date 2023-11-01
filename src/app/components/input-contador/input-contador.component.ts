@@ -1,7 +1,7 @@
 import { Subscription } from 'rxjs';
 import { TemaService } from '../../services/tema.service';
 import { ImagemService } from 'src/app/services/imagem.service';
-import { Component, Input, OnInit, OnDestroy, HostListener } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 
 
 @Component({

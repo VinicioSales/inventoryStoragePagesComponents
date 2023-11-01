@@ -15,6 +15,7 @@ import { BotaoRemoverComponent } from './components/botao-remover/botao-remover.
 import { BotaoAjudaComponent } from './components/botao-ajuda/botao-ajuda.component';
 import { InputDropdownComponent } from './components/input-dropdown/input-dropdown.component';
 import { InputContadorComponent } from './components/input-contador/input-contador.component';
+import { InputPesquisarComponent } from './components/input-pesquisar/input-pesquisar.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { InputContadorComponent } from './components/input-contador/input-contad
     BotaoAjudaComponent,
     InputDropdownComponent,
     InputContadorComponent,
+    InputPesquisarComponent,
   ],
   imports: [
     FormsModule ,
