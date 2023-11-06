@@ -57,5 +57,7 @@ h1 {
 
 .input-email {
     grid-area: email;
-    background-color: red;
+    padding: 0; /* Se necessário */
+    margin: 0; /* Se necessário */
 }
+
