@@ -2,6 +2,12 @@
 
 Todas as mudanças do projeto serão documentados neste arquivo.
 
+## [0.0] - 06-11-2023 
+### Added
+- Criado tela de login (vinício)
+- Atualizado componente input (vinício)
+- Criado testes unitarios do  componente input (vinício)
+
 ## [0.0] - 01-11-2023 
 ### Added
 - Terminado de criar os componentes gerais (vinício)
