@@ -19,5 +19,5 @@
 }
 
 .componente-botao:hover {
-    background: var(--cor-terceira);
+    background: var(--cor-botao);
 }

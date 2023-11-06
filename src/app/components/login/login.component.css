@@ -4,6 +4,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    color: var(--cor-secundaria);
 }
 
 .container-login {
@@ -11,7 +12,7 @@
     height: 75%;
     background: var(--cor-primaria);
     border-radius: 2px;
-    box-shadow: 2px 9px 12px 4px rgba(25, 40, 71, 0.25);
+    box-shadow: 2px 9px 12px 4px rgba(12, 12, 12, 0.25);
     justify-self: center;
     align-self: center;
     padding: 0 20px 0 20px;
@@ -86,6 +87,7 @@ app-botao-tema {
 .esqueci-senha {
     grid-area: esqueci-senha;
     font-size: 0.85rem;
+    color: var(--cor-secundaria);
 }
 
 .esqueci-senha:hover,
@@ -118,6 +120,7 @@ app-botao-tema {
     font-size: 1rem;
     white-space: nowrap;
     align-self: center;
+    color: var(--cor-secundaria);
 }
 
 .footer {

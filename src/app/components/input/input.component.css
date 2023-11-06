@@ -10,7 +10,7 @@
     gap: 10px;
     border-radius: 10px;
     border: 1px solid rgba(25, 40, 71, 0.01);
-    background: var(--cor-primaria);
+    background: var(--cor-terceira);
     box-shadow: 0px 0px 10px 0px rgba(25, 40, 71, 0.15);
     color: var(--cor-secundaria);
 }
