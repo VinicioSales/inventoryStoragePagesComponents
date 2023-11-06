@@ -7,6 +7,7 @@ import { BotaoComponent } from 'src/app/components/botao/botao.component';
 import { BotaoSairComponent } from 'src/app/components/botao-sair/botao-sair.component';
 import { BotaoHomeComponent } from 'src/app/components/botao-home/botao-home.component';
 import { BotaoTemaComponent } from 'src/app/components/botao-tema/botao-tema.component';
+import { ModalGeralComponent } from 'src/app/components/modal-geral/modal-geral.component';
 import { BotaoAjudaComponent } from 'src/app/components/botao-ajuda/botao-ajuda.component';
 import { BotaoEditarComponent } from 'src/app/components/botao-editar/botao-editar.component';
 import { BotaoRemoverComponent } from 'src/app/components/botao-remover/botao-remover.component';
@@ -28,11 +29,13 @@ describe('AppComponent', () => {
       BotaoHomeComponent,
       BotaoTemaComponent,
       BotaoAjudaComponent,
+      ModalGeralComponent,
       BotaoEditarComponent,
       BotaoRemoverComponent,
       InputDropdownComponent,
       InputContadorComponent,
-      InputPesquisarComponent]
+      InputPesquisarComponent,
+    ]
   }));
 
   it('should create the app', () => {

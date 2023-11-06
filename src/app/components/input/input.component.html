@@ -1,7 +1,9 @@
 <input
     class="componente-input"
     type="text"
-    [placeholder]="placeholder"
+    [(ngModel)]="valor"
     [style.width]="width"
+    (ngModelChange)="onValorChange($event)"
     [style.height]="height"
+    [placeholder]="placeholder"
 >
