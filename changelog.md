@@ -7,6 +7,7 @@ Todas as mudanças do projeto serão documentados neste arquivo.
 - Criado tela de login (vinício)
 - Atualizado componente input (vinício)
 - Criado testes unitarios do  componente input (vinício)
+- Reunião de alinhamento (vinício, sajah)
 
 ## [0.0] - 01-11-2023 
 ### Added
