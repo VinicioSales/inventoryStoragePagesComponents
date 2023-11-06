@@ -4,12 +4,11 @@
             <app-logo-bf></app-logo-bf>
             <app-botao-tema></app-botao-tema>
         </div>
-        <h1>Login</h1>
-        <div class="input-email">
-            <app-input
-                placeholder="email">
-            </app-input>
-        </div>
+        <div class="titulo">Login</div>
+        <app-input
+            class="input-email"
+            placeholder="email">
+        </app-input>
         <app-input
             class="input-senha"
             placeholder="senha">
@@ -19,17 +18,20 @@
             Esqueci senha
         </button>
         <app-botao
-            [texto]="'Login'"
-            width="75%">
+            width="100%"
+            texto="Login"
+            class="botao-login">
         </app-botao>
         <div class="registre">
             <div class="linha"></div>
             <button
-                class="registre-botao">
+                class="botao-registre">
                 Registre-se
             </button>
             <div class="linha"></div>
         </div>
-        <a class="link-parceiro" href="">Feito por Parceiro Soluções</a>
+        <div class="footer">
+            <a href="https://site.parceirosolucoes.com.br" target="_blank">Feito por Parceiro Soluções</a>
+        </div>
     </div>
 </div>

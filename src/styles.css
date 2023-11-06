@@ -1,7 +1,7 @@
 
 
 @font-face {
-    font-family: 'Blinker-Bold';
+    font-family: 'Blinker-Black';
     src: url('assets/fonts/Blinker-Black.ttf') format('truetype');
 }
 @font-face {
@@ -29,7 +29,7 @@
     src: url('assets/fonts/Blinker-SemiBold.ttf') format('truetype');
 }
 @font-face {
-    font-family: 'Blinker';
+    font-family: 'Blinker-Thin';
     src: url('assets/fonts/Blinker-Thin.ttf') format('truetype');
 
 }
@@ -59,7 +59,8 @@ button{
     --font-regular: 'Blinker-Regular';
     --font-semiBold: 'Blinker-SemiBold';
     --font-bold: 'Blinker-Bold';
-    --font: 'Blinker-Light';
+    --font-light: 'Blinker-Light';
+    --font-thin: 'Blinker-Thin';
     --cor-primaria: #FFF;
     --cor-secundaria: #141414;
     --cor-terceira: #2B2B2B;

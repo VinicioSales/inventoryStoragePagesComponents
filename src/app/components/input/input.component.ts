@@ -7,6 +7,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class InputComponent {
   @Input() height: string = '30px'
+  @Input() width?: string = 'input'
   @Input() placeholder: string = 'input'
 
   @Output() valorChange = new EventEmitter<string>();

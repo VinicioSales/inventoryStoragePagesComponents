@@ -7,31 +7,32 @@
 }
 
 .container-login {
-    width: 25%;
+    width: 23%;
     height: 75%;
     background: var(--cor-primaria);
     border-radius: 2px;
     box-shadow: 2px 9px 12px 4px rgba(25, 40, 71, 0.25);
     justify-self: center;
     align-self: center;
+    padding: 0 20px 0 20px;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows:     auto   
+    grid-template-rows:     13%   
+                            20%
                             auto
                             auto
                             auto
+                            13%
                             auto
-                            auto
-                            auto
-                            auto;
+                            13%;
     grid-template-areas:    "header"
                             "titulo"
                             "email"
                             "senha"
                             "esqueci-senha"
                             "botao-login"
-                            "botao-registre"
-                            "link-parceiro";
+                            "registre"
+                            "footer";
 }
 
 .header {
@@ -50,14 +51,90 @@ app-botao-tema {
     margin-top: 10px;
 }
 
-h1 {
+.titulo {
     grid-area: titulo;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    font-size: 2.14rem;
+    font-family: var(--font-semiBold);
+}
+
+.input-email,
+.input-senha {
+    width: 100%;
     justify-self: center;
 }
 
 .input-email {
     grid-area: email;
-    padding: 0; /* Se necessário */
-    margin: 0; /* Se necessário */
 }
 
+.input-senha {
+    grid-area: senha;
+    margin-top: 12px;
+}
+
+.esqueci-senha,
+.botao-registre {
+    font-family: var(--font-light);
+    border: none;
+    justify-self: end;
+    align-self: start;
+}
+
+.esqueci-senha {
+    grid-area: esqueci-senha;
+    font-size: 0.85rem;
+}
+
+.esqueci-senha:hover,
+.botao-registre:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.botao-login {
+    grid-area: botao-login;
+    margin: 20px 0 20px 0;
+    align-self: center;
+}
+
+.registre {
+    grid-area: registre;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 6px;
+}
+
+.linha {
+    height: 1px;
+    width: 80%;
+    background: var(--cor-secundaria);
+}
+
+.botao-registre {
+    font-size: 1rem;
+    white-space: nowrap;
+    align-self: center;
+}
+
+.footer {
+    grid-area: footer;
+    font-family: var(--font-light);
+    font-size: 0.85rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:active,
+a:focus {
+    color: inherit;
+}

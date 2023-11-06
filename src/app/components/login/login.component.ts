@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, } from '@angular/core';
 
 @Component({
   selector: 'app-login',
@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
 })
 export class LoginComponent {
   imgSrc?: string = 'assets/img/logo-bf-light-mode.png';
+  linkParceiro: string = 'var(--link-parceiro)'
 }
