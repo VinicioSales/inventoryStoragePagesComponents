@@ -3,7 +3,8 @@
     padding: 9px;
     align-items: center;
     gap: 10px;
-    flex-shrink: 0;
+    flex-grow: 1;
+    flex: 1;
     border-radius: 10px;
     border: 1px solid rgba(25, 40, 71, 0.01);
     background: var(--cor-primaria);
@@ -12,7 +13,7 @@
 }
 
 .componente-input:focus {
-    outline: none; /* Remove o contorno padrão */
+    outline: none;
     box-shadow: var(--box-shadow); 
 
 }

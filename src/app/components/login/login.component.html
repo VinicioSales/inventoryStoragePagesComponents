@@ -1,0 +1,35 @@
+<div class="pagina-login">
+    <div class="container-login">
+        <div class="header">
+            <app-logo-bf></app-logo-bf>
+            <app-botao-tema></app-botao-tema>
+        </div>
+        <h1>Login</h1>
+        <div class="input-email">
+            <app-input
+                placeholder="email">
+            </app-input>
+        </div>
+        <app-input
+            class="input-senha"
+            placeholder="senha">
+        </app-input>
+        <button
+            class="esqueci-senha">
+            Esqueci senha
+        </button>
+        <app-botao
+            [texto]="'Login'"
+            width="75%">
+        </app-botao>
+        <div class="registre">
+            <div class="linha"></div>
+            <button
+                class="registre-botao">
+                Registre-se
+            </button>
+            <div class="linha"></div>
+        </div>
+        <a class="link-parceiro" href="">Feito por Parceiro Soluções</a>
+    </div>
+</div>

@@ -1,0 +1,61 @@
+.pagina-login {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-login {
+    width: 25%;
+    height: 75%;
+    background: var(--cor-primaria);
+    border-radius: 2px;
+    box-shadow: 2px 9px 12px 4px rgba(25, 40, 71, 0.25);
+    justify-self: center;
+    align-self: center;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows:     auto   
+                            auto
+                            auto
+                            auto
+                            auto
+                            auto
+                            auto
+                            auto;
+    grid-template-areas:    "header"
+                            "titulo"
+                            "email"
+                            "senha"
+                            "esqueci-senha"
+                            "botao-login"
+                            "botao-registre"
+                            "link-parceiro";
+}
+
+.header {
+    grid-area: header;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+app-botao-tema {
+    position: absolute;
+    right: 0;
+    margin-right: 12px;
+    align-self: start;
+    margin-top: 10px;
+}
+
+h1 {
+    grid-area: titulo;
+    justify-self: center;
+}
+
+.input-email {
+    grid-area: email;
+    background-color: red;
+}

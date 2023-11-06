@@ -6,7 +6,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./input.component.css']
 })
 export class InputComponent {
-  @Input() width: string = '293px'
+  @Input() width: string = '100%'
   @Input() height: string = '30px'
   @Input() placeholder: string = 'input'
 
