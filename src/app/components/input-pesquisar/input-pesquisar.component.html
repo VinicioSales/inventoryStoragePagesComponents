@@ -1,0 +1,23 @@
+<div
+    class="container-input-pesquisar"
+    #inputPesquisarDiv
+    [style.width]="width"
+    [style.height]="height">
+    <div class="container">
+        <input
+            type="text"
+            class="input"
+            [(ngModel)]="pesquisa"
+            [placeholder]="placeholder"
+            (blur)="onInputBlur(inputPesquisarDiv)"
+            (focus)="onInputFocus(inputPesquisarDiv)">
+        <button
+            id="botao-pesquisar"
+            (click)="onPesquisar()">
+            <img
+                [src]="imgSrc"
+                alt="Pesquisar"
+                id="img-pesquisar">
+        </button>
+    </div>
+</div>

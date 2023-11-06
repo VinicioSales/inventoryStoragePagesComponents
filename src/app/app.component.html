@@ -1,2 +1,16 @@
+<!-- <router-outlet></router-outlet> -->
+<div class="classe-main-teste" [style.background]="background">
+    <app-input></app-input>
+    <app-botao></app-botao>
+    <app-botao-sair></app-botao-sair>
+    <app-botao-editar></app-botao-editar>
+    <app-botao-home></app-botao-home>
+    <app-botao-remover></app-botao-remover>
+    <app-botao-ajuda></app-botao-ajuda>
+    <app-input-dropdown [itens]="itens"></app-input-dropdown>
+    <app-input-contador></app-input-contador>
+    <app-input-pesquisar></app-input-pesquisar>
+    <app-modal-geral *ngIf="mostrarModal" (fecharModal)="handleModal()"></app-modal-geral>
 
-<router-outlet></router-outlet>
+    <app-botao-tema></app-botao-tema>
+</div>
