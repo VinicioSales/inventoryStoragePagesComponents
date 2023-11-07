@@ -113,6 +113,7 @@ export class LoginComponent {
         }
       },
       error: (error: HttpErrorResponse) => {
+        console.log(error.status);
         switch (error.status) {
           case 400:
             this.exibirMensagemModal(LoginComponent.MENSAGEM_FORMATO_DADOS_INCORRETO);
