@@ -190,4 +190,59 @@ fdescribe('LoginComponent', () => {
   });
   //!SECTION
 
+
+
+
+  // SECTION - exibirMensagemModal
+  describe('exibirMensagemModal', () => {
+
+    // NOTE - deve definir 'mostrarModal' como verdadeiro
+    it('deve definir "mostrarModal" como verdadeiro', () => {
+      const mensagem = 'Teste de mensagem modal';
+      component.exibirMensagemModal(mensagem);
+      expect(component.mostrarModal).toBeTrue();
+    });
+
+    // NOTE - deve definir a 'mensagemModal' corretamente
+    it('deve definir "mensagemModal" corretamente', () => {
+      const mensagem = 'Outra mensagem de teste';
+      component.exibirMensagemModal(mensagem);
+      expect(component.mensagemModal).toBe(mensagem);
+    });
+
+    // NOTE - deve tratar mensagens vazias
+    it('deve tratar mensagens vazias', () => {
+      component.exibirMensagemModal('');
+      expect(component.mostrarModal).toBeTrue();
+      expect(component.mensagemModal).toBe('');
+    });
+
+    // NOTE - deve tratar mensagens nulas
+    it('deve tratar mensagens nulas', () => {
+      component.exibirMensagemModal(null as unknown as string); // Cast para compatibilizar com o tipo esperado pela função
+      expect(component.mostrarModal).toBeTrue();
+      expect(component.mensagemModal).toBeNull();
+    });
+
+    // NOTE - deve tratar mensagens indefinidas
+    it('deve tratar mensagens indefinidas', () => {
+      component.exibirMensagemModal(undefined as unknown as string); // Cast para compatibilizar com o tipo esperado pela função
+      expect(component.mostrarModal).toBeTrue();
+      expect(component.mensagemModal).toBeUndefined();
+    });
+
+    // NOTE - deve ser possível exibir diferentes mensagens consecutivamente
+    it('deve ser possível exibir diferentes mensagens consecutivamente', () => {
+      const primeiraMensagem = 'Primeira mensagem';
+      const segundaMensagem = 'Segunda mensagem';
+      component.exibirMensagemModal(primeiraMensagem);
+      expect(component.mensagemModal).toBe(primeiraMensagem);
+      component.exibirMensagemModal(segundaMensagem);
+      expect(component.mensagemModal).toBe(segundaMensagem);
+    });
+  });
+
+  //!SECTION
+
+
 });
