@@ -132,26 +132,13 @@ fdescribe('LoginComponent', () => {
 
   // SECTION - validarCredenciais
   describe('validarCredenciais', () => {
-    let component: LoginComponent;
-    let fixture: ComponentFixture<LoginComponent>;
-
-    beforeEach(() => {
-      TestBed.configureTestingModule({
-        // ... sua configuração de módulo de teste ...
-      }).compileComponents();
-
-      fixture = TestBed.createComponent(LoginComponent);
-      component = fixture.componentInstance;
-      fixture.detectChanges();
-    });
-
     // NOTE - deve lidar com campos vazios
     it('deve exibir mensagem para campos vazios', () => {
       component.valorEmail = '';
       component.valorSenha = '';
       spyOn(component, 'exibirMensagemModal');
       component.validarCredenciais();
-      expect(component.exibirMensagemModal).toHaveBeenCalledWith(LoginComponent.MENSAGEM_CAMPOS_VAZIOS);
+      expect(component.exibirMensagemModal).toHaveBeenCalledWith((component as any).constructor.MENSAGEM_CAMPOS_VAZIOS);
     });
 
     // NOTE - deve lidar com e-mail inválido
@@ -160,7 +147,7 @@ fdescribe('LoginComponent', () => {
       component.valorSenha = 'senha123';
       spyOn(component, 'exibirMensagemModal');
       component.validarCredenciais();
-      expect(component.exibirMensagemModal).toHaveBeenCalledWith(LoginComponent.MENSAGEM_EMAIL_INVALIDO);
+      expect(component.exibirMensagemModal).toHaveBeenCalledWith((component as any).constructor.MENSAGEM_EMAIL_INVALIDO);
     });
 
     // NOTE - deve lidar com senha inválida
@@ -169,7 +156,7 @@ fdescribe('LoginComponent', () => {
       component.valorSenha = 'short';
       spyOn(component, 'exibirMensagemModal');
       component.validarCredenciais();
-      expect(component.exibirMensagemModal).toHaveBeenCalledWith(LoginComponent.MENSAGEM_SENHA_INVALIDA);
+      expect(component.exibirMensagemModal).toHaveBeenCalledWith((component as any).constructor.MENSAGEM_SENHA_INVALIDA);
     });
 
     // NOTE - deve passar com credenciais válidas
