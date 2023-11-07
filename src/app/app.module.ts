@@ -1,5 +1,5 @@
 import { NgModule  } from '@angular/core';
-import { FormsModule  } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { InputComponent } from './components/input/input.component';
 import { BotaoComponent } from './components/botao/botao.component';
 import { LoginComponent } from './components/login/login.component';
+import { LogoBfComponent } from './components/logo-bf/logo-bf.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { BotaoSairComponent } from './components/botao-sair/botao-sair.component';
 import { BotaoTemaComponent } from './components/botao-tema/botao-tema.component';
@@ -18,7 +19,6 @@ import { BotaoRemoverComponent } from './components/botao-remover/botao-remover.
 import { InputDropdownComponent } from './components/input-dropdown/input-dropdown.component';
 import { InputContadorComponent } from './components/input-contador/input-contador.component';
 import { InputPesquisarComponent } from './components/input-pesquisar/input-pesquisar.component';
-import { LogoBfComponent } from './components/logo-bf/logo-bf.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +26,7 @@ import { LogoBfComponent } from './components/logo-bf/logo-bf.component';
     InputComponent,
     BotaoComponent,
     LoginComponent,
+    LogoBfComponent,
     RegistroComponent,
     BotaoSairComponent,
     BotaoTemaComponent,
@@ -37,12 +38,12 @@ import { LogoBfComponent } from './components/logo-bf/logo-bf.component';
     InputDropdownComponent,
     InputContadorComponent,
     InputPesquisarComponent,
-    LogoBfComponent,
   ],
   imports: [
     FormsModule ,
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

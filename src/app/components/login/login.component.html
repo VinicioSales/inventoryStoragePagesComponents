@@ -1,3 +1,8 @@
+<app-modal-geral
+    *ngIf="mostrarModal"
+    [mensagem]="mensagemModal"
+    (fecharModal)="handleFecharModal()">
+</app-modal-geral>
 <div class="pagina-login">
     <div class="container-login">
         <div class="header">
@@ -7,11 +12,14 @@
         <div class="titulo">Login</div>
         <app-input
             class="input-email"
-            placeholder="email">
+            placeholder="email"
+            (valorChange)="onValorInputChange($event, 'inputEmail')">
         </app-input>
         <app-input
+            type="password"
             class="input-senha"
-            placeholder="senha">
+            placeholder="senha"
+            (valorChange)="onValorInputChange($event, 'inputSenha')">
         </app-input>
         <button
             class="esqueci-senha">
@@ -20,6 +28,7 @@
         <app-botao
             width="100%"
             texto="Login"
+            (click)="onLogin()"
             class="botao-login">
         </app-botao>
         <div class="registre">

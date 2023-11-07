@@ -1,4 +1,4 @@
-import { Component, EventEmitter,  Output } from '@angular/core';
+import { Component, EventEmitter,  Output, Input } from '@angular/core';
 
 @Component({
   selector: 'app-modal-geral',
@@ -9,7 +9,8 @@ export class ModalGeralComponent {
   height: string = '23px'
   corBotao: string = 'var(--botao-verde)'
   corBotaoHover: string = 'var(--botao-verde-hover)'
-  mensagem?: string = "Lorem ipsum dolor sit amet, consectetur adipiscing Lorem ipsum dolor sit amet, consectetur adipiscing Lorem ipsum dolor sit amet, consectetur adipiscing ";
+
+  @Input() mensagem: string = '';
 
   @Output() fecharModal = new EventEmitter<void>();
 

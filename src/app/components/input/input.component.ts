@@ -6,6 +6,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./input.component.css']
 })
 export class InputComponent {
+  @Input() type: string = 'text'
   @Input() height: string = '30px'
   @Input() width?: string = 'input'
   @Input() placeholder: string = 'input'
@@ -19,3 +20,4 @@ export class InputComponent {
     this.valorChange.emit(this.valor);
   }
 }
+  

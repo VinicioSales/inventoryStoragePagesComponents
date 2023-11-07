@@ -3,7 +3,7 @@
     [style.width]="width">
     <input
         class="componente-input"
-        type="text"
+        [type]="type"
         [(ngModel)]="valor"
         (ngModelChange)="onValorChange($event)"
         [style.height]="height"

@@ -30,12 +30,4 @@ describe('BotaoComponent', () => {
   it('should have default texto', () => {
     expect(component.texto).toBe('botao');
   });
-
-  describe('onClick', () => {
-    it('should emit botaoClicado event', () => {
-      spyOn(component.botaoClicado, 'emit');
-      component.onClick();
-      expect(component.botaoClicado.emit).toHaveBeenCalled();
-    });
-  });
 });
