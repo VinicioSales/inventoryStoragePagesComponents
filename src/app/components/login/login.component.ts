@@ -49,7 +49,7 @@ export class LoginComponent {
   }
 
   //NOTE - exibirMensagemModal
-  private exibirMensagemModal(mensagem: string): void {
+  exibirMensagemModal(mensagem: string): void {
     this.mostrarModal = true;
     this.mensagemModal = mensagem;
   }

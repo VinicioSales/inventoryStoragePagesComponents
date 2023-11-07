@@ -126,4 +126,81 @@ fdescribe('LoginComponent', () => {
     });
   });
   //!SECTION
+
+
+
+
+  // SECTION - validarCredenciais
+  describe('validarCredenciais', () => {
+    let component: LoginComponent;
+    let fixture: ComponentFixture<LoginComponent>;
+
+    beforeEach(() => {
+      TestBed.configureTestingModule({
+        // ... sua configuração de módulo de teste ...
+      }).compileComponents();
+
+      fixture = TestBed.createComponent(LoginComponent);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+    });
+
+    // NOTE - deve lidar com campos vazios
+    it('deve exibir mensagem para campos vazios', () => {
+      component.valorEmail = '';
+      component.valorSenha = '';
+      spyOn(component, 'exibirMensagemModal');
+      component.validarCredenciais();
+      expect(component.exibirMensagemModal).toHaveBeenCalledWith(LoginComponent.MENSAGEM_CAMPOS_VAZIOS);
+    });
+
+    // NOTE - deve lidar com e-mail inválido
+    it('deve exibir mensagem para e-mail inválido', () => {
+      component.valorEmail = 'invalido@';
+      component.valorSenha = 'senha123';
+      spyOn(component, 'exibirMensagemModal');
+      component.validarCredenciais();
+      expect(component.exibirMensagemModal).toHaveBeenCalledWith(LoginComponent.MENSAGEM_EMAIL_INVALIDO);
+    });
+
+    // NOTE - deve lidar com senha inválida
+    it('deve exibir mensagem para senha inválida', () => {
+      component.valorEmail = 'valido@dominio.com';
+      component.valorSenha = 'short';
+      spyOn(component, 'exibirMensagemModal');
+      component.validarCredenciais();
+      expect(component.exibirMensagemModal).toHaveBeenCalledWith(LoginComponent.MENSAGEM_SENHA_INVALIDA);
+    });
+
+    // NOTE - deve passar com credenciais válidas
+    it('deve validar credenciais válidas sem exibir mensagens', () => {
+      component.valorEmail = 'valido@dominio.com';
+      component.valorSenha = 'senha1234';
+      spyOn(component, 'exibirMensagemModal');
+      component.validarCredenciais();
+      expect(component.exibirMensagemModal).not.toHaveBeenCalled();
+      expect(component.mostrarModal).toBeFalse();
+      expect(component.mensagemModal).toBe('');
+    });
+
+    // NOTE - deve lidar com valores nulos
+    it('deve lidar com valores nulos', () => {
+      component.valorEmail = undefined;
+      component.valorSenha = undefined;
+      spyOn(component, 'exibirMensagemModal');
+      component.validarCredenciais();
+      expect(component.exibirMensagemModal).toHaveBeenCalledWith((component as any).constructor.MENSAGEM_CAMPOS_VAZIOS);
+    });
+
+    // NOTE - deve lidar com valores undefined
+    it('deve lidar com valores undefined', () => {
+      component.valorEmail = undefined;
+      component.valorSenha = undefined;
+      spyOn(component, 'exibirMensagemModal');
+      component.validarCredenciais();
+      expect(component.exibirMensagemModal).toHaveBeenCalledWith((component as any).constructor.MENSAGEM_CAMPOS_VAZIOS);
+    });
+  });
+  //!SECTION
+
 });
