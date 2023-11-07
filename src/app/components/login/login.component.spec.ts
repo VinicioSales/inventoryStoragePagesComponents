@@ -1,11 +1,11 @@
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LoginComponent } from './login.component';
 import { InputComponent } from '../input/input.component';
 import { BotaoComponent } from '../botao/botao.component';
-import { RouterTestingModule } from '@angular/router/testing';
 import { LogoBfComponent } from '../logo-bf/logo-bf.component';
 import { BotaoTemaComponent } from '../botao-tema/botao-tema.component';
 
@@ -16,7 +16,10 @@ fdescribe('LoginComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule],
+      imports: [
+        FormsModule,
+        HttpClientModule
+      ],
       declarations: [
         LoginComponent,
         BotaoComponent,
@@ -366,5 +369,32 @@ describe('navegarRotaRegistro', () => {
   });
 });
 //!SECTION
+
+
+
+
+  // SECTION - onLogin
+  describe('onLogin', () => {
+
+    // NOTE - deve chamar logar() se validarCredenciais retornar true
+    it('deve chamar logar() se validarCredenciais retornar true', () => {
+      spyOn(component, 'validarCredenciais').and.returnValue(true);
+      spyOn(component, 'logar');
+      component.onLogin();
+      expect(component.validarCredenciais).toHaveBeenCalled();
+      expect(component.logar).toHaveBeenCalled();
+    });
+
+    // NOTE - não deve chamar logar() se validarCredenciais retornar false
+    it('não deve chamar logar() se validarCredenciais retornar false', () => {
+      spyOn(component, 'validarCredenciais').and.returnValue(false);
+      spyOn(component, 'logar');
+      component.onLogin();
+      expect(component.validarCredenciais).toHaveBeenCalled();
+      expect(component.logar).not.toHaveBeenCalled();
+    });
+  });
+  //!SECTION
+
 
 });

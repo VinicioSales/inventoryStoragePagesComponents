@@ -1,5 +1,6 @@
 import { Router } from '@angular/router';
 import { Component, Input } from '@angular/core';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -7,7 +8,10 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private authService: AuthService
+  ) {}
 
   private static readonly MENSAGEM_EMAIL_INVALIDO = 'Email inválido';
   private static readonly MENSAGEM_SENHA_INVALIDA = 'Senha inválida';
@@ -46,30 +50,36 @@ export class LoginComponent {
   }
 
   //NOTE - validarCredenciais
-  validarCredenciais(): void {
+  validarCredenciais(): boolean {
     if (!this.valorEmail || !this.valorSenha) {
       this.exibirMensagemModal(LoginComponent.MENSAGEM_CAMPOS_VAZIOS);
-      return;
+      return false;
     }
     
     if (!this.validarEmail(this.valorEmail)) {
       this.exibirMensagemModal(LoginComponent.MENSAGEM_EMAIL_INVALIDO);
-      return;
+      return false;
     }
     
     if (!this.validarSenha(this.valorSenha)) {
       this.exibirMensagemModal(LoginComponent.MENSAGEM_SENHA_INVALIDA);
-      return;
+      return false;
     }
 
-    this.mostrarModal = false;
-    this.mensagemModal = "";
+    this.fecharMensagemModal();
+    return true;
   }
 
   //NOTE - exibirMensagemModal
   exibirMensagemModal(mensagem: string): void {
     this.mostrarModal = true;
     this.mensagemModal = mensagem;
+  }
+
+  //NOTE - fecharMensagemModal
+  fecharMensagemModal() {
+    this.mostrarModal = false;
+    this.mensagemModal = "";
   }
 
   //NOTE - onValorInputChange
@@ -85,10 +95,19 @@ export class LoginComponent {
     }
   }
 
-  //NOTE - onLogin
-  onLogin() {
-    this.validarCredenciais();
+  //NOTE - logar
+  logar() {
+    this.authService.login(this.valorEmail!, this.valorSenha!).subscribe(
+      success => console.log('Login bem-sucedido', success),
+      error => console.error('Erro no login', error)
+    );
   }
 
-  
+  //NOTE - onLogin
+  onLogin() {
+    const credenciaisValidadas =  this.validarCredenciais();
+    if (credenciaisValidadas) {
+      this.logar();
+    }
+  }
 }
