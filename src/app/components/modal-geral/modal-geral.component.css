@@ -28,7 +28,7 @@
     color: var(--cor-secundaria);
     text-align: center;
     font-family: var(--font-regular);
-    font-size: 1rem;
+    font-size: 1.5rem;
     overflow: auto;
 
 }
