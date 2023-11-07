@@ -76,4 +76,54 @@ fdescribe('LoginComponent', () => {
     });
   });
   //!SECTION
+
+
+
+
+  // SECTION - validarSenha
+  describe('validarSenha', () => {
+    // NOTE - deve retornar verdadeiro para senhas com 8 ou mais caracteres
+    it('deve retornar verdadeiro para senhas com 8 ou mais caracteres', () => {
+      const senhasValidas = [
+        '12345678',
+        'password',
+        'abcdefgh',
+        '1234abcd',
+        '!@#$%^&*',
+        'A1b2C3d4',
+        'longpassword123'
+      ];
+      senhasValidas.forEach(senha => {
+        expect(component.validarSenha(senha)).toBeTrue();
+      });
+    });
+
+    // NOTE - deve retornar falso para senhas com menos de 8 caracteres
+    it('deve retornar falso para senhas com menos de 8 caracteres', () => {
+      const senhasInvalidas = [
+        '',
+        '1',
+        '12',
+        '123',
+        '1234',
+        '12345',
+        '123456',
+        '1234567',
+        'abcdefg',
+        '!@#$%^&'
+      ];
+      senhasInvalidas.forEach(senha => {
+        expect(component.validarSenha(senha)).toBeFalse();
+      });
+    });
+
+    // NOTE - deve retornar falso para senhas que não são do tipo string
+    it('deve retornar falso para senhas que não são do tipo string', () => {
+      expect(component.validarSenha(12345678)).toBeFalse();
+      expect(component.validarSenha({})).toBeFalse();
+      expect(component.validarSenha([])).toBeFalse();
+      expect(component.validarSenha(true)).toBeFalse();
+    });
+  });
+  //!SECTION
 });

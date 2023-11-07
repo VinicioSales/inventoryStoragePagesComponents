@@ -19,8 +19,6 @@ export class LoginComponent {
   //NOTE - validarEmail
   validarEmail(email: any): boolean {
     const re = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
-    console.log('validar');
-    console.log(re.test(email));
     return re.test(email);
   }
 
