@@ -24,6 +24,11 @@ export class LoginComponent {
     this.router.navigate(['/esqueci-senha']);
   }
 
+  //NOTE - navegarRotaRegistro
+  navegarRotaRegistro(): void {
+    this.router.navigate(['/registro']);
+  }
+
   //NOTE - handleFecharModal
   handleFecharModal() {
     this.mostrarModal = false;

@@ -340,6 +340,7 @@ fdescribe('LoginComponent', () => {
 
 
 
+
   // SECTION - navegarRotaEsqueciSenha
   describe('navegarRotaEsqueciSenha', () => {
 
@@ -352,5 +353,18 @@ fdescribe('LoginComponent', () => {
 
   //!SECTION
 
+
+
+
+  // SECTION - navegarRotaRegistro
+describe('navegarRotaRegistro', () => {
+
+  // NOTE - deve navegar para a rota '/registro'
+  it('deve navegar para a rota "/registro"', () => {
+    component.navegarRotaRegistro();
+    expect(router.navigate).toHaveBeenCalledWith(['/registro']);
+  });
+});
+//!SECTION
 
 });
