@@ -10,7 +10,13 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
+  //NOTE - login
   login(email: string, senha: string): Observable<any> {
     return this.http.post(`${urlBackend}/login`, { email, senha });
+  }
+
+  //NOTE recuperarSenha
+  recuperarSenha(email: string): Observable<any> {
+    return this.http.post(`${urlBackend}/recuperar-senha`, { email });
   }
 }

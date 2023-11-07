@@ -12,7 +12,7 @@ import { LogoBfComponent } from '../logo-bf/logo-bf.component';
 import { AuthService } from '../../services/auth/auth.service';
 import { BotaoTemaComponent } from '../botao-tema/botao-tema.component';
 
-fdescribe('LoginComponent', () => {
+describe('LoginComponent', () => {
   let router: Router;
   let routerMock: any;
   let authServiceMock: any;

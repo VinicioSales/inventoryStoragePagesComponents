@@ -141,8 +141,3 @@ a:active,
 a:focus {
     color: inherit;
 }
-
-.error-message {
-    color: red;
-    font-size: 0.8em;
-}
