@@ -1,5 +1,6 @@
 import { Router } from '@angular/router';
 import { Component, Input } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
 import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
@@ -13,9 +14,14 @@ export class LoginComponent {
     private authService: AuthService
   ) {}
 
-  private static readonly MENSAGEM_EMAIL_INVALIDO = 'Email inválido';
-  private static readonly MENSAGEM_SENHA_INVALIDA = 'Senha inválida';
-  private static readonly MENSAGEM_CAMPOS_VAZIOS = 'Preencha todos os campos';
+  static readonly MENSAGEM_EMAIL_INVALIDO = 'Email inválido!';
+  static readonly MENSAGEM_SENHA_INVALIDA = 'Senha inválida!';
+  static readonly MENSAGEM_CAMPOS_VAZIOS = 'Preencha todos os campos!';
+  static readonly MENSAGEM_DADOS_INVALIDOS = 'Email ou senha inválidos!'
+  static readonly MENSAGEM_USUARIO_NAO_ENCONTRADO = 'Usuário não encontrado!'
+  static readonly MENSAGEM_FORMATO_DADOS_INCORRETO = 'Revise a formatação dos dados!'
+  static readonly MENSAGEM_INTERNAL_ERROR = 'Ocorreu um erro inesperado. Tente novamento em alguns instantes. Caso persista, entre em contato com o suporte!'
+
 
   @Input() valorEmail?: string;
   @Input() valorSenha?: string;
@@ -97,10 +103,38 @@ export class LoginComponent {
 
   //NOTE - logar
   logar() {
-    this.authService.login(this.valorEmail!, this.valorSenha!).subscribe(
-      success => console.log('Login bem-sucedido', success),
-      error => console.error('Erro no login', error)
-    );
+    this.authService.login(this.valorEmail!, this.valorSenha!).subscribe({
+      next: (response) => {
+        const  token = response.token;
+
+        if (token) {
+          localStorage.setItem('token_de_acesso', token);
+          this.router.navigate(['/home']);
+        }
+      },
+      error: (error: HttpErrorResponse) => {
+        switch (error.status) {
+          case 400:
+            this.exibirMensagemModal(LoginComponent.MENSAGEM_FORMATO_DADOS_INCORRETO);
+            break
+
+          case 403:
+            this.exibirMensagemModal(LoginComponent.MENSAGEM_DADOS_INVALIDOS);
+            break
+
+          case 404:
+            this.exibirMensagemModal(LoginComponent.MENSAGEM_USUARIO_NAO_ENCONTRADO);
+            break
+          
+          case 500:
+            this.exibirMensagemModal(LoginComponent.MENSAGEM_INTERNAL_ERROR);
+            break
+
+          default:
+            this.exibirMensagemModal(`Erro desconhecido: ${error.message}`);
+        }
+      }
+    });
   }
 
   //NOTE - onLogin

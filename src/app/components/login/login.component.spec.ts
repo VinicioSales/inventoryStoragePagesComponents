@@ -1,20 +1,33 @@
+import { of, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LoginComponent } from './login.component';
 import { InputComponent } from '../input/input.component';
 import { BotaoComponent } from '../botao/botao.component';
 import { LogoBfComponent } from '../logo-bf/logo-bf.component';
+import { AuthService } from '../../services/auth/auth.service';
 import { BotaoTemaComponent } from '../botao-tema/botao-tema.component';
 
 fdescribe('LoginComponent', () => {
   let router: Router;
+  let routerMock: any;
+  let authServiceMock: any;
   let component: LoginComponent;
+  let localStorageSpy: jasmine.Spy;
   let fixture: ComponentFixture<LoginComponent>;
 
   beforeEach(() => {
+    authServiceMock = {
+      login: jasmine.createSpy('login')
+    };
+    routerMock = {
+      navigate: jasmine.createSpy('navigate')
+    };
+
     TestBed.configureTestingModule({
       imports: [
         FormsModule,
@@ -27,14 +40,19 @@ fdescribe('LoginComponent', () => {
         LogoBfComponent,
         BotaoTemaComponent,
       ],
+      providers: [
+        { provide: AuthService, useValue: authServiceMock },
+        { provide: Router, useValue: routerMock }
+      ]
     });
 
     fixture = TestBed.createComponent(LoginComponent);
+    localStorageSpy = spyOn(localStorage, 'setItem');
     component = fixture.componentInstance;
     router = TestBed.inject(Router);
-    spyOn(router, 'navigate');
     fixture.detectChanges();
   });
+
 
   it('should create', () => {
     expect(component).toBeTruthy();
@@ -147,7 +165,7 @@ fdescribe('LoginComponent', () => {
       component.valorSenha = '';
       spyOn(component, 'exibirMensagemModal');
       component.validarCredenciais();
-      expect(component.exibirMensagemModal).toHaveBeenCalledWith((component as any).constructor.MENSAGEM_CAMPOS_VAZIOS);
+      expect(component.exibirMensagemModal).toHaveBeenCalledWith(LoginComponent.MENSAGEM_CAMPOS_VAZIOS);
     });
 
     // NOTE - deve lidar com e-mail inválido
@@ -156,7 +174,7 @@ fdescribe('LoginComponent', () => {
       component.valorSenha = 'senha123';
       spyOn(component, 'exibirMensagemModal');
       component.validarCredenciais();
-      expect(component.exibirMensagemModal).toHaveBeenCalledWith((component as any).constructor.MENSAGEM_EMAIL_INVALIDO);
+      expect(component.exibirMensagemModal).toHaveBeenCalledWith(LoginComponent.MENSAGEM_EMAIL_INVALIDO);
     });
 
     // NOTE - deve lidar com senha inválida
@@ -165,7 +183,7 @@ fdescribe('LoginComponent', () => {
       component.valorSenha = 'short';
       spyOn(component, 'exibirMensagemModal');
       component.validarCredenciais();
-      expect(component.exibirMensagemModal).toHaveBeenCalledWith((component as any).constructor.MENSAGEM_SENHA_INVALIDA);
+      expect(component.exibirMensagemModal).toHaveBeenCalledWith(LoginComponent.MENSAGEM_SENHA_INVALIDA);
     });
 
     // NOTE - deve passar com credenciais válidas
@@ -185,7 +203,7 @@ fdescribe('LoginComponent', () => {
       component.valorSenha = undefined;
       spyOn(component, 'exibirMensagemModal');
       component.validarCredenciais();
-      expect(component.exibirMensagemModal).toHaveBeenCalledWith((component as any).constructor.MENSAGEM_CAMPOS_VAZIOS);
+      expect(component.exibirMensagemModal).toHaveBeenCalledWith(LoginComponent.MENSAGEM_CAMPOS_VAZIOS);
     });
 
     // NOTE - deve lidar com valores undefined
@@ -194,7 +212,7 @@ fdescribe('LoginComponent', () => {
       component.valorSenha = undefined;
       spyOn(component, 'exibirMensagemModal');
       component.validarCredenciais();
-      expect(component.exibirMensagemModal).toHaveBeenCalledWith((component as any).constructor.MENSAGEM_CAMPOS_VAZIOS);
+      expect(component.exibirMensagemModal).toHaveBeenCalledWith(LoginComponent.MENSAGEM_CAMPOS_VAZIOS);
     });
   });
   //!SECTION
@@ -397,4 +415,69 @@ describe('navegarRotaRegistro', () => {
   //!SECTION
 
 
+
+
+  // SECTION - logar
+  describe('logar', () => {
+
+    //NOTE - deve armazenar o token e navegar para /home quando o login for bem-sucedido
+    it('deve armazenar o token e navegar para /home quando o login for bem-sucedido', () => {
+      // ANCHOR - Teste de sucesso
+      const fakeResponse = { token: 'fake-token' };
+      authServiceMock.login.and.returnValue(of(fakeResponse));
+  
+      component.valorEmail = 'test@test.com';
+      component.valorSenha = 'password123';
+      component.logar();
+  
+      expect(authServiceMock.login).toHaveBeenCalledWith('test@test.com', 'password123');
+      expect(localStorageSpy).toHaveBeenCalledWith('token_de_acesso', 'fake-token');
+      expect(routerMock.navigate).toHaveBeenCalledWith(['/home']);
+    });
+  
+    //NOTE - deve exibir a mensagem de erro apropriada para erros específicos de HTTP
+    it('deve exibir a mensagem de erro apropriada para erros específicos de HTTP', () => {
+      // ANCHOR - Testes de erro HTTP
+      const errors = [
+        { status: 400, message: LoginComponent.MENSAGEM_FORMATO_DADOS_INCORRETO },
+        { status: 403, message: LoginComponent.MENSAGEM_DADOS_INVALIDOS },
+        { status: 404, message: LoginComponent.MENSAGEM_USUARIO_NAO_ENCONTRADO },
+        { status: 500, message: LoginComponent.MENSAGEM_INTERNAL_ERROR },
+      ];
+  
+      spyOn(component, 'exibirMensagemModal');
+      errors.forEach(error => {
+        authServiceMock.login.and.returnValue(throwError(() => new HttpErrorResponse({ status: error.status })));
+        component.logar();
+        expect(component.exibirMensagemModal).toHaveBeenCalledWith(error.message);
+      });
+    });
+  
+    //NOTE - deve exibir mensagem de erro desconhecido quando o status do erro não for mapeado
+    it('deve exibir mensagem de erro desconhecido quando o status do erro não for mapeado', () => {
+      // ANCHOR - Teste de erro desconhecido
+      const unknownErrorStatus = 418; // 418: I'm a teapot
+      const unknownError = new HttpErrorResponse({
+        status: unknownErrorStatus,
+        statusText: "I'm a teapot",
+        url: '(unknown url)' // Esta linha pode não ser necessária se o HttpErrorResponse preenche isso automaticamente
+      });
+      authServiceMock.login.and.returnValue(throwError(() => unknownError));
+      spyOn(component, 'exibirMensagemModal');
+      component.logar();
+      expect(component.exibirMensagemModal).toHaveBeenCalledWith(
+        `Erro desconhecido: ${unknownError.message}` // Altere para unknownError.message
+      );
+    });
+    
+    //NOTE - deve lidar com a ausência do token na resposta
+    it('deve lidar com a ausência do token na resposta', () => {
+      // ANCHOR - Teste de resposta sem token
+      authServiceMock.login.and.returnValue(of({}));
+      component.logar();
+      expect(localStorageSpy).not.toHaveBeenCalledWith('token_de_acesso', jasmine.any(String));
+      expect(routerMock.navigate).not.toHaveBeenCalled();
+    });
+  })
+  // !SECTION
 });
