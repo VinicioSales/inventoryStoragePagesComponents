@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, Input } from '@angular/core';
 
 @Component({
@@ -6,15 +7,27 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  private static readonly MENSAGEM_CAMPOS_VAZIOS = 'Preencha todos os campos';
+  constructor(private router: Router) {}
+
   private static readonly MENSAGEM_EMAIL_INVALIDO = 'Email inválido';
   private static readonly MENSAGEM_SENHA_INVALIDA = 'Senha inválida';
+  private static readonly MENSAGEM_CAMPOS_VAZIOS = 'Preencha todos os campos';
 
   @Input() valorEmail?: string;
   @Input() valorSenha?: string;
   @Input() mensagemModal: string = '';
   
   mostrarModal: boolean = false;
+
+  //NOTE - navegarRotaEsqueciSenha
+  navegarRotaEsqueciSenha(): void {
+    this.router.navigate(['/esqueci-senha']);
+  }
+
+  //NOTE - handleFecharModal
+  handleFecharModal() {
+    this.mostrarModal = false;
+  }
 
   //NOTE - validarEmail
   validarEmail(email: any): boolean {
@@ -72,7 +85,5 @@ export class LoginComponent {
     this.validarCredenciais();
   }
 
-  handleFecharModal() {
-    this.mostrarModal = false;
-  }
+  
 }

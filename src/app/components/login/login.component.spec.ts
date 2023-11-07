@@ -1,13 +1,16 @@
+import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LoginComponent } from './login.component';
 import { InputComponent } from '../input/input.component';
 import { BotaoComponent } from '../botao/botao.component';
+import { RouterTestingModule } from '@angular/router/testing';
 import { LogoBfComponent } from '../logo-bf/logo-bf.component';
 import { BotaoTemaComponent } from '../botao-tema/botao-tema.component';
 
 fdescribe('LoginComponent', () => {
+  let router: Router;
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
 
@@ -20,10 +23,13 @@ fdescribe('LoginComponent', () => {
         InputComponent,
         LogoBfComponent,
         BotaoTemaComponent,
-      ]
+      ],
     });
+
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
+    router = TestBed.inject(Router);
+    spyOn(router, 'navigate');
     fixture.detectChanges();
   });
 
@@ -330,7 +336,21 @@ fdescribe('LoginComponent', () => {
       expect(component.mostrarModal).toBeFalse();
     });
   });
+  //!SECTION
+
+
+
+  // SECTION - navegarRotaEsqueciSenha
+  describe('navegarRotaEsqueciSenha', () => {
+
+    // NOTE - deve navegar para a rota '/esqueci-senha'
+    it('deve navegar para a rota "/esqueci-senha"', () => {
+      component.navegarRotaEsqueciSenha();
+      expect(router.navigate).toHaveBeenCalledWith(['/esqueci-senha']);
+    });
+  });
 
   //!SECTION
+
 
 });

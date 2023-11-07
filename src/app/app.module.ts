@@ -19,6 +19,7 @@ import { BotaoRemoverComponent } from './components/botao-remover/botao-remover.
 import { InputDropdownComponent } from './components/input-dropdown/input-dropdown.component';
 import { InputContadorComponent } from './components/input-contador/input-contador.component';
 import { InputPesquisarComponent } from './components/input-pesquisar/input-pesquisar.component';
+import { EsqueciSenhaComponent } from './components/esqueci-senha/esqueci-senha.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { InputPesquisarComponent } from './components/input-pesquisar/input-pesq
     InputDropdownComponent,
     InputContadorComponent,
     InputPesquisarComponent,
+    EsqueciSenhaComponent,
   ],
   imports: [
     FormsModule ,
