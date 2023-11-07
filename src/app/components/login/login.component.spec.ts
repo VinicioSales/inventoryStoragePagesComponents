@@ -241,8 +241,71 @@ fdescribe('LoginComponent', () => {
       expect(component.mensagemModal).toBe(segundaMensagem);
     });
   });
-
   //!SECTION
 
+
+
+
+  // SECTION - onValorInputChange
+  describe('onValorInputChange', () => {
+    // NOTE - deve atribuir valor ao 'valorEmail' quando 'inputEmail' é passado
+    it('deve atribuir valor ao "valorEmail" quando "inputEmail" é passado', () => {
+      const novoValor = 'test@example.com';
+      component.onValorInputChange(novoValor, 'inputEmail');
+      expect(component.valorEmail).toBe(novoValor);
+    });
+
+    // NOTE - deve atribuir valor ao 'valorSenha' quando 'inputSenha' é passado
+    it('deve atribuir valor ao "valorSenha" quando "inputSenha" é passado', () => {
+      const novoValor = 'password123';
+      component.onValorInputChange(novoValor, 'inputSenha');
+      expect(component.valorSenha).toBe(novoValor);
+    });
+
+    // NOTE - não deve alterar o 'valorEmail' quando 'inputSenha' é passado
+    it('não deve alterar o "valorEmail" quando "inputSenha" é passado', () => {
+      component.valorEmail = ''; // Definir um valor inicial para garantir o teste
+      const novoValor = 'password123';
+      component.onValorInputChange(novoValor, 'inputSenha');
+      expect(component.valorEmail).toBe('');
+    });
+
+    // NOTE - não deve alterar o 'valorSenha' quando 'inputEmail' é passado
+    it('não deve alterar o "valorSenha" quando "inputEmail" é passado', () => {
+      component.valorSenha = ''; // Definir um valor inicial para garantir o teste
+      const novoValor = 'test@example.com';
+      component.onValorInputChange(novoValor, 'inputEmail');
+      expect(component.valorSenha).toBe('');
+    });
+
+    // NOTE - não deve alterar nenhum valor quando um 'inputId' inválido é passado
+    it('não deve alterar nenhum valor quando um "inputId" inválido é passado', () => {
+      const emailInicial = 'initial@example.com';
+      const senhaInicial = 'initial123';
+      component.valorEmail = emailInicial;
+      component.valorSenha = senhaInicial;
+      component.onValorInputChange('newValue', 'inputInvalido');
+      expect(component.valorEmail).toBe(emailInicial);
+      expect(component.valorSenha).toBe(senhaInicial);
+    });
+
+    // NOTE - deve lidar com valores nulos como novoValor
+    it('deve lidar com valores nulos como novoValor', () => {
+      component.onValorInputChange(null as unknown as string, 'inputEmail');
+      expect(component.valorEmail).toBeNull();
+      component.onValorInputChange(null as unknown as string, 'inputSenha');
+      expect(component.valorSenha).toBeNull();
+    });
+
+    // NOTE - deve lidar com valores undefined como novoValor
+    it('deve lidar com valores undefined como novoValor', () => {
+      component.onValorInputChange(undefined as unknown as string, 'inputEmail');
+      expect(component.valorEmail).toBeUndefined();
+      component.onValorInputChange(undefined as unknown as string, 'inputSenha');
+      expect(component.valorSenha).toBeUndefined();
+    });
+  });
+
+  //!SECTION
 
 });

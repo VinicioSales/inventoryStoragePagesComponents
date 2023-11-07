@@ -65,7 +65,6 @@ export class LoginComponent {
         this.valorSenha = novoValor;
         break;
     }
-    
   }
 
   //NOTE - onLogin
