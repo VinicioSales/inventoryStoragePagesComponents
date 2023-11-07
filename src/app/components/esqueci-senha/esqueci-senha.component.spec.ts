@@ -9,7 +9,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { EsqueciSenhaComponent } from './esqueci-senha.component';
 
-fdescribe('EsqueciSenhaComponent', () => {
+describe('EsqueciSenhaComponent', () => {
   let component: EsqueciSenhaComponent;
   let fixture: ComponentFixture<EsqueciSenhaComponent>;
   let authServiceMock: jasmine.SpyObj<AuthService>;
