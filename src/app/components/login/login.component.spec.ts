@@ -305,6 +305,31 @@ fdescribe('LoginComponent', () => {
       expect(component.valorSenha).toBeUndefined();
     });
   });
+  //!SECTION
+
+
+
+
+
+  // SECTION - handleFecharModal
+  describe('handleFecharModal', () => {
+
+    // NOTE - deve definir 'mostrarModal' como falso
+    it('deve definir "mostrarModal" como falso', () => {
+      // Definir mostrarModal como verdadeiro antes de chamar o método para garantir que o teste é significativo
+      component.mostrarModal = true;
+      component.handleFecharModal();
+      expect(component.mostrarModal).toBeFalse();
+    });
+
+    // NOTE - deve manter 'mostrarModal' falso se já estiver falso
+    it('deve manter "mostrarModal" falso se já estiver falso', () => {
+      // Definir mostrarModal como falso para verificar que o estado permanece inalterado após a chamada do método
+      component.mostrarModal = false;
+      component.handleFecharModal();
+      expect(component.mostrarModal).toBeFalse();
+    });
+  });
 
   //!SECTION
 
