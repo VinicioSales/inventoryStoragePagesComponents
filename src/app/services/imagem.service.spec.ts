@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { ImagemService } from './imagem.service';
 import { TemaService } from './tema.service';
 
-fdescribe('ImagemService', () => {
+describe('ImagemService', () => {
   let service: ImagemService;
   let temaService: TemaService;
   let temaServiceSpy: jasmine.SpyObj<TemaService>;
