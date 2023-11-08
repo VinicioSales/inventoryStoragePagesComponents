@@ -1,0 +1,38 @@
+<app-modal-geral
+    *ngIf="mostrarModal"
+    [mensagem]="mensagemModal"
+    (fecharModal)="handleFecharModal()">
+</app-modal-geral>
+<div class="pagina-home">
+    <div class="container-home">
+        <div class="header">
+            <app-logo-bf></app-logo-bf>
+            <div class="botoes-header">
+                <app-botao-tema></app-botao-tema>
+                <app-botao-sair></app-botao-sair>
+            </div>
+        </div>
+        <div class="titulo">Home</div>
+        <app-botao
+            width="100%"
+            texto="Solicitar produtos"
+            class="botao-solicitar-produtos"
+            (click)="navegarRotaSolicitarProdutos()">
+        </app-botao>
+        <app-botao
+            width="100%"
+            texto="Devolver produtos"
+            class="botao-devolver-produtos"
+            (click)="navegarRotaDevolverProdutos()">
+        </app-botao>
+        <app-botao
+            width="100%"
+            texto="Notion"
+            class="botao-notion"
+            (click)="onNotion()">
+        </app-botao>
+        <div class="footer">
+            <a href="https://site.parceirosolucoes.com.br" target="_blank">Feito por Parceiro Soluções</a>
+        </div>
+    </div>
+</div>

@@ -21,6 +21,7 @@ import { InputDropdownComponent } from './components/input-dropdown/input-dropdo
 import { InputContadorComponent } from './components/input-contador/input-contador.component';
 import { InputPesquisarComponent } from './components/input-pesquisar/input-pesquisar.component';
 import { EsqueciSenhaComponent } from './components/esqueci-senha/esqueci-senha.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { EsqueciSenhaComponent } from './components/esqueci-senha/esqueci-senha.
     InputContadorComponent,
     InputPesquisarComponent,
     EsqueciSenhaComponent,
+    HomeComponent,
   ],
   imports: [
     FormsModule ,

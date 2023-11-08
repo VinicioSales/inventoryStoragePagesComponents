@@ -129,7 +129,8 @@ app-botao-tema {
     font-size: 0.85rem;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: end;
+    padding-bottom: 10px;
 }
 
 a {
