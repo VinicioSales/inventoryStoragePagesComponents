@@ -2,6 +2,11 @@
 
 Todas as mudanças do projeto serão documentados neste arquivo.
 
+## [0.0] - 08-11-2023 
+### Added
+- Criado tela home (vinício)
+- Iniciado scripts e testes home (vinício)
+
 ## [0.0] - 07-11-2023 
 ### Added
 - Criado tela esqueci senha (vinício)
