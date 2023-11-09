@@ -7,10 +7,12 @@ import { Component, EventEmitter,  Output, Input } from '@angular/core';
 })
 export class ModalGeralComponent {
   height: string = '23px'
-  corBotao: string = 'var(--botao-verde)'
   corBotaoHover: string = 'var(--botao-verde-hover)'
 
   @Input() mensagem: string = '';
+  @Input() textoBotao: string = 'Confirmar'
+  @Input() corBotao: string = 'var(--botao-verde)'
+
 
   @Output() fecharModal = new EventEmitter<void>();
 

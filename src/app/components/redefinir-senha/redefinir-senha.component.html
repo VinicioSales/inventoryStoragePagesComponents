@@ -1,6 +1,8 @@
 <app-modal-geral
     *ngIf="mostrarModal"
     [mensagem]="mensagemModal"
+    textoBotao="Fechar"
+    [corBotao]="corBotao"
     (fecharModal)="handleFecharModal()">
 </app-modal-geral>
 <div class="pagina-redefinir-senha">

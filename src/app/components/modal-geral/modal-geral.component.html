@@ -3,8 +3,8 @@
         <p class="mensagem">{{ mensagem }}</p>
         <app-botao
             [height]="height"
-            texto="Confirmar"
             (click)="onClick()"
+            [texto]="textoBotao"
             [background]="corBotao"
             [backgroundHover]="corBotaoHover">
         </app-botao>
