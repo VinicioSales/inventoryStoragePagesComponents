@@ -52,7 +52,6 @@ export class AuthService {
 
   //NOTE - logout
   logout(): void {
-    
     localStorage.removeItem('token_de_autenticacao');
     this.router.navigate(['/login']);
   }
@@ -60,6 +59,11 @@ export class AuthService {
   //NOTE recuperarSenha
   recuperarSenha(email: string): Observable<any> {
     return this.http.post(`${urlBackend}/recuperar-senha`, { email });
+  }
+
+  //NOTE - redefinirSenha
+  redefinirSenha(novaSenha: string, codigoVerificacao: string): Observable<any> {
+    return this.http.post(`${urlBackend}/redefinir-senha`, { novaSenha, codigoVerificacao });
   }
 
 }
