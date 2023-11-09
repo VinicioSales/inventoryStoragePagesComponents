@@ -1,9 +1,11 @@
-import { TestBed } from '@angular/core/testing';
+import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
+import { TestBed } from '@angular/core/testing';
 import { urlBackend } from 'src/app/services/static';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 fdescribe('AuthService', () => {
+  let router: Router;
   let service: AuthService;
   let httpMock: HttpTestingController;
 
@@ -131,4 +133,32 @@ fdescribe('AuthService', () => {
       expect(isLoggedIn).toBeFalse();
     });
   });
+  //!SECTION
+
+
+
+
+  //SECTION - logout
+  describe('logout', () => {
+    beforeEach(() => {
+      router = TestBed.inject(Router);
+      spyOn(router, 'navigate');
+    });
+
+    //NOTE - deve remover o token de autenticação do localStorage
+    it('deve remover o token de autenticação do localStorage', () => {
+      spyOn(localStorage, 'removeItem');
+      service.logout();
+      expect(localStorage.removeItem).toHaveBeenCalledWith('token_de_autenticacao');
+    });
+
+    //NOTE - deve redirecionar para a página home
+    it('deve redirecionar para a página home', () => {
+      service.logout();
+      expect(router.navigate).toHaveBeenCalledWith(['/home']);
+    });
+
+  });
+  //!SECTION
+
 });

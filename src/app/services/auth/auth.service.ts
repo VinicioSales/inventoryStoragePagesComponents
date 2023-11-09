@@ -1,4 +1,5 @@
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { urlBackend } from 'src/app/services/static'
@@ -8,8 +9,12 @@ import { urlBackend } from 'src/app/services/static'
 })
 export class AuthService {
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+  ) {}
 
+  //NOTE - parseJwt
   parseJwt(token: string) {
     try {
       const base64Url = token.split('.')[1];
@@ -30,7 +35,6 @@ export class AuthService {
   }
   
 
-
   //NOTE - login
   login(email: string, senha: string): Observable<any> {
     return this.http.post(`${urlBackend}/login`, { email, senha });
@@ -49,7 +53,7 @@ export class AuthService {
   //NOTE - logout
   logout(): void {
     localStorage.removeItem('token_de_autenticacao');
-    // Redirecione o usuário para a página de login ou para onde você achar melhor
+    this.router.navigate(['/home']);
   }
 
   //NOTE recuperarSenha
