@@ -1,22 +1,30 @@
-// src\app\guards\auth.guard.spec.ts:
 import { TestBed } from '@angular/core/testing';
-import { CanActivate } from '@angular/router';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { AuthGuard } from './auth.guard';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
-import { AuthGuard } from './auth.guard'; // Ajuste o nome aqui para 'AuthGuard'
-
-describe('AuthGuard', () => { // Ajuste o nome aqui também
+describe('AuthGuard', () => {
   let guard: AuthGuard;
-
+  
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [AuthGuard] // Adicione AuthGuard aos provedores
+      imports: [
+        HttpClientTestingModule, // Fornece um ambiente de teste para HttpClient
+        RouterTestingModule // Fornece um ambiente de teste para o Router
+      ],
+      providers: [
+        AuthGuard,
+        AuthService // Garante que o AuthService está disponível para o AuthGuard
+      ]
     });
-    guard = TestBed.inject(AuthGuard); // Injete AuthGuard para usar nos testes
+    
+    guard = TestBed.inject(AuthGuard);
   });
 
   it('should be created', () => {
-    expect(guard).toBeTruthy(); // Teste para garantir que AuthGuard é criado corretamente
+    expect(guard).toBeTruthy();
   });
-  
-  // Aqui você pode adicionar mais testes para os casos de canActivate retornar true ou false
+
+  // Adicione seus testes aqui
 });

@@ -431,7 +431,7 @@ describe('navegarRotaRegistro', () => {
       component.logar();
   
       expect(authServiceMock.login).toHaveBeenCalledWith('test@test.com', 'password123');
-      expect(localStorageSpy).toHaveBeenCalledWith('token_de_acesso', 'fake-token');
+      expect(localStorageSpy).toHaveBeenCalledWith('token_de_autenticacao', 'fake-token');
       expect(routerMock.navigate).toHaveBeenCalledWith(['/home']);
     });
   
@@ -475,7 +475,7 @@ describe('navegarRotaRegistro', () => {
       // ANCHOR - Teste de resposta sem token
       authServiceMock.login.and.returnValue(of({}));
       component.logar();
-      expect(localStorageSpy).not.toHaveBeenCalledWith('token_de_acesso', jasmine.any(String));
+      expect(localStorageSpy).not.toHaveBeenCalledWith('token_de_autenticacao', jasmine.any(String));
       expect(routerMock.navigate).not.toHaveBeenCalled();
     });
   })

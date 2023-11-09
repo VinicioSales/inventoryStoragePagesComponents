@@ -7,7 +7,7 @@ import { LogoBfComponent } from 'src/app/components/logo-bf/logo-bf.component'
 import { BotaoTemaComponent } from 'src/app/components/botao-tema/botao-tema.component'
 import { BotaoSairComponent } from 'src/app/components/botao-sair/botao-sair.component'
 
-fdescribe('HomeComponent', () => {
+describe('HomeComponent', () => {
   let component: HomeComponent;
   let router: Router;
   let authService: AuthService;
