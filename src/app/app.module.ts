@@ -22,10 +22,12 @@ import { InputContadorComponent } from './components/input-contador/input-contad
 import { InputPesquisarComponent } from './components/input-pesquisar/input-pesquisar.component';
 import { EsqueciSenhaComponent } from './components/esqueci-senha/esqueci-senha.component';
 import { HomeComponent } from './components/home/home.component';
+import { RedefinirSenhaComponent } from './components/redefinir-senha/redefinir-senha.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    HomeComponent,
     InputComponent,
     BotaoComponent,
     LoginComponent,
@@ -42,7 +44,7 @@ import { HomeComponent } from './components/home/home.component';
     InputContadorComponent,
     InputPesquisarComponent,
     EsqueciSenhaComponent,
-    HomeComponent,
+    RedefinirSenhaComponent,
   ],
   imports: [
     FormsModule ,

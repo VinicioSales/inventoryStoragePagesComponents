@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth/auth.service';
 
 
