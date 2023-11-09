@@ -110,6 +110,7 @@ export class RedefinirSenhaComponent {
       () => this.validarSenhas(),
       () => this.validarCampos()
     ]);
+    
     if (validado) {
       this.authService.redefinirSenha(this.valorNovaSenha, this.valorCodigoVerificacao).subscribe({
         next: (response) => {
