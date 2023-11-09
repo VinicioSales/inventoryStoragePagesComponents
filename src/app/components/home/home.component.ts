@@ -38,6 +38,7 @@ export class HomeComponent {
     this.router.navigate(['/devolver-produtos']);
   }
   
+  //FIXME - ADICIONAR LINK DO NOTION
   //NOTE - onNotion
   onNotion() {
     window.open('https://www.google.com/', '_blanc');

@@ -40,7 +40,7 @@ fdescribe('HomeComponent', () => {
 
 
 
-  
+
   // SECTION - handleFecharModal
   describe('handleFecharModal', () => {
     
@@ -102,6 +102,7 @@ fdescribe('HomeComponent', () => {
   // SECTION - onNotion
   describe('onNotion', () => {
     
+    //FIXME - ADICIONAR LINK DO NOTION
     // NOTE - deve abrir a URL do Notion
     it('deve abrir a URL do Notion', () => {
       spyOn(window, 'open');
