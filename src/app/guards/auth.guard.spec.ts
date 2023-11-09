@@ -1,17 +1,22 @@
+// src\app\guards\auth.guard.spec.ts:
 import { TestBed } from '@angular/core/testing';
-import { CanActivateFn } from '@angular/router';
+import { CanActivate } from '@angular/router';
 
-import { authGuard } from './auth.guard';
+import { AuthGuard } from './auth.guard'; // Ajuste o nome aqui para 'AuthGuard'
 
-describe('authGuard', () => {
-  const executeGuard: CanActivateFn = (...guardParameters) => 
-      TestBed.runInInjectionContext(() => authGuard(...guardParameters));
+describe('AuthGuard', () => { // Ajuste o nome aqui também
+  let guard: AuthGuard;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [AuthGuard] // Adicione AuthGuard aos provedores
+    });
+    guard = TestBed.inject(AuthGuard); // Injete AuthGuard para usar nos testes
   });
 
   it('should be created', () => {
-    expect(executeGuard).toBeTruthy();
+    expect(guard).toBeTruthy(); // Teste para garantir que AuthGuard é criado corretamente
   });
+  
+  // Aqui você pode adicionar mais testes para os casos de canActivate retornar true ou false
 });

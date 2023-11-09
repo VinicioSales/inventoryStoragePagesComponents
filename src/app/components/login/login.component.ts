@@ -108,7 +108,7 @@ export class LoginComponent {
         const  token = response.token;
 
         if (token) {
-          localStorage.setItem('token_de_acesso', token);
+          localStorage.setItem('token_de_autenticacao', token);
           this.router.navigate(['/home']);
         }
       },
