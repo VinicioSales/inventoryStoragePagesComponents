@@ -4,6 +4,12 @@ Todas as mudanças do projeto serão documentados neste arquivo.
 
 ## [0.0] - 08-11-2023 
 ### Added
+- Criado testes da tela home (vinício)
+- Criado sistema de autenticação (vinício)
+- Iniciado moadal do pdf (vinício)
+
+## [0.0] - 08-11-2023 
+### Added
 - Criado tela home (vinício)
 - Iniciado scripts e testes home (vinício)
 
