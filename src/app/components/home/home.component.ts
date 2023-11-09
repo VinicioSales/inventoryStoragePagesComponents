@@ -1,4 +1,5 @@
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth/auth.service'
 import { Component, Input } from '@angular/core';
 
 
@@ -10,6 +11,7 @@ import { Component, Input } from '@angular/core';
 export class HomeComponent {
   constructor(
     private router: Router,
+    private authService: AuthService,
   ) {}
 
   @Input() mensagemModal: string = '';
@@ -23,7 +25,7 @@ export class HomeComponent {
 
   //NOTE - onLogout
   onLogout() {
-
+    this.authService.logout();
   }
 
   //NOTE - navegarRotaSolicitarProdutos
@@ -38,5 +40,6 @@ export class HomeComponent {
   
   //NOTE - onNotion
   onNotion() {
+    window.open('https://www.google.com/', '_blanc');
   }
 }

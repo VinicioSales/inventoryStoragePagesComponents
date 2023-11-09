@@ -52,8 +52,9 @@ export class AuthService {
 
   //NOTE - logout
   logout(): void {
+    
     localStorage.removeItem('token_de_autenticacao');
-    this.router.navigate(['/home']);
+    this.router.navigate(['/login']);
   }
 
   //NOTE recuperarSenha

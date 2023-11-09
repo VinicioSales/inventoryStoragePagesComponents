@@ -4,7 +4,7 @@ import { TestBed } from '@angular/core/testing';
 import { urlBackend } from 'src/app/services/static';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
-fdescribe('AuthService', () => {
+describe('AuthService', () => {
   let router: Router;
   let service: AuthService;
   let httpMock: HttpTestingController;
@@ -153,9 +153,9 @@ fdescribe('AuthService', () => {
     });
 
     //NOTE - deve redirecionar para a página home
-    it('deve redirecionar para a página home', () => {
+    it('deve redirecionar para a página login', () => {
       service.logout();
-      expect(router.navigate).toHaveBeenCalledWith(['/home']);
+      expect(router.navigate).toHaveBeenCalledWith(['/login']);
     });
 
   });

@@ -8,10 +8,11 @@ import { RegistroComponent } from './components/registro/registro.component';
 import { EsqueciSenhaComponent } from './components/esqueci-senha/esqueci-senha.component';
 
 const routes: Routes = [
-{path:'home', component: HomeComponent, canActivate: [AuthGuard]},
+  {path:'', component: LoginComponent},
   {path:'login', component: LoginComponent},
   {path:'registro', component: RegistroComponent},
   {path:'esqueci-senha', component: EsqueciSenhaComponent},
+  {path:'home', component: HomeComponent, /*canActivate: [AuthGuard]*/},
 ];
 
 @NgModule({
