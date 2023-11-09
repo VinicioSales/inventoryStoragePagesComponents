@@ -36,6 +36,7 @@ export class RedefinirSenhaComponent {
   //NOTE - handleFecharModal
   handleFecharModal() {
     this.mostrarModal = false;
+    this.mensagemModal = '';
   }
 
   //NOTE - onValorInputChange
