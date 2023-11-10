@@ -8,6 +8,8 @@ Todas as mudanças do projeto serão documentados neste arquivo.
 - Criado testes modal pdf (vinício)
 - Criado serviço requisicoes (vinício)
 - Criado testes serviço requisicoes (vinício)
+- Finalizado layout tela de registro (Victor)
+- Criado verificações input email, senha e confirmar senha (Victor)
 
 ## [0.0] - 09-11-2023 
 ### Added
