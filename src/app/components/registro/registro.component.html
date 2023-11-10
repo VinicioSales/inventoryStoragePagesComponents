@@ -1,27 +1,21 @@
-
+<app-modal-geral *ngIf="mostrarModal" [mensagem]="mensagemModal" (fecharModal)="handleFecharModal()"></app-modal-geral>
 <div class="page">
     <div class="container"> 
         
         <div class="header">
             <app-botao-tema class="botao_change_mode"></app-botao-tema>
-            <img class="logo" [src]= "imgSrc" alt="Logo parceiro">   
+            <app-logo-bf class="header"></app-logo-bf>            
             <h2>Registrar</h2>
         </div>
-    <div class="inputs">
         
-        <!-- <app-input #nomeInput placeholder="nome" class="name" (valueChanged)="onNomeValueChanged($event)"></app-input>        -->
-
-        <app-input placeholder="email" class="email"></app-input>
-        <app-input placeholder="senha" class="password"></app-input>
-        <app-input placeholder="confirmar senha" class="confirm_password"></app-input>
-        
-
-    </div>
-    <div class="footer"> 
-        <app-botao class="botao_registrar" texto="Registrar"  ></app-botao>     
-        <p class="rodape">Feito por Parceiro Soluções</p>      
-        
-    </div>
+        <app-input  placeholder="nome" class="name" (valorChange)="onNomeValueChanged($event)"></app-input>      
+        <app-input width="100%" placeholder="email" class="email" (valorChange)="onEmailValueChanged($event)" ></app-input>
+        <app-input placeholder="senha" class="password" (valorChange)="onSenhaValueChanged($event)"></app-input>
+        <app-input placeholder="confirmar senha" class="confirm_password" (valorChange)="onConfirmarSenhaValueChanged($event)"></app-input>
+        <app-botao class="botao" texto="Registrar" width="100%" (click) = "OnRegistro()" ></app-botao>
+       
+        <div class="footer">              
+            <a href="https://site.parceirosolucoes.com.br" target="_blank">Feito por Parceiro Soluções</a>        </div>
            
     </div>
         
