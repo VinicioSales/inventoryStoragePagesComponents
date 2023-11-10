@@ -48,6 +48,8 @@ body{
     --cor-texto-botao: #FFF;
     --botao-verde: #366731;
     --botao-verde-hover: #21512d;
+    --botao-vermelho: #DB4242;
+    --botao-vermelho-hover: #c73131;
 }
 
 button{

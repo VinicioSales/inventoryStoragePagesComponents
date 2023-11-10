@@ -25,7 +25,7 @@ export class AppComponent {
   }
   
   atualizarBackground() {
-    this.background = this.temaService.temaEscuroLigado ? '#262626' : '#FFF';
+    this.background = this.temaService.temaEscuroLigado ? 'var(--background)' : 'var(--background)';
   }
 
   mostrarModal: boolean = true;

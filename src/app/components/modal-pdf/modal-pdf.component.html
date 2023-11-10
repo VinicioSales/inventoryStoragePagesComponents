@@ -1,0 +1,23 @@
+<div class="background">
+    <div class="container">
+        <iframe
+            [src]="pdfUrl"
+            width="100%"
+            height="100%">
+        </iframe>
+        <div class="rodape">
+            <app-botao
+                height="27px"
+                texto="Cancelar"
+                [background]="corBotaoCancelar"
+                [backgroundHover]="corBotaoCancelarHover">
+            </app-botao>
+            <app-botao
+                height="27px"
+                texto="Confirmar"
+                [background]="corBotaoConfirmar"
+                [backgroundHover]="corBotaoConfirmarHover">
+            </app-botao>
+        </div>
+    </div>
+</div>
