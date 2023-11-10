@@ -2,7 +2,14 @@
 
 Todas as mudanças do projeto serão documentados neste arquivo.
 
-## [0.0] - 08-11-2023 
+## [0.0] - 10-11-2023 
+### Added
+- Criado modal pdf (vinício)
+- Criado testes modal pdf (vinício)
+- Criado serviço requisicoes (vinício)
+- Criado testes serviço requisicoes (vinício)
+
+## [0.0] - 09-11-2023 
 ### Added
 - Criado testes da tela home (vinício)
 - Criado sistema de autenticação (vinício)
