@@ -32,17 +32,18 @@ export class RegistroComponent {
     this.imgSrc = this.temaService.temaEscuroLigado ? this.imgTemaEscuro : this.imgTemaClaro;
   }
 
-
   
   nomeValue: string = ''; 
+  nomeHasError: boolean = false;
 
   onNomeValueChanged(newValue: string) {
     // Esta função será acionada quando o valor do input de nome mudar
     this.nomeValue = newValue;
     
     const hasNumbers = /\d/.test(newValue);
-    if (hasNumbers) {
-      alert("Por favor, insira apenas letras e espaços no nome."); // Exibe o alerta se houver números
+    if (hasNumbers) {      
+      this.nomeHasError = hasNumbers; 
+      alert('tes')
     }
   }
   
