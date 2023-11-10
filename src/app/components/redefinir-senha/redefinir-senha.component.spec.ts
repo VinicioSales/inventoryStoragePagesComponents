@@ -1,7 +1,6 @@
 import { of, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { By } from '@angular/platform-browser';
 import { BotaoComponent } from '../botao/botao.component';
 import { InputComponent } from '../input/input.component';
 import { LogoBfComponent } from '../logo-bf/logo-bf.component';
@@ -12,7 +11,7 @@ import { BotaoTemaComponent } from '../botao-tema/botao-tema.component';
 
 
 
-fdescribe('RedefinirSenhaComponent', () => {
+describe('RedefinirSenhaComponent', () => {
   let component: RedefinirSenhaComponent;
   let fixture: ComponentFixture<RedefinirSenhaComponent>;
   let authService: jasmine.SpyObj<AuthService>;

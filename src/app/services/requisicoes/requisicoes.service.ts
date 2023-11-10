@@ -15,4 +15,9 @@ export class RequisicoesService {
   getPdf(): Observable<any> {
     return this.http.post(`${urlBackend}/gerar-pdf`, { });
   }
+
+  //NOTE - criarSolicitacao
+  criarSolicitacao(dados: any): Observable<any> {
+    return this.http.post(`${urlBackend}/solicitar`, { dados });
+  }
 }

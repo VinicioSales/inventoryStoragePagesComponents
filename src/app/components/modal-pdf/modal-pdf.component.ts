@@ -1,6 +1,5 @@
 import { DomSanitizer } from '@angular/platform-browser';
 import { Component, Output, Input, EventEmitter, OnInit } from '@angular/core';
-import { RequisicoesService } from '../../services/requisicoes/requisicoes.service';
 
 @Component({
   selector: 'app-modal-pdf',
@@ -18,9 +17,12 @@ export class ModalPdfComponent implements OnInit {
   @Input() base64String: string = '';
   
   @Output() cancelarPdf = new EventEmitter<void>();
+  @Output() criarSolicitacao = new EventEmitter<void>();
   
   //NOTE - constructor
-  constructor(private sanitizer: DomSanitizer) {  }
+  constructor(
+    private sanitizer: DomSanitizer,
+  ) {  }
 
   //NOTE - ngOnInit
   ngOnInit(): void {
@@ -49,8 +51,9 @@ export class ModalPdfComponent implements OnInit {
     this.cancelarPdf.emit();
   }
 
+  //NOTE - onConfirmar
   onConfirmar() {
-
+    this.criarSolicitacao.emit();
   }
   
 }

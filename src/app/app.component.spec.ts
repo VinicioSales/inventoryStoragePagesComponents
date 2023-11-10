@@ -5,6 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { InputComponent } from 'src/app/components/input/input.component';
 import { BotaoComponent } from 'src/app/components/botao/botao.component';
 import { LogoBfComponent } from 'src/app/components/logo-bf/logo-bf.component';
+import { ModalPdfComponent } from 'src/app/components/modal-pdf/modal-pdf.component';
 import { BotaoSairComponent } from 'src/app/components/botao-sair/botao-sair.component';
 import { BotaoHomeComponent } from 'src/app/components/botao-home/botao-home.component';
 import { BotaoTemaComponent } from 'src/app/components/botao-tema/botao-tema.component';
@@ -27,6 +28,7 @@ describe('AppComponent', () => {
       InputComponent,
       BotaoComponent,
       LogoBfComponent,
+      ModalPdfComponent,
       BotaoSairComponent,
       BotaoHomeComponent,
       BotaoTemaComponent,
