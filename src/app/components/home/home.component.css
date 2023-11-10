@@ -1,0 +1,101 @@
+.pagina-home {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--cor-secundaria);
+}
+
+.container-home {
+    width: 23%;
+    height: 75%;
+    background: var(--cor-primaria);
+    border-radius: 2px;
+    box-shadow: 2px 9px 12px 4px rgba(12, 12, 12, 0.25);
+    justify-self: center;
+    align-self: center;
+    padding: 0 20px 0 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows:     13%   
+                            20%
+                            10%
+                            10%
+                            10%
+                            auto;
+    grid-template-areas:    "header"
+                            "titulo"
+                            "solicitar-produtos"
+                            "devolver-produtos"
+                            "notion"
+                            "footer";
+}
+
+.header {
+    grid-area: header;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.botoes-header {
+    position: absolute;
+    right: 0;
+    align-self: start;
+    margin-top: 10px;
+    display: flex;
+    width: 100%;
+    justify-content: end;
+    gap: 16px;
+}
+
+.titulo {
+    grid-area: titulo;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    font-size: 2.14rem;
+    font-family: var(--font-semiBold);
+}
+
+
+.botao-solicitar-produtos,
+.botao-devolver-produtos,
+.botao-notion {
+    margin: 20px 0 20px 0;
+    align-self: center;
+}
+
+.botao-solicitar-produtos {
+    grid-area: solicitar-produtos;
+}
+
+.botao-devolver-produtos {
+    grid-area: devolver-produtos;
+}
+
+.botao-notion {
+    grid-area: notion;
+}
+
+.footer {
+    grid-area: footer;
+    font-family: var(--font-light);
+    font-size: 0.85rem;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    padding-bottom: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:active,
+a:focus {
+    color: inherit;
+}

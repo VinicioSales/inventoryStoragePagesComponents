@@ -1,20 +1,33 @@
 <div
     class="container-input-dropdown"
-    [style.width]="width"
-    [style.height]="height"
     tabindex="0"
-    #inputDropdownDiv>
-    <input
-        type="text"
-        class="input-dropdown"
-        [placeholder]="placeholder"
-        (focus)="onInputFocus(inputDropdownDiv)"
-        (blur)="onInputBlur(inputDropdownDiv)">
-    <button
-        class="botao">
-        <img
-            [src]="imgSrc"
-            alt="Dropdown"
-            class="img">
-    </button>
+    #containerRef
+    #inputDropdownDiv
+    [style.width]="width"
+    [style.height]="height">
+    <div class="container-relativo">
+        <input
+            type="text"
+            class="input-dropdown"
+            [placeholder]="placeholder"
+            [(ngModel)]="textoPesquisado"
+            (ngModelChange)="filtrarItens()"
+            (blur)="onInputBlur(inputDropdownDiv)"
+            (focus)="onInputFocus(inputDropdownDiv)"
+            [style.border-bottom-left-radius]="borderRadius">
+        <button
+            class="botao"
+            (click)="onClick()"
+            [style.border-bottom-right-radius]="borderRadius">
+            <img
+                [src]="imgSrc"
+                alt="Dropdown"
+                class="img">
+        </button>
+        <div class="dropdown-list" [ngClass]="{'active': mostrarDropdown}">
+            <div *ngFor="let item of itensFiltrados" class="dropdown-item" (click)="selecionarItem(item)">
+                {{ item }}
+            </div>
+        </div>
+    </div>
 </div>

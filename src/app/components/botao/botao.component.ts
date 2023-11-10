@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-botao',
@@ -9,11 +9,9 @@ export class BotaoComponent {
   @Input() width: string = "292px"
   @Input() height: string = "39px"
   @Input() texto: string = "botao"
+  @Input() backgroundHover: string = '';
+  @Input() background: string = "var(--cor-botao)"
 
-  @Output() botaoClicado = new EventEmitter<void>();
+  hover: boolean = false;
 
-  //NOTE - onClick
-  onClick() {
-    this.botaoClicado.emit();
-  }
 }

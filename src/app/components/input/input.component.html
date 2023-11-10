@@ -1,9 +1,12 @@
-<input
-       
-    [class]="classe"
-    type="text"
-    [placeholder]="placeholder"
-    [style.width]="width"
-    [style.height]="height"
-    (input)="onInputChange($event)"
->
+<div
+    class="container-input"
+    [style.width]="width">
+    <input
+        class="componente-input"
+        [type]="type"
+        [(ngModel)]="valor"
+        (ngModelChange)="onValorChange($event)"
+        [style.height]="height"
+        [placeholder]="placeholder"
+    >
+</div>

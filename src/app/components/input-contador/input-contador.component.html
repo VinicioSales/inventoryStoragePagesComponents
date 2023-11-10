@@ -1,0 +1,33 @@
+<div
+    class="container-input-contador"
+    #inputContadorDiv
+    [style.width]="width"
+    [style.height]="height">
+    <div class="container">
+        <button
+            id="botao-diminuir"
+            (click)="onDiminuir()">
+            <img
+                [src]="imgSrc"
+                alt="diminuir"
+                id="img-diminuir">
+        </button>
+        <input
+            min="0"
+            type="number"
+            class="input"
+            [(ngModel)]="valor"
+            (input)="onInput($event)"
+            [placeholder]="placeholder"
+            (blur)="onInputBlur(inputContadorDiv)"
+            (focus)="onInputFocus(inputContadorDiv)">
+        <button
+            id="botao-aumentar"
+            (click)="onAumentar()">
+            <img
+                [src]="imgSrc"
+                alt="aumentar"
+                id="img-aumentar">
+        </button>
+    </div>
+</div>

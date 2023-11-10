@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, HostBinding  } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-input',
@@ -6,23 +6,18 @@ import { Component, Input, Output, EventEmitter, HostBinding  } from '@angular/c
   styleUrls: ['./input.component.css']
 })
 export class InputComponent {
-  @Input() width: string = '293px';
-  @Input() height: string = '30px';
-  @Input() placeholder: string = 'input';
-  @Output() valueChanged = new EventEmitter<string>();
-  @Input() isInvalid: boolean = false;
-  @Input() campoVaido: boolean = true;
-  classe: string = 'componente-input'
-   
-  handleValidade(event:any){
-    if(this.campoVaido){
-      this.classe = 'input-invalido';
-    }
-  }
+  @Input() type: string = 'text'
+  @Input() height: string = '30px'
+  @Input() width?: string = 'input'
+  @Input() placeholder: string = 'input'
 
-  onInputChange(event: any) {
-    const newValue = event.target.value;
-    this.valueChanged.emit(newValue);
-  }
+  @Output() valorChange = new EventEmitter<string>();
 
+  valor: string = '';
+
+  onValorChange(novoValor: string): void {
+    this.valor = novoValor;
+    this.valorChange.emit(this.valor);
+  }
 }
+  
