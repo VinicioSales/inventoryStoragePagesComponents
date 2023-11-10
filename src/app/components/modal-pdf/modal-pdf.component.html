@@ -9,12 +9,14 @@
             <app-botao
                 height="27px"
                 texto="Cancelar"
+                (click)="onCancelar()"
                 [background]="corBotaoCancelar"
                 [backgroundHover]="corBotaoCancelarHover">
             </app-botao>
             <app-botao
                 height="27px"
                 texto="Confirmar"
+                (click)="onConfirmar"
                 [background]="corBotaoConfirmar"
                 [backgroundHover]="corBotaoConfirmarHover">
             </app-botao>
