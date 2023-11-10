@@ -11,7 +11,7 @@ export class RequisicoesService {
 
   constructor(private http: HttpClient) { }
 
-  //NOTE getPdf
+  //NOTE - getPdf
   getPdf(): Observable<any> {
     return this.http.post(`${urlBackend}/gerar-pdf`, { });
   }
