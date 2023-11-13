@@ -2,6 +2,11 @@
 
 Todas as mudanças do projeto serão documentados neste arquivo.
 
+## [0.0] - 13-11-2023 
+### Added
+- finalizado função validarCredenciais (victor)
+- Iniciado testes unitários tela de registro (victor)
+
 ## [0.0] - 10-11-2023 
 ### Added
 - Criado modal pdf (vinício)
