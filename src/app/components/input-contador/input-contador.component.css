@@ -29,7 +29,7 @@
     flex: 1 0 0;
     align-self: stretch;
     border: none;
-    background: var(--cor-primaria);
+    background: var(--cor-terceira);
     color: var(--cor-secundaria);
     font-family: var(--font-regular);
     text-align: center;
@@ -44,7 +44,8 @@
     border: none;
     display: flex;
     width: 30px;
-    background: var(--cor-primaria);
+    background: var(--cor-terceira);
+
 }
 
 #botao-diminuir {
