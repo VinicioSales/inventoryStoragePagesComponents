@@ -67,14 +67,14 @@
         </app-botao>
     </div>
     <div class="tabela">
-        <div class="heder-tabela">
+        <div class="header-tabela">
             <div class="cod-produto-header">CÓDIGO PRODUTO</div>
             <div class="produto-header">PRODUTO</div>
             <div class="quantidade-header">QUANTIDADE</div>
             <div class="unidade-medida-header">UNI. MEDIDA</div>
             <div class="centro-custo-header">CENTRO DE CUSTO</div>
         </div>
-        <div class="linha-tabela">
+        <div class="linha-tabela" *ngFor="let produto of produtos">
             <nav class="menu-linha">
                 <app-botao-remover
                     class="remvoer">
@@ -83,11 +83,11 @@
                     class="editar">
                 </app-botao-editar>
             </nav>
-            <div class="cod-produto-linha">{{ codProduto }}</div>
-            <div class="nome-produto-linha">{{ nomeProduto }}</div>
-            <div class="quantidade-linha">{{ quantidade }}</div>
-            <div class="unidade-medida-linha">{{ uniMedida }}</div>
-            <div class="centro-custo-linha">{{ centroCusto }}</div>
+            <div class="cod-produto-linha">{{ produto.codProduto }}</div>
+            <div class="nome-produto-linha">{{ produto.nomeProduto }}</div>
+            <div class="quantidade-linha">{{ produto.quantidade }}</div>
+            <div class="unidade-medida-linha">{{ produto.uniMedida }}</div>
+            <div class="centro-custo-linha">{{ produto.centroCusto }}</div>
         </div>
     </div>
     <div class="footer">

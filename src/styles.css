@@ -41,7 +41,6 @@
 body{
     margin: 0;
     height: 100%;
-    font-size: 14px; 
     font-family: "Blinker-Regular";
     --cor-botao: #141414;
     --cor-botao-hover: #561111;
@@ -50,6 +49,7 @@ body{
     --botao-verde-hover: #21512d;
     --botao-vermelho: #DB4242;
     --botao-vermelho-hover: #c73131;
+    --cor-cinza: #878787;
 }
 
 button{
@@ -83,5 +83,5 @@ button{
 }
 
 
-html, body { height: 100%; }
+html, body { height: 100%; font-size: 14px;}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

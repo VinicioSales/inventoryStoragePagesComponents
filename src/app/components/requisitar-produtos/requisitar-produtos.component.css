@@ -18,13 +18,18 @@
     gap: 28px;
 }
 
+
+
 .solicitar-produto-pagina {
     padding: 0 50px 0 50px;
     background: var(--background-2);
     display: flex;
     flex-direction: column;
     gap: 30px;
+    color: var(--cor-secundaria);
 }
+
+
 
 .pesquisa {
     background: var(--background);
@@ -57,6 +62,11 @@
     align-self: end;
 }
 
+.titulo-pesquisa {
+    font-size: 1.14rem;
+    font-family: var(--font-regular);
+}
+
 .selecionar-produto,
 .unidade-medida,
 .quantidade,
@@ -66,7 +76,102 @@
     gap: 11px;
 }
 
-.titulo-pesquisa {
-    font-size: 1rem;
-    font-family: var(--font-regular);
+
+
+.tabela {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.header-tabela,
+.linha-tabela {
+    background: var(--background);
+    padding: 27px 15px 27px 15px;
+    display: grid;
+    grid-template-columns:      auto 15% 30% 15% 15% 15%;
+    grid-template-areas:        "menu-linha codigo-produto produto quantidade uni-medida centro-custo";
+}
+
+.header-tabela {
+    color: var(--cor-cinza);
+}
+
+.cod-produto-header {
+    grid-area: codigo-produto;
+}
+
+.produto-header {
+    grid-area: produto;
+    
+}
+
+.quantidade-header {
+    grid-area: quantidade;
+
+}
+
+.unidade-medida-header {
+    grid-area: uni-medida;
+}
+
+.centro-custo-header {
+    grid-area: centro-custo;
+}
+
+.cod-produto-header,
+.quantidade-header,
+.unidade-medida-header,
+.centro-custo-header {
+    text-align: center;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+}
+
+
+
+
+.linha-tabela {
+    color: var(--cor-secundaria);
+}
+
+.menu-linha {
+    grid-area: menu-linha;
+    display: flex;
+    gap: 37px;
+    justify-content: start;
+}
+
+.cod-produto-linha {
+    grid-area: codigo-produto;
+}
+
+.nome-produto-linha {
+    grid-area: produto;
+    display: flex;
+    align-items: center;
+}
+
+.quantidade-linha {
+    grid-area: quantidade;
+
+}
+
+.unidade-medida-linha {
+    grid-area: uni-medida;
+}
+
+.centro-custo-linha {
+    grid-area: centro-custo;
+}
+
+.cod-produto-linha,
+.quantidade-linha,
+.unidade-medida-linha,
+.centro-custo-linha {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
