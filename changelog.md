@@ -6,6 +6,8 @@ Todas as mudanças do projeto serão documentados neste arquivo.
 ### Added
 - finalizado função validarCredenciais (victor)
 - Iniciado testes unitários tela de registro (victor)
+- Criado layout tela solicitar produtos (vinicio)
+- Atualização estilização do projeto (vinicio)
 
 ## [0.0] - 10-11-2023 
 ### Added
