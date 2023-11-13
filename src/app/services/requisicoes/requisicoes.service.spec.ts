@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { RequisicoesService } from './requisicoes.service';
 import { urlBackend } from 'src/app/services/static';
+import { RequisicoesService } from './requisicoes.service';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 describe('RequisicoesService', () => {
   let service: RequisicoesService;

@@ -44,7 +44,7 @@ body{
     font-size: 14px; 
     font-family: "Blinker-Regular";
     --cor-botao: #141414;
-    --cor-botao-hover: #2B2B2B;
+    --cor-botao-hover: #561111;
     --cor-texto-botao: #FFF;
     --botao-verde: #366731;
     --botao-verde-hover: #21512d;
@@ -58,6 +58,7 @@ button{
 }
 :root{
     --background: #F9F9F9;
+    --background-2: #F0F0F0;
     --drop_shadow: rgba(25, 40, 71, 0.25);
     --font-regular: 'Blinker-Regular';
     --font-semiBold: 'Blinker-SemiBold';
@@ -72,6 +73,7 @@ button{
 
 :root .dark-theme{
     --background: #141414;
+    --background-2: #141414;
     --cor-terceira: #141414;
     --drop_shadow:#000000;
     --cor-primaria: #262626;
@@ -80,3 +82,6 @@ button{
     
 }
 
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

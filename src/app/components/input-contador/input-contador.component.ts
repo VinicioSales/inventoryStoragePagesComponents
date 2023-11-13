@@ -13,7 +13,7 @@ export class InputContadorComponent implements OnInit, OnDestroy {
   private subscription = new Subscription();
   
   // Inputs
-  @Input() width: string = '293px';
+  @Input() width: string = '100%';
   @Input() height: string = '50px';
   @Input() placeholder: string = 'input';
 
