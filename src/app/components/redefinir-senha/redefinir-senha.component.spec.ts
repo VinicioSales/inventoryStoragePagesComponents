@@ -12,7 +12,7 @@ import { BotaoTemaComponent } from '../botao-tema/botao-tema.component';
 
 
 
-fdescribe('RedefinirSenhaComponent', () => {
+describe('RedefinirSenhaComponent', () => {
   let component: RedefinirSenhaComponent;
   let fixture: ComponentFixture<RedefinirSenhaComponent>;
   let authService: jasmine.SpyObj<AuthService>;

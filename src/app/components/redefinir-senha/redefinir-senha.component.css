@@ -84,14 +84,19 @@ app-botao-tema {
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
 
 a {
     text-decoration: none;
-    color: inherit;
+    color: var(--cor-secundaria);   
 }
-
-a:active,
 a:focus {
-    color: inherit;
+    color: var(--cor-secundaria);
+}
+a:hover{
+    color: var(--cor-secundaria);
+}
+a:active{
+    color: var(--cor-secundaria);
 }

@@ -35,6 +35,8 @@ export class RegistroComponent {
   static readonly MENSAGEM_EMAIL_INVALIDO = 'Email está com formato inválido!';
   static readonly MENSAGEM_SENHAS_DIFERENTES = 'As senhas não conferem!';
   static readonly MENSAGEM_SENHA_CURTA = 'A senha deve ter no mínimo 8 caracteres!';
+  static readonly MENSAGEM_FORMATO_NOME_INCORRETO = 'O nome não deve conter números';
+  static readonly MENSAGEM_CAMPOS_VAZIO = 'Todos os campos são obrigatórios!';
   
   
   nomeValue: string = ''; 
@@ -78,10 +80,33 @@ export class RegistroComponent {
    validarSenha(senha: any): boolean {
     return senha.length >= 8;
   }
+
+  verificarNumeroNoNome(nome: string): boolean {
+    for (const caractere of nome) {
+      if (!isNaN(Number(caractere))) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+
   
   //NOTE - validarCredenciais
   validarCredenciais(): boolean{
-    if (!this.validarEmail(this.emailValue)){
+    if(!this.nomeValue.trim()|| !this.emailValue.trim()|| !this.senhaValue.trim() || !this.confirmar_senhaValue.trim()) {
+      this.exibirMensagemModal(RegistroComponent.MENSAGEM_CAMPOS_VAZIO);
+      return false;
+    }
+
+
+    else if (this.verificarNumeroNoNome(this.nomeValue)) {      
+      this.exibirMensagemModal(RegistroComponent.MENSAGEM_FORMATO_NOME_INCORRETO);
+      return false;
+     }
+
+
+    else if (!this.validarEmail(this.emailValue)){
       this.exibirMensagemModal(RegistroComponent.MENSAGEM_EMAIL_INVALIDO);
       return false;
     }
@@ -114,12 +139,13 @@ export class RegistroComponent {
   }
 
 
-  //NOTE - OnRegistro
+  //NOTE - OnRegistro 
   OnRegistro(){
     const credenciaisValidadas =  this.validarCredenciais();
     if (credenciaisValidadas){
       alert('teste')
     }
   }
+
 
 }

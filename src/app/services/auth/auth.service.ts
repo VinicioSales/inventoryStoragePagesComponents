@@ -66,4 +66,9 @@ export class AuthService {
     return this.http.post(`${urlBackend}/redefinir-senha`, { novaSenha, codigoVerificacao });
   }
 
+
+  //NOTE - Registrar usuário
+  registrarUsuario(nome: string, email: string, senha: string, confirmar_senha: string): Observable<any>{
+    return this.http.post(`${urlBackend}/registrar-usuario`,{nome, email,senha, confirmar_senha});
+  }
 }
