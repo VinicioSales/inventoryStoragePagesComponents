@@ -8,29 +8,56 @@
 </div>
 <div class="solicitar-produto-pagina">
     <div class="pesquisa">
-        <app-input-dropdown
-            class="selecionar-produto"
-            height="27px"
-            width="100%"
-            placeholder="produto">
-        </app-input-dropdown>
-        <app-input-dropdown
-            class="unidade-medida"
-            height="27px"
-            width="100%"
-            placeholder="unidade de medida">
-        </app-input-dropdown>
-        <app-input-contador
-            widht="100%"
-            height="27px"
-            class="quantidade">
-        </app-input-contador>
-        <app-input-dropdown
-            class="centro-custo"
-            height="27px"
-            width="100%"
-            placeholder="unidade de medida">
-        </app-input-dropdown>
+        <div class="selecionar-produto">
+            <label
+                for="produto"
+                class="titulo-pesquisa">
+                Produto
+                </label>
+            <app-input-dropdown
+                id="produto"
+                height="27px"
+                width="100%"
+                placeholder="produto">
+            </app-input-dropdown>
+        </div>
+        <div class="unidade-medida">
+            <label
+                for="unidade-medida"
+                class="titulo-pesquisa">
+                Unidade de medida
+            </label>
+            <app-input-dropdown
+                id="unidade-medida"
+                height="27px"
+                width="100%"
+                placeholder="unidade de medida">
+            </app-input-dropdown>
+        </div>
+        <div class="quantidade">
+            <label
+                for="quantidade"
+                class="titulo-pesquisa">
+                Quantidade
+            </label>
+            <app-input-contador
+                id="quantidade"
+                widht="100%"
+                height="27px">
+            </app-input-contador>
+        </div>
+        <div class="centro-custo">
+            <label
+                for="centro-custo"
+                class="titulo-pesquisa">
+                Centro de custo
+            </label>
+            <app-input-dropdown
+                height="27px"
+                width="100%"
+                placeholder="centro de custo">
+            </app-input-dropdown>
+        </div>
         <app-botao
             class="botao-adicionar"
             height="27px"

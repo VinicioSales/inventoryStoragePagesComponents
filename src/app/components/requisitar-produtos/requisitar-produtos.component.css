@@ -32,7 +32,7 @@
     gap: 20px;
     padding: 33px 25px 33px 25px;
     display: grid;
-    grid-template-columns:  40% auto auto auto 30%;
+    grid-template-columns:  30% auto auto auto 15%;
     grid-template-areas:    "produto uni-medida quantidade centro-custo botao-adicionar"
 }
 
@@ -54,4 +54,19 @@
 
 .botao-adicionar {
     grid-area: botao-adicionar;
+    align-self: end;
+}
+
+.selecionar-produto,
+.unidade-medida,
+.quantidade,
+.centro-custo {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+}
+
+.titulo-pesquisa {
+    font-size: 1rem;
+    font-family: var(--font-regular);
 }
