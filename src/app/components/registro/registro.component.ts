@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-
 import { TemaService } from '../../services/tema.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { Router } from '@angular/router';
 
 
 
@@ -14,18 +15,18 @@ export class RegistroComponent {
   public imgSrc?: string;
   private imgTemaClaro: string = 'assets/img/logo-parceiro-vertical-preto-1.png';
   private imgTemaEscuro: string = 'assets/img/imgogo-parceiro-vertical-branco-1.png';
-  
-  
-
-  
-  constructor(private temaService: TemaService) {
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private temaService: TemaService
+  ) {
     this.atualizarImg();
-
-    // Escute as mudanças do tema
-    this.temaService.temaEscuroLigado$.subscribe(estaEscuro => {
+    
+     // Escute as mudanças do tema
+     this.temaService.temaEscuroLigado$.subscribe(estaEscuro => {
       this.atualizarImg();
-    });
-  }
+     });
+   }
 
   //NOTE - atualizarImg
   atualizarImg() {
@@ -37,32 +38,38 @@ export class RegistroComponent {
   static readonly MENSAGEM_SENHA_CURTA = 'A senha deve ter no mínimo 8 caracteres!';
   static readonly MENSAGEM_FORMATO_NOME_INCORRETO = 'O nome não deve conter números';
   static readonly MENSAGEM_CAMPOS_VAZIO = 'Todos os campos são obrigatórios!';
+  static readonly MENSAGEM_REGISTRO_CONCLUIDO = 'Usuário cadastrado com sucesso!';
+  static readonly MENSAGEM_EMAIL_JA_REGISTRADO = 'Email já registrado';
+  static readonly MENSAGEM_INTERNAL_SERVER_ERROR = 'Ocorreu um erro inesperado, tente de novo em alguns instantes. Se o erro persistir, entre em contato com o suporte.'
+
+
+  
   
   
   nomeValue: string = ''; 
   emailValue: string = '';  
   senhaValue: string = '';
-  confirmar_senhaValue: string = '';
+  confirmarSenhaValue: string = '';
   mensagemModal: string = '';
   mostrarModal: boolean = false;
 
-  onNomeValueChanged(input_nome: string) {
+  onNomeValueChanged(inputNome: string) {
     // Esta função será acionada quando o valor do input de nome mudar
-    this.nomeValue = input_nome;    
+    this.nomeValue = inputNome;    
     
   }
 
-  onEmailValueChanged(input_email: string){
-    this.emailValue = input_email;
+  onEmailValueChanged(inputEmail: string){
+    this.emailValue = inputEmail;
   }
   
-  onSenhaValueChanged(input_senha: string){
-    this.senhaValue = input_senha;
+  onSenhaValueChanged(inputSenha: string){
+    this.senhaValue = inputSenha;
   }
 
   
-  onConfirmarSenhaValueChanged(input_confirmar_senha: string){
-    this.confirmar_senhaValue = input_confirmar_senha;
+  onConfirmarSenhaValueChanged(inputConfirmarSenha: string){
+    this.confirmarSenhaValue = inputConfirmarSenha;
   }
 
   //NOTE - handleFecharModal
@@ -94,7 +101,7 @@ export class RegistroComponent {
   
   //NOTE - validarCredenciais
   validarCredenciais(): boolean{
-    if(!this.nomeValue.trim()|| !this.emailValue.trim()|| !this.senhaValue.trim() || !this.confirmar_senhaValue.trim()) {
+    if(!this.nomeValue.trim()|| !this.emailValue.trim()|| !this.senhaValue.trim() || !this.confirmarSenhaValue.trim()) {
       this.exibirMensagemModal(RegistroComponent.MENSAGEM_CAMPOS_VAZIO);
       return false;
     }
@@ -111,7 +118,7 @@ export class RegistroComponent {
       return false;
     }
 
-    else if (this.senhaValue != this.confirmar_senhaValue){
+    else if (this.senhaValue != this.confirmarSenhaValue){
       this.exibirMensagemModal(RegistroComponent.MENSAGEM_SENHAS_DIFERENTES);
       return false;
     }
@@ -130,8 +137,9 @@ export class RegistroComponent {
   exibirMensagemModal(mensagem: string): void {
     this.mostrarModal = true;
     this.mensagemModal = mensagem;
+
   }
-  
+   
   //NOTE - fecharMensagemModal
   fecharMensagemModal() {
     this.mostrarModal = false;
@@ -140,12 +148,33 @@ export class RegistroComponent {
 
 
   //NOTE - OnRegistro 
-  OnRegistro(){
-    const credenciaisValidadas =  this.validarCredenciais();
+  onRegistro(){
+    const credenciaisValidadas = this.validarCredenciais();
     if (credenciaisValidadas){
-      alert('teste')
+      
+      this.authService.registrarUsuario(this.nomeValue, this.emailValue, this.senhaValue).subscribe({
+        next: (response) => {
+          
+          this.exibirMensagemModal(RegistroComponent.MENSAGEM_REGISTRO_CONCLUIDO);            
+          setTimeout(() => {
+            this.router.navigate(['/login']);
+          }, 3000);               
+     
+        },
+        error: (error) => {
+          if (error.status === 409) {
+            this.exibirMensagemModal(RegistroComponent.MENSAGEM_EMAIL_JA_REGISTRADO);
+          } else if (error.status === 403) {
+            this.exibirMensagemModal(RegistroComponent.MENSAGEM_INTERNAL_SERVER_ERROR);
+          }      
+          else {
+            this.exibirMensagemModal(`Erro desconhecido: ${error}`);
+          }
+
+        }
+      });
+      
     }
   }
-
 
 }

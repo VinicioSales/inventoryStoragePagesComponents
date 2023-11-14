@@ -78,7 +78,7 @@ fdescribe('RegistroComponent', () => {
     //NOTE - deve receber o valor digitado no input confirmar senha
     it('deve receber o valor digitado no input confirma senha', () =>{
       component.onConfirmarSenhaValueChanged('input_confirmar_senha')
-      expect(component.confirmar_senhaValue).toBe('input_confirmar_senha')
+      expect(component.confirmarSenhaValue).toBe('input_confirmar_senha')
     })
   })
 
@@ -110,5 +110,39 @@ fdescribe('RegistroComponent', () => {
   })
 
   //SECTION - validarSenha
+  describe('validarSenha', () =>{
+    //NOTE - Teste senha com minimo de caracteres
+    it('deve retornar true se a senha tiver 8 ou mais caracteres', () =>{
+      const senhaValida = '12345678';
+      expect(component.validarSenha(senhaValida)).toBeTrue();
+    });
+    //NOTE -  Teste para senhas com menos de 8 caracteres
+    it('deve retornar false se a senha tiver menos de 8 caracteres', () => {
+      const senhaInvalida = '12345';
+      expect(component.validarSenha(senhaInvalida)).toBeFalse();
+    });    
+  });
+
+  //SECTION - verificarNumeroNoNome
+  describe('verificarNumeroNoNome', () =>{
+    //NOTE - Teste para nome com números
+    it('deve retornar true se o nome contém números', () => {
+      const nomeComNumero = 'Joao123';
+      expect(component.verificarNumeroNoNome(nomeComNumero)).toBeTrue();
+    });
+
+    //NOTE - Teste para nome sem números
+    it('deve retornar false se o nome não contém números', () => {
+      const nomeSemNumero = 'Joao';
+      expect(component.verificarNumeroNoNome(nomeSemNumero)).toBeFalse();
+    });
+
+    //NOTE - Teste para nome vazio
+    it('deve retornar false para um nome vazio', () => {
+      expect(component.verificarNumeroNoNome('')).toBeFalse();
+    });
+
+    
+  })
  
 });

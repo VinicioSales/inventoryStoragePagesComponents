@@ -2,7 +2,8 @@ import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { urlBackend } from 'src/app/services/static'
+import { urlBackend, rotaRegistrarUsuarios } from 'src/app/services/static'
+
 
 @Injectable({
   providedIn: 'root'
@@ -68,7 +69,7 @@ export class AuthService {
 
 
   //NOTE - Registrar usuário
-  registrarUsuario(nome: string, email: string, senha: string, confirmar_senha: string): Observable<any>{
-    return this.http.post(`${urlBackend}/registrar-usuario`,{nome, email,senha, confirmar_senha});
+  registrarUsuario(nome: string, email: string, senha: string): Observable<any>{
+    return this.http.post(`${urlBackend}/${rotaRegistrarUsuarios}`,{nome, email,senha});
   }
 }
