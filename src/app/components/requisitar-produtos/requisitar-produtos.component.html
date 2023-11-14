@@ -11,33 +11,36 @@
         <div class="selecionar-produto">
             <label
                 for="produto"
-                class="titulo-pesquisa">
+                class="titulo-label">
                 Produto
                 </label>
             <app-input-dropdown
                 id="produto"
-                height="27px"
                 width="100%"
-                placeholder="produto">
+                height="27px"
+                placeholder="produto"
+                [itens]="nomeProdutoLista"
+                (itemSelecionadoChange)="selecionarProduto($event)">
             </app-input-dropdown>
         </div>
         <div class="unidade-medida">
             <label
                 for="unidade-medida"
-                class="titulo-pesquisa">
+                class="titulo-label">
                 Unidade de medida
             </label>
             <app-input-dropdown
                 id="unidade-medida"
                 height="27px"
                 width="100%"
+                [itens]="unidadeMedidaLista"
                 placeholder="unidade de medida">
             </app-input-dropdown>
         </div>
         <div class="quantidade">
             <label
                 for="quantidade"
-                class="titulo-pesquisa">
+                class="titulo-label">
                 Quantidade
             </label>
             <app-input-contador
@@ -49,13 +52,14 @@
         <div class="centro-custo">
             <label
                 for="centro-custo"
-                class="titulo-pesquisa">
+                class="titulo-label">
                 Centro de custo
             </label>
             <app-input-dropdown
                 height="27px"
                 width="100%"
-                placeholder="centro de custo">
+                placeholder="centro de custo"
+                [itens]="centroCustoLista">
             </app-input-dropdown>
         </div>
         <app-botao
@@ -91,9 +95,19 @@
         </div>
     </div>
     <div class="footer">
-        <app-input
-            type="date">
-        </app-input>
+        <div class="data">
+            <label
+                for="data"
+                class="titulo-label">
+                Data de entrega
+            </label>
+            <app-input
+                id="data"
+                type="date"
+                width="25%"
+                height="10px">
+            </app-input>
+        </div>
         <app-botao
             texto="Solicitar"
             [background]="corBotaoSolicitar"

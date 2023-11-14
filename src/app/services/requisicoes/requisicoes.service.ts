@@ -1,7 +1,8 @@
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { urlBackend } from 'src/app/services/static'
+import { urlBackend, rotaProdutos } from 'src/app/services/static'
+import { MockServiceProdutosService } from 'src/app/mock/mock-service-produtos.service'
 
 
 @Injectable({
@@ -19,5 +20,10 @@ export class RequisicoesService {
   //NOTE - criarSolicitacao
   criarSolicitacao(dados: any): Observable<any> {
     return this.http.post(`${urlBackend}/solicitar`, { dados });
+  }
+
+  //NOTE - getProdutos
+  getProdutos(): Observable<any> {
+    return this.http.get(`${urlBackend}/${rotaProdutos}`)
   }
 }

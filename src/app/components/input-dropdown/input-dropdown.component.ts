@@ -1,7 +1,7 @@
 import { Subscription } from 'rxjs';
 import { TemaService } from '../../services/tema.service';
 import { ImagemService } from 'src/app/services/imagem.service';
-import { Component, ElementRef, Input, Output, EventEmitter, ViewChild, OnInit, OnDestroy } from '@angular/core';
+import { Component, ElementRef, Input, Output, EventEmitter, ViewChild, OnInit, OnDestroy, OnChanges, SimpleChanges, } from '@angular/core';
 
 @Component({
   selector: 'app-input-dropdown',
@@ -51,6 +51,18 @@ export class InputDropdownComponent implements OnInit, OnDestroy {
         this.atualizarImg();
       })
     );
+  }
+
+  //ngOnChanges
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['itens']) {
+      this.atualizarItensFiltrados();
+    }
+  }
+
+  //atualizarItensFiltrados
+  atualizarItensFiltrados(): void {
+    this.itensFiltrados = [...this.itens];
   }
 
   //NOTE - ngOnDestroy
@@ -106,7 +118,7 @@ export class InputDropdownComponent implements OnInit, OnDestroy {
   selecionarItem(item: string) {
     this.itemSelecionado = item;
     this.textoPesquisado = item;
-    this.itemSelecionadoChange.emit(item);
     this.onClick();
+    this.itemSelecionadoChange.emit(item);
   }
 }
