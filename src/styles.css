@@ -68,6 +68,7 @@ button{
     --font-thin: 'Blinker-Thin';
     --cor-primaria: #FFF;
     --cor-secundaria: #141414;
+    --hover-dropdown: rgba(0, 0, 0, 0.05);
     --cor-terceira: #FFF;
     --box-shadow: 0 0 0 2px rgba(25, 25, 25, 0.80);
 }
@@ -79,6 +80,7 @@ button{
     --cor-terceira: #141414;
     --drop_shadow:#000000;
     --cor-primaria: #262626;
+    --hover-dropdown: rgba(255, 255, 255, 0.05);
     --cor-secundaria: #FFF;
     --box-shadow: 0 0 0 2px #FFF;
     
