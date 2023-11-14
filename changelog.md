@@ -2,6 +2,16 @@
 
 Todas as mudanças do projeto serão documentados neste arquivo.
 
+## [0.0] - 14-11-2023 
+### Added
+- Mock da lista de produtos (vinicio)
+- Atualização do componente input dropdown (vinicio)
+- Criado filtro automático de padrão de variaveis nas requisições http (vinicio)
+- Atualização componente input contador (vinicio)
+- Criado script para adicionar produtos selecionados na tabela da tela de requisição de produtos (vinicio)
+- Criado serviço de registro (Victor)
+- Testes unitários tela de registro (Victor)
+
 ## [0.0] - 13-11-2023 
 ### Added
 - finalizado função validarCredenciais (victor)
