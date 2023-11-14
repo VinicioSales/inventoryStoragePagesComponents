@@ -34,7 +34,8 @@
                 height="27px"
                 width="100%"
                 [itens]="unidadeMedidaLista"
-                placeholder="unidade de medida">
+                placeholder="unidade de medida"
+                (itemSelecionadoChange)="selecionarUnidadeMedida($event)">
             </app-input-dropdown>
         </div>
         <div class="quantidade">
@@ -46,7 +47,8 @@
             <app-input-contador
                 id="quantidade"
                 widht="100%"
-                height="27px">
+                height="27px"
+                (valorChange)="selecionarQuantidade($event)">
             </app-input-contador>
         </div>
         <div class="centro-custo">
@@ -59,7 +61,8 @@
                 height="27px"
                 width="100%"
                 placeholder="centro de custo"
-                [itens]="centroCustoLista">
+                [itens]="centroCustoLista"
+                (itemSelecionadoChange)="selecionarCentroCusto($event)">
             </app-input-dropdown>
         </div>
         <app-botao

@@ -16,40 +16,60 @@ export class RequisitarProdutosComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    //FIXME - MUDAR DO MOCK PARA OFICIAL
     this.mockProdutos.getProdutos().subscribe(data => {
       this.listaProdutos = data;
-      this.nomeProdutoLista = this.listaProdutos.map(produto => produto.nome_produto);
+      this.nomeProdutoLista = this.listaProdutos.map(produto => produto.nomeProduto);
     });
 
   }
 
   //NOTE - variaveis
   produtos: any[] = [];
-  quantidade: number = 0;
+  quantidadeSelecionado: number = 0;
   listaProdutos: any[] = [];
   produtoPesquisado: any;
   produtosSelecionados: any[] = []
   nomeProdutoLista: string[] = [];
   centroCustoLista: string[] = [];
   unidadeMedidaLista: string[] = [];
+  centroCustoSelecionado: string = '';
+  unidadeMedidaSelecionado: string = '';
   corBotaoSolicitar: string = 'var(--botao-verde)';
   corBotaoSolicitarHover: string = 'var(--botao-verde-hover)';
 
   //NOTE - selecionarProduto
   selecionarProduto(nomeProdutoSelecionado: string) {
-    const produtoEncontrado = this.listaProdutos.find(produto => produto.nome_produto === nomeProdutoSelecionado);
+    const produtoEncontrado = this.listaProdutos.find(produto => produto.nomeProduto === nomeProdutoSelecionado);
     
     if (produtoEncontrado) {
       this.produtoPesquisado = produtoEncontrado;
-      this.centroCustoLista = produtoEncontrado.centro_custo;
-      this.unidadeMedidaLista = produtoEncontrado.unidade_medida;
+      this.centroCustoLista = produtoEncontrado.centroCusto;
+      this.unidadeMedidaLista = produtoEncontrado.unidadeMedida;
     }
+  }
+
+  //NOTE - selecionarUnidadeMedida
+  selecionarUnidadeMedida(unidadeMedidaSelecionado: string) {
+    this.unidadeMedidaSelecionado = unidadeMedidaSelecionado;
+  }
+  
+  //NOTE - selecionarQuantidade
+  selecionarQuantidade(quantidadeSelecionado: number) {
+    this.quantidadeSelecionado = quantidadeSelecionado;
+  }
+
+  //NOTE - selecionarCentroCusto
+  selecionarCentroCusto(centroCustoSelecionado: string) {
+    this.centroCustoSelecionado = centroCustoSelecionado;
   }
 
 
   //NOTE - adicionarProduto
   adicionarProduto() {
-    this.produtoPesquisado.quantidade = this.quantidade;
+    this.produtoPesquisado.quantidade = this.quantidadeSelecionado;
+    this.produtoPesquisado.centroCusto = this.centroCustoSelecionado;
+    this.produtoPesquisado.unidadeMedida = this.unidadeMedidaSelecionado;
     this.produtosSelecionados.push(this.produtoPesquisado);
   }
 

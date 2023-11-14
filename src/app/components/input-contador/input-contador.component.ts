@@ -1,7 +1,7 @@
 import { Subscription } from 'rxjs';
 import { TemaService } from '../../services/tema.service';
 import { ImagemService } from 'src/app/services/imagem.service';
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
 
 
 @Component({
@@ -16,6 +16,8 @@ export class InputContadorComponent implements OnInit, OnDestroy {
   @Input() width: string = '100%';
   @Input() height: string = '50px';
   @Input() placeholder: string = 'input';
+
+  @Output() valorChange = new EventEmitter<number>();
 
   // Variáveis
   imgSrc?: string;
@@ -57,6 +59,12 @@ export class InputContadorComponent implements OnInit, OnDestroy {
     div.classList.remove('focused');
   }
 
+  //NOTE - atualizarValor
+  atualizarValor(novoValor: number) {
+    this.valor = novoValor;
+    this.valorChange.emit(this.valor);
+  }
+
   //NOTE - onInput
   onInput(event: any) {
     const input = event.target;
@@ -84,6 +92,8 @@ export class InputContadorComponent implements OnInit, OnDestroy {
     } else {
         this.valor = 0;
     }
+
+    this.atualizarValor(this.valor);
   }
 
   //NOTE - onDiminuir
@@ -99,6 +109,8 @@ export class InputContadorComponent implements OnInit, OnDestroy {
     if (this.valor < 0) {
       this.valor = 0;
     }
+
+    this.atualizarValor(this.valor);
   }
   
   //NOTE - onAumentar
@@ -110,6 +122,8 @@ export class InputContadorComponent implements OnInit, OnDestroy {
     } else {
       this.valor = valorNumerico + 1;
     }
+
+    this.atualizarValor(this.valor);
   }
   
 }
