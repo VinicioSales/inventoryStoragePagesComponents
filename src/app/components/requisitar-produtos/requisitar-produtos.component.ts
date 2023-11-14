@@ -15,6 +15,7 @@ export class RequisitarProdutosComponent implements OnInit {
     private mockProdutos: MockServiceProdutosService,
   ) {}
 
+  //NOTE - ngOnInit
   ngOnInit(): void {
     //FIXME - MUDAR DO MOCK PARA OFICIAL
     this.mockProdutos.getProdutos().subscribe(data => {
@@ -26,12 +27,12 @@ export class RequisitarProdutosComponent implements OnInit {
 
   //NOTE - variaveis
   produtos: any[] = [];
-  quantidadeSelecionado: number = 0;
-  listaProdutos: any[] = [];
   produtoPesquisado: any;
-  produtosSelecionados: any[] = []
+  listaProdutos: any[] = [];
   nomeProdutoLista: string[] = [];
   centroCustoLista: string[] = [];
+  produtosSelecionados: any[] = []
+  quantidadeSelecionado: number = 0;
   unidadeMedidaLista: string[] = [];
   centroCustoSelecionado: string = '';
   unidadeMedidaSelecionado: string = '';
@@ -63,7 +64,6 @@ export class RequisitarProdutosComponent implements OnInit {
   selecionarCentroCusto(centroCustoSelecionado: string) {
     this.centroCustoSelecionado = centroCustoSelecionado;
   }
-
 
   //NOTE - adicionarProduto
   adicionarProduto() {
