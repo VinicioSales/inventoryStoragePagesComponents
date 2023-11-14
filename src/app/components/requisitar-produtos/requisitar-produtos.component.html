@@ -67,7 +67,7 @@
             height="27px"
             texto="Adicionar"
             width="100%"
-            (click)="onAdicionar">
+            (click)="adicionarProduto()">
         </app-botao>
     </div>
     <div class="tabela">
@@ -78,7 +78,7 @@
             <div class="unidade-medida-header">UNI. MEDIDA</div>
             <div class="centro-custo-header">CENTRO DE CUSTO</div>
         </div>
-        <div class="linha-tabela" *ngFor="let produto of produtos">
+        <div class="linha-tabela" *ngFor="let produto of produtosSelecionados">
             <nav class="menu-linha">
                 <app-botao-remover
                     class="remvoer">
@@ -87,10 +87,10 @@
                     class="editar">
                 </app-botao-editar>
             </nav>
-            <div class="cod-produto-linha">{{ produto.codProduto }}</div>
+            <div class="cod-produto-linha">{{ produto.codigoProduto }}</div>
             <div class="nome-produto-linha">{{ produto.nomeProduto }}</div>
             <div class="quantidade-linha">{{ produto.quantidade }}</div>
-            <div class="unidade-medida-linha">{{ produto.uniMedida }}</div>
+            <div class="unidade-medida-linha">{{ produto.unidadeMedida }}</div>
             <div class="centro-custo-linha">{{ produto.centroCusto }}</div>
         </div>
     </div>

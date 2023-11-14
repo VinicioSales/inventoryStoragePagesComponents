@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, } from '@angular/core';
 import { RequisicoesService } from '../../services/requisicoes/requisicoes.service';
 import { MockServiceProdutosService } from 'src/app/mock/mock-service-produtos.service'
 
@@ -12,7 +12,6 @@ export class RequisitarProdutosComponent implements OnInit {
   //NOTE - constructor
   constructor(
     private requisicoes: RequisicoesService,
-    private changeDetectorRef: ChangeDetectorRef,
     private mockProdutos: MockServiceProdutosService,
   ) {}
 
@@ -28,29 +27,30 @@ export class RequisitarProdutosComponent implements OnInit {
   produtos: any[] = [];
   quantidade: number = 0;
   listaProdutos: any[] = [];
-  produtoSelecionado: any[] = []
+  produtoPesquisado: any;
+  produtosSelecionados: any[] = []
   nomeProdutoLista: string[] = [];
   centroCustoLista: string[] = [];
   unidadeMedidaLista: string[] = [];
   corBotaoSolicitar: string = 'var(--botao-verde)';
   corBotaoSolicitarHover: string = 'var(--botao-verde-hover)';
 
-  //selecionarProduto
+  //NOTE - selecionarProduto
   selecionarProduto(nomeProdutoSelecionado: string) {
     const produtoEncontrado = this.listaProdutos.find(produto => produto.nome_produto === nomeProdutoSelecionado);
-
+    
     if (produtoEncontrado) {
+      this.produtoPesquisado = produtoEncontrado;
       this.centroCustoLista = produtoEncontrado.centro_custo;
       this.unidadeMedidaLista = produtoEncontrado.unidade_medida;
-      
-      this.changeDetectorRef.detectChanges();
     }
-
   }
 
-  //NOTE - onAdicionar
-  onAdicionar() {
 
+  //NOTE - adicionarProduto
+  adicionarProduto() {
+    this.produtoPesquisado.quantidade = this.quantidade;
+    this.produtosSelecionados.push(this.produtoPesquisado);
   }
 
   //NOTE - onSolicitar
