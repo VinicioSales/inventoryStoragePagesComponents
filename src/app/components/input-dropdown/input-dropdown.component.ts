@@ -106,6 +106,7 @@ export class InputDropdownComponent implements OnInit, OnDestroy {
 
   //NOTE - filtrarItens
   filtrarItens() {
+    this.mostrarDropdown = true;
     if (this.textoPesquisado.trim() === '') {
       this.itensFiltrados = [...this.itens];
     } else {
