@@ -30,7 +30,7 @@ export class HomeComponent {
 
   //NOTE - navegarRotaSolicitarProdutos
   navegarRotaSolicitarProdutos() {
-    this.router.navigate(['/solicitar-produtos']);
+    this.router.navigate(['/requisitar-produtos']);
   }
   
   //NOTE - navegarRotaDevolverProdutos

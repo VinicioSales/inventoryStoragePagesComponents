@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit, } from '@angular/core';
 import { RequisicoesService } from '../../services/requisicoes/requisicoes.service';
 import { MockServiceProdutosService } from 'src/app/mock/mock-service-produtos.service'
@@ -11,6 +12,7 @@ import { MockServiceProdutosService } from 'src/app/mock/mock-service-produtos.s
 export class RequisitarProdutosComponent implements OnInit {
   //NOTE - constructor
   constructor(
+    private router: Router,
     private requisicoes: RequisicoesService,
     private mockProdutos: MockServiceProdutosService,
   ) {}
@@ -39,6 +41,11 @@ export class RequisitarProdutosComponent implements OnInit {
   unidadeMedidaSelecionado: string = '';
   corBotaoSolicitar: string = 'var(--botao-verde)';
   corBotaoSolicitarHover: string = 'var(--botao-verde-hover)';
+
+  //NOTE - home
+  home() {
+    this.router.navigate(['/home']);
+  }
 
   //NOTE - selecionarProduto
   selecionarProduto(nomeProdutoSelecionado: string) {
