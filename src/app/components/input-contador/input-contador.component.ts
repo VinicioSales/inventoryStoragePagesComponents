@@ -21,7 +21,7 @@ export class InputContadorComponent implements OnInit, OnDestroy {
 
   // Variáveis
   imgSrc?: string;
-  valor: number = 0;
+  _valor: number = 0;
   imgTemaEscuro: string = 'assets/img/dropdown-dark-mode.png';
   imgTemaClaro: string = 'assets/img/dropdown-light-mode.png';
 
@@ -36,6 +36,17 @@ export class InputContadorComponent implements OnInit, OnDestroy {
         this.atualizarImg();
       })
     );
+  }
+
+  //NOTE - set valor
+  @Input()
+  set valor(value: number) {
+    this._valor = value;
+  }
+
+  //NOTE - get valor
+  get valor(): number {
+    return this._valor;
   }
 
   //NOTE - ngOnDestroy

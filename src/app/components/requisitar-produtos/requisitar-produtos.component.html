@@ -18,9 +18,9 @@
                 id="produto"
                 width="100%"
                 height="27px"
-                [textoPesquisado]="nomeProdutoPesquisado"
                 placeholder="produto"
                 [itens]="nomeProdutoLista"
+                [textoPesquisado]="nomeProdutoSelecionado"
                 (itemSelecionadoChange)="selecionarProduto($event)">
             </app-input-dropdown>
         </div>
@@ -36,6 +36,7 @@
                 width="100%"
                 [itens]="unidadeMedidaLista"
                 placeholder="unidade de medida"
+                [textoPesquisado]="unidadeMedidaSelecionado"
                 (itemSelecionadoChange)="selecionarUnidadeMedida($event)">
             </app-input-dropdown>
         </div>
@@ -49,6 +50,7 @@
                 id="quantidade"
                 widht="100%"
                 height="27px"
+                [valor]="quantidadeSelecionado"
                 (valorChange)="selecionarQuantidade($event)">
             </app-input-contador>
         </div>
@@ -63,6 +65,7 @@
                 width="100%"
                 placeholder="centro de custo"
                 [itens]="centroCustoLista"
+                [textoPesquisado]="centroCustoSelecionado"
                 (itemSelecionadoChange)="selecionarCentroCusto($event)">
             </app-input-dropdown>
         </div>

@@ -32,7 +32,7 @@ export class InputDropdownComponent implements OnInit, OnDestroy {
   imgTemaEscuro: string = 'assets/img/dropdown-dark-mode.png';
   imgTemaClaro: string = 'assets/img/dropdown-light-mode.png';
 
-  // Outputs
+  //NOTE -  Outputs
   @Output() botaoClicado = new EventEmitter<void>();
   @Output() itemSelecionadoChange = new EventEmitter<string>();
 
@@ -53,25 +53,25 @@ export class InputDropdownComponent implements OnInit, OnDestroy {
     );
   }
 
-  //textoPesquisado
+  //NOTE - set textoPesquisado
   @Input()
   set textoPesquisado(value: string) {
     this._textoPesquisado = value;
-    // this.filtrarItens(); 
   }
 
+  //NOTE - get textoPesquisado
   get textoPesquisado(): string {
     return this._textoPesquisado;
   }
 
-  //ngOnChanges
+  //NOTE - ngOnChanges
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['itens']) {
       this.atualizarItensFiltrados();
     }
   }
 
-  //atualizarItensFiltrados
+  //NOTE - atualizarItensFiltrados
   atualizarItensFiltrados(): void {
     this.itensFiltrados = [...this.itens];
   }
