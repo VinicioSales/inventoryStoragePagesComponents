@@ -23,7 +23,7 @@ export class InputDropdownComponent implements OnInit, OnDestroy {
   // Variáveis
   imgSrc?: string;
   itemSelecionado: string = '';
-  textoPesquisado: string = '';
+  _textoPesquisado: string = '';
   borderRadius: string = '10px';
   mostrarDropdown: boolean = false;
   itensFiltrados?: string[];
@@ -51,6 +51,17 @@ export class InputDropdownComponent implements OnInit, OnDestroy {
         this.atualizarImg();
       })
     );
+  }
+
+  //textoPesquisado
+  @Input()
+  set textoPesquisado(value: string) {
+    this._textoPesquisado = value;
+    // this.filtrarItens(); 
+  }
+
+  get textoPesquisado(): string {
+    return this._textoPesquisado;
   }
 
   //ngOnChanges

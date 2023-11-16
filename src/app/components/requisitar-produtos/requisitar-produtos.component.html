@@ -18,6 +18,7 @@
                 id="produto"
                 width="100%"
                 height="27px"
+                [textoPesquisado]="nomeProdutoPesquisado"
                 placeholder="produto"
                 [itens]="nomeProdutoLista"
                 (itemSelecionadoChange)="selecionarProduto($event)">

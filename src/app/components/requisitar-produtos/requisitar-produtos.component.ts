@@ -29,6 +29,7 @@ export class RequisitarProdutosComponent implements OnInit {
   produtos: any[] = [];
   produtoPesquisado: any;
   listaProdutos: any[] = [];
+  nomeProdutoPesquisado: string = '';
   nomeProdutoLista: string[] = [];
   centroCustoLista: string[] = [];
   produtosSelecionados: any[] = []
@@ -42,6 +43,8 @@ export class RequisitarProdutosComponent implements OnInit {
   //NOTE - selecionarProduto
   selecionarProduto(nomeProdutoSelecionado: string) {
     const produtoEncontrado = this.listaProdutos.find(produto => produto.nomeProduto === nomeProdutoSelecionado);
+    this.nomeProdutoPesquisado = produtoEncontrado.nomeProduto;
+    console.log(this.nomeProdutoPesquisado);
     
     if (produtoEncontrado) {
       this.produtoPesquisado = produtoEncontrado;
@@ -81,6 +84,7 @@ export class RequisitarProdutosComponent implements OnInit {
       this.quantidadeSelecionado = 0;
       this.centroCustoSelecionado = '';
       this.unidadeMedidaSelecionado = '';
+      this.nomeProdutoPesquisado = '';
     }
   }
 
