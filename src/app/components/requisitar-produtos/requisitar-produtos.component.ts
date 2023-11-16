@@ -49,6 +49,9 @@ export class RequisitarProdutosComponent implements OnInit {
       this.produtoPesquisado = produtoEncontrado;
       this.centroCustoLista = produtoEncontrado.centroCusto;
       this.unidadeMedidaLista = produtoEncontrado.unidadeMedida;
+
+      this.centroCustoSelecionado = '';
+      this.unidadeMedidaSelecionado = '';
     }
   }
 
@@ -105,7 +108,6 @@ export class RequisitarProdutosComponent implements OnInit {
       }
     }
   }
-  
 
   //NOTE - removerProduto
   removerProduto(produtoARemover: any) {
