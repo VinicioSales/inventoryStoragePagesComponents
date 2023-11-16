@@ -2,6 +2,13 @@
 
 Todas as mudanças do projeto serão documentados neste arquivo.
 
+## [0.0] - 16-11-2023 
+### Added
+- Adicionando produtos na tabela de produtos (vinicio)
+- Tratando dados ao adicionar produtos na tabela (vinicio)
+- Indo para home  a partir da tela de requisitar produtos (vinicio)
+- Iniciado script para edicao de produtos (vinicio)
+
 ## [0.0] - 14-11-2023 
 ### Added
 - Mock da lista de produtos (vinicio)
