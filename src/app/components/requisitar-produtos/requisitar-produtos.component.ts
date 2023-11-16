@@ -30,10 +30,14 @@ export class RequisitarProdutosComponent implements OnInit {
   //NOTE - variaveis
   produtos: any[] = [];
   produtoPesquisado: any;
+  editar: boolean = false;
   listaProdutos: any[] = [];
   nomeProdutoLista: string[] = [];
   centroCustoLista: string[] = [];
-  produtosSelecionados: any[] = []
+  
+  //FIXME - LIMPAR
+  produtosSelecionados: any[] = [{nomeProduto: 'teste', codigoProduto: 'codigo', quantidade: 2, unidadeMedida: 'unidade', centroCusto: 'centro'}]
+  
   quantidadeSelecionado: number = 0;
   unidadeMedidaLista: string[] = [];
   nomeProdutoSelecionado: string = '';
@@ -119,6 +123,11 @@ export class RequisitarProdutosComponent implements OnInit {
   //NOTE - removerProduto
   removerProduto(produtoARemover: any) {
     this.produtosSelecionados = this.produtosSelecionados.filter(produto => produto !== produtoARemover);
+  }
+
+  //NOTE - editarProduto
+  editarProduto(produtoAEditar: any) {
+    this.editar = true;
   }
 
   //NOTE - onSolicitar
