@@ -67,26 +67,49 @@ export class RequisitarProdutosComponent implements OnInit {
     this.centroCustoSelecionado = centroCustoSelecionado;
   }
 
+  //NOTE - criarNovoProduto
+  criarNovoProduto() {
+    const { quantidadeSelecionado, centroCustoSelecionado, unidadeMedidaSelecionado } = this;
+    return {
+      ...this.produtoPesquisado,
+      quantidade: quantidadeSelecionado,
+      centroCusto: centroCustoSelecionado,
+      unidadeMedida: unidadeMedidaSelecionado,
+    };
+  }
+  
+  //NOTE - produtoJaAdicionado
+  produtoJaAdicionado(produtoParaAdicionar: any): boolean {
+    return this.produtosSelecionados.some(produto => produto.codigoProduto === produtoParaAdicionar.codigoProduto);
+  }
+
+  //NOTE - resetarCamposSelecao
+  resetarCamposSelecao() {
+    this.centroCustoLista = [];
+    this.unidadeMedidaLista = [];
+    this.quantidadeSelecionado = 0;
+    this.centroCustoSelecionado = '';
+    this.nomeProdutoSelecionado = '';
+    this.unidadeMedidaSelecionado = '';
+  }
+
+
   //NOTE - adicionarProduto
   adicionarProduto() {
-    const { nomeProdutoSelecionado, quantidadeSelecionado, centroCustoSelecionado, unidadeMedidaSelecionado } =  this;
-    if (nomeProdutoSelecionado && quantidadeSelecionado && centroCustoSelecionado && unidadeMedidaSelecionado) {
-      const produtoParaAdicionar = {
-        ...this.produtoPesquisado,
-        quantidade: quantidadeSelecionado,
-        centroCusto: centroCustoSelecionado,
-        unidadeMedida: unidadeMedidaSelecionado,
-      };
-
-      this.produtosSelecionados.push(produtoParaAdicionar);
-
-      this.centroCustoLista = [];
-      this.unidadeMedidaLista = [];
-      this.quantidadeSelecionado = 0;
-      this.centroCustoSelecionado = '';
-      this.nomeProdutoSelecionado = '';
-      this.unidadeMedidaSelecionado = '';
+    if (this.nomeProdutoSelecionado && this.quantidadeSelecionado && this.centroCustoSelecionado && this.unidadeMedidaSelecionado) {
+      const produtoParaAdicionar = this.criarNovoProduto();
+  
+      if (!this.produtoJaAdicionado(produtoParaAdicionar)) {
+        this.produtosSelecionados.push(produtoParaAdicionar);
+        this.resetarCamposSelecao();
+      }
     }
+  }
+  
+
+  //NOTE - removerProduto
+  removerProduto(produtoARemover: any) {
+    this.produtosSelecionados = this.produtosSelecionados.filter(produto => produto !== produtoARemover);
   }
 
   //NOTE - onSolicitar
