@@ -67,10 +67,21 @@ export class RequisitarProdutosComponent implements OnInit {
 
   //NOTE - adicionarProduto
   adicionarProduto() {
-    this.produtoPesquisado.quantidade = this.quantidadeSelecionado;
-    this.produtoPesquisado.centroCusto = this.centroCustoSelecionado;
-    this.produtoPesquisado.unidadeMedida = this.unidadeMedidaSelecionado;
-    this.produtosSelecionados.push(this.produtoPesquisado);
+    const { quantidadeSelecionado, centroCustoSelecionado, unidadeMedidaSelecionado } =  this;
+    if (quantidadeSelecionado && centroCustoSelecionado && unidadeMedidaSelecionado) {
+      const produtoParaAdicionar = {
+        ...this.produtoPesquisado,
+        quantidade: quantidadeSelecionado,
+        centroCusto: centroCustoSelecionado,
+        unidadeMedida: unidadeMedidaSelecionado,
+      };
+
+      this.produtosSelecionados.push(produtoParaAdicionar);
+
+      this.quantidadeSelecionado = 0;
+      this.centroCustoSelecionado = '';
+      this.unidadeMedidaSelecionado = '';
+    }
   }
 
   //NOTE - onSolicitar

@@ -88,7 +88,7 @@
 .header-tabela,
 .linha-tabela {
     background: var(--background);
-    padding: 27px 15px 27px 15px;
+    padding: 25px 15px 25px 15px;
     display: grid;
     grid-template-columns:      auto 15% 30% 15% 15% 15%;
     grid-template-areas:        "menu-linha codigo-produto produto quantidade uni-medida centro-custo";
