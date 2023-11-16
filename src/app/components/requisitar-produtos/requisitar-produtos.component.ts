@@ -29,12 +29,12 @@ export class RequisitarProdutosComponent implements OnInit {
   produtos: any[] = [];
   produtoPesquisado: any;
   listaProdutos: any[] = [];
-  nomeProdutoSelecionado: string = '';
   nomeProdutoLista: string[] = [];
   centroCustoLista: string[] = [];
   produtosSelecionados: any[] = []
   quantidadeSelecionado: number = 0;
   unidadeMedidaLista: string[] = [];
+  nomeProdutoSelecionado: string = '';
   centroCustoSelecionado: string = '';
   unidadeMedidaSelecionado: string = '';
   corBotaoSolicitar: string = 'var(--botao-verde)';
@@ -69,8 +69,8 @@ export class RequisitarProdutosComponent implements OnInit {
 
   //NOTE - adicionarProduto
   adicionarProduto() {
-    const { quantidadeSelecionado, centroCustoSelecionado, unidadeMedidaSelecionado } =  this;
-    if (quantidadeSelecionado && centroCustoSelecionado && unidadeMedidaSelecionado) {
+    const { nomeProdutoSelecionado, quantidadeSelecionado, centroCustoSelecionado, unidadeMedidaSelecionado } =  this;
+    if (nomeProdutoSelecionado && quantidadeSelecionado && centroCustoSelecionado && unidadeMedidaSelecionado) {
       const produtoParaAdicionar = {
         ...this.produtoPesquisado,
         quantidade: quantidadeSelecionado,
@@ -80,10 +80,12 @@ export class RequisitarProdutosComponent implements OnInit {
 
       this.produtosSelecionados.push(produtoParaAdicionar);
 
+      this.centroCustoLista = [];
+      this.unidadeMedidaLista = [];
       this.quantidadeSelecionado = 0;
       this.centroCustoSelecionado = '';
-      this.unidadeMedidaSelecionado = '';
       this.nomeProdutoSelecionado = '';
+      this.unidadeMedidaSelecionado = '';
     }
   }
 
