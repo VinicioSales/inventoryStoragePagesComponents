@@ -8,6 +8,7 @@ Todas as mudanças do projeto serão documentados neste arquivo.
 - Tratando dados ao adicionar produtos na tabela (vinicio)
 - Indo para home  a partir da tela de requisitar produtos (vinicio)
 - Iniciado script para edicao de produtos (vinicio)
+- Teste unitários tela de registro (Victor)
 
 ## [0.0] - 14-11-2023 
 ### Added
