@@ -2,6 +2,13 @@
 
 Todas as mudanças do projeto serão documentados neste arquivo.
 
+## [0.0] - 17-11-2023 
+### Added
+- Criado tela de carregamento (vinicio)
+- Ajuste requisição rota login (vinicio)
+- Ajuste tela requisição produtos (vinicio)
+- Testes tela regitro (victor)
+
 ## [0.0] - 16-11-2023 
 ### Added
 - Adicionando produtos na tabela de produtos (vinicio)
