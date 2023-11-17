@@ -26,6 +26,7 @@ export class LoginComponent {
   @Input() valorSenha?: string;
   @Input() mensagemModal: string = '';
   
+  carregando: boolean = true;
   mostrarModal: boolean = false;
 
   //NOTE - navegarRotaEsqueciSenha
@@ -65,11 +66,6 @@ export class LoginComponent {
       this.exibirMensagemModal(LoginComponent.MENSAGEM_EMAIL_INVALIDO);
       return false;
     }
-    
-    // if (!this.validarSenha(this.valorSenha)) {
-    //   this.exibirMensagemModal(LoginComponent.MENSAGEM_DADOS_INVALIDOS);
-    //   return false;
-    // }
 
     this.fecharMensagemModal();
     return true;
@@ -102,7 +98,6 @@ export class LoginComponent {
 
   //NOTE - logar
   logar() {
-    debugger;
     this.authService.login(this.valorEmail!, this.valorSenha!).subscribe({
       next: (response) => {
         console.log(response);
@@ -141,9 +136,10 @@ export class LoginComponent {
 
   //NOTE - onLogin
   onLogin() {
-    const credenciaisValidadas =  this.validarCredenciais();
-    if (credenciaisValidadas) {
-      this.logar();
-    }
+    this.carregando = true;
+    // const credenciaisValidadas =  this.validarCredenciais();
+    // if (credenciaisValidadas) {
+    //   this.logar();
+    // }
   }
 }

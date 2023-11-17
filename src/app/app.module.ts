@@ -1,8 +1,9 @@
 import { NgModule  } from '@angular/core';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { CamelCaseInterceptor } from 'src/app/interceptors/camuel-case.interceptor';
 
 import { AppComponent } from './app.component';
@@ -28,6 +29,7 @@ import { InputContadorComponent } from './components/input-contador/input-contad
 import { InputPesquisarComponent } from './components/input-pesquisar/input-pesquisar.component';
 import { RedefinirSenhaComponent } from './components/redefinir-senha/redefinir-senha.component';
 import { RequisitarProdutosComponent } from './components/requisitar-produtos/requisitar-produtos.component';
+import { CarregamentoComponent } from './components/carregamento/carregamento.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,7 @@ import { RequisitarProdutosComponent } from './components/requisitar-produtos/re
     InputPesquisarComponent,
     RedefinirSenhaComponent,
     RequisitarProdutosComponent,
+    CarregamentoComponent,
   ],
   imports: [
     FormsModule ,
@@ -61,6 +64,7 @@ import { RequisitarProdutosComponent } from './components/requisitar-produtos/re
     MatCheckboxModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    MatProgressSpinnerModule,
   ],
   providers: [
     { 
