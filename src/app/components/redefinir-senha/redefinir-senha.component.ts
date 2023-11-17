@@ -27,6 +27,7 @@ export class RedefinirSenhaComponent {
   @Input() mensagemModal: string = '';
 
   valorNovaSenha: string = '';
+  carregando: boolean = false;
   mostrarModal: boolean = false;
   valorCodigoVerificacao: string = '';
   valorConfirmarNovaSenha: string = '';
@@ -106,6 +107,7 @@ export class RedefinirSenhaComponent {
 
   //NOTE - onRedefinirSenha
   onRedefinirSenha() {
+    this.carregando = true;
     const validado = this.validar([
       () => this.validarSenhas(),
       () => this.validarCampos()
@@ -116,6 +118,8 @@ export class RedefinirSenhaComponent {
         next: (response) => {
           this.exibirMensagemModal(RedefinirSenhaComponent.MENSAGEM_SENHA_REDEFINIDA);
           this.router.navigate(['/login']);
+
+          this.carregando = false;
         },
 
         error: (error) => {
@@ -128,6 +132,8 @@ export class RedefinirSenhaComponent {
           } else {
             this.exibirMensagemModal(`Erro desconhecido: ${error}`);
           }
+
+          this.carregando = false;
         }
       })
     }

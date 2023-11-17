@@ -17,6 +17,7 @@ export class EsqueciSenhaComponent {
   @Input() mensagemModal: string = '';
 
   valorEmail: string = '';
+  carregando: boolean = false;
   mostrarModal: boolean = false;
 
 
@@ -38,9 +39,12 @@ export class EsqueciSenhaComponent {
 
   //NOTE - onRecuperarSenha
   onRecuperarSenha() {
+    this.carregando = true;
     this.authService.recuperarSenha(this.valorEmail!).subscribe({
       next: (response) => {
         this.exibirMensagemModal(`Token de recuperação enviado para o email ${this.valorEmail}`)
+
+        this.carregando = false;
       },
       error: (error: HttpErrorResponse) => {
         if (error.status === 404) {
@@ -48,6 +52,8 @@ export class EsqueciSenhaComponent {
         } else {
           this.exibirMensagemModal(`Erro desconhecido: ${error.message}`);
         }
+
+        this.carregando = false;
       }
     });
   }
