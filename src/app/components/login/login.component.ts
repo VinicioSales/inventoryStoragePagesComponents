@@ -26,7 +26,7 @@ export class LoginComponent {
   @Input() valorSenha?: string;
   @Input() mensagemModal: string = '';
   
-  carregando: boolean = true;
+  carregando: boolean = false;
   mostrarModal: boolean = false;
 
   //NOTE - navegarRotaEsqueciSenha
@@ -107,6 +107,8 @@ export class LoginComponent {
           localStorage.setItem('token_de_autenticacao', token);
           this.router.navigate(['/home']);
         }
+        
+        this.carregando = false;
       },
       error: (error: HttpErrorResponse) => {
         switch (error.status) {
@@ -130,16 +132,19 @@ export class LoginComponent {
             console.error(error);
             this.exibirMensagemModal(`Erro desconhecido: ${error.message}`);
         }
+        
+        this.carregando = false;
       }
     });
   }
 
   //NOTE - onLogin
   onLogin() {
+    debugger;
     this.carregando = true;
-    // const credenciaisValidadas =  this.validarCredenciais();
-    // if (credenciaisValidadas) {
-    //   this.logar();
-    // }
+    const credenciaisValidadas =  this.validarCredenciais();
+    if (credenciaisValidadas) {
+      this.logar();
+    }
   }
 }
