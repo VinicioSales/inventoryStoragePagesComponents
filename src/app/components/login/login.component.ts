@@ -140,7 +140,6 @@ export class LoginComponent {
 
   //NOTE - onLogin
   onLogin() {
-    debugger;
     this.carregando = true;
     const credenciaisValidadas =  this.validarCredenciais();
     if (credenciaisValidadas) {
