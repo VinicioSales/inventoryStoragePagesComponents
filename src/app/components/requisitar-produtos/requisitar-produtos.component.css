@@ -177,6 +177,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 0 10px 0 10px;
+    background: red;
 }
 
 .footer {

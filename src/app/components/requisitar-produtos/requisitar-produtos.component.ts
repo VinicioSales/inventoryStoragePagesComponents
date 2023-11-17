@@ -30,7 +30,7 @@ export class RequisitarProdutosComponent implements OnInit {
   //NOTE - variaveis
   produtos: any[] = [];
   produtoPesquisado: any;
-  editar: boolean = false;
+  editar: boolean = true;
   listaProdutos: any[] = [];
   nomeProdutoLista: string[] = [];
   centroCustoLista: string[] = [];

@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { urlBackend } from 'src/app/services/static'
+import { urlBackend, rotaLogin } from 'src/app/services/static'
 
 @Injectable({
   providedIn: 'root'
@@ -37,7 +37,11 @@ export class AuthService {
 
   //NOTE - login
   login(email: string, senha: string): Observable<any> {
-    return this.http.post(`${urlBackend}/login`, { email, senha });
+    const data = {
+      username: email,
+      password: senha
+    }
+    return this.http.post(`${urlBackend}/auth/${rotaLogin}`, data);
   }
 
   //NOTE - isLoggedIn

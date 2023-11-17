@@ -100,11 +100,11 @@
                 <div class="cod-produto-linha">{{ produto.codigoProduto }}</div>
                 <div class="nome-produto-linha">{{ produto.nomeProduto }}</div>
                 <app-input-dropdown
-                    width="100%"
+                    width="91%"
                     height="27px"
                     id="unidade-medida"
-                    class="unidade-medida-linha"
                     [itens]="unidadeMedidaLista"
+                    class="unidade-medida-linha"
                     placeholder="unidade de medida"
                     [textoPesquisado]="unidadeMedidaSelecionado"
                     (itemSelecionadoChange)="selecionarUnidadeMedida($event)">

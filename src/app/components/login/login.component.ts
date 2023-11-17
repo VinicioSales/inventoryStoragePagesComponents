@@ -15,7 +15,6 @@ export class LoginComponent {
   ) {}
 
   static readonly MENSAGEM_EMAIL_INVALIDO = 'Email inválido!';
-  static readonly MENSAGEM_SENHA_INVALIDA = 'Senha inválida!';
   static readonly MENSAGEM_CAMPOS_VAZIOS = 'Preencha todos os campos!';
   static readonly MENSAGEM_DADOS_INVALIDOS = 'Email ou senha inválidos!'
   static readonly MENSAGEM_USUARIO_NAO_ENCONTRADO = 'Usuário não encontrado!'
@@ -67,10 +66,10 @@ export class LoginComponent {
       return false;
     }
     
-    if (!this.validarSenha(this.valorSenha)) {
-      this.exibirMensagemModal(LoginComponent.MENSAGEM_SENHA_INVALIDA);
-      return false;
-    }
+    // if (!this.validarSenha(this.valorSenha)) {
+    //   this.exibirMensagemModal(LoginComponent.MENSAGEM_DADOS_INVALIDOS);
+    //   return false;
+    // }
 
     this.fecharMensagemModal();
     return true;
@@ -103,8 +102,10 @@ export class LoginComponent {
 
   //NOTE - logar
   logar() {
+    debugger;
     this.authService.login(this.valorEmail!, this.valorSenha!).subscribe({
       next: (response) => {
+        console.log(response);
         const  token = response.token;
 
         if (token) {
@@ -131,6 +132,7 @@ export class LoginComponent {
             break
 
           default:
+            console.error(error);
             this.exibirMensagemModal(`Erro desconhecido: ${error.message}`);
         }
       }
