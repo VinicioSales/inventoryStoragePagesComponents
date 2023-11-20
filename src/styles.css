@@ -55,6 +55,7 @@ button{
 }
 :root{
     --background: #F9F9F9;
+    --background-2: #F0F0F0;
     --drop_shadow: rgba(25, 40, 71, 0.25);
     --font-regular: 'Blinker-Regular';
     --font-semiBold: 'Blinker-SemiBold';
@@ -68,7 +69,8 @@ button{
 }
 
 :root .dark-theme{
-    --background: #141414;
+    --background: #262626;
+    --background-2: #141414;
     --cor-terceira: #141414;
     --drop_shadow:#000000;
     --cor-primaria: #262626;

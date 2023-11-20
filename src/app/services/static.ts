@@ -1,3 +1,3 @@
 //FIXME - ALTERAR URL
-export const urlBackend = "123";
-export const rotaRegistrarUsuarios = '123'
+export const urlBackend = "http://192.168.15.184:8000/";
+export const rotaRegistrarUsuarios = 'auth/register'

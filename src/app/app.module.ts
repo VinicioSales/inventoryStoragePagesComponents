@@ -23,6 +23,7 @@ import { InputPesquisarComponent } from './components/input-pesquisar/input-pesq
 import { EsqueciSenhaComponent } from './components/esqueci-senha/esqueci-senha.component';
 import { HomeComponent } from './components/home/home.component';
 import { RedefinirSenhaComponent } from './components/redefinir-senha/redefinir-senha.component';
+import { DevolucaoProdutoComponent } from './components/devolucao-produto/devolucao-produto.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { RedefinirSenhaComponent } from './components/redefinir-senha/redefinir-
     InputPesquisarComponent,
     EsqueciSenhaComponent,
     RedefinirSenhaComponent,
+    DevolucaoProdutoComponent,
   ],
   imports: [
     FormsModule ,
