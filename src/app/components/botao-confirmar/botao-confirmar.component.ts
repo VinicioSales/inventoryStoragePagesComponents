@@ -1,20 +1,20 @@
-import { Component, Output, EventEmitter } from '@angular/core';
 import { TemaService } from '../../services/tema.service';
 import { ImagemService } from '../../services/imagem.service';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'app-botao-editar',
-  templateUrl: './botao-editar.component.html',
-  styleUrls: ['./botao-editar.component.css']
+  selector: 'app-botao-confirmar',
+  templateUrl: './botao-confirmar.component.html',
+  styleUrls: ['./botao-confirmar.component.css']
 })
-export class BotaoEditarComponent {
+export class BotaoConfirmarComponent {
   public imgSrc?: string;
-  private imgTemaClaro: string = 'assets/img/editar-light-mode.png';
-  private imgTemaEscuro: string = 'assets/img/editar-dark-mode.png';
+  private imgTemaClaro: string = 'assets/img/confirmar-light-mode.png';
+  private imgTemaEscuro: string = 'assets/img/confirmar-dark-mode.png';
   
   @Output() botaoClicado = new EventEmitter<void>();
   
-  constructor(private temaService: TemaService, private imagemService: ImagemService) { // Adicione o ImagemService ao construtor
+  constructor(private temaService: TemaService, private imagemService: ImagemService) {
     this.atualizarImg();
 
     // Escute as mudanças do tema

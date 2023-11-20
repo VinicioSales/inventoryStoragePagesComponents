@@ -92,10 +92,7 @@
                         class="remover"
                         (click)="removerProduto(produto)">
                     </app-botao-remover>
-                    <app-botao-editar
-                        class="editar"
-                        (click)="editarProduto(produto)">
-                    </app-botao-editar>
+                    <app-botao-confirmar></app-botao-confirmar>
                 </nav>
                 <div class="cod-produto-linha">{{ produto.codigoProduto }}</div>
                 <div class="nome-produto-linha">{{ produto.nomeProduto }}</div>
