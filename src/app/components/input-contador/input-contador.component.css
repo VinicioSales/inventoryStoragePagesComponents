@@ -21,7 +21,6 @@
 
 .input {
     display: flex;
-    padding: 9px;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
