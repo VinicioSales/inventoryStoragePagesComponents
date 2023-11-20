@@ -27,9 +27,4 @@ export class BotaoConfirmarComponent {
   atualizarImg() {
     this.imgSrc = this.imagemService.atualizarImg(this.imgTemaClaro, this.imgTemaEscuro);
   }
-
-  //NOTE - onClick
-  onClick() {
-    this.botaoClicado.emit();
-  }
 }

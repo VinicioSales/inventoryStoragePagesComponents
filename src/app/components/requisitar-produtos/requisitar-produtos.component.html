@@ -92,36 +92,38 @@
                         class="remover"
                         (click)="removerProduto(produto)">
                     </app-botao-remover>
-                    <app-botao-confirmar></app-botao-confirmar>
+                    <app-botao-confirmar
+                        (click)="onConfirmarEdicao()">
+                    </app-botao-confirmar>
                 </nav>
                 <div class="cod-produto-linha">{{ produto.codigoProduto }}</div>
                 <div class="nome-produto-linha">{{ produto.nomeProduto }}</div>
-                <app-input-dropdown
-                    width="91%"
-                    height="27px"
-                    id="unidade-medida"
-                    [itens]="unidadeMedidaLista"
-                    class="unidade-medida-linha"
-                    placeholder="unidade de medida"
-                    [textoPesquisado]="unidadeMedidaSelecionado"
-                    (itemSelecionadoChange)="selecionarUnidadeMedida($event)">
-                </app-input-dropdown>
                 <app-input-contador
                     widht="100%"
                     height="27px"
                     id="quantidade"
                     class="quantidade-linha"
-                    [valor]="quantidadeSelecionado"
-                    (valorChange)="selecionarQuantidade($event)">
+                    [valor]="quantidadeEditado"
+                    (valorChange)="editarQuantidade($event)">
                 </app-input-contador>
+                <app-input-dropdown
+                    width="91%"
+                    height="27px"
+                    id="unidade-medida"
+                    [itens]="unidadeMedidaListaEditado"
+                    class="unidade-medida-linha"
+                    placeholder="unidade de medida"
+                    [textoPesquisado]="unidadeMedidaEditado"
+                    (itemSelecionadoChange)="editarUnidadeMedida($event)">
+                </app-input-dropdown>
                 <app-input-dropdown
                     height="27px"
                     width="100%"
                     class="centro-custo-linha"
-                    [itens]="centroCustoLista"
+                    [itens]="centroCustoListaEditado"
                     placeholder="centro de custo"
-                    [textoPesquisado]="centroCustoSelecionado"
-                    (itemSelecionadoChange)="selecionarCentroCusto($event)">
+                    [textoPesquisado]="centroCustoEditado"
+                    (itemSelecionadoChange)="editarCentroCusto($event)">
                 </app-input-dropdown>
             </div>
         </ng-container>

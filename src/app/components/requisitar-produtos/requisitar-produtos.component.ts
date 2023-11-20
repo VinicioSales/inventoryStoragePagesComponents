@@ -36,13 +36,18 @@ export class RequisitarProdutosComponent implements OnInit {
   centroCustoLista: string[] = [];
   
   //FIXME - LIMPAR
-  produtosSelecionados: any[] = [{nomeProduto: 'teste', codigoProduto: 'codigo', quantidade: 2, unidadeMedida: 'unidade', centroCusto: 'centro'}]
+  produtosSelecionados: any[] = [{nomeProduto: 'Nome Produto1', codigoProduto: 'codigo', quantidade: 2, unidadeMedida: 'unidade', centroCusto: 'centro'}]
   
+  quantidadeEditado: number = 0;
+  centroCustoEditado: string = '';
+  unidadeMedidaEditado: string = '';
   quantidadeSelecionado: number = 0;
   unidadeMedidaLista: string[] = [];
   nomeProdutoSelecionado: string = '';
   centroCustoSelecionado: string = '';
   unidadeMedidaSelecionado: string = '';
+  centroCustoListaEditado: string[] = [];
+  unidadeMedidaListaEditado: string[] = [];
   corBotaoSolicitar: string = 'var(--botao-verde)';
   corBotaoSolicitarHover: string = 'var(--botao-verde-hover)';
 
@@ -75,6 +80,7 @@ export class RequisitarProdutosComponent implements OnInit {
   selecionarQuantidade(quantidadeSelecionado: number) {
     this.quantidadeSelecionado = quantidadeSelecionado;
   }
+  
 
   //NOTE - selecionarCentroCusto
   selecionarCentroCusto(centroCustoSelecionado: string) {
@@ -127,7 +133,39 @@ export class RequisitarProdutosComponent implements OnInit {
 
   //NOTE - editarProduto
   editarProduto(produtoAEditar: any) {
+    const produtoEncontradoEditar = this.listaProdutos.find(produto => produto.nomeProduto === produtoAEditar.nomeProduto);
+    console.log('produtoEncontradoEditar');
+    console.log(produtoEncontradoEditar);
+
+    this.centroCustoListaEditado = produtoEncontradoEditar.centroCusto;
+    this.unidadeMedidaListaEditado = produtoEncontradoEditar.unidadeMedida;
+
+    this.centroCustoEditado = '';
+    this.unidadeMedidaEditado = '';
+
     this.editar = true;
+  }
+
+  //NOTE - editarQuantidade
+  editarQuantidade(quantidadeEditado: number) {
+    this.quantidadeEditado = quantidadeEditado;
+  }
+  
+  //NOTE - editarUnidadeMedida
+  editarUnidadeMedida(unidadeMedidaEditado: string) {
+    this.unidadeMedidaEditado = unidadeMedidaEditado;
+  }
+
+  //NOTE - editarCentroCusto
+  editarCentroCusto(centroCustoEditado: string) {
+    this.centroCustoEditado = centroCustoEditado;
+  }
+
+  //NOTE - onConfirmarEdicao
+  onConfirmarEdicao() {
+    this.editar = false;
+
+
   }
 
   //NOTE - onSolicitar
