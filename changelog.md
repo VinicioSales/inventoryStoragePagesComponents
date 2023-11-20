@@ -1,11 +1,15 @@
 ## ChangeLog
 
 Todas as mudanças do projeto serão documentados neste arquivo.
+
 ## [0.0] - 20-11-2023 
 ### Added
 - Finalizado testes unitário tela de registro (Victor)
 - Testado serviço com backend (victor)
 - Inicializado tela de devolução de produtos(victor)
+- Teste do serviço de login com backend (vinicio)
+- Teste do serviço de recuperar senha com backend (vinicio)
+- Criado metodos para editar os produso selecioados
 
 ## [0.0] - 17-11-2023 
 ### Added
