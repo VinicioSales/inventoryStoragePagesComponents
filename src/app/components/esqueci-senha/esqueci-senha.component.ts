@@ -47,11 +47,8 @@ export class EsqueciSenhaComponent {
         this.carregando = false;
       },
       error: (error: HttpErrorResponse) => {
-        if (error.status === 404) {
-          this.exibirMensagemModal('Email não encontrado');
-        } else {
-          this.exibirMensagemModal(`Erro desconhecido: ${error.message}`);
-        }
+        console.error(error.error.message);
+        this.exibirMensagemModal(`${error.error.message}`);
 
         this.carregando = false;
       }

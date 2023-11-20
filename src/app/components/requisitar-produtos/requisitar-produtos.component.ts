@@ -134,14 +134,13 @@ export class RequisitarProdutosComponent implements OnInit {
   //NOTE - editarProduto
   editarProduto(produtoAEditar: any) {
     const produtoEncontradoEditar = this.listaProdutos.find(produto => produto.nomeProduto === produtoAEditar.nomeProduto);
-    console.log('produtoEncontradoEditar');
-    console.log(produtoEncontradoEditar);
-
     this.centroCustoListaEditado = produtoEncontradoEditar.centroCusto;
     this.unidadeMedidaListaEditado = produtoEncontradoEditar.unidadeMedida;
-
-    this.centroCustoEditado = '';
-    this.unidadeMedidaEditado = '';
+    
+    const produtoSelecionadoEditar = this.produtosSelecionados.find(produto => produto.nomeProduto === produtoAEditar.nomeProduto);
+    this.quantidadeEditado = produtoSelecionadoEditar.quantidade;
+    this.centroCustoEditado = produtoSelecionadoEditar.centroCusto;
+    this.unidadeMedidaEditado = produtoSelecionadoEditar.unidadeMedida;
 
     this.editar = true;
   }

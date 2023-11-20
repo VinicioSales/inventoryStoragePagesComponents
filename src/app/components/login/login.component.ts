@@ -17,9 +17,6 @@ export class LoginComponent {
   static readonly MENSAGEM_EMAIL_INVALIDO = 'Email inválido!';
   static readonly MENSAGEM_CAMPOS_VAZIOS = 'Preencha todos os campos!';
   static readonly MENSAGEM_DADOS_INVALIDOS = 'Email ou senha inválidos!'
-  static readonly MENSAGEM_USUARIO_NAO_ENCONTRADO = 'Usuário não encontrado!'
-  static readonly MENSAGEM_FORMATO_DADOS_INCORRETO = 'Revise a formatação dos dados!'
-  static readonly MENSAGEM_INTERNAL_ERROR = 'Ocorreu um erro inesperado. Tente novamento em alguns instantes. Caso persista, entre em contato com o suporte!'
 
 
   @Input() valorEmail?: string;
@@ -98,8 +95,11 @@ export class LoginComponent {
 
   //NOTE - logar
   logar() {
+    this.carregando = true;
+
     this.authService.login(this.valorEmail!, this.valorSenha!).subscribe({
       next: (response) => {
+        console.log('response logar');
         console.log(response);
         const  token = response.token;
 
@@ -110,29 +110,10 @@ export class LoginComponent {
         
         this.carregando = false;
       },
+      
       error: (error: HttpErrorResponse) => {
-        switch (error.status) {
-          case 400:
-            this.exibirMensagemModal(LoginComponent.MENSAGEM_FORMATO_DADOS_INCORRETO);
-            break
-
-          case 403:
-            this.exibirMensagemModal(LoginComponent.MENSAGEM_DADOS_INVALIDOS);
-            break
-
-          case 404:
-            this.exibirMensagemModal(LoginComponent.MENSAGEM_USUARIO_NAO_ENCONTRADO);
-            break
-          
-          case 500:
-            this.exibirMensagemModal(LoginComponent.MENSAGEM_INTERNAL_ERROR);
-            break
-
-          default:
-            console.error(error);
-            this.exibirMensagemModal(`Erro desconhecido: ${error.message}`);
-        }
-        
+        this.exibirMensagemModal(error.error.message);
+        console.log(error.error.message);
         this.carregando = false;
       }
     });
@@ -140,7 +121,6 @@ export class LoginComponent {
 
   //NOTE - onLogin
   onLogin() {
-    this.carregando = true;
     const credenciaisValidadas =  this.validarCredenciais();
     if (credenciaisValidadas) {
       this.logar();

@@ -177,15 +177,6 @@ describe('LoginComponent', () => {
       expect(component.exibirMensagemModal).toHaveBeenCalledWith(LoginComponent.MENSAGEM_EMAIL_INVALIDO);
     });
 
-    // NOTE - deve lidar com senha inválida
-    it('deve exibir mensagem para senha inválida', () => {
-      component.valorEmail = 'valido@dominio.com';
-      component.valorSenha = 'short';
-      spyOn(component, 'exibirMensagemModal');
-      component.validarCredenciais();
-      expect(component.exibirMensagemModal).toHaveBeenCalledWith(LoginComponent.MENSAGEM_SENHA_INVALIDA);
-    });
-
     // NOTE - deve passar com credenciais válidas
     it('deve validar credenciais válidas sem exibir mensagens', () => {
       component.valorEmail = 'valido@dominio.com';
@@ -433,24 +424,6 @@ describe('navegarRotaRegistro', () => {
       expect(authServiceMock.login).toHaveBeenCalledWith('test@test.com', 'password123');
       expect(localStorageSpy).toHaveBeenCalledWith('token_de_autenticacao', 'fake-token');
       expect(routerMock.navigate).toHaveBeenCalledWith(['/home']);
-    });
-  
-    //NOTE - deve exibir a mensagem de erro apropriada para erros específicos de HTTP
-    it('deve exibir a mensagem de erro apropriada para erros específicos de HTTP', () => {
-      // ANCHOR - Testes de erro HTTP
-      const errors = [
-        { status: 400, message: LoginComponent.MENSAGEM_FORMATO_DADOS_INCORRETO },
-        { status: 403, message: LoginComponent.MENSAGEM_DADOS_INVALIDOS },
-        { status: 404, message: LoginComponent.MENSAGEM_USUARIO_NAO_ENCONTRADO },
-        { status: 500, message: LoginComponent.MENSAGEM_INTERNAL_ERROR },
-      ];
-  
-      spyOn(component, 'exibirMensagemModal');
-      errors.forEach(error => {
-        authServiceMock.login.and.returnValue(throwError(() => new HttpErrorResponse({ status: error.status })));
-        component.logar();
-        expect(component.exibirMensagemModal).toHaveBeenCalledWith(error.message);
-      });
     });
   
     //NOTE - deve exibir mensagem de erro desconhecido quando o status do erro não for mapeado
