@@ -1,6 +1,7 @@
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { PdfResponse } from 'src/models/pdf-response/pdf-response.models'
 import { urlBackend, rotaProdutos, rotaPdf, rotaSolicitacao } from 'src/app/services/static'
 import { MockServiceProdutosService } from 'src/app/mock/mock-service-produtos.service'
 
@@ -24,7 +25,7 @@ export class RequisicoesService {
 
   //NOTE - getPdf
   getPdf(produtosSelecionados: any) {
-    return this.http.post(`${urlBackend}${rotaPdf}`, {produtosSelecionados});
+    return this.http.post<PdfResponse>(`${urlBackend}${rotaPdf}`, {produtosSelecionados});
   }
 
 }

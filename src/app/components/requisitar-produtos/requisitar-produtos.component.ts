@@ -1,6 +1,7 @@
 import { Router } from '@angular/router';
 import { Component, OnInit, } from '@angular/core';
 import { ModalService } from 'src/app/services/modal/modal.service'
+import { PdfResponse } from 'src/models/pdf-response/pdf-response.models'
 import { RequisicoesService } from '../../services/requisicoes/requisicoes.service';
 import { MockServiceProdutosService } from 'src/app/mock/mock-service-produtos.service'
 
@@ -21,8 +22,7 @@ export class RequisitarProdutosComponent implements OnInit {
 
   //NOTE - ngOnInit
   ngOnInit(): void {
-    //FIXME - MUDAR DO MOCK PARA OFICIAL
-    this.mockProdutos.getProdutos().subscribe(data => {
+    this.requisicoesService.getProdutos().subscribe(data => {
       this.listaProdutos = data;
       this.nomeProdutoLista = this.listaProdutos.map(produto => produto.nomeProduto);
     });
@@ -37,17 +37,11 @@ export class RequisitarProdutosComponent implements OnInit {
   listaProdutos: any[] = [];
   mostrarPdf: boolean = false;
   produtoEmEdicao: any = null;
-  nomeProdutoLista: string[] = [];
-  centroCustoLista: string[] = [];
-  
-  //FIXME - LIMPAR
-  produtosSelecionados: any[] = [
-    {nomeProduto: 'Nome Produto1', codigoProduto: 'codigo', quantidade: 2, unidadeMedida: 'kg', centroCusto: 'Centro Custo 1'},
-    {nomeProduto: 'Nome Produto2', codigoProduto: 'codigo2', quantidade: 5, unidadeMedida: 'Uni', centroCusto: 'Centro Custo 2'},
-  ]
-  
   quantidadeEditado: number = 0;
   centroCustoEditado: string = '';
+  nomeProdutoLista: string[] = [];
+  centroCustoLista: string[] = [];
+  produtosSelecionados: any[] = [];
   unidadeMedidaEditado: string = '';
   quantidadeSelecionado: number = 0;
   unidadeMedidaLista: string[] = [];
@@ -88,7 +82,6 @@ export class RequisitarProdutosComponent implements OnInit {
   selecionarQuantidade(quantidadeSelecionado: number) {
     this.quantidadeSelecionado = quantidadeSelecionado;
   }
-  
 
   //NOTE - selecionarCentroCusto
   selecionarCentroCusto(centroCustoSelecionado: string) {
@@ -126,7 +119,6 @@ export class RequisitarProdutosComponent implements OnInit {
     return this.listaProdutos.find(produto => produto.nomeProduto === produtoAEditar.nomeProduto);
   }
 
-
   //NOTE - adicionarProduto
   adicionarProduto() {
     if (this.nomeProdutoSelecionado && this.quantidadeSelecionado && this.centroCustoSelecionado && this.unidadeMedidaSelecionado) {
@@ -148,7 +140,6 @@ export class RequisitarProdutosComponent implements OnInit {
   editarProduto(produtoAEditar: any) {
     this.produtoEmEdicao = produtoAEditar;
 
-    // const produtoEncontradoEditar = this.listaProdutos.find(produto => produto.nomeProduto === produtoAEditar.nomeProduto);
     const produtoEncontradoEditar = this.getProdutoAEditar(produtoAEditar);
     this.centroCustoListaEditado = produtoEncontradoEditar.centroCusto;
     this.unidadeMedidaListaEditado = produtoEncontradoEditar.unidadeMedida;
@@ -157,7 +148,6 @@ export class RequisitarProdutosComponent implements OnInit {
     this.quantidadeEditado = produtoSelecionadoEditar.quantidade;
     this.centroCustoEditado = produtoSelecionadoEditar.centroCusto;
     this.unidadeMedidaEditado = produtoSelecionadoEditar.unidadeMedida;
-
   }
 
   //NOTE - editarQuantidade
@@ -189,6 +179,9 @@ export class RequisitarProdutosComponent implements OnInit {
     this.produtosSelecionados[index] = produtoAtualizado;
 
     this.produtoEmEdicao = null;
+    this.quantidadeEditado = 0;
+    this.centroCustoEditado = '';
+    this.unidadeMedidaEditado = '';
   }
 
   //NOTE - formatarData
@@ -216,22 +209,12 @@ export class RequisitarProdutosComponent implements OnInit {
       this.modalService.exibirMensagemModal(ModalService.MENSAGEM_DATA_ENTREGA_VAZIO);
 
     } else {
-      //FIXME - REMOVER MOCK
-      this.mockProdutos.getPdf(this.produtosSelecionados).subscribe({
-        next: (response) => {
-          console.log('base');
-          console.log(response.pdfBase64);
-
+      this.requisicoesService.getPdf(this.produtosSelecionados).subscribe({
+        next: (response: PdfResponse) => {
           this.pdfBase64 = response.pdfBase64;
           this.mostrarPdf = true;
         }
       });
-        // this.requisicoesService.getPdf(this.produtosSelecionados).subscribe({
-        //   next: (response) => {
-        //     console.log(response);
-        //     this.mostrarPdf = true;
-        //   }
-        // });
     }
   }
 
@@ -242,6 +225,8 @@ export class RequisitarProdutosComponent implements OnInit {
 
   //NOTE - onConfirmarSolicitacao
   onConfirmarSolicitacao() {
+    console.log('this.produtosSelecionados');
+    console.log(this.produtosSelecionados);
     this.requisicoesService.criarSolicitacao(this.produtosSelecionados).subscribe({
       next:  (response) => {
         console.log(response);
@@ -258,4 +243,5 @@ export class RequisitarProdutosComponent implements OnInit {
       }
     });
   }
+
 }
