@@ -11,7 +11,7 @@ export class InputComponent {
   @Input() width?: string = 'input'
   @Input() placeholder: string = 'input'
 
-  @Output() valorChange = new EventEmitter<string>();
+  @Output() valorChange = new EventEmitter<any>();
 
   valor: string = '';
 

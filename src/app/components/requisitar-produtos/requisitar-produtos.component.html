@@ -5,7 +5,7 @@
 </app-modal-geral>
 <app-modal-pdf
     *ngIf="mostrarPdf"
-    (cancelarPdf)="onCancelarSolicitacao()"
+    (cancelarPdf)="onFecharModalPdf()"
     (criarSolicitacao)="onConfirmarSolicitacao()"
     [base64String]="pdfBase64">
 </app-modal-pdf>
@@ -172,7 +172,8 @@
                 id="data"
                 type="date"
                 width="25%"
-                height="10px">
+                height="10px"
+                (valorChange)="handleDataEntrega($event)">
             </app-input>
         </div>
         <app-botao

@@ -30,11 +30,12 @@ export class RequisitarProdutosComponent implements OnInit {
   }
 
   //NOTE - variaveis
+  dataEntrega?: String;
   produtos: any[] = [];
-  mostrarPdf: boolean = false;
   pdfBase64: string = '';
   produtoPesquisado: any;
   listaProdutos: any[] = [];
+  mostrarPdf: boolean = false;
   produtoEmEdicao: any = null;
   nomeProdutoLista: string[] = [];
   centroCustoLista: string[] = [];
@@ -190,14 +191,32 @@ export class RequisitarProdutosComponent implements OnInit {
     this.produtoEmEdicao = null;
   }
 
+  //NOTE - formatarData
+  formatarData(dataString: string) {
+    const partes = dataString.split('-');
+    if (partes.length !== 3) {
+      this.modalService.exibirMensagemModal(ModalService.MENSAGEM_DATA_INVALIDA);
+      return
+    }
+
+    return `${partes[2]}/${partes[1]}/${partes[0]}`;
+  }
+  
+  //NOTE - handleDataEntrega
+  handleDataEntrega(data: string) {
+    this.dataEntrega = this.formatarData(data);
+  }
+
   //NOTE - onSolicitar
   onSolicitar() {
     if (this.produtosSelecionados.length === 0) {
       this.modalService.exibirMensagemModal(ModalService.MENSAGEM_SEM_PRODUTOS_SELECIONADOS);
     
+    } else if (!this.dataEntrega) {
+      this.modalService.exibirMensagemModal(ModalService.MENSAGEM_DATA_ENTREGA_VAZIO);
+
     } else {
       //FIXME - REMOVER MOCK
-
       this.mockProdutos.getPdf(this.produtosSelecionados).subscribe({
         next: (response) => {
           console.log('base');
@@ -216,8 +235,8 @@ export class RequisitarProdutosComponent implements OnInit {
     }
   }
 
-  //NOTE - cancelarSolicitacao
-  onCancelarSolicitacao() {
+  //NOTE - fecharModalPdf
+  onFecharModalPdf() {
     this.mostrarPdf = false;
   }
 
@@ -226,6 +245,8 @@ export class RequisitarProdutosComponent implements OnInit {
     this.requisicoesService.criarSolicitacao(this.produtosSelecionados).subscribe({
       next:  (response) => {
         console.log(response);
+
+        this.onFecharModalPdf();
 
         this.modalService.exibirMensagemModal(`Solicitacao criada com código: ${response.codigoSolicitacao}`);
       },
