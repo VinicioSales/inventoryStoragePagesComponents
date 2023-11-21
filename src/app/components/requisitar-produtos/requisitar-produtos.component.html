@@ -1,3 +1,8 @@
+<app-modal-geral
+    *ngIf="modalService.mostrarModal$ | async"
+    (fecharModal)="modalService.fecharModal()"
+    [mensagem]="modalService.mensagemModal$ | async">
+</app-modal-geral>
 <div class="header">
     <app-logo-bf></app-logo-bf>
     <div class="titulo">Solicitar Produto</div>
@@ -168,7 +173,7 @@
             texto="Solicitar"
             [background]="corBotaoSolicitar"
             [backgroundHover]="corBotaoSolicitarHover"
-            (click)="onSolicitar">
+            (click)="onSolicitar()">
         </app-botao>
     </div>
 </div>

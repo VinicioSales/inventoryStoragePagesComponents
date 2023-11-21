@@ -1,5 +1,6 @@
 import { Router } from '@angular/router';
 import { Component, OnInit, } from '@angular/core';
+import { ModalService } from 'src/app/services/modal/modal.service'
 import { RequisicoesService } from '../../services/requisicoes/requisicoes.service';
 import { MockServiceProdutosService } from 'src/app/mock/mock-service-produtos.service'
 
@@ -13,6 +14,7 @@ export class RequisitarProdutosComponent implements OnInit {
   //NOTE - constructor
   constructor(
     private router: Router,
+    public modalService: ModalService,
     private requisicoes: RequisicoesService,
     private mockProdutos: MockServiceProdutosService,
   ) {}
@@ -187,5 +189,9 @@ export class RequisitarProdutosComponent implements OnInit {
   }
 
   //NOTE - onSolicitar
-  onSolicitar() {}
+  onSolicitar() {
+    if (this.produtosSelecionados.length === 0) {
+      this.modalService.exibirMensagemModal(ModalService.MENSAGEM_CAMPOS_VAZIOS);
+    }
+  }
 }

@@ -16,7 +16,6 @@ export class LoginComponent {
 
   static readonly MENSAGEM_EMAIL_INVALIDO = 'Email inválido!';
   static readonly MENSAGEM_CAMPOS_VAZIOS = 'Preencha todos os campos!';
-  static readonly MENSAGEM_DADOS_INVALIDOS = 'Email ou senha inválidos!'
 
 
   @Input() valorEmail?: string;
