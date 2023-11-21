@@ -1,9 +1,9 @@
 import { Router } from '@angular/router';
 import { Component, OnInit, } from '@angular/core';
+import { Produto } from 'src/models/produto/produto.models'
 import { ModalService } from 'src/app/services/modal/modal.service'
 import { PdfResponse } from 'src/models/pdf-response/pdf-response.models'
 import { RequisicoesService } from '../../services/requisicoes/requisicoes.service';
-import { MockServiceProdutosService } from 'src/app/mock/mock-service-produtos.service'
 
 
 @Component({
@@ -17,12 +17,11 @@ export class RequisitarProdutosComponent implements OnInit {
     private router: Router,
     public modalService: ModalService,
     private requisicoesService: RequisicoesService,
-    private mockProdutos: MockServiceProdutosService,
   ) {}
 
   //NOTE - ngOnInit
   ngOnInit(): void {
-    this.requisicoesService.getProdutos().subscribe(data => {
+    this.requisicoesService.getProdutos().subscribe((data: Produto[]) => {
       this.listaProdutos = data;
       this.nomeProdutoLista = this.listaProdutos.map(produto => produto.nomeProduto);
     });
@@ -31,17 +30,16 @@ export class RequisitarProdutosComponent implements OnInit {
 
   //NOTE - variaveis
   dataEntrega?: String;
-  produtos: any[] = [];
   pdfBase64: string = '';
-  produtoPesquisado: any;
-  listaProdutos: any[] = [];
+  produtoPesquisado?: Produto;
+  listaProdutos: Produto[] = [];
   mostrarPdf: boolean = false;
-  produtoEmEdicao: any = null;
+  produtoEmEdicao?: Produto;
   quantidadeEditado: number = 0;
   centroCustoEditado: string = '';
   nomeProdutoLista: string[] = [];
   centroCustoLista: string[] = [];
-  produtosSelecionados: any[] = [];
+  produtosSelecionados: Produto[] = [];
   unidadeMedidaEditado: string = '';
   quantidadeSelecionado: number = 0;
   unidadeMedidaLista: string[] = [];
@@ -61,15 +59,21 @@ export class RequisitarProdutosComponent implements OnInit {
   //NOTE - selecionarProduto
   selecionarProduto(nomeProdutoSelecionado: string) {
     const produtoEncontrado = this.listaProdutos.find(produto => produto.nomeProduto === nomeProdutoSelecionado);
-    this.nomeProdutoSelecionado = produtoEncontrado.nomeProduto;
-    
-    if (produtoEncontrado) {
-      this.produtoPesquisado = produtoEncontrado;
-      this.centroCustoLista = produtoEncontrado.centroCusto;
-      this.unidadeMedidaLista = produtoEncontrado.unidadeMedida;
 
-      this.centroCustoSelecionado = '';
-      this.unidadeMedidaSelecionado = '';
+    if (produtoEncontrado) {
+      this.nomeProdutoSelecionado = produtoEncontrado.nomeProduto;
+      
+      if (produtoEncontrado) {
+        this.produtoPesquisado = produtoEncontrado;
+        this.centroCustoLista = produtoEncontrado.centroCusto;
+        this.unidadeMedidaLista = produtoEncontrado.unidadeMedida;
+  
+        this.centroCustoSelecionado = '';
+        this.unidadeMedidaSelecionado = '';
+      
+      } else {
+        this.modalService.exibirMensagemModal(ModalService.MENSAGEM_PRODUTO_INVALIDO);
+      }
     }
   }
 

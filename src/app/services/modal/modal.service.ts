@@ -11,6 +11,7 @@ export class ModalService {
   static readonly MENSAGEM_EMAIL_INVALIDO = 'Email inválido!';
   static readonly MENSAGEM_CAMPOS_VAZIOS = 'Preencha todos os campos!';
   static readonly MENSAGEM_DATA_INVALIDA = 'Formato da data inválida!';
+  static readonly MENSAGEM_PRODUTO_INVALIDO = 'Produto selecionado inválido!';
   static readonly MENSAGEM_DATA_ENTREGA_VAZIO = 'Selecione a data de entrega!';
   static readonly MENSAGEM_SEM_PRODUTOS_SELECIONADOS = 'Selecione algum produto primeiro!';
   
