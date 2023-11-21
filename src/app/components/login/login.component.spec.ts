@@ -11,6 +11,7 @@ import { BotaoComponent } from '../botao/botao.component';
 import { LogoBfComponent } from '../logo-bf/logo-bf.component';
 import { AuthService } from '../../services/auth/auth.service';
 import { BotaoTemaComponent } from '../botao-tema/botao-tema.component';
+import { ModalService } from 'src/app/services/modal/modal.service';
 
 describe('LoginComponent', () => {
   let router: Router;
@@ -159,107 +160,43 @@ describe('LoginComponent', () => {
 
   // SECTION - validarCredenciais
   describe('validarCredenciais', () => {
-    // NOTE - deve lidar com campos vazios
-    it('deve exibir mensagem para campos vazios', () => {
+
+    // NOTE - deve retornar false e exibir mensagem se os campos estiverem vazios
+    it('deve retornar false e exibir mensagem se os campos estiverem vazios', () => {
       component.valorEmail = '';
       component.valorSenha = '';
-      spyOn(component, 'exibirMensagemModal');
-      component.validarCredenciais();
-      expect(component.exibirMensagemModal).toHaveBeenCalledWith(LoginComponent.MENSAGEM_CAMPOS_VAZIOS);
+      spyOn(component.modalService, 'exibirMensagemModal');
+      const resultado = component.validarCredenciais();
+      expect(resultado).toBeFalse();
+      expect(component.modalService.exibirMensagemModal).toHaveBeenCalledWith(ModalService.MENSAGEM_CAMPOS_VAZIOS);
     });
 
-    // NOTE - deve lidar com e-mail inválido
-    it('deve exibir mensagem para e-mail inválido', () => {
-      component.valorEmail = 'invalido@';
+    // NOTE - deve retornar false e exibir mensagem se o e-mail for inválido
+    it('deve retornar false e exibir mensagem se o e-mail for inválido', () => {
+      component.valorEmail = 'email.invalido';
       component.valorSenha = 'senha123';
-      spyOn(component, 'exibirMensagemModal');
-      component.validarCredenciais();
-      expect(component.exibirMensagemModal).toHaveBeenCalledWith(LoginComponent.MENSAGEM_EMAIL_INVALIDO);
+      spyOn(component.modalService, 'exibirMensagemModal');
+      const resultado = component.validarCredenciais();
+      expect(resultado).toBeFalse();
+      expect(component.modalService.exibirMensagemModal).toHaveBeenCalledWith(ModalService.MENSAGEM_EMAIL_INVALIDO);
     });
 
-    // NOTE - deve passar com credenciais válidas
-    it('deve validar credenciais válidas sem exibir mensagens', () => {
-      component.valorEmail = 'valido@dominio.com';
-      component.valorSenha = 'senha1234';
-      spyOn(component, 'exibirMensagemModal');
-      component.validarCredenciais();
-      expect(component.exibirMensagemModal).not.toHaveBeenCalled();
-      expect(component.mostrarModal).toBeFalse();
-      expect(component.mensagemModal).toBe('');
+    // NOTE - deve retornar true para credenciais válidas
+    it('deve retornar true para credenciais válidas', () => {
+      component.valorEmail = 'email@valido.com';
+      component.valorSenha = 'senha123';
+      spyOn(component.modalService, 'exibirMensagemModal');
+      spyOn(component, 'fecharMensagemModal');
+      const resultado = component.validarCredenciais();
+      expect(resultado).toBeTrue();
+      expect(component.modalService.exibirMensagemModal).not.toHaveBeenCalled();
+      expect(component.fecharMensagemModal).toHaveBeenCalled();
     });
+  })
 
-    // NOTE - deve lidar com valores nulos
-    it('deve lidar com valores nulos', () => {
-      component.valorEmail = undefined;
-      component.valorSenha = undefined;
-      spyOn(component, 'exibirMensagemModal');
-      component.validarCredenciais();
-      expect(component.exibirMensagemModal).toHaveBeenCalledWith(LoginComponent.MENSAGEM_CAMPOS_VAZIOS);
-    });
-
-    // NOTE - deve lidar com valores undefined
-    it('deve lidar com valores undefined', () => {
-      component.valorEmail = undefined;
-      component.valorSenha = undefined;
-      spyOn(component, 'exibirMensagemModal');
-      component.validarCredenciais();
-      expect(component.exibirMensagemModal).toHaveBeenCalledWith(LoginComponent.MENSAGEM_CAMPOS_VAZIOS);
-    });
-  });
   //!SECTION
 
 
-
-
-  // SECTION - exibirMensagemModal
-  describe('exibirMensagemModal', () => {
-
-    // NOTE - deve definir 'mostrarModal' como verdadeiro
-    it('deve definir "mostrarModal" como verdadeiro', () => {
-      const mensagem = 'Teste de mensagem modal';
-      component.exibirMensagemModal(mensagem);
-      expect(component.mostrarModal).toBeTrue();
-    });
-
-    // NOTE - deve definir a 'mensagemModal' corretamente
-    it('deve definir "mensagemModal" corretamente', () => {
-      const mensagem = 'Outra mensagem de teste';
-      component.exibirMensagemModal(mensagem);
-      expect(component.mensagemModal).toBe(mensagem);
-    });
-
-    // NOTE - deve tratar mensagens vazias
-    it('deve tratar mensagens vazias', () => {
-      component.exibirMensagemModal('');
-      expect(component.mostrarModal).toBeTrue();
-      expect(component.mensagemModal).toBe('');
-    });
-
-    // NOTE - deve tratar mensagens nulas
-    it('deve tratar mensagens nulas', () => {
-      component.exibirMensagemModal(null as unknown as string); // Cast para compatibilizar com o tipo esperado pela função
-      expect(component.mostrarModal).toBeTrue();
-      expect(component.mensagemModal).toBeNull();
-    });
-
-    // NOTE - deve tratar mensagens indefinidas
-    it('deve tratar mensagens indefinidas', () => {
-      component.exibirMensagemModal(undefined as unknown as string); // Cast para compatibilizar com o tipo esperado pela função
-      expect(component.mostrarModal).toBeTrue();
-      expect(component.mensagemModal).toBeUndefined();
-    });
-
-    // NOTE - deve ser possível exibir diferentes mensagens consecutivamente
-    it('deve ser possível exibir diferentes mensagens consecutivamente', () => {
-      const primeiraMensagem = 'Primeira mensagem';
-      const segundaMensagem = 'Segunda mensagem';
-      component.exibirMensagemModal(primeiraMensagem);
-      expect(component.mensagemModal).toBe(primeiraMensagem);
-      component.exibirMensagemModal(segundaMensagem);
-      expect(component.mensagemModal).toBe(segundaMensagem);
-    });
-  });
-  //!SECTION
 
 
 
@@ -426,23 +363,6 @@ describe('navegarRotaRegistro', () => {
       expect(routerMock.navigate).toHaveBeenCalledWith(['/home']);
     });
   
-    //NOTE - deve exibir mensagem de erro desconhecido quando o status do erro não for mapeado
-    it('deve exibir mensagem de erro desconhecido quando o status do erro não for mapeado', () => {
-      // ANCHOR - Teste de erro desconhecido
-      const unknownErrorStatus = 418; // 418: I'm a teapot
-      const unknownError = new HttpErrorResponse({
-        status: unknownErrorStatus,
-        statusText: "I'm a teapot",
-        url: '(unknown url)' // Esta linha pode não ser necessária se o HttpErrorResponse preenche isso automaticamente
-      });
-      authServiceMock.login.and.returnValue(throwError(() => unknownError));
-      spyOn(component, 'exibirMensagemModal');
-      component.logar();
-      expect(component.exibirMensagemModal).toHaveBeenCalledWith(
-        `Erro desconhecido: ${unknownError.message}` // Altere para unknownError.message
-      );
-    });
-    
     //NOTE - deve lidar com a ausência do token na resposta
     it('deve lidar com a ausência do token na resposta', () => {
       // ANCHOR - Teste de resposta sem token

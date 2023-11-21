@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import { CarregamentoComponent } from './carregamento.component';
 
@@ -8,6 +9,9 @@ describe('CarregamentoComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [
+        MatProgressSpinnerModule,
+      ],
       declarations: [CarregamentoComponent]
     });
     fixture = TestBed.createComponent(CarregamentoComponent);

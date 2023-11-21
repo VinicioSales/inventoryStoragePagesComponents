@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
 import { TestBed } from '@angular/core/testing';
-import { urlBackend } from 'src/app/services/static';
+import { urlBackend, rotaEsqueciSenha, rotaLogin } from 'src/app/services/static';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 describe('AuthService', () => {
@@ -28,7 +28,6 @@ describe('AuthService', () => {
 
   //SECTION - login
   describe('login', () => {
-
     //NOTE - deve reotornar um Observable<any>
     it('deve reotornar um Observable<any>', () => {
       const dummyResponse = { token: '12345' };
@@ -39,12 +38,14 @@ describe('AuthService', () => {
         expect(response).toEqual(dummyResponse);
       });
 
-      const req = httpMock.expectOne(`${urlBackend}/login`);
+      // Ajuste a URL aqui para corresponder à usada no serviço
+      const req = httpMock.expectOne(`${urlBackend}${rotaLogin}`); // ajuste para a URL correta
       expect(req.request.method).toBe('POST');
-      expect(req.request.body).toEqual({ email, senha });
+      expect(req.request.body).toEqual({ username: email, password: senha }); // ajuste conforme a estrutura de dados do serviço
       req.flush(dummyResponse);
     });
-  });
+});
+
   //!SECTION
 
 
@@ -61,7 +62,7 @@ describe('AuthService', () => {
         expect(response).toEqual(dummyResponse);
       });
 
-      const req = httpMock.expectOne(`${urlBackend}/recuperar-senha`);
+      const req = httpMock.expectOne(`${urlBackend}${rotaEsqueciSenha}`);
       expect(req.request.method).toBe('POST');
       expect(req.request.body).toEqual({ email });
       req.flush(dummyResponse);

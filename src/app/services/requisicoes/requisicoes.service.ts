@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Produtos } from 'src/models/produto/produto.models'
+import { Produtos, Produto } from 'src/models/produto/produto.models'
 import { PdfResponse } from 'src/models/pdf-response/pdf-response.models'
 import { urlBackend, rotaProdutos, rotaPdf, rotaSolicitacao } from 'src/app/services/static'
 
@@ -19,12 +19,12 @@ export class RequisicoesService {
   }
 
   //NOTE - getProdutos
-  getProdutos(): Observable<any> {
-    return this.http.get<Produtos>(`${urlBackend}${rotaProdutos}`);
+  getProdutos(): Observable<Produtos[]> {
+    return this.http.get<Produtos[]>(`${urlBackend}${rotaProdutos}`);
   }
 
   //NOTE - getPdf
-  getPdf(produtosSelecionados: any) {
+  getPdf(produtosSelecionados: Produto[]) {
     return this.http.post<PdfResponse>(`${urlBackend}${rotaPdf}`, {produtosSelecionados});
   }
 

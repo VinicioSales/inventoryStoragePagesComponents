@@ -74,10 +74,10 @@ describe('HomeComponent', () => {
   // SECTION - navegarRotaSolicitarProdutos
   describe('navegarRotaSolicitarProdutos', () => {
     
-    // NOTE - deve navegar para a rota de solicitar produtos
-    it('deve navegar para a rota de solicitar produtos', () => {
+    // NOTE - deve navegar para a rota de requisitar produtos
+    it('deve navegar para a rota de requisitar produtos', () => {
       component.navegarRotaSolicitarProdutos();
-      expect(router.navigate).toHaveBeenCalledWith(['/solicitar-produtos']);
+      expect(router.navigate).toHaveBeenCalledWith(['/requisitar-produtos']);
     });
 
   });

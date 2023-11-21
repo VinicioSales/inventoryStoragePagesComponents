@@ -22,15 +22,15 @@ import { BotaoHomeComponent } from './components/botao-home/botao-home.component
 import { BotaoAjudaComponent } from './components/botao-ajuda/botao-ajuda.component';
 import { ModalGeralComponent } from './components/modal-geral/modal-geral.component';
 import { BotaoEditarComponent } from './components/botao-editar/botao-editar.component';
+import { CarregamentoComponent } from './components/carregamento/carregamento.component';
 import { EsqueciSenhaComponent } from './components/esqueci-senha/esqueci-senha.component';
 import { BotaoRemoverComponent } from './components/botao-remover/botao-remover.component';
 import { InputDropdownComponent } from './components/input-dropdown/input-dropdown.component';
 import { InputContadorComponent } from './components/input-contador/input-contador.component';
 import { InputPesquisarComponent } from './components/input-pesquisar/input-pesquisar.component';
 import { RedefinirSenhaComponent } from './components/redefinir-senha/redefinir-senha.component';
-import { RequisitarProdutosComponent } from './components/requisitar-produtos/requisitar-produtos.component';
-import { CarregamentoComponent } from './components/carregamento/carregamento.component';
 import { BotaoConfirmarComponent } from './components/botao-confirmar/botao-confirmar.component';
+import { RequisitarProdutosComponent } from './components/requisitar-produtos/requisitar-produtos.component';
 
 @NgModule({
   declarations: [
