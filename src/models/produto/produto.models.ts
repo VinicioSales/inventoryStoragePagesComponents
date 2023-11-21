@@ -1,13 +1,15 @@
 export interface Produtos {
-    quantidade: Number,
+    quantidade: number,
     nomeProduto: string,
     centroCusto: string[]
+    codigoProduto: string
     unidadeMedida: string[],
 }
 
 export interface Produto {
-    quantidade: Number,
+    quantidade: number,
     nomeProduto: string,
     centroCusto: string
+    codigoProduto: string
     unidadeMedida: string,
 }

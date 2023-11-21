@@ -14,6 +14,7 @@ export class ModalService {
   static readonly MENSAGEM_PRODUTO_INVALIDO = 'Produto selecionado inválido!';
   static readonly MENSAGEM_DATA_ENTREGA_VAZIO = 'Selecione a data de entrega!';
   static readonly MENSAGEM_SEM_PRODUTOS_SELECIONADOS = 'Selecione algum produto primeiro!';
+  static readonly MENSAGEM_ERRO_DESCONHECIDO = 'Ocorreu um erro desconehcido! Tente novamente mais tarde ou entre em contato com o suporte';
   
   private mostrarModalSource = new BehaviorSubject<boolean>(false);
   private mensagemModalSource = new BehaviorSubject<string>('');

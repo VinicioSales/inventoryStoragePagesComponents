@@ -31,30 +31,25 @@ export class RequisitarProdutosComponent implements OnInit {
   //NOTE - variaveis
   dataEntrega?: String;
   pdfBase64: string = '';
-  produtoPesquisado: Produtos = {
-    quantidade: 0,
-    nomeProduto: '',
-    centroCusto: [],
-    unidadeMedida: []
-  };
-  listaProdutos: Produtos[] = [];
   mostrarPdf: boolean = false;
-  produtoEmEdicao?: Produto;
   quantidadeEditado: number = 0;
+  listaProdutos: Produtos[] = [];
   centroCustoEditado: string = '';
   nomeProdutoLista: string[] = [];
   centroCustoLista: string[] = [];
-  produtosSelecionados: Produto[] = [];
   unidadeMedidaEditado: string = '';
   quantidadeSelecionado: number = 0;
   unidadeMedidaLista: string[] = [];
   nomeProdutoSelecionado: string = '';
   centroCustoSelecionado: string = '';
+  produtosSelecionados: Produto[] = [];
   unidadeMedidaSelecionado: string = '';
   centroCustoListaEditado: string[] = [];
   unidadeMedidaListaEditado: string[] = [];
   corBotaoSolicitar: string = 'var(--botao-verde)';
   corBotaoSolicitarHover: string = 'var(--botao-verde-hover)';
+  produtoEmEdicao: Produto =  {quantidade: 0, nomeProduto: '', centroCusto: '', unidadeMedida: '', codigoProduto: '',};
+  produtoPesquisado: Produtos = {quantidade: 0, nomeProduto: '', centroCusto: [], unidadeMedida: [], codigoProduto: '',};
 
   //NOTE - home
   home() {
@@ -109,7 +104,7 @@ export class RequisitarProdutosComponent implements OnInit {
   }
   
   //NOTE - produtoJaAdicionado
-  produtoJaAdicionado(produtoParaAdicionar: any): boolean {
+  produtoJaAdicionado(produtoParaAdicionar: Produto): boolean {
     return this.produtosSelecionados.some(produto => produto.codigoProduto === produtoParaAdicionar.codigoProduto);
   }
 
@@ -124,7 +119,7 @@ export class RequisitarProdutosComponent implements OnInit {
   }
 
   //NOTE - getProdutoAEditar
-  getProdutoAEditar(produtoAEditar: any) {
+  getProdutoAEditar(produtoAEditar: Produto) {
     return this.listaProdutos.find(produto => produto.nomeProduto === produtoAEditar.nomeProduto);
   }
 
@@ -141,22 +136,32 @@ export class RequisitarProdutosComponent implements OnInit {
   }
 
   //NOTE - removerProduto
-  removerProduto(produtoARemover: any) {
+  removerProduto(produtoARemover: Produto) {
     this.produtosSelecionados = this.produtosSelecionados.filter(produto => produto !== produtoARemover);
   }
 
   //NOTE - editarProduto
-  editarProduto(produtoAEditar: any) {
+  editarProduto(produtoAEditar: Produto) {
     this.produtoEmEdicao = produtoAEditar;
 
     const produtoEncontradoEditar = this.getProdutoAEditar(produtoAEditar);
-    this.centroCustoListaEditado = produtoEncontradoEditar.centroCusto;
-    this.unidadeMedidaListaEditado = produtoEncontradoEditar.unidadeMedida;
+    if (produtoEncontradoEditar) {
+      this.centroCustoListaEditado = produtoEncontradoEditar.centroCusto;
+      this.unidadeMedidaListaEditado = produtoEncontradoEditar.unidadeMedida;
     
+    } else {
+      this.modalService.exibirMensagemModal(ModalService.MENSAGEM_ERRO_DESCONHECIDO);
+    }
+
     const produtoSelecionadoEditar = this.produtosSelecionados.find(produto => produto.nomeProduto === produtoAEditar.nomeProduto);
-    this.quantidadeEditado = produtoSelecionadoEditar.quantidade;
-    this.centroCustoEditado = produtoSelecionadoEditar.centroCusto;
-    this.unidadeMedidaEditado = produtoSelecionadoEditar.unidadeMedida;
+    if (produtoSelecionadoEditar) {
+      this.unidadeMedidaEditado = produtoSelecionadoEditar.unidadeMedida;
+      this.quantidadeEditado = produtoSelecionadoEditar.quantidade;
+      this.centroCustoEditado = produtoSelecionadoEditar.centroCusto;
+    
+    } else {
+      this.modalService.exibirMensagemModal(ModalService.MENSAGEM_ERRO_DESCONHECIDO);
+    }
   }
 
   //NOTE - editarQuantidade
@@ -187,10 +192,10 @@ export class RequisitarProdutosComponent implements OnInit {
 
     this.produtosSelecionados[index] = produtoAtualizado;
 
-    this.produtoEmEdicao = null;
     this.quantidadeEditado = 0;
     this.centroCustoEditado = '';
     this.unidadeMedidaEditado = '';
+    this.produtoEmEdicao = {quantidade: 0, nomeProduto: '', centroCusto: '', unidadeMedida: '', codigoProduto: '',};
   }
 
   //NOTE - formatarData
@@ -234,8 +239,6 @@ export class RequisitarProdutosComponent implements OnInit {
 
   //NOTE - onConfirmarSolicitacao
   onConfirmarSolicitacao() {
-    console.log('this.produtosSelecionados');
-    console.log(this.produtosSelecionados);
     this.requisicoesService.criarSolicitacao(this.produtosSelecionados).subscribe({
       next:  (response) => {
         console.log(response);
