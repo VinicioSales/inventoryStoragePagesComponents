@@ -4,23 +4,41 @@
 
         <div class="header">
             <app-logo-bf></app-logo-bf>
-            <h2>Devolução de Produtos</h2>
-            <app-botao-tema></app-botao-tema>
-            <app-botao-home></app-botao-home>
+            <div class="titulo">Devolução de Produtos</div>
+            <nav class="menu-header">
+                <app-botao-tema></app-botao-tema>
+                <app-botao-home></app-botao-home>
+            </nav>
+           
         </div>
 
-        <app-input-pesquisar></app-input-pesquisar>
-        <app-input-pesquisar></app-input-pesquisar>
-        <app-input-pesquisar></app-input-pesquisar>
+        <div class="inputs">
+            <app-input-pesquisar placeholder="pesquisar produto"></app-input-pesquisar>
+            <app-input-pesquisar placeholder="dd/mm/aaaa"></app-input-pesquisar>
+            <app-input-pesquisar placeholder="nome usuário"></app-input-pesquisar>
+
+        </div>
+        
     
-        <div class="titulos">
-            <h3>CÓD.SOLICITAÇÃO</h3>
-            <h3>CÓD.PRODUTO</h3>
-            <h3>PRODUTO</h3>
-            <h3>QUANTIDADE</h3>
-            <h3>UNI.MEDIDA</h3>
-            <h3>CENTRO DE CUSTO</h3>
-        </div>      
+        <div class="header-tabela">
+            <div class="cod-solicitacao">CÓD.SOLICITAÇÃO</div>
+            <div class="cod-produto">CÓD.PRODUTO</div>
+            <div class="produto">PRODUTO</div>
+            <div class="quantidade">QUANTIDADE</div>
+            <div class="uni-medida">UNI.MEDIDA</div>
+            <div class="centro-custo">CENTRO DE CUSTO</div>
+        </div>  
+        
+        <div class="linha-tabela">
+            <mat-checkbox class="checkbox"></mat-checkbox>
+            <div>123456</div>
+            <div>123456</div>
+            <div>Lorem ipsum dolor</div>
+            <div>Lorem ipsum dolor</div>
+            <div>Lorem ipsum dolor</div>
+            <div>Lorem ipsum dolor</div>
+        </div>
+        
                
     </div>
 

@@ -2,6 +2,8 @@ import { NgModule  } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -24,6 +26,7 @@ import { EsqueciSenhaComponent } from './components/esqueci-senha/esqueci-senha.
 import { HomeComponent } from './components/home/home.component';
 import { RedefinirSenhaComponent } from './components/redefinir-senha/redefinir-senha.component';
 import { DevolucaoProdutoComponent } from './components/devolucao-produto/devolucao-produto.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -47,6 +50,7 @@ import { DevolucaoProdutoComponent } from './components/devolucao-produto/devolu
     EsqueciSenhaComponent,
     RedefinirSenhaComponent,
     DevolucaoProdutoComponent,
+    
   ],
   imports: [
     FormsModule ,
@@ -54,6 +58,8 @@ import { DevolucaoProdutoComponent } from './components/devolucao-produto/devolu
     HttpClientModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

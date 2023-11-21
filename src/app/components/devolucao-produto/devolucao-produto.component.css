@@ -9,22 +9,96 @@
     flex-direction: column;
     height: 100%;
     background: var(--background-2);
-
     
 }
 
-.header{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 10px;
-    width: 100%;
-    background: var(--background);
-
-}
-
-
 .container {
-    flex-grow: 1; /* Faz o container ocupar o espaço restante */
-    overflow-y: auto; /* Habilita a rolagem se o conteúdo exceder a altura */
+    display: grid;
+    flex-grow: 1;
+    overflow-y: auto; 
+    grid-template-rows: 14% 30% 10% 55%; 
+    grid-template-columns: 1fr;
+    grid-template-areas: "header"
+                         "inputs"
+                         "tabela"
+                         "footer"
+                         
+
 }
+
+
+.header {
+    grid-area: header;
+    padding: 0 50px 0 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--background);
+}
+
+.titulo {
+    font-size: 2.5rem;
+    font-family: var(--font-semiBold);
+    color: var(--cor-secundaria);
+}
+
+.menu-header {
+    display: flex;
+    gap: 28px;
+    margin-right: 10px;
+    
+}
+
+.inputs{
+    grid-area: inputs;
+    display: flex;
+    gap: 28px;
+    margin-left: 50px;
+    align-items: center;
+}
+
+
+.header-tabela,
+.linha-tabela {
+    color: var(--cor-cinza);
+    background: var(--background);
+    padding: 25px 15px 25px 15px;
+    margin-left: 50px;
+    display: grid;
+    grid-template-rows: 14% 30% auto auto;
+    grid-template-columns:      18% 14% 20% 15% 15% 10%;
+    grid-template-areas:        "cod-solicitacao cod-produto produto quantidade uni-medida centro-custo";
+    align-items: center;
+}
+.header-tabela {
+    margin-bottom: 15px;
+}
+
+.cod-solicitacao{
+    grid-area: cod-solicitacao;
+    margin-left: 60px;
+    
+}
+
+.cod-produto{
+    grid-area: cod-produto;
+}
+
+.produto{
+    grid-area: produto;
+
+}
+
+.quantidade{
+    grid-area: quantidade;
+}
+
+.uni-medida{
+    grid-area: uni-medida;
+}
+
+.centro-custo{
+    grid-area: centro-custo;
+}
+
+
