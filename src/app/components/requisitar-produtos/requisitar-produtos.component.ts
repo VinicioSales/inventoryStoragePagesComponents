@@ -116,6 +116,11 @@ export class RequisitarProdutosComponent implements OnInit {
     this.unidadeMedidaSelecionado = '';
   }
 
+  //NOTE - getProdutoAEditar
+  getProdutoAEditar(produtoAEditar: any) {
+    return this.listaProdutos.find(produto => produto.nomeProduto === produtoAEditar.nomeProduto);
+  }
+
 
   //NOTE - adicionarProduto
   adicionarProduto() {
@@ -138,7 +143,8 @@ export class RequisitarProdutosComponent implements OnInit {
   editarProduto(produtoAEditar: any) {
     this.produtoEmEdicao = produtoAEditar;
 
-    const produtoEncontradoEditar = this.listaProdutos.find(produto => produto.nomeProduto === produtoAEditar.nomeProduto);
+    // const produtoEncontradoEditar = this.listaProdutos.find(produto => produto.nomeProduto === produtoAEditar.nomeProduto);
+    const produtoEncontradoEditar = this.getProdutoAEditar(produtoAEditar);
     this.centroCustoListaEditado = produtoEncontradoEditar.centroCusto;
     this.unidadeMedidaListaEditado = produtoEncontradoEditar.unidadeMedida;
     
@@ -166,11 +172,18 @@ export class RequisitarProdutosComponent implements OnInit {
 
   //NOTE - onConfirmarEdicao
   onConfirmarEdicao() {
-    
+    const index = this.produtosSelecionados.findIndex(produto => produto.nomeProduto === this.produtoEmEdicao.nomeProduto)
+
+    const produtoAtualizado = {
+      ...this.produtosSelecionados[index],
+      quantidade: this.quantidadeEditado,
+      unidadeMedida: this.unidadeMedidaEditado,
+      centroCusto: this.centroCustoEditado,
+    };
+
+    this.produtosSelecionados[index] = produtoAtualizado;
 
     this.produtoEmEdicao = null;
-
-
   }
 
   //NOTE - onSolicitar
