@@ -1,6 +1,9 @@
 ## ChangeLog
 
 Todas as mudanças do projeto serão documentados neste arquivo.
+## [0.0] - 21-11-2023 
+### Added
+- Criado header e imputs da tela de devolução de produtos (victor)
 
 ## [0.0] - 20-11-2023 
 ### Added
