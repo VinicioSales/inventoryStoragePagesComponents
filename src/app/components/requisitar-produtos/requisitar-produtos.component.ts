@@ -30,13 +30,16 @@ export class RequisitarProdutosComponent implements OnInit {
   //NOTE - variaveis
   produtos: any[] = [];
   produtoPesquisado: any;
-  editar: boolean = false;
   listaProdutos: any[] = [];
+  produtoEmEdicao: any = null;
   nomeProdutoLista: string[] = [];
   centroCustoLista: string[] = [];
   
   //FIXME - LIMPAR
-  produtosSelecionados: any[] = [{nomeProduto: 'Nome Produto1', codigoProduto: 'codigo', quantidade: 2, unidadeMedida: 'unidade', centroCusto: 'centro'}]
+  produtosSelecionados: any[] = [
+    {nomeProduto: 'Nome Produto1', codigoProduto: 'codigo', quantidade: 2, unidadeMedida: 'kg', centroCusto: 'Centro Custo 1'},
+    {nomeProduto: 'Nome Produto2', codigoProduto: 'codigo2', quantidade: 5, unidadeMedida: 'Uni', centroCusto: 'Centro Custo 2'},
+  ]
   
   quantidadeEditado: number = 0;
   centroCustoEditado: string = '';
@@ -133,6 +136,8 @@ export class RequisitarProdutosComponent implements OnInit {
 
   //NOTE - editarProduto
   editarProduto(produtoAEditar: any) {
+    this.produtoEmEdicao = produtoAEditar;
+
     const produtoEncontradoEditar = this.listaProdutos.find(produto => produto.nomeProduto === produtoAEditar.nomeProduto);
     this.centroCustoListaEditado = produtoEncontradoEditar.centroCusto;
     this.unidadeMedidaListaEditado = produtoEncontradoEditar.unidadeMedida;
@@ -142,7 +147,6 @@ export class RequisitarProdutosComponent implements OnInit {
     this.centroCustoEditado = produtoSelecionadoEditar.centroCusto;
     this.unidadeMedidaEditado = produtoSelecionadoEditar.unidadeMedida;
 
-    this.editar = true;
   }
 
   //NOTE - editarQuantidade
@@ -162,7 +166,9 @@ export class RequisitarProdutosComponent implements OnInit {
 
   //NOTE - onConfirmarEdicao
   onConfirmarEdicao() {
-    this.editar = false;
+    
+
+    this.produtoEmEdicao = null;
 
 
   }
