@@ -4,6 +4,12 @@ Todas as mudanças do projeto serão documentados neste arquivo.
 ## [0.0] - 21-11-2023 
 ### Added
 - Criado header e imputs da tela de devolução de produtos (victor)
+- Finalizado layout tela requisitar produtos (vinício)
+- Criado interfaces para Produtos (vinício)
+- Finalizado scripts para tela de requisitar produtos (vinício)
+- Criado serviço para exibição das mensagens de aviso (vinício)
+- Iniciado testes para tela de requisição de produtos (vinício)
+- Ajustado testes de outros componentes (vinício)
 
 ## [0.0] - 20-11-2023 
 ### Added
