@@ -10,6 +10,7 @@ export class ModalService {
 
   static readonly MENSAGEM_EMAIL_INVALIDO = 'Email inválido!';
   static readonly MENSAGEM_CAMPOS_VAZIOS = 'Preencha todos os campos!';
+  static readonly MENSAGEM_SEM_PRODUTOS_SELECIONADOS = 'Selecione algum produto primeiro!';
   
   private mostrarModalSource = new BehaviorSubject<boolean>(false);
   private mensagemModalSource = new BehaviorSubject<string>('');

@@ -15,7 +15,7 @@ export class RequisitarProdutosComponent implements OnInit {
   constructor(
     private router: Router,
     public modalService: ModalService,
-    private requisicoes: RequisicoesService,
+    private requisicoesService: RequisicoesService,
     private mockProdutos: MockServiceProdutosService,
   ) {}
 
@@ -31,6 +31,8 @@ export class RequisitarProdutosComponent implements OnInit {
 
   //NOTE - variaveis
   produtos: any[] = [];
+  mostrarPdf: boolean = false;
+  pdfBase64: string = '';
   produtoPesquisado: any;
   listaProdutos: any[] = [];
   produtoEmEdicao: any = null;
@@ -191,7 +193,48 @@ export class RequisitarProdutosComponent implements OnInit {
   //NOTE - onSolicitar
   onSolicitar() {
     if (this.produtosSelecionados.length === 0) {
-      this.modalService.exibirMensagemModal(ModalService.MENSAGEM_CAMPOS_VAZIOS);
+      this.modalService.exibirMensagemModal(ModalService.MENSAGEM_SEM_PRODUTOS_SELECIONADOS);
+    
+    } else {
+      //FIXME - REMOVER MOCK
+
+      this.mockProdutos.getPdf(this.produtosSelecionados).subscribe({
+        next: (response) => {
+          console.log('base');
+          console.log(response.pdfBase64);
+
+          this.pdfBase64 = response.pdfBase64;
+          this.mostrarPdf = true;
+        }
+      });
+        // this.requisicoesService.getPdf(this.produtosSelecionados).subscribe({
+        //   next: (response) => {
+        //     console.log(response);
+        //     this.mostrarPdf = true;
+        //   }
+        // });
     }
+  }
+
+  //NOTE - cancelarSolicitacao
+  onCancelarSolicitacao() {
+    this.mostrarPdf = false;
+  }
+
+  //NOTE - onConfirmarSolicitacao
+  onConfirmarSolicitacao() {
+    this.requisicoesService.criarSolicitacao(this.produtosSelecionados).subscribe({
+      next:  (response) => {
+        console.log(response);
+
+        this.modalService.exibirMensagemModal(`Solicitacao criada com código: ${response.codigoSolicitacao}`);
+      },
+
+      error: (error) => {
+        console.error(error.error.message);
+
+        this.modalService.exibirMensagemModal(error.error.message);
+      }
+    });
   }
 }

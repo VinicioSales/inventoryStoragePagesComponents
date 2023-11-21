@@ -3,6 +3,12 @@
     (fecharModal)="modalService.fecharModal()"
     [mensagem]="modalService.mensagemModal$ | async">
 </app-modal-geral>
+<app-modal-pdf
+    *ngIf="mostrarPdf"
+    (cancelarPdf)="onCancelarSolicitacao()"
+    (criarSolicitacao)="onConfirmarSolicitacao()"
+    [base64String]="pdfBase64">
+</app-modal-pdf>
 <div class="header">
     <app-logo-bf></app-logo-bf>
     <div class="titulo">Solicitar Produto</div>

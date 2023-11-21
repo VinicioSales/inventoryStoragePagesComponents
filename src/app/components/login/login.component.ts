@@ -90,7 +90,6 @@ export class LoginComponent {
 
     this.authService.login(this.valorEmail!, this.valorSenha!).subscribe({
       next: (response) => {
-        console.log('response logar');
         console.log(response);
         const  token = response.token;
 
