@@ -2,6 +2,7 @@ import { Router } from '@angular/router';
 import { Component, Input } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AuthService } from '../../services/auth/auth.service';
+import { ModalService } from 'src/app/services/modal/modal.service'
 
 @Component({
   selector: 'app-login',
@@ -11,12 +12,9 @@ import { AuthService } from '../../services/auth/auth.service';
 export class LoginComponent {
   constructor(
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    public modalService: ModalService,
   ) {}
-
-  static readonly MENSAGEM_EMAIL_INVALIDO = 'Email inválido!';
-  static readonly MENSAGEM_CAMPOS_VAZIOS = 'Preencha todos os campos!';
-
 
   @Input() valorEmail?: string;
   @Input() valorSenha?: string;
@@ -54,23 +52,17 @@ export class LoginComponent {
   //NOTE - validarCredenciais
   validarCredenciais(): boolean {
     if (!this.valorEmail || !this.valorSenha) {
-      this.exibirMensagemModal(LoginComponent.MENSAGEM_CAMPOS_VAZIOS);
+      this.modalService.exibirMensagemModal(ModalService.MENSAGEM_CAMPOS_VAZIOS);
       return false;
     }
     
     if (!this.validarEmail(this.valorEmail)) {
-      this.exibirMensagemModal(LoginComponent.MENSAGEM_EMAIL_INVALIDO);
+      this.modalService.exibirMensagemModal(ModalService.MENSAGEM_EMAIL_INVALIDO);
       return false;
     }
 
     this.fecharMensagemModal();
     return true;
-  }
-
-  //NOTE - exibirMensagemModal
-  exibirMensagemModal(mensagem: string): void {
-    this.mostrarModal = true;
-    this.mensagemModal = mensagem;
   }
 
   //NOTE - fecharMensagemModal
@@ -111,7 +103,7 @@ export class LoginComponent {
       },
       
       error: (error: HttpErrorResponse) => {
-        this.exibirMensagemModal(error.error.message);
+        this.modalService.exibirMensagemModal(error.error.message);
         console.log(error.error.message);
         this.carregando = false;
       }
