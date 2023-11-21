@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { Component, OnInit, } from '@angular/core';
-import { Produto } from 'src/models/produto/produto.models'
 import { ModalService } from 'src/app/services/modal/modal.service'
+import { Produto, Produtos } from 'src/models/produto/produto.models'
 import { PdfResponse } from 'src/models/pdf-response/pdf-response.models'
 import { RequisicoesService } from '../../services/requisicoes/requisicoes.service';
 
@@ -21,7 +21,7 @@ export class RequisitarProdutosComponent implements OnInit {
 
   //NOTE - ngOnInit
   ngOnInit(): void {
-    this.requisicoesService.getProdutos().subscribe((data: Produto[]) => {
+    this.requisicoesService.getProdutos().subscribe((data: Produtos[]) => {
       this.listaProdutos = data;
       this.nomeProdutoLista = this.listaProdutos.map(produto => produto.nomeProduto);
     });
@@ -31,8 +31,13 @@ export class RequisitarProdutosComponent implements OnInit {
   //NOTE - variaveis
   dataEntrega?: String;
   pdfBase64: string = '';
-  produtoPesquisado?: Produto;
-  listaProdutos: Produto[] = [];
+  produtoPesquisado: Produtos = {
+    quantidade: 0,
+    nomeProduto: '',
+    centroCusto: [],
+    unidadeMedida: []
+  };
+  listaProdutos: Produtos[] = [];
   mostrarPdf: boolean = false;
   produtoEmEdicao?: Produto;
   quantidadeEditado: number = 0;
@@ -93,7 +98,7 @@ export class RequisitarProdutosComponent implements OnInit {
   }
 
   //NOTE - criarNovoProduto
-  criarNovoProduto() {
+  criarNovoProduto(): Produto {
     const { quantidadeSelecionado, centroCustoSelecionado, unidadeMedidaSelecionado } = this;
     return {
       ...this.produtoPesquisado,
