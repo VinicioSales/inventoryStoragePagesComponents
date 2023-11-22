@@ -7,27 +7,28 @@ import { Injectable } from '@angular/core';
 })
 export class TemaService {
 
-  private _temaEscuroLigado = new BehaviorSubject<boolean>(false);
+  private _temaEscuroLigado = new BehaviorSubject<boolean>(this.getTemaInicial());
   temaEscuroLigado$ = this._temaEscuroLigado.asObservable();
 
-  imgTemaEscuro: string = 'caminho/para/imagem/escuro.jpg';
-  imgTemaClaro: string = 'caminho/para/imagem/claro.jpg';
 
   constructor() {}
 
-  //NOTE - atualizarImg
-  atualizarImg(isDark: boolean): string {
-    return isDark ? this.imgTemaEscuro : this.imgTemaClaro;
-  }
-
   //NOTE - toggleTema
   toggleTema() {
-    this._temaEscuroLigado.next(!this._temaEscuroLigado.value);
+    const novoEstado = !this._temaEscuroLigado.value;
+    this._temaEscuroLigado.next(novoEstado);
+    localStorage.setItem('temaEscuroLigado', novoEstado.toString());
   }
 
   //NOTE - temaEscuroLigado
   get temaEscuroLigado() {
     return this._temaEscuroLigado.value;
+  }
+
+  //NOTE - getTemaInicial
+  getTemaInicial(): boolean {
+    const temaSalvo = localStorage.getItem('temaEscuroLigado');
+    return temaSalvo ? temaSalvo === 'true' : false;
   }
 
 }

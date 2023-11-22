@@ -25,7 +25,6 @@ export class RequisitarProdutosComponent implements OnInit {
       this.listaProdutos = data;
       this.nomeProdutoLista = this.listaProdutos.map(produto => produto.nomeProduto);
     });
-
   }
 
   //NOTE - variaveis

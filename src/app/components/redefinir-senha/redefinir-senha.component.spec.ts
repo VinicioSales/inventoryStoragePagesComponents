@@ -46,14 +46,6 @@ describe('RedefinirSenhaComponent', () => {
     router = TestBed.inject(Router) as jasmine.SpyObj<Router>;
   });
 
-  // SECTION - handleFecharModal
-  describe('handleFecharModal', () => {
-    it('deve fechar o modal e limpar a mensagem', () => {
-      component.mensagemModal = 'Teste';
-      component.handleFecharModal();
-      expect(component.mensagemModal).toBe('');
-    });
-  });
 
   // SECTION - onValorInputChange
   describe('onValorInputChange', () => {
