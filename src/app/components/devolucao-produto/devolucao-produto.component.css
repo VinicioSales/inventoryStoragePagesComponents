@@ -16,7 +16,7 @@
     display: grid;
     flex-grow: 1;
     overflow-y: auto; 
-    grid-template-rows: 14% 30% 10% 55%; 
+    grid-template-rows: 14% 25% 10% 10% auto; 
     grid-template-columns: 1fr;
     grid-template-areas: "header"
                          "inputs"
@@ -54,7 +54,8 @@
     display: flex;
     gap: 28px;
     margin-left: 50px;
-    align-items: center;
+    align-items: end;
+    margin-bottom: 16px;
 }
 
 
@@ -64,19 +65,21 @@
     background: var(--background);
     padding: 25px 15px 25px 15px;
     margin-left: 50px;
+    margin-right: 50px;
     display: grid;
     grid-template-rows: 14% 30% auto auto;
-    grid-template-columns:      18% 14% 20% 15% 15% 10%;
-    grid-template-areas:        "cod-solicitacao cod-produto produto quantidade uni-medida centro-custo";
+    grid-template-columns:      8% 15% 14% 20% 15% 15% 10%;
+    grid-template-areas:        "checkbox cod-solicitacao cod-produto produto quantidade uni-medida centro-custo";
     align-items: center;
 }
 .header-tabela {
-    margin-bottom: 15px;
+    margin-bottom: 8px;
 }
+
 
 .cod-solicitacao{
     grid-area: cod-solicitacao;
-    margin-left: 60px;
+    
     
 }
 
