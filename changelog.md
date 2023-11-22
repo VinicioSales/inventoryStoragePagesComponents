@@ -5,7 +5,7 @@ Todas as mudanças do projeto serão documentados neste arquivo.
 ### Added
 - Criando testes unitarios para metodos de requisitar produtos (vinicio)
 - Salvando tema escuto no localstorage (vinicio)
-- 
+- Ajuste tela layout tela de devolução de produtos (victor)
 
 ## [0.0] - 21-11-2023 
 ### Added
