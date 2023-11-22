@@ -133,4 +133,41 @@ fdescribe('RequisitarProdutosComponent', () => {
     });
   });
   // !SECTION
+
+
+  // SECTION - selecionarUnidadeMedida
+  describe('selecionarUnidadeMedida', () => {
+    // NOTE - deve atualizar a unidade de medida selecionada
+    it('deve atualizar a unidade de medida selecionada', () => {
+      const unidadeMedidaTeste = 'kg';
+      component.selecionarUnidadeMedida(unidadeMedidaTeste);
+      expect(component.unidadeMedidaSelecionado).toBe(unidadeMedidaTeste);
+    });
+  });
+  // !SECTION
+
+
+
+  // SECTION - selecionarQuantidade
+  describe('selecionarQuantidade', () => {
+    // NOTE - deve atualizar a quantidade selecionada
+    it('deve atualizar a quantidade selecionada', () => {
+      const quantidadeTeste = 5;
+      component.selecionarQuantidade(quantidadeTeste);
+      expect(component.quantidadeSelecionado).toBe(quantidadeTeste);
+    });
+
+    // NOTE - deve lidar com valores negativos
+    it('deve lidar com valores negativos', () => {
+      const quantidadeNegativa = -10;
+      component.selecionarQuantidade(quantidadeNegativa);
+      expect(component.quantidadeSelecionado).toBe(quantidadeNegativa);
+    });
+
+    // NOTE - deve lidar com zero
+    it('deve lidar com zero', () => {
+      component.selecionarQuantidade(0);
+      expect(component.quantidadeSelecionado).toBe(0);
+    });
+  });
 });
