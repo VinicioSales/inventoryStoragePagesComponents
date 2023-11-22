@@ -16,11 +16,12 @@
     display: grid;
     flex-grow: 1;
     overflow-y: auto; 
-    grid-template-rows: 14% 25% 10% 10% auto; 
+    grid-template-rows:  30% 15% 10% 25% auto; 
     grid-template-columns: 1fr;
-    grid-template-areas: "header"
-                         "inputs"
+    grid-template-areas: "inputs"
+                         "head-tabela"
                          "tabela"
+                         "div-botao"
                          "footer"
                          
 
@@ -28,7 +29,7 @@
 
 
 .header {
-    grid-area: header;
+    /* grid-area: header; */
     padding: 0 50px 0 50px;
     display: flex;
     align-items: center;
@@ -56,6 +57,7 @@
     margin-left: 50px;
     align-items: end;
     margin-bottom: 16px;
+    
 }
 
 
@@ -70,12 +72,21 @@
     grid-template-rows: 14% 30% auto auto;
     grid-template-columns:      8% 15% 14% 20% 15% 15% 10%;
     grid-template-areas:        "checkbox cod-solicitacao cod-produto produto quantidade uni-medida centro-custo";
-    align-items: center;
 }
 .header-tabela {
     margin-bottom: 8px;
 }
 
+.linha-tabela{
+    color: var(--cor-secundaria);
+    /* display: flex;  */
+    /* justify-content: space-between;  */
+}
+
+.checkbox{
+    display: flex;
+    justify-self: center;
+}
 
 .cod-solicitacao{
     grid-area: cod-solicitacao;
@@ -105,3 +116,19 @@
 }
 
 
+.div-botao{
+    grid-area: div-botao;
+    display: flex;
+    justify-content: end;
+    margin-right: 50px;
+    margin-left: 50px;
+    margin-top: 20px;
+    background: var(--background);
+    align-items: center;    
+}
+
+.botao{
+    grid-area: checkbox;
+    margin-right: 24px;
+
+}
