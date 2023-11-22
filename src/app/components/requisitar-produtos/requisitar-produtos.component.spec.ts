@@ -191,4 +191,274 @@ fdescribe('RequisitarProdutosComponent', () => {
 
   });
   // !SECTION
+
+
+
+
+  // SECTION - criarNovoProduto
+  describe('criarNovoProduto', () => {
+    // NOTE - deve criar um novo produto com as propriedades selecionadas
+    it('deve criar um novo produto com as propriedades selecionadas', () => {
+      // Define o estado inicial do componente
+      component.produtoPesquisado = {
+        nomeProduto: 'Produto Teste',
+        centroCusto: ['Centro Antigo'],
+        unidadeMedida: ['Unidade Antiga'],
+        quantidade: 10,
+        codigoProduto: '123'
+      };
+      component.quantidadeSelecionado = 5;
+      component.centroCustoSelecionado = 'Centro Novo';
+      component.unidadeMedidaSelecionado = 'Unidade Nova';
+
+      // Executa o método a ser testado
+      const novoProduto: Produto = component.criarNovoProduto();
+
+      // Verifica se o novo produto tem as propriedades corretas
+      expect(novoProduto).toEqual({
+        nomeProduto: 'Produto Teste',
+        centroCusto: 'Centro Novo',
+        unidadeMedida: 'Unidade Nova',
+        quantidade: 5,
+        codigoProduto: '123'
+      });
+    });
+  });
+  // !SECTION
+
+
+
+  // SECTION - getProdutoAEditar
+describe('getProdutoAEditar', () => {
+  // NOTE - deve encontrar e retornar o produto correspondente
+  it('deve encontrar e retornar o produto correspondente', () => {
+    component.listaProdutos = [
+      { nomeProduto: 'Produto 1', centroCusto: ['Centro 1'], unidadeMedida: ['Unidade 1'], quantidade: 5, codigoProduto: '123' },
+      { nomeProduto: 'Produto 2', centroCusto: ['Centro 2'], unidadeMedida: ['Unidade 2'], quantidade: 3, codigoProduto: '456' }
+    ];
+    const produtoAEditar = { nomeProduto: 'Produto 1', centroCusto: '', unidadeMedida: '', quantidade: 0, codigoProduto: '' };
+    
+    const produtoEncontrado = component.getProdutoAEditar(produtoAEditar);
+    
+    expect(produtoEncontrado).toEqual({
+      nomeProduto: 'Produto 1', centroCusto: ['Centro 1'], unidadeMedida: ['Unidade 1'], quantidade: 5, codigoProduto: '123'
+    });
+  });
+
+  // NOTE - deve retornar undefined se o produto não for encontrado
+  it('deve retornar undefined se o produto não for encontrado', () => {
+    component.listaProdutos = [
+      { nomeProduto: 'Produto 1', centroCusto: ['Centro 1'], unidadeMedida: ['Unidade 1'], quantidade: 5, codigoProduto: '123' }
+    ];
+    const produtoNaoExistente = { nomeProduto: 'Produto Inexistente', centroCusto: '', unidadeMedida: '', quantidade: 0, codigoProduto: '' };
+
+    const resultado = component.getProdutoAEditar(produtoNaoExistente);
+    
+    expect(resultado).toBeUndefined();
+  });
+});
+// !SECTION
+
+
+// SECTION - adicionarProduto
+describe('adicionarProduto', () => {
+  // NOTE - deve adicionar um novo produto se todos os campos estiverem preenchidos e o produto ainda não existir na lista
+  it('deve adicionar um novo produto se todos os campos estiverem preenchidos e o produto ainda não existir na lista', () => {
+    component.nomeProdutoSelecionado = 'Produto Novo';
+    component.quantidadeSelecionado = 10;
+    component.centroCustoSelecionado = 'Centro Novo';
+    component.unidadeMedidaSelecionado = 'Unidade Nova';
+    const produtoMock = {
+      nomeProduto: 'Produto Novo',
+      quantidade: 10,
+      centroCusto: 'Centro Novo',
+      unidadeMedida: 'Unidade Nova',
+      codigoProduto: '789'
+    };
+    spyOn(component, 'criarNovoProduto').and.returnValue(produtoMock);
+    spyOn(component, 'produtoJaAdicionado').and.returnValue(false);
+    spyOn(component, 'resetarCamposSelecao');
+
+    component.adicionarProduto();
+
+    expect(component.criarNovoProduto).toHaveBeenCalled();
+    expect(component.produtoJaAdicionado).toHaveBeenCalledWith(produtoMock);
+    expect(component.produtosSelecionados).toContain(produtoMock);
+    expect(component.resetarCamposSelecao).toHaveBeenCalled();
+  });
+
+  // NOTE - não deve adicionar um produto se algum campo estiver vazio
+  it('não deve adicionar um produto se algum campo estiver vazio', () => {
+    component.nomeProdutoSelecionado = '';
+    component.quantidadeSelecionado = 0;
+    component.centroCustoSelecionado = '';
+    component.unidadeMedidaSelecionado = '';
+
+    component.adicionarProduto();
+
+    expect(component.produtosSelecionados.length).toBe(0);
+  });
+
+  // NOTE - não deve adicionar um produto se ele já existir na lista
+  it('não deve adicionar um produto se ele já existir na lista', () => {
+    component.nomeProdutoSelecionado = 'Produto Existente';
+    component.quantidadeSelecionado = 5;
+    component.centroCustoSelecionado = 'Centro Existente';
+    component.unidadeMedidaSelecionado = 'Unidade Existente';
+    const produtoExistenteMock = {
+      nomeProduto: 'Produto Existente',
+      quantidade: 5,
+      centroCusto: 'Centro Existente',
+      unidadeMedida: 'Unidade Existente',
+      codigoProduto: '456'
+    };
+    spyOn(component, 'criarNovoProduto').and.returnValue(produtoExistenteMock);
+    spyOn(component, 'produtoJaAdicionado').and.returnValue(true);
+
+    component.adicionarProduto();
+
+    expect(component.produtoJaAdicionado).toHaveBeenCalledWith(produtoExistenteMock);
+    expect(component.produtosSelecionados).not.toContain(produtoExistenteMock);
+  });
+});
+// !SECTION
+
+
+
+
+// SECTION - removerProduto
+describe('removerProduto', () => {
+  // NOTE - deve remover o produto especificado da lista de produtos selecionados
+  it('deve remover o produto especificado da lista de produtos selecionados', () => {
+    const produto1 = { nomeProduto: 'Produto 1', centroCusto: 'Centro 1', unidadeMedida: 'Unidade 1', quantidade: 5, codigoProduto: '123' };
+    const produto2 = { nomeProduto: 'Produto 2', centroCusto: 'Centro 2', unidadeMedida: 'Unidade 2', quantidade: 3, codigoProduto: '456' };
+    component.produtosSelecionados = [produto1, produto2];
+
+    component.removerProduto(produto1);
+
+    expect(component.produtosSelecionados).not.toContain(produto1);
+    expect(component.produtosSelecionados).toContain(produto2);
+  });
+
+  // NOTE - não deve alterar a lista se o produto não for encontrado
+  it('não deve alterar a lista se o produto não for encontrado', () => {
+    const produto1 = { nomeProduto: 'Produto 1', centroCusto: 'Centro 1', unidadeMedida: 'Unidade 1', quantidade: 5, codigoProduto: '123' };
+    const produtoInexistente = { nomeProduto: 'Produto Inexistente', centroCusto: 'Centro 3', unidadeMedida: 'Unidade 3', quantidade: 1, codigoProduto: '789' };
+    component.produtosSelecionados = [produto1];
+
+    component.removerProduto(produtoInexistente);
+
+    expect(component.produtosSelecionados).toContain(produto1);
+    expect(component.produtosSelecionados.length).toBe(1);
+  });
+});
+// !SECTION
+
+
+
+
+
+// SECTION - editarProduto
+describe('editarProduto', () => {
+  // NOTE - deve configurar produtoEmEdicao e atualizar as listas de edição se o produto for encontrado
+  it('deve configurar produtoEmEdicao e atualizar as listas de edição se o produto for encontrado', () => {
+    const produtoMock: Produto = {
+      nomeProduto: 'Produto 1', 
+      centroCusto: 'Centro 1', 
+      unidadeMedida: 'Unidade 1', 
+      quantidade: 5, 
+      codigoProduto: '123'
+    };
+    component.listaProdutos = [
+      { nomeProduto: 'Produto 1', centroCusto: ['Centro 1'], unidadeMedida: ['Unidade 1'], quantidade: 5, codigoProduto: '123' }
+    ];
+    component.produtosSelecionados = [produtoMock];
+
+    spyOn(component, 'getProdutoAEditar').and.returnValue(component.listaProdutos[0]);
+    spyOn(component.modalService, 'exibirMensagemModal');
+
+    component.editarProduto(produtoMock);
+
+    expect(component.produtoEmEdicao).toEqual(produtoMock);
+    expect(component.centroCustoListaEditado).toEqual(component.listaProdutos[0].centroCusto);
+    expect(component.unidadeMedidaListaEditado).toEqual(component.listaProdutos[0].unidadeMedida);
+    expect(component.modalService.exibirMensagemModal).not.toHaveBeenCalled();
+  });
+
+  // NOTE - deve exibir mensagem de erro se o produto não for encontrado na lista de produtos
+  // NOTE - deve exibir mensagem de erro se o produto não for encontrado na lista de produtos
+  it('deve exibir mensagem de erro se o produto não for encontrado na lista de produtos', () => {
+    const produtoMock: Produto = {
+      nomeProduto: 'Produto Inexistente', 
+      centroCusto: 'Centro 1', 
+      unidadeMedida: 'Unidade 1', 
+      quantidade: 5, 
+      codigoProduto: '123'
+    };
+    component.listaProdutos = []; // Lista vazia
+    component.produtosSelecionados = [produtoMock];
+    
+    spyOn(component, 'getProdutoAEditar').and.returnValue(undefined);
+    spyOn(component.modalService, 'exibirMensagemModal');
+
+    component.editarProduto(produtoMock);
+
+    expect(component.modalService.exibirMensagemModal).toHaveBeenCalledWith(ModalService.MENSAGEM_ERRO_DESCONHECIDO);
+  });
+
+  // NOTE - deve configurar produtoEmEdicao e atualizar as listas de edição se o produto for encontrado
+  it('deve configurar produtoEmEdicao e atualizar as listas de edição se o produto for encontrado', () => {
+    const produtoMock: Produto = {
+      nomeProduto: 'Produto 1', 
+      centroCusto: 'Centro 1', 
+      unidadeMedida: 'Unidade 1', 
+      quantidade: 5, 
+      codigoProduto: '123'
+    };
+    component.listaProdutos = [
+      { nomeProduto: 'Produto 1', centroCusto: ['Centro 1'], unidadeMedida: ['Unidade 1'], quantidade: 5, codigoProduto: '123' }
+    ];
+    component.produtosSelecionados = [produtoMock];
+
+    spyOn(component, 'getProdutoAEditar').and.returnValue(component.listaProdutos[0]);
+    spyOn(component.modalService, 'exibirMensagemModal');
+
+    component.editarProduto(produtoMock);
+
+    expect(component.produtoEmEdicao).toEqual(produtoMock);
+    expect(component.centroCustoListaEditado).toEqual(component.listaProdutos[0].centroCusto);
+    expect(component.unidadeMedidaListaEditado).toEqual(component.listaProdutos[0].unidadeMedida);
+    expect(component.modalService.exibirMensagemModal).not.toHaveBeenCalled();
+  });
+
+  // NOTE - deve exibir mensagem de erro se o produto não for encontrado na lista de produtos selecionados
+  it('deve exibir mensagem de erro se o produto não for encontrado na lista de produtos selecionados', () => {
+    const produtoParaEditar: Produto = {
+      nomeProduto: 'Produto 1', 
+      centroCusto: 'Centro 1', 
+      unidadeMedida: 'Unidade 1', 
+      quantidade: 5, 
+      codigoProduto: '123'
+    };
+    const produtoEncontrado: Produtos = {
+      nomeProduto: 'Produto 1', 
+      centroCusto: ['Centro 1'], 
+      unidadeMedida: ['Unidade 1'], 
+      quantidade: 5, 
+      codigoProduto: '123'
+    };
+    component.listaProdutos = [produtoEncontrado];
+    component.produtosSelecionados = []; // Lista vazia
+    
+    spyOn(component, 'getProdutoAEditar').and.returnValue(produtoEncontrado);
+    spyOn(component.modalService, 'exibirMensagemModal');
+
+    component.editarProduto(produtoParaEditar);
+
+    expect(component.modalService.exibirMensagemModal).toHaveBeenCalledWith(ModalService.MENSAGEM_ERRO_DESCONHECIDO);
+  });
+});
+// !SECTION
+
+
 });
