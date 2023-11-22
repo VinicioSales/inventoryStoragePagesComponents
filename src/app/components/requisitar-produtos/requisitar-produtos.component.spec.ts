@@ -170,4 +170,25 @@ fdescribe('RequisitarProdutosComponent', () => {
       expect(component.quantidadeSelecionado).toBe(0);
     });
   });
+  //!SECTION
+
+
+
+  // SECTION - selecionarCentroCusto
+  describe('selecionarCentroCusto', () => {
+    // NOTE - deve atualizar o centro de custo selecionado
+    it('deve atualizar o centro de custo selecionado', () => {
+      const centroCustoTeste = 'Centro Custo 1';
+      component.selecionarCentroCusto(centroCustoTeste);
+      expect(component.centroCustoSelecionado).toBe(centroCustoTeste);
+    });
+
+    // NOTE - deve lidar com valores vazios
+    it('deve lidar com valores vazios', () => {
+      component.selecionarCentroCusto('');
+      expect(component.centroCustoSelecionado).toBe('');
+    });
+
+  });
+  // !SECTION
 });
