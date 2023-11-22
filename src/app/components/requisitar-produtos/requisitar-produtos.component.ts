@@ -25,6 +25,7 @@ export class RequisitarProdutosComponent implements OnInit {
       this.listaProdutos = data;
       this.nomeProdutoLista = this.listaProdutos.map(produto => produto.nomeProduto);
     });
+
   }
 
   //NOTE - variaveis
@@ -62,17 +63,15 @@ export class RequisitarProdutosComponent implements OnInit {
     if (produtoEncontrado) {
       this.nomeProdutoSelecionado = produtoEncontrado.nomeProduto;
       
-      if (produtoEncontrado) {
-        this.produtoPesquisado = produtoEncontrado;
-        this.centroCustoLista = produtoEncontrado.centroCusto;
-        this.unidadeMedidaLista = produtoEncontrado.unidadeMedida;
-  
-        this.centroCustoSelecionado = '';
-        this.unidadeMedidaSelecionado = '';
-      
-      } else {
-        this.modalService.exibirMensagemModal(ModalService.MENSAGEM_PRODUTO_INVALIDO);
-      }
+      this.produtoPesquisado = produtoEncontrado;
+      this.centroCustoLista = produtoEncontrado.centroCusto;
+      this.unidadeMedidaLista = produtoEncontrado.unidadeMedida;
+
+      this.centroCustoSelecionado = '';
+      this.unidadeMedidaSelecionado = '';
+    
+    } else {
+      this.modalService.exibirMensagemModal(ModalService.MENSAGEM_PRODUTO_INVALIDO);
     }
   }
 

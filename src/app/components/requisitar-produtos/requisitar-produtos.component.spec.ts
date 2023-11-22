@@ -59,6 +59,8 @@ fdescribe('RequisitarProdutosComponent', () => {
     spyOn(router, 'navigate');
     requisicoesServiceMock.getProdutos.and.returnValue(of(produtosMock));
     fixture.detectChanges();
+
+    
   });
 
   it('should create', () => {
@@ -99,6 +101,35 @@ fdescribe('RequisitarProdutosComponent', () => {
     it('deve navegar para a rota "/home"', () => {
       component.home();
       expect(router.navigate).toHaveBeenCalledWith(['/home']);
+    });
+  });
+  // !SECTION
+
+
+
+  // SECTION - selecionarProduto
+  describe('selecionarProduto', () => {
+    // NOTE - deve atualizar corretamente as propriedades quando um produto válido é selecionado
+    it('deve atualizar corretamente as propriedades quando um produto válido é selecionado', () => {
+      component.listaProdutos = [
+        { nomeProduto: 'Produto 1', centroCusto: ['Centro 1'], unidadeMedida: ['Unidade 1'], codigoProduto: '123', quantidade: 5 },
+        { nomeProduto: 'Produto 2', centroCusto: ['Centro 2'], unidadeMedida: ['Unidade 2'], codigoProduto: '456', quantidade: 3 }
+      ];
+
+      component.selecionarProduto('Produto 1');
+
+      const produtoEsperado = {
+        nomeProduto: 'Produto 1', 
+        centroCusto: ['Centro 1'], 
+        unidadeMedida: ['Unidade 1'], 
+        codigoProduto: '123', 
+        quantidade: 5
+      };
+
+      expect(component.nomeProdutoSelecionado).toBe('Produto 1');
+      expect(component.produtoPesquisado).toEqual(produtoEsperado);
+      expect(component.centroCustoLista).toEqual(produtoEsperado.centroCusto);
+      expect(component.unidadeMedidaLista).toEqual(produtoEsperado.unidadeMedida);
     });
   });
   // !SECTION
