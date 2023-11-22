@@ -1,6 +1,12 @@
 ## ChangeLog
 
 Todas as mudanças do projeto serão documentados neste arquivo.
+## [0.0] - 22-11-2023 
+### Added
+- Criando testes unitarios para metodos de requisitar produtos (vinicio)
+- Salvando tema escuto no localstorage (vinicio)
+- 
+
 ## [0.0] - 21-11-2023 
 ### Added
 - Criado header e imputs da tela de devolução de produtos (victor)
