@@ -1,10 +1,12 @@
 import { of } from 'rxjs';
 import { FormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ModalService } from 'src/app/services/modal/modal.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RequisicoesService } from '../../services/requisicoes/requisicoes.service';
 
+import { Router } from '@angular/router';
 import { Produto, Produtos } from 'src/models/produto/produto.models'
 import { InputComponent } from 'src/app/components/input/input.component'
 import { BotaoComponent } from 'src/app/components/botao/botao.component'
@@ -16,6 +18,7 @@ import { InputContadorComponent } from 'src/app/components/input-contador/input-
 import { InputDropdownComponent } from 'src/app/components/input-dropdown/input-dropdown.component'
 
 fdescribe('RequisitarProdutosComponent', () => {
+  let router: Router;
   let component: RequisitarProdutosComponent;
   let modalServiceMock: jasmine.SpyObj<ModalService>;
   let fixture: ComponentFixture<RequisitarProdutosComponent>;
@@ -32,6 +35,7 @@ fdescribe('RequisitarProdutosComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         FormsModule,
+        RouterTestingModule,
         HttpClientTestingModule,
       ],
       declarations: [
@@ -51,10 +55,9 @@ fdescribe('RequisitarProdutosComponent', () => {
 
     fixture = TestBed.createComponent(RequisitarProdutosComponent);
     component = fixture.componentInstance;
-
-    
+    router = TestBed.inject(Router);
+    spyOn(router, 'navigate');
     requisicoesServiceMock.getProdutos.and.returnValue(of(produtosMock));
-
     fixture.detectChanges();
   });
 
@@ -87,4 +90,16 @@ fdescribe('RequisitarProdutosComponent', () => {
   });
   //!SECTION
   
+
+
+
+  // SECTION - home
+  describe('home', () => {
+    // NOTE - deve navegar para a rota '/home'
+    it('deve navegar para a rota "/home"', () => {
+      component.home();
+      expect(router.navigate).toHaveBeenCalledWith(['/home']);
+    });
+  });
+  // !SECTION
 });
