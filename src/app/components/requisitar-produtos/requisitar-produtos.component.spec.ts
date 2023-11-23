@@ -8,7 +8,6 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RequisicoesService } from '../../services/requisicoes/requisicoes.service';
 
 import { Router } from '@angular/router';
-import { nomeUsuarioStorage } from 'src/app/static';
 import { Produto, Produtos } from 'src/models/produto/produto.models'
 import { InputComponent } from 'src/app/components/input/input.component'
 import { BotaoComponent } from 'src/app/components/botao/botao.component'
@@ -16,7 +15,6 @@ import { RequisitarProdutosComponent } from './requisitar-produtos.component';
 import { LogoBfComponent } from 'src/app/components/logo-bf/logo-bf.component'
 import { BotaoTemaComponent } from 'src/app/components/botao-tema/botao-tema.component'
 import { BotaoHomeComponent } from 'src/app/components/botao-home/botao-home.component'
-import { MockServiceProdutosService } from 'src/app/mock/mock-service-produtos.service';
 import { InputContadorComponent } from 'src/app/components/input-contador/input-contador.component'
 import { InputDropdownComponent } from 'src/app/components/input-dropdown/input-dropdown.component'
 
@@ -266,6 +264,71 @@ fdescribe('RequisitarProdutosComponent', () => {
 
   // SECTION - adicionarProduto
   describe('adicionarProduto', () => {
+    // NOTE - deve exibir mensagem de erro se todos os campos estiverem vazios
+    it('deve exibir mensagem de erro se todos os campos estiverem vazios', () => {
+      component.nomeProdutoSelecionado = '';
+      component.quantidadeSelecionado = 0;
+      component.centroCustoSelecionado = '';
+      component.unidadeMedidaSelecionado = '';
+      spyOn(component.modalService, 'exibirMensagemModal');
+
+      component.adicionarProduto();
+
+      expect(component.modalService.exibirMensagemModal).toHaveBeenCalledWith(ModalService.MENSAGEM_CAMPOS_VAZIOS);
+    });
+
+    // NOTE - deve exibir mensagem de erro se o produto não estiver selecionado
+    it('deve exibir mensagem de erro se o produto não estiver selecionado', () => {
+      component.nomeProdutoSelecionado = '';
+      component.quantidadeSelecionado = 5;
+      component.centroCustoSelecionado = 'Centro Novo';
+      component.unidadeMedidaSelecionado = 'Unidade Nova';
+      spyOn(component.modalService, 'exibirMensagemModal');
+
+      component.adicionarProduto();
+
+      expect(component.modalService.exibirMensagemModal).toHaveBeenCalledWith(ModalService.MENSAGEM_PRODUTO_NAO_SELECIONADO);
+    });
+
+    // NOTE - deve exibir mensagem de erro se a unidade de medida não estiver selecionada
+    it('deve exibir mensagem de erro se a unidade de medida não estiver selecionada', () => {
+      component.nomeProdutoSelecionado = 'Produto Novo';
+      component.quantidadeSelecionado = 5;
+      component.centroCustoSelecionado = 'Centro Novo';
+      component.unidadeMedidaSelecionado = '';
+      spyOn(component.modalService, 'exibirMensagemModal');
+
+      component.adicionarProduto();
+
+      expect(component.modalService.exibirMensagemModal).toHaveBeenCalledWith(ModalService.MENSAGEM_UNIDADE_MEDIDA_NAO_SELECIONADO);
+    });
+
+    // NOTE - deve exibir mensagem de erro se o centro de custo não estiver selecionado
+    it('deve exibir mensagem de erro se o centro de custo não estiver selecionado', () => {
+      component.nomeProdutoSelecionado = 'Produto Novo';
+      component.quantidadeSelecionado = 5;
+      component.centroCustoSelecionado = '';
+      component.unidadeMedidaSelecionado = 'Unidade Nova';
+      spyOn(component.modalService, 'exibirMensagemModal');
+
+      component.adicionarProduto();
+
+      expect(component.modalService.exibirMensagemModal).toHaveBeenCalledWith(ModalService.MENSAGEM_CENTRO_CUSTO_NAO_SELECIONADO);
+    });
+
+    // NOTE - deve exibir mensagem de erro se a quantidade não estiver selecionada
+    it('deve exibir mensagem de erro se a quantidade não estiver selecionada', () => {
+      component.nomeProdutoSelecionado = 'Produto Novo';
+      component.quantidadeSelecionado = 0;
+      component.centroCustoSelecionado = 'Centro Novo';
+      component.unidadeMedidaSelecionado = 'Unidade Nova';
+      spyOn(component.modalService, 'exibirMensagemModal');
+
+      component.adicionarProduto();
+
+      expect(component.modalService.exibirMensagemModal).toHaveBeenCalledWith(ModalService.MENSAGEM_QUANTIDADE_NAO_SELECIONADO);
+    });
+
     // NOTE - deve adicionar um novo produto se todos os campos estiverem preenchidos e o produto ainda não existir na lista
     it('deve adicionar um novo produto se todos os campos estiverem preenchidos e o produto ainda não existir na lista', () => {
       component.nomeProdutoSelecionado = 'Produto Novo';
@@ -291,18 +354,6 @@ fdescribe('RequisitarProdutosComponent', () => {
       expect(component.resetarCamposSelecao).toHaveBeenCalled();
     });
 
-    // NOTE - não deve adicionar um produto se algum campo estiver vazio
-    it('não deve adicionar um produto se algum campo estiver vazio', () => {
-      component.nomeProdutoSelecionado = '';
-      component.quantidadeSelecionado = 0;
-      component.centroCustoSelecionado = '';
-      component.unidadeMedidaSelecionado = '';
-
-      component.adicionarProduto();
-
-      expect(component.produtosSelecionados.length).toBe(0);
-    });
-
     // NOTE - não deve adicionar um produto se ele já existir na lista
     it('não deve adicionar um produto se ele já existir na lista', () => {
       component.nomeProdutoSelecionado = 'Produto Existente';
@@ -326,6 +377,7 @@ fdescribe('RequisitarProdutosComponent', () => {
     });
   });
   // !SECTION
+
 
 
 
@@ -755,7 +807,4 @@ fdescribe('RequisitarProdutosComponent', () => {
     });
   });
   // !SECTION
-
-
-
 });

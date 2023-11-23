@@ -25,7 +25,6 @@ export class RequisitarProdutosComponent implements OnInit {
 
   //NOTE - ngOnInit
   ngOnInit(): void {
-    //FIXME - MOCK
     this.requisicoesService.getProdutos().subscribe((data: Produtos[]) => {
       this.listaProdutos = data;
       this.nomeProdutoLista = this.listaProdutos.map(produto => produto.nomeProduto);
@@ -128,13 +127,32 @@ export class RequisitarProdutosComponent implements OnInit {
 
   //NOTE - adicionarProduto
   adicionarProduto() {
-    if (this.nomeProdutoSelecionado && this.quantidadeSelecionado && this.centroCustoSelecionado && this.unidadeMedidaSelecionado) {
-      const produtoParaAdicionar = this.criarNovoProduto();
-  
-      if (!this.produtoJaAdicionado(produtoParaAdicionar)) {
-        this.produtosSelecionados.push(produtoParaAdicionar);
-        this.resetarCamposSelecao();
-      }
+    if (!this.nomeProdutoSelecionado && !this.quantidadeSelecionado && !this.centroCustoSelecionado && !this.unidadeMedidaSelecionado) {
+      this.modalService.exibirMensagemModal(ModalService.MENSAGEM_CAMPOS_VAZIOS);
+      return
+
+    } else if (!this.nomeProdutoSelecionado) {
+      this.modalService.exibirMensagemModal(ModalService.MENSAGEM_PRODUTO_NAO_SELECIONADO);
+      return
+
+    } else if (!this.unidadeMedidaSelecionado) {
+      this.modalService.exibirMensagemModal(ModalService.MENSAGEM_UNIDADE_MEDIDA_NAO_SELECIONADO);
+      return
+
+    } else if (!this.centroCustoSelecionado) {
+      this.modalService.exibirMensagemModal(ModalService.MENSAGEM_CENTRO_CUSTO_NAO_SELECIONADO);
+      return
+
+    } else if (!this.quantidadeSelecionado) {
+      this.modalService.exibirMensagemModal(ModalService.MENSAGEM_QUANTIDADE_NAO_SELECIONADO);
+      return
+
+    }
+    const produtoParaAdicionar = this.criarNovoProduto();
+
+    if (!this.produtoJaAdicionado(produtoParaAdicionar)) {
+      this.produtosSelecionados.push(produtoParaAdicionar);
+      this.resetarCamposSelecao();
     }
   }
 
