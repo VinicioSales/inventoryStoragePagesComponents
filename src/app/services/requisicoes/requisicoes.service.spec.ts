@@ -38,7 +38,7 @@ describe('RequisicoesService', () => {
 
       const req = httpTestingController.expectOne(`${urlBackend}${rotaPdf}`); 
       expect(req.request.method).toBe('POST');
-      expect(req.request.body).toEqual({ dadosSolicitacao }); /
+      expect(req.request.body).toEqual({ dadosSolicitacao });
       req.flush({});
     });
   });
