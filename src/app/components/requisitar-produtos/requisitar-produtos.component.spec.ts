@@ -606,6 +606,45 @@ fdescribe('RequisitarProdutosComponent', () => {
 
 
 
+  // SECTION - validarData
+  describe('validarData', () => {
+    // NOTE - deve retornar verdadeiro para datas válidas
+    it('deve retornar verdadeiro para datas válidas', () => {
+      expect(component.validarData('12/12/2020')).toBeTrue();
+      expect(component.validarData('01/01/2021')).toBeTrue();
+      expect(component.validarData('31/12/2021')).toBeTrue();
+    });
+
+    // NOTE - deve retornar falso para formatos de data inválidos
+    it('deve retornar falso para formatos de data inválidos', () => {
+      expect(component.validarData('2020/12/12')).toBeFalse();
+      expect(component.validarData('12-12-2020')).toBeFalse();
+      expect(component.validarData('2020-12-12')).toBeFalse();
+    });
+
+    // NOTE - deve retornar falso para dias inválidos
+    it('deve retornar falso para dias inválidos', () => {
+      expect(component.validarData('32/12/2020')).toBeFalse();
+      expect(component.validarData('00/12/2020')).toBeFalse();
+    });
+
+    // NOTE - deve retornar falso para meses inválidos
+    it('deve retornar falso para meses inválidos', () => {
+      expect(component.validarData('12/13/2020')).toBeFalse();
+      expect(component.validarData('12/00/2020')).toBeFalse();
+    });
+
+    // NOTE - deve retornar falso para anos inválidos
+    it('deve retornar falso para anos inválidos', () => {
+      expect(component.validarData('12/12/0')).toBeFalse();
+    });
+  });
+  // !SECTION
+
+
+
+
+
   // SECTION - onSolicitar
   describe('onSolicitar', () => {
 
@@ -654,6 +693,33 @@ fdescribe('RequisitarProdutosComponent', () => {
     });
   });
   // !SECTION
+
+
+
+
+  // // SECTION - onFecharModalPdf
+  // describe('onFecharModalPdf', () => {
+  //   // NOTE - deve definir 'mostrarPdf' como falso
+  //   it('deve definir "mostrarPdf" como falso', () => {
+  //     // Configuração inicial para garantir que o estado inicial seja verdadeiro
+  //     component.mostrarPdf = true;
+
+  //     component.onFecharModalPdf();
+
+  //     expect(component.mostrarPdf).toBeFalse();
+  //   });
+
+  //   // NOTE - deve manter 'mostrarPdf' falso se já estiver falso
+  //   it('deve manter "mostrarPdf" falso se já estiver falso', () => {
+  //     // Configuração inicial para garantir que o estado inicial seja falso
+  //     component.mostrarPdf = false;
+
+  //     component.onFecharModalPdf();
+
+  //     expect(component.mostrarPdf).toBeFalse();
+  //   });
+  // });
+  // // !SECTION
 
 
 });

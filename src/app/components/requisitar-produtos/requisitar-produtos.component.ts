@@ -220,8 +220,31 @@ export class RequisitarProdutosComponent implements OnInit {
   //NOTE - validarData
   validarData(data: string) {
     const regex = /^\d{2}\/\d{2}\/\d{4}$/;
-    return regex.test(data);
+    
+    if (!regex.test(data)) {
+        return false;
+    }
+
+    const partes = data.split('/');
+    const dia = parseInt(partes[0], 10);
+    const mes = parseInt(partes[1], 10);
+    const ano = parseInt(partes[2], 10);
+
+    if (dia < 1 || dia > 31) {
+        return false;
+    }
+
+    if (mes < 1 || mes > 12) {
+        return false;
+    }
+
+    if (ano < 1) {
+        return false;
+    }
+
+    return true;
   }
+
 
   //NOTE - onSolicitar
   onSolicitar() {
