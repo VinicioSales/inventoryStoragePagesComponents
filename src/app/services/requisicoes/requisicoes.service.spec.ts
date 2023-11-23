@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { RequisicoesService } from './requisicoes.service';
 import { Produto } from 'src/models/produto/produto.models'
-import { urlBackend, rotaPdf, rotaSolicitacao } from 'src/app/services/static'
+import { urlBackend, rotaPdf, rotaSolicitacao } from 'src/app/static'
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 describe('RequisicoesService', () => {

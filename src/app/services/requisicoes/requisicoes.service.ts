@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Produtos, Produto } from 'src/models/produto/produto.models'
 import { PdfResponse } from 'src/models/pdf-response/pdf-response.models'
-import { urlBackend, rotaProdutos, rotaPdf, rotaSolicitacao } from 'src/app/services/static'
+import { urlBackend, rotaProdutos, rotaPdf, rotaSolicitacao } from 'src/app/static'
 
 
 @Injectable({
@@ -24,8 +24,8 @@ export class RequisicoesService {
   }
 
   //NOTE - getPdf
-  getPdf(produtosSelecionados: Produto[]) {
-    return this.http.post<PdfResponse>(`${urlBackend}${rotaPdf}`, {produtosSelecionados});
+  getPdf(dadosSolicitacao: Object) {
+    return this.http.post<PdfResponse>(`${urlBackend}${rotaPdf}`, {dadosSolicitacao});
   }
 
 }

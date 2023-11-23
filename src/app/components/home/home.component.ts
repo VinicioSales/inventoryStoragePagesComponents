@@ -41,6 +41,6 @@ export class HomeComponent {
   //FIXME - ADICIONAR LINK DO NOTION
   //NOTE - onNotion
   onNotion() {
-    window.open('https://www.google.com/', '_blanc');
+    window.open('https://www.notion.so/gliciojunior/652517d7143d40ce8c5fbcf9c41101f9?v=805c9a326f154f979304ebf6aa2f5ec7', '_blanc');
   }
 }

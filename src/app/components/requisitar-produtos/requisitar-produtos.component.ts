@@ -5,6 +5,7 @@ import { Produto, Produtos } from 'src/models/produto/produto.models'
 import { PdfResponse } from 'src/models/pdf-response/pdf-response.models'
 import { RequisicoesService } from '../../services/requisicoes/requisicoes.service';
 
+import { nomeUsuarioStorage } from 'src/app/static';
 import { MockServiceProdutosService } from 'src/app/mock/mock-service-produtos.service'
 
 
@@ -24,6 +25,7 @@ export class RequisitarProdutosComponent implements OnInit {
 
   //NOTE - ngOnInit
   ngOnInit(): void {
+    //FIXME - MOCK
     this.requisicoesService.getProdutos().subscribe((data: Produtos[]) => {
       this.listaProdutos = data;
       this.nomeProdutoLista = this.listaProdutos.map(produto => produto.nomeProduto);
@@ -32,7 +34,7 @@ export class RequisitarProdutosComponent implements OnInit {
   }
 
   //NOTE - variaveis
-  dataEntrega?: String;
+  dataEntrega?: string;
   pdfBase64: string = '';
   mostrarPdf: boolean = false;
   quantidadeEditado: number = 0;
@@ -215,16 +217,30 @@ export class RequisitarProdutosComponent implements OnInit {
     this.dataEntrega = this.formatarData(data);
   }
 
+  //NOTE - validarData
+  validarData(data: string) {
+    const regex = /^\d{2}\/\d{2}\/\d{4}$/;
+    return regex.test(data);
+  }
+
   //NOTE - onSolicitar
   onSolicitar() {
+    console.log('data');
+    console.log(this.dataEntrega);
     if (this.produtosSelecionados.length === 0) {
       this.modalService.exibirMensagemModal(ModalService.MENSAGEM_SEM_PRODUTOS_SELECIONADOS);
-    
     } else if (!this.dataEntrega) {
       this.modalService.exibirMensagemModal(ModalService.MENSAGEM_DATA_ENTREGA_VAZIO);
-
+    } else if (!this.validarData(this.dataEntrega)) {
+      this.modalService.exibirMensagemModal(ModalService.MENSAGEM_DATA_INVALIDA);
     } else {
-      this.requisicoesService.getPdf(this.produtosSelecionados).subscribe({
+      const nomeUsuario = localStorage.getItem(nomeUsuarioStorage);
+      const dadosSolicitacao = {
+        produtos: this.produtosSelecionados,
+        dataEntrega: this.dataEntrega,
+        nomeUsuario: nomeUsuario
+      };
+      this.requisicoesService.getPdf(dadosSolicitacao).subscribe({
         next: (response: PdfResponse) => {
           this.pdfBase64 = response.pdfBase64;
           this.mostrarPdf = true;

@@ -7,6 +7,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RequisicoesService } from '../../services/requisicoes/requisicoes.service';
 
 import { Router } from '@angular/router';
+import { nomeUsuarioStorage } from 'src/app/static';
 import { Produto, Produtos } from 'src/models/produto/produto.models'
 import { InputComponent } from 'src/app/components/input/input.component'
 import { BotaoComponent } from 'src/app/components/botao/botao.component'
@@ -16,6 +17,8 @@ import { BotaoTemaComponent } from 'src/app/components/botao-tema/botao-tema.com
 import { BotaoHomeComponent } from 'src/app/components/botao-home/botao-home.component'
 import { InputContadorComponent } from 'src/app/components/input-contador/input-contador.component'
 import { InputDropdownComponent } from 'src/app/components/input-dropdown/input-dropdown.component'
+import { MockServiceProdutosService } from 'src/app/mock/mock-service-produtos.service';
+
 
 fdescribe('RequisitarProdutosComponent', () => {
   let router: Router;
@@ -596,6 +599,58 @@ fdescribe('RequisitarProdutosComponent', () => {
       component.handleDataEntrega('01-dd-2023');
       expect(component.formatarData).toHaveBeenCalledWith('01-dd-2023');
       expect(component.dataEntrega).toBeUndefined();
+    });
+  });
+  // !SECTION
+
+
+
+
+  // SECTION - onSolicitar
+  describe('onSolicitar', () => {
+
+    // NOTE - deve exibir mensagem de erro se nenhum produto estiver selecionado
+    it('deve exibir mensagem de erro se nenhum produto estiver selecionado', () => {
+      spyOn(component.modalService, 'exibirMensagemModal');
+      component.produtosSelecionados = [];
+      component.onSolicitar();
+      expect(component.modalService.exibirMensagemModal)
+        .toHaveBeenCalledWith(ModalService.MENSAGEM_SEM_PRODUTOS_SELECIONADOS);
+    });
+
+    // NOTE - deve exibir mensagem de erro se a data de entrega não estiver definida
+    it('deve exibir mensagem de erro se a data de entrega não estiver definida', () => {
+      spyOn(component.modalService, 'exibirMensagemModal');
+      component.produtosSelecionados = [{ nomeProduto: 'Produto 1', centroCusto: 'Centro 1', unidadeMedida: 'Unidade 1', quantidade: 5, codigoProduto: '123' }];
+      component.dataEntrega = undefined;
+      component.onSolicitar();
+      expect(component.modalService.exibirMensagemModal)
+        .toHaveBeenCalledWith(ModalService.MENSAGEM_DATA_ENTREGA_VAZIO);
+    });
+
+    // NOTE - deve exibir mensagem de erro se a data de entrega contém caracteres inválidos
+    it('deve exibir mensagem de erro se a data de entrega contém caracteres inválidos', () => {
+      spyOn(component.modalService, 'exibirMensagemModal');
+      component.produtosSelecionados = [{ nomeProduto: 'Produto 1', centroCusto: 'Centro 1', unidadeMedida: 'Unidade 1', quantidade: 5, codigoProduto: '123' }];
+      component.dataEntrega = 'aa/02/2023';
+      component.onSolicitar();
+      expect(component.modalService.exibirMensagemModal).toHaveBeenCalled();
+    });
+
+     // NOTE - deve chamar o serviço getPdf se tudo estiver correto
+    it('deve chamar o serviço getPdf se tudo estiver correto', () => {
+      component.produtosSelecionados = [{ nomeProduto: 'Produto 1', centroCusto: 'Centro 1', unidadeMedida: 'Unidade 1', quantidade: 5, codigoProduto: '123' }];
+      const dadosSolicitacaoMock = {
+        produtos: component.produtosSelecionados,
+        dataEntrega: '01/01/2023',
+        nomeUsuario: 'usuarioTeste'
+      };
+      const respostaFalsa = { pdfBase64: 'base64string' }; // Simulação de resposta
+      spyOn(localStorage, 'getItem').and.returnValue('usuarioTeste');
+      requisicoesServiceMock.getPdf.and.returnValue(of(respostaFalsa)); // Configuração do valor de retorno falso
+      component.dataEntrega = '01/01/2023';
+      component.onSolicitar();
+      expect(requisicoesServiceMock.getPdf).toHaveBeenCalledWith(dadosSolicitacaoMock);
     });
   });
   // !SECTION

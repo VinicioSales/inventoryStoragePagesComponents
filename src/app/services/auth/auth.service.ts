@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { urlBackend, rotaLogin, rotaEsqueciSenha, rotaRedefinirSenha } from 'src/app/services/static'
+import { urlBackend, rotaLogin, rotaEsqueciSenha, rotaRedefinirSenha } from 'src/app/static'
 
 @Injectable({
   providedIn: 'root'

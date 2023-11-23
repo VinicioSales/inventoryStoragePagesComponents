@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
 import { TestBed } from '@angular/core/testing';
-import { urlBackend, rotaEsqueciSenha, rotaLogin } from 'src/app/services/static';
+import { urlBackend, rotaEsqueciSenha, rotaLogin } from 'src/app/static';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 describe('AuthService', () => {
