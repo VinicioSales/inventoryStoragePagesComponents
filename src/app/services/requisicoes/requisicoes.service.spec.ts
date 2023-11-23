@@ -24,20 +24,22 @@ describe('RequisicoesService', () => {
   // SECTION - getPdf
   describe('getPdf', () => {
     
-    //NOTE - deve enviar uma requisição POST para gerar PDF
+    // NOTE - deve enviar uma requisição POST para gerar PDF
     it('deve enviar uma requisição POST para gerar PDF', () => {
       const produtosTeste: Produto[] = [
         { quantidade: 1, nomeProduto: 'Produto Teste', centroCusto: 'CC1', codigoProduto: 'COD1', unidadeMedida: 'Un' }
       ];
-  
-      service.getPdf(produtosTeste).subscribe(response => {
+
+      const dadosSolicitacao = { produtosSelecionados: produtosTeste };
+
+      service.getPdf(dadosSolicitacao).subscribe(response => {
         expect(response).toBeTruthy(); // Verifica se a resposta é recebida
       });
-  
-      const req = httpTestingController.expectOne(`${urlBackend}${rotaPdf}`); // Substitua com a URL e rota corretas
+
+      const req = httpTestingController.expectOne(`${urlBackend}${rotaPdf}`); 
       expect(req.request.method).toBe('POST');
-      expect(req.request.body).toEqual({ produtosSelecionados: produtosTeste });
-      req.flush({}); // Resposta mockada
+      expect(req.request.body).toEqual({ dadosSolicitacao }); /
+      req.flush({});
     });
   });
 

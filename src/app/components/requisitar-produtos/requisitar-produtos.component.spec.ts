@@ -19,7 +19,7 @@ import { InputContadorComponent } from 'src/app/components/input-contador/input-
 import { InputDropdownComponent } from 'src/app/components/input-dropdown/input-dropdown.component'
 
 
-fdescribe('RequisitarProdutosComponent', () => {
+describe('RequisitarProdutosComponent', () => {
   let router: Router;
   let component: RequisitarProdutosComponent;
   let modalServiceMock: jasmine.SpyObj<ModalService>;

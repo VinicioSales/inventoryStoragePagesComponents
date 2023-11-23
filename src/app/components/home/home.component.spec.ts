@@ -1,4 +1,5 @@
 import { Router } from '@angular/router';
+import { urlNotion } from 'src/app/static';
 import { TestBed } from '@angular/core/testing';
 import { HomeComponent } from './home.component';
 import { AuthService } from 'src/app/services/auth/auth.service';
@@ -107,7 +108,7 @@ describe('HomeComponent', () => {
     it('deve abrir a URL do Notion', () => {
       spyOn(window, 'open');
       component.onNotion();
-      expect(window.open).toHaveBeenCalledWith('https://www.google.com/', '_blanc');
+      expect(window.open).toHaveBeenCalledWith(urlNotion, '_blanc');
     });
 
   });
