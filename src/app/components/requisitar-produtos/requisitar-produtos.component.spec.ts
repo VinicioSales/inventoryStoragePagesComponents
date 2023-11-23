@@ -1,5 +1,6 @@
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { FormsModule } from '@angular/forms';
+import { HttpErrorResponse } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ModalService } from 'src/app/services/modal/modal.service';
@@ -15,9 +16,9 @@ import { RequisitarProdutosComponent } from './requisitar-produtos.component';
 import { LogoBfComponent } from 'src/app/components/logo-bf/logo-bf.component'
 import { BotaoTemaComponent } from 'src/app/components/botao-tema/botao-tema.component'
 import { BotaoHomeComponent } from 'src/app/components/botao-home/botao-home.component'
+import { MockServiceProdutosService } from 'src/app/mock/mock-service-produtos.service';
 import { InputContadorComponent } from 'src/app/components/input-contador/input-contador.component'
 import { InputDropdownComponent } from 'src/app/components/input-dropdown/input-dropdown.component'
-import { MockServiceProdutosService } from 'src/app/mock/mock-service-produtos.service';
 
 
 fdescribe('RequisitarProdutosComponent', () => {
@@ -697,29 +698,64 @@ fdescribe('RequisitarProdutosComponent', () => {
 
 
 
-  // // SECTION - onFecharModalPdf
-  // describe('onFecharModalPdf', () => {
-  //   // NOTE - deve definir 'mostrarPdf' como falso
-  //   it('deve definir "mostrarPdf" como falso', () => {
-  //     // Configuração inicial para garantir que o estado inicial seja verdadeiro
-  //     component.mostrarPdf = true;
+  // SECTION - onFecharModalPdf
+  describe('onFecharModalPdf', () => {
+    // NOTE - deve definir 'mostrarPdf' como falso
+    it('deve definir "mostrarPdf" como falso', () => {
+      component.mostrarPdf = true;
 
-  //     component.onFecharModalPdf();
+      component.onFecharModalPdf();
 
-  //     expect(component.mostrarPdf).toBeFalse();
-  //   });
+      expect(component.mostrarPdf).toBeFalse();
+    });
 
-  //   // NOTE - deve manter 'mostrarPdf' falso se já estiver falso
-  //   it('deve manter "mostrarPdf" falso se já estiver falso', () => {
-  //     // Configuração inicial para garantir que o estado inicial seja falso
-  //     component.mostrarPdf = false;
+    // NOTE - deve manter 'mostrarPdf' falso se já estiver falso
+    it('deve manter "mostrarPdf" falso se já estiver falso', () => {
+      component.mostrarPdf = false;
 
-  //     component.onFecharModalPdf();
+      component.onFecharModalPdf();
 
-  //     expect(component.mostrarPdf).toBeFalse();
-  //   });
-  // });
-  // // !SECTION
+      expect(component.mostrarPdf).toBeFalse();
+    });
+  });
+  // !SECTION
+
+
+
+  // SECTION - onConfirmarSolicitacao
+  describe('onConfirmarSolicitacao', () => {
+    // NOTE - deve exibir mensagem de sucesso com o código da solicitação
+    it('deve exibir mensagem de sucesso com o código da solicitação', () => {
+      const responseMock = { codigoSolicitacao: '12345' };
+      requisicoesServiceMock.criarSolicitacao.and.returnValue(of(responseMock));
+      spyOn(component, 'onFecharModalPdf');
+      spyOn(component.modalService, 'exibirMensagemModal');
+
+      component.onConfirmarSolicitacao();
+
+      expect(requisicoesServiceMock.criarSolicitacao).toHaveBeenCalledWith(component.produtosSelecionados);
+      expect(component.onFecharModalPdf).toHaveBeenCalled();
+      expect(component.modalService.exibirMensagemModal).toHaveBeenCalledWith(`Solicitacao criada com código: ${responseMock.codigoSolicitacao}`);
+    });
+
+    // NOTE - deve exibir mensagem de erro em caso de falha na solicitação
+    it('deve exibir mensagem de erro em caso de falha na solicitação', () => {
+      const errorMessage = 'Erro ao criar solicitação';
+      const errorResponse = new HttpErrorResponse({
+        error: { message: errorMessage },
+        status: 500
+      });
+      requisicoesServiceMock.criarSolicitacao.and.returnValue(throwError(() => errorResponse));
+      spyOn(component.modalService, 'exibirMensagemModal');
+
+      component.onConfirmarSolicitacao();
+
+      expect(requisicoesServiceMock.criarSolicitacao).toHaveBeenCalledWith(component.produtosSelecionados);
+      expect(component.modalService.exibirMensagemModal).toHaveBeenCalledWith(errorMessage);
+    });
+  });
+  // !SECTION
+
 
 
 });

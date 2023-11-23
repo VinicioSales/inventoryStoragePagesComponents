@@ -295,5 +295,4 @@ export class RequisitarProdutosComponent implements OnInit {
       }
     });
   }
-
 }
