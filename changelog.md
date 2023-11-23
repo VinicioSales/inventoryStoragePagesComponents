@@ -2,14 +2,15 @@
 
 Todas as mudanças do projeto serão documentados neste arquivo.
 
-## [0.0] - 22-11-2023 
+## [0.0] - 23-11-2023 
 ### Added
 - Reunião alinhamentos com BF (vinicio, victor, sajah)
 - Finalizado testes requisição de produtos (vinicio)
 - Atualizado metodos devolucao de produtos
 - Finalizado tela requisição de produtos (vinicio)
 - Iniciado modal devolucao de produtos (vinicio)
-- 
+- ajuste css tela de devolução de produtos (victor)
+- inicio do script tela de devolução de produtos (victor)
 
 ## [0.0] - 22-11-2023 
 ### Added
