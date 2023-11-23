@@ -1,0 +1,33 @@
+<div class="modal-devolucao">
+    <app-modal-geral
+        *ngIf="modalService.mostrarModal$ | async"
+        (fecharModal)="modalService.fecharModal()"
+        [mensagem]="modalService.mensagemModal$ | async">
+    </app-modal-geral>
+    <div class="header">
+        <div class="titulo">Produtos Para Devolução</div>
+    </div>
+    <div class="header-tabela">
+        <div class="devolucao-completa">
+            DEVOLUÇÃO COMPLETA
+        </div>
+        <div class="codigo-solicitacao">
+            COD. SOLICITAÇÃO
+        </div>
+        <div class="codigo-produto">
+            COD. PRODUTO
+        </div>
+        <div class="produto">
+            PRODUTO
+        </div>
+        <div class="quantidade">
+            QUANTIDADE
+        </div>
+        <div class="unidade-medida">
+            UNI. MEDIDA
+        </div>
+        <div class="centro-custo">
+            CENTRO DE CUSTO
+        </div>
+    </div>
+</div>

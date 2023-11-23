@@ -31,6 +31,7 @@ import { InputPesquisarComponent } from './components/input-pesquisar/input-pesq
 import { RedefinirSenhaComponent } from './components/redefinir-senha/redefinir-senha.component';
 import { BotaoConfirmarComponent } from './components/botao-confirmar/botao-confirmar.component';
 import { RequisitarProdutosComponent } from './components/requisitar-produtos/requisitar-produtos.component';
+import { ModalDevolucaoComponent } from './components/modal-devolucao/modal-devolucao.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { RequisitarProdutosComponent } from './components/requisitar-produtos/re
     RequisitarProdutosComponent,
     CarregamentoComponent,
     BotaoConfirmarComponent,
+    ModalDevolucaoComponent,
   ],
   imports: [
     FormsModule ,
