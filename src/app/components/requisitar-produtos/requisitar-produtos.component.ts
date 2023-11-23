@@ -5,6 +5,8 @@ import { Produto, Produtos } from 'src/models/produto/produto.models'
 import { PdfResponse } from 'src/models/pdf-response/pdf-response.models'
 import { RequisicoesService } from '../../services/requisicoes/requisicoes.service';
 
+import { MockServiceProdutosService } from 'src/app/mock/mock-service-produtos.service'
+
 
 @Component({
   selector: 'app-requisitar-produtos',
@@ -17,6 +19,7 @@ export class RequisitarProdutosComponent implements OnInit {
     private router: Router,
     public modalService: ModalService,
     private requisicoesService: RequisicoesService,
+    public mockServiceProdutosService: MockServiceProdutosService,
   ) {}
 
   //NOTE - ngOnInit
