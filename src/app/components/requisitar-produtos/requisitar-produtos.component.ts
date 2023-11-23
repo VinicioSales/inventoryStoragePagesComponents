@@ -202,9 +202,9 @@ export class RequisitarProdutosComponent implements OnInit {
   //NOTE - formatarData
   formatarData(dataString: string) {
     const partes = dataString.split('-');
-    if (partes.length !== 3) {
+    if (partes.length !== 3 || partes[0].length !== 4 || partes[1].length !== 2 || partes[2].length !== 2) {
       this.modalService.exibirMensagemModal(ModalService.MENSAGEM_DATA_INVALIDA);
-      return
+      return;
     }
 
     return `${partes[2]}/${partes[1]}/${partes[0]}`;

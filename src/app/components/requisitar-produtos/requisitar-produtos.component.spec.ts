@@ -533,4 +533,72 @@ fdescribe('RequisitarProdutosComponent', () => {
   // !SECTION
 
 
+
+  // SECTION - formatarData
+  describe('formatarData', () => {
+    // NOTE - deve formatar a data corretamente de 'AAAA-MM-DD' para 'DD/MM/AAAA'
+    it('deve formatar a data corretamente de "AAAA-MM-DD" para "DD/MM/AAAA"', () => {
+      const resultado = component.formatarData('2023-03-15');
+      expect(resultado).toBe('15/03/2023');
+    });
+
+    // NOTE - deve exibir mensagem de erro se a data estiver em formato inválido
+    it('deve exibir mensagem de erro se a data estiver em formato inválido', () => {
+      spyOn(component.modalService, 'exibirMensagemModal');
+      const resultado = component.formatarData('15-03-2023'); // Formato inválido
+      expect(resultado).toBeUndefined();
+      expect(component.modalService.exibirMensagemModal)
+        .toHaveBeenCalledWith(ModalService.MENSAGEM_DATA_INVALIDA);
+    });
+
+    // NOTE - deve exibir mensagem de erro se a data estiver incompleta
+    it('deve exibir mensagem de erro se a data estiver incompleta', () => {
+      spyOn(component.modalService, 'exibirMensagemModal');
+      const resultado = component.formatarData('2023-03');
+      console.log('resultado')
+      console.log(resultado)
+      expect(resultado).toBeUndefined();
+      expect(component.modalService.exibirMensagemModal).toHaveBeenCalledWith(ModalService.MENSAGEM_DATA_INVALIDA);
+    });
+  });
+  // !SECTION
+
+
+  // SECTION - handleDataEntrega
+  describe('handleDataEntrega', () => {
+    // NOTE - deve formatar a data corretamente e atribuir a dataEntrega
+    it('deve formatar a data corretamente e atribuir a dataEntrega', () => {
+      spyOn(component, 'formatarData').and.returnValue('15/03/2023');
+      component.handleDataEntrega('2023-03-15');
+      expect(component.formatarData).toHaveBeenCalledWith('2023-03-15');
+      expect(component.dataEntrega).toBe('15/03/2023');
+    });
+
+    // NOTE - deve lidar com formatos de data inválidos
+    it('deve lidar com formatos de data inválidos', () => {
+      spyOn(component, 'formatarData').and.returnValue(undefined);
+      component.handleDataEntrega('2023-15-03');
+      expect(component.formatarData).toHaveBeenCalledWith('2023-15-03');
+      expect(component.dataEntrega).toBeUndefined();
+    });
+
+    // NOTE - deve lidar com datas incompletas
+    it('deve lidar com datas incompletas', () => {
+      spyOn(component, 'formatarData').and.returnValue(undefined);
+      component.handleDataEntrega('2023-03');
+      expect(component.formatarData).toHaveBeenCalledWith('2023-03');
+      expect(component.dataEntrega).toBeUndefined();
+    });
+
+    // NOTE - deve lidar com datas contendo letras
+    it('deve lidar com datas contendo letras', () => {
+      spyOn(component, 'formatarData').and.returnValue(undefined);
+      component.handleDataEntrega('01-dd-2023');
+      expect(component.formatarData).toHaveBeenCalledWith('01-dd-2023');
+      expect(component.dataEntrega).toBeUndefined();
+    });
+  });
+  // !SECTION
+
+
 });
