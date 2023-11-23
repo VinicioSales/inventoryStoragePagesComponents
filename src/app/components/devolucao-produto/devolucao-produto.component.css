@@ -13,17 +13,18 @@
 }
 
 .container {
-    display: grid;
+    display: flex;
+    flex-direction: column;
+    margin-top: 105px;
+    /* gap: 50px; */
+    /* display: grid;
     flex-grow: 1;
     overflow-y: auto; 
-    grid-template-rows:  30% 15% 10% 25% auto; 
+    grid-template-rows:  15% 50% 15%; 
     grid-template-columns: 1fr;
-    grid-template-areas: "inputs"
-                         "head-tabela"
-                         "tabela"
-                         "div-botao"
-                         "footer"
-                         
+    grid-template-areas: "header"
+                         "body"
+                         "footer" */
 
 }
 
@@ -56,7 +57,6 @@
     gap: 28px;
     margin-left: 50px;
     align-items: end;
-    margin-bottom: 16px;
     
 }
 
@@ -69,29 +69,42 @@
     margin-left: 50px;
     margin-right: 50px;
     display: grid;
-    grid-template-rows: 14% 30% auto auto;
     grid-template-columns:      8% 15% 14% 20% 15% 15% 10%;
     grid-template-areas:        "checkbox cod-solicitacao cod-produto produto quantidade uni-medida centro-custo";
 }
+
 .header-tabela {
-    margin-bottom: 8px;
+    margin-top: 16px;
+}
+
+.checkbox-select-all{
+    grid-area: checkbox;
+    color: var(--cor-secundaria);
+    display: flex;
+    justify-content: center;
+    /* display: flex;
+    justify-self: center; */
 }
 
 .linha-tabela{
     color: var(--cor-secundaria);
-    /* display: flex;  */
-    /* justify-content: space-between;  */
+    margin-top: 5px;
 }
 
-.checkbox{
+.checkbox,
+.cod-solicitacao ,
+.cod-produto,
+.quantidade,
+.uni-medida,
+.centro-custo
+{
     display: flex;
-    justify-self: center;
+    justify-content: center;
+
 }
 
 .cod-solicitacao{
-    grid-area: cod-solicitacao;
-    
-    
+    grid-area: cod-solicitacao;   
 }
 
 .cod-produto{
@@ -131,4 +144,13 @@
     grid-area: checkbox;
     margin-right: 24px;
 
+}
+
+.codSolicitacao-linha-tabela,
+.codProduto-linha-tabela,
+.quantidade-linha-tabela,
+.uniMedida-linha-tabela,
+.centroCusto-linha-tabela{
+    display: flex;
+    justify-content: center;
 }

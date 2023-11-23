@@ -21,6 +21,7 @@
         
     
         <div class="header-tabela">
+            <mat-checkbox class="checkbox-select-all"></mat-checkbox>
             <div class="cod-solicitacao">CÓD.SOLICITAÇÃO</div>
             <div class="cod-produto">CÓD.PRODUTO</div>
             <div class="produto">PRODUTO</div>
@@ -29,19 +30,22 @@
             <div class="centro-custo">CENTRO DE CUSTO</div>
         </div>  
         
-        <div class="linha-tabela">
+        <div *ngFor="let produto of produto" class="linha-tabela">
             <mat-checkbox class="checkbox"></mat-checkbox>
-            <div>123456</div>
-            <div>123456</div>
-            <div>Lorem ipsum dolor</div>
-            <div>Lorem ipsum dolor</div>
-            <div>Lorem ipsum dolor</div>
-            <div>Lorem ipsum dolor</div>
-            
+            <div class="codSolicitacao-linha-tabela">{{produto.codSolicitacao}}</div>
+            <div class="codProduto-linha-tabela">{{produto.codProduto}}</div>
+            <div class="produto-linha-tabela">{{produto.produto}}</div>
+            <div class="quantidade-linha-tabela">{{produto.quantidade}}</div>
+            <div class="uniMedida-linha-tabela">{{produto.uniMedida}}</div>
+            <div class="centroCusto-linha-tabela">{{produto.centroCusto}}</div>
         </div>
+
+        
+
+        
         
         <div class="div-botao">
-            <app-botao class="botao" texto="Continuar" width="183px" height="47px"></app-botao>
+            <app-botao class="botao" texto="Continuar" (click)="adicionarLinha()" width="183px" height="47px"></app-botao>
         </div>
                
     </div>
