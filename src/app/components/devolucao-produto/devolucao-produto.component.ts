@@ -3,7 +3,6 @@ import { TemaService } from '../../services/tema.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { Router } from '@angular/router';
 import { NgModel } from '@angular/forms';
-import { Pipe, PipeTransform } from '@angular/core';
 
 
 
@@ -16,6 +15,14 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 
 export class DevolucaoProdutoComponent {
+
+  constructor(private router: Router) {
+  }
+
+  //NOTE - Rota home
+  navegarParaHome() {
+    this.router.navigate(['/home']); 
+  }
  
   produtos = [
     {
@@ -54,6 +61,8 @@ export class DevolucaoProdutoComponent {
   filtroProduto: string = '';
   filtroData: string = '';
   filtroUsuario: string = '';
+  mostrarModal: boolean = false;
+  mensagem: any = '' //FIXME - excluir
 
   //NOTE - Método para atualizar o valores dos filtros
   atualizarFiltroProduto(event: Event) {
@@ -104,8 +113,24 @@ export class DevolucaoProdutoComponent {
       delete this.selectedProdutos[produto.codProduto];
     }
   }
+  
+  modalDevolucao(event: Event){
+    this.mostrarModal = true;
+    const  produtosSelecionados = Object.values(this.selectedProdutos) 
+    .map(produto => ({
+      "codSolicitacao": produto.codSolicitacao,
+      "codProduto": produto.codProduto,
+      "produto": produto.produto,
+      "quantidade": produto.quantidade,
+      "uniMedida": produto.uniMedida,
+      "centroCusto": produto.centroCusto,
+      "usuario": produto.usuario,
+      "data": produto.data
+    }));
+        
+    this.mensagem = produtosSelecionados;    
 
-
+  }
     
   
 }

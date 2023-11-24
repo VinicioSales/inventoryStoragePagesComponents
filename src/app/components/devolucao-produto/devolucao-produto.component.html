@@ -1,10 +1,11 @@
+<app-modal-geral *ngIf="mostrarModal" [mensagem]="mensagem"></app-modal-geral>
 <div class="page">  
     <div class="header">
         <app-logo-bf></app-logo-bf>
         <div class="titulo">Devolução de Produtos</div>
         <nav class="menu-header">
             <app-botao-tema></app-botao-tema>
-            <app-botao-home></app-botao-home>
+            <app-botao-home (click)="navegarParaHome()"></app-botao-home>
         </nav>
        
     </div>
@@ -40,12 +41,10 @@
                 <div class="centroCusto-linha-tabela">{{produto.centroCusto}}</div>
             </div>
         </ng-container>       
-        
-
-        
+               
         
         <div class="div-botao">
-            <app-botao class="botao" texto="Continuar" width="183px" height="47px"></app-botao>
+            <app-botao class="botao" texto="Continuar" width="183px" height="47px" (click) = "modalDevolucao($event)"></app-botao>
         </div>
     </div>
 
