@@ -9,6 +9,7 @@
     flex-direction: column;
     height: 100%;
     background: var(--background-2);
+    overflow-x: hidden;
     
 }
 
@@ -77,15 +78,6 @@
     margin-top: 16px;
 }
 
-.checkbox-select-all{
-    grid-area: checkbox;
-    color: var(--cor-secundaria);
-    display: flex;
-    justify-content: center;
-    /* display: flex;
-    justify-self: center; */
-}
-
 .linha-tabela{
     color: var(--cor-secundaria);
     margin-top: 5px;
@@ -138,12 +130,13 @@
     margin-top: 20px;
     background: var(--background);
     align-items: center;    
+    height: 90px;
 }
 
 .botao{
     grid-area: checkbox;
-    margin-right: 24px;
-
+    margin-right: 24px;    
+    
 }
 
 .codSolicitacao-linha-tabela,

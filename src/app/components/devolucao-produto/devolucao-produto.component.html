@@ -13,15 +13,14 @@
 
 
         <div class="inputs">
-            <app-input-pesquisar placeholder="pesquisar produto" width="320px" height="32px"></app-input-pesquisar>
-            <app-input-pesquisar placeholder="dd/mm/aaaa" width="320px" height="32px"></app-input-pesquisar>
-            <app-input-pesquisar placeholder="nome usuário" width="320px" height="32px"></app-input-pesquisar>
+            <app-input-pesquisar (input)="atualizarFiltroProduto($event)" placeholder="pesquisar produto" width="320px" height="32px" ></app-input-pesquisar>
+            <app-input-pesquisar (input)="atualizarFiltroData($event)" placeholder="dd/mm/aaaa" width="320px" height="32px"></app-input-pesquisar>
+            <app-input-pesquisar (input)="atualizarFiltroUsuario($event)" placeholder="nome usuário" width="320px" height="32px"></app-input-pesquisar>
 
         </div>
         
     
         <div class="header-tabela">
-            <mat-checkbox class="checkbox-select-all"></mat-checkbox>
             <div class="cod-solicitacao">CÓD.SOLICITAÇÃO</div>
             <div class="cod-produto">CÓD.PRODUTO</div>
             <div class="produto">PRODUTO</div>
@@ -30,24 +29,24 @@
             <div class="centro-custo">CENTRO DE CUSTO</div>
         </div>  
         
-        <div *ngFor="let produto of produto" class="linha-tabela">
-            <mat-checkbox class="checkbox"></mat-checkbox>
-            <div class="codSolicitacao-linha-tabela">{{produto.codSolicitacao}}</div>
-            <div class="codProduto-linha-tabela">{{produto.codProduto}}</div>
-            <div class="produto-linha-tabela">{{produto.produto}}</div>
-            <div class="quantidade-linha-tabela">{{produto.quantidade}}</div>
-            <div class="uniMedida-linha-tabela">{{produto.uniMedida}}</div>
-            <div class="centroCusto-linha-tabela">{{produto.centroCusto}}</div>
-        </div>
-
+        <ng-container *ngFor="let produto of produtos">
+            <div class="linha-tabela" *ngIf="aplicarFiltros(produto)">
+                <mat-checkbox class="checkbox" (change)="onCheckboxChange(produto, $event.checked)"></mat-checkbox>
+                <div class="codSolicitacao-linha-tabela">{{produto.codSolicitacao}}</div>
+                <div class="codProduto-linha-tabela">{{produto.codProduto}}</div>
+                <div class="produto-linha-tabela">{{produto.produto}}</div>
+                <div class="quantidade-linha-tabela">{{produto.quantidade}}</div>
+                <div class="uniMedida-linha-tabela">{{produto.uniMedida}}</div>
+                <div class="centroCusto-linha-tabela">{{produto.centroCusto}}</div>
+            </div>
+        </ng-container>       
         
 
         
         
         <div class="div-botao">
-            <app-botao class="botao" texto="Continuar" (click)="adicionarLinha()" width="183px" height="47px"></app-botao>
+            <app-botao class="botao" texto="Continuar" width="183px" height="47px"></app-botao>
         </div>
-               
     </div>
 
 </div>
