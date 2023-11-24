@@ -6,6 +6,7 @@ Todas as mudanças do projeto serão documentados neste arquivo.
 - Criado rota para home (victor)
 - Criado dicionario com produtos selecionados para enviar ao modal de devolução (victor)
 - Finalizado front (victor)
+- Ajuste tamanho modal produtos a devolver (vinicio)
 
 
 ## [0.0] - 23-11-2023 
