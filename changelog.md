@@ -1,6 +1,12 @@
 ## ChangeLog
 
 Todas as mudanças do projeto serão documentados neste arquivo.
+## [0.0] - 24-11-2023 
+### Added
+- Criado rota para home (victor)
+- Criado dicionario com produtos selecionados para enviar ao modal de devolução (victor)
+- Finalizado front (victor)
+
 
 ## [0.0] - 23-11-2023 
 ### Added
