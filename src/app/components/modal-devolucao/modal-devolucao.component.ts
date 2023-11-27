@@ -15,6 +15,13 @@ import { MockServiceProdutosService } from 'src/app/mock/mock-service-produtos.s
   styleUrls: ['./modal-devolucao.component.css']
 })
 export class ModalDevolucaoComponent {
+  nomeProduto: string = 'Lorem ipsum dolor sit amet';
+  centroCusto: string = 'Centro';
+  codigoProduto: string = '123456';
+  unidadeMedida: string = 'Kg';
+  quantidadeProduto: number = 0;
+  codigoSolicitacao: string = '123456';
+
   //NOTE - constructor
   constructor(
     private router: Router,

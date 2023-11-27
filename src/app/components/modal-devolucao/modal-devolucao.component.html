@@ -36,5 +36,31 @@
                 CENTRO DE CUSTO
             </div>
         </div>
+        <div class="linha-tabela">
+            <div class="devolucao-completa">
+                <mat-slide-toggle></mat-slide-toggle>
+            </div>
+            <div class="codigo-solicitacao">
+                {{ codigoSolicitacao }}
+            </div>
+            <div class="codigo-produto">
+                {{ codigoProduto }}
+            </div>
+            <div class="produto">
+                {{ nomeProduto }}
+            </div>
+            <div class="quantidade">
+                <app-input-contador
+                    height="44px"
+                    width="100%">
+                </app-input-contador>
+            </div>
+            <div class="unidade-medida">
+                {{ unidadeMedida }}
+            </div>
+            <div class="centro-custo">
+                {{ centroCusto }}
+            </div>
+        </div>
     </div>
 </div>

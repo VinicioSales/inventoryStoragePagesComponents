@@ -37,6 +37,7 @@
 .linha-tabela {
     background: var(--background);
     padding: 25px 15px 25px 15px;
+    margin: 0 50px 0 50px;
     margin-trim: 0 50px 0 50px;
     display: grid;
     grid-template-columns:      10% 12% 12% 30% 12% 12% 12%;
@@ -45,21 +46,23 @@
 
 .header-tabela {
     color: var(--cor-cinza);
-    margin: 0 50px 0 50px;
+}
+
+.linha-tabela {
+    font-size: 1rem;
 }
 
 .devolucao-completa {
     grid-area: devolucao-completa;
-    /* width: 50%; */
     display: flex;
     flex-direction: column;
-    align-items: end;
     text-align: center;
-    background: red;
+    justify-content: center;
 }
 
 .botao-ajuda {
     position: relative;
+    align-self: end;
     margin-top: -20px;
 }
 
@@ -75,33 +78,29 @@
 
 .codigo-solicitacao {
     grid-area: codigo-solicitacao;
-    background: green;
     
 }
 
 .codigo-produto {
-    background: yellow;
     grid-area: codigo-produto;
 }
 
 .produto {
-    background: blue;
     grid-area: produto;
     display: flex;
     align-items: center;
 }
 
 .quantidade {
-    background: purple;
     grid-area: quantidade;
 }
 
 .unidade-medida {
-    background: brown;
     grid-area: unidade-medida;
 }
 
 .centro-custo {
-    background: green;
     grid-area: centro-custo;
 }
+
+

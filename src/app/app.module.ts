@@ -2,6 +2,7 @@ import { NgModule  } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { CamelCaseInterceptor } from 'src/app/interceptors/camuel-case.interceptor';
@@ -67,6 +68,7 @@ import { ModalDevolucaoComponent } from './components/modal-devolucao/modal-devo
     AppRoutingModule,
     MatCheckboxModule,
     ReactiveFormsModule,
+    MatSlideToggleModule,
     BrowserAnimationsModule,
     MatProgressSpinnerModule,
   ],
