@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit  } from '@angular/core';
 import { TemaService } from '../../services/tema.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { Router } from '@angular/router';
@@ -14,9 +14,13 @@ import { NgModel } from '@angular/forms';
 
 
 
-export class DevolucaoProdutoComponent {
+export class DevolucaoProdutoComponent implements OnInit{
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    ) {
+    
   }
 
   //NOTE - Rota home
@@ -24,45 +28,29 @@ export class DevolucaoProdutoComponent {
     this.router.navigate(['/home']); 
   }
  
-  produtos = [
-    {
-      codSolicitacao: '001',
-      codProduto: 'A123',
-      produto: 'Produto 1',
-      quantidade: 10,
-      uniMedida: 'Un',
-      centroCusto: 'CC1',
-      usuario: "teste 1",
-      data: "24/11/2023"
-    },
-    {
-      codSolicitacao: '002',
-      codProduto: 'A321',
-      produto: 'Produto 2',
-      quantidade: 15,
-      uniMedida: 'Un',
-      centroCusto: 'FF1',
-      usuario: "teste 2",
-      data: "25/11/2023"
-    },
-    
-    {
-      codSolicitacao: '003',
-      codProduto: 'A852',
-      produto: 'Produto 3',
-      quantidade: 8,
-      uniMedida: 'Un',
-      centroCusto: 'DD1',
-      usuario: "teste 3",
-      data: "26/11/2023"
-    },
-  ];
+  
 
   filtroProduto: string = '';
   filtroData: string = '';
   filtroUsuario: string = '';
   mostrarModal: boolean = false;
-  mensagem: any = '' //FIXME - excluir
+  dadosProdutos: any = '' 
+  produtos: any = ''
+
+  ngOnInit(){
+    this.produtos = [
+      {
+        codSolicitacao: '',
+        codProduto: '',
+        produto: '',
+        quantidade: '',
+        uniMedida: '',
+        centroCusto: '',
+        usuario: " ",
+        data: ''
+      },     
+    ]    
+  }  
 
   //NOTE - Método para atualizar o valores dos filtros
   atualizarFiltroProduto(event: Event) {
@@ -128,7 +116,7 @@ export class DevolucaoProdutoComponent {
       "data": produto.data
     }));
         
-    this.mensagem = produtosSelecionados;    
+    this.dadosProdutos = produtosSelecionados;    
 
   }
     
