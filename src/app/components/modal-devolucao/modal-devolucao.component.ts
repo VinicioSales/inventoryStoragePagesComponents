@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { Component, OnInit, } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ModalService } from 'src/app/services/modal/modal.service'
 import { Produto, Produtos } from 'src/models/produto/produto.models'
 import { PdfResponse } from 'src/models/pdf-response/pdf-response.models'
@@ -15,12 +15,53 @@ import { MockServiceProdutosService } from 'src/app/mock/mock-service-produtos.s
   styleUrls: ['./modal-devolucao.component.css']
 })
 export class ModalDevolucaoComponent {
-  nomeProduto: string = 'Lorem ipsum dolor sit amet';
-  centroCusto: string = 'Centro';
-  codigoProduto: string = '123456';
-  unidadeMedida: string = 'Kg';
-  quantidadeProduto: number = 0;
-  codigoSolicitacao: string = '123456';
+  backgroundBotaoDevolver: string = 'var(--botao-verde)'
+  backgroundBotaoCancelar: string = 'var(--botao-vermelho)'
+  backgroundBotaoDevolverHover: string = 'var(--botao-verde-hover)'
+  backgroundBotaoCancelarHover: string = 'var(--botao-vermelho-hover)'
+  
+  @Input() listaProdutosParaDevolucao = [
+    {
+      nomeProduto: 'Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet',
+      centroCusto: 'Centro',
+      codigoProduto: '123456',
+      unidadeMedida: 'Kg',
+      quantidadeProduto: 0,
+      codigoSolicitacao: '123456',
+    },
+    {
+      nomeProduto: 'Lorem ipsum dolor sit amet',
+      centroCusto: 'Centro',
+      codigoProduto: '123456',
+      unidadeMedida: 'Kg',
+      quantidadeProduto: 0,
+      codigoSolicitacao: '123456',
+    },
+    {
+      nomeProduto: 'Lorem ipsum dolor sit amet',
+      centroCusto: 'Centro',
+      codigoProduto: '123456',
+      unidadeMedida: 'Kg',
+      quantidadeProduto: 0,
+      codigoSolicitacao: '123456',
+    },
+    {
+      nomeProduto: 'Lorem ipsum dolor sit amet',
+      centroCusto: 'Centro',
+      codigoProduto: '123456',
+      unidadeMedida: 'Kg',
+      quantidadeProduto: 0,
+      codigoSolicitacao: '123456',
+    },
+    {
+      nomeProduto: 'Lorem ipsum dolor sit amet',
+      centroCusto: 'Centro',
+      codigoProduto: '123456',
+      unidadeMedida: 'Kg',
+      quantidadeProduto: 0,
+      codigoSolicitacao: '123456',
+    },
+  ];
 
   //NOTE - constructor
   constructor(

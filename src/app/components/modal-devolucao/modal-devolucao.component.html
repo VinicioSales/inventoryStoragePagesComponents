@@ -36,31 +36,49 @@
                 CENTRO DE CUSTO
             </div>
         </div>
-        <div class="linha-tabela">
-            <div class="devolucao-completa">
-                <mat-slide-toggle></mat-slide-toggle>
+        <div class="tabela">
+            <div class="linha-tabela" *ngFor="let produto of listaProdutosParaDevolucao">
+                <div class="devolucao-completa">
+                    <mat-slide-toggle></mat-slide-toggle>
+                </div>
+                <div class="codigo-solicitacao">
+                    {{ produto.codigoSolicitacao }}
+                </div>
+                <div class="codigo-produto">
+                    {{ produto.codigoProduto }}
+                </div>
+                <div class="produto">
+                    {{ produto.nomeProduto }}
+                </div>
+                <div class="quantidade">
+                    <app-input-contador
+                        height="25px"
+                        width="100%">
+                    </app-input-contador>
+                </div>
+                <div class="unidade-medida">
+                    {{ produto.unidadeMedida }}
+                </div>
+                <div class="centro-custo">
+                    {{ produto.centroCusto }}
+                </div>
             </div>
-            <div class="codigo-solicitacao">
-                {{ codigoSolicitacao }}
-            </div>
-            <div class="codigo-produto">
-                {{ codigoProduto }}
-            </div>
-            <div class="produto">
-                {{ nomeProduto }}
-            </div>
-            <div class="quantidade">
-                <app-input-contador
-                    height="25px"
-                    width="100%">
-                </app-input-contador>
-            </div>
-            <div class="unidade-medida">
-                {{ unidadeMedida }}
-            </div>
-            <div class="centro-custo">
-                {{ centroCusto }}
-            </div>
+        </div>
+        <div class="footer">
+            <app-botao
+                width="180px"
+                height="30px"
+                texto="Cancelar"
+                [background]="backgroundBotaoCancelar"
+                [backgroundHover]="backgroundBotaoCancelarHover">
+            </app-botao>
+            <app-botao
+                height="30px"
+                width="180px"
+                texto="Devolver"
+                [background]="backgroundBotaoDevolver"
+                [backgroundHover]="backgroundBotaoDevolverHover">
+            </app-botao>
         </div>
     </div>
 </div>
