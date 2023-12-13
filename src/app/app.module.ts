@@ -33,6 +33,7 @@ import { RedefinirSenhaComponent } from './components/redefinir-senha/redefinir-
 import { BotaoConfirmarComponent } from './components/botao-confirmar/botao-confirmar.component';
 import { RequisitarProdutosComponent } from './components/requisitar-produtos/requisitar-produtos.component';
 import { ModalDevolucaoComponent } from './components/modal-devolucao/modal-devolucao.component';
+import { ToggleComponent } from './components/toggle/toggle.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { ModalDevolucaoComponent } from './components/modal-devolucao/modal-devo
     CarregamentoComponent,
     BotaoConfirmarComponent,
     ModalDevolucaoComponent,
+    ToggleComponent,
   ],
   imports: [
     FormsModule ,
