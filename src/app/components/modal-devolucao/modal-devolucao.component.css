@@ -37,7 +37,7 @@
     background: var(--background);
     margin-trim: 0 50px 0 50px;
     display: grid;
-    grid-template-columns:      10% 12% 12% 28% 12% 12% 12%;
+    grid-template-columns:      10% 14% 14% 20% 14% 14% 14%;
     grid-template-areas:        "devolucao-completa codigo-solicitacao codigo-produto produto quantidade unidade-medida centro-custo";
 }
 
@@ -96,12 +96,18 @@
     grid-area: codigo-produto;
 }
 
+.header-tabela .produto {
+    justify-content: center;
+}
+
 .produto {
     grid-area: produto;
     display: flex;
     align-items: center;
     overflow-x: auto;
     white-space: nowrap;
+    margin: 0 10px;
+    text-align: center;
 }
 
 .quantidade {
