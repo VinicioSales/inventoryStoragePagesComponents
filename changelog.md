@@ -7,7 +7,9 @@ Todas as mudanças do projeto serão documentados neste arquivo.
 - Finalizado layout modal devolucao (vinicio)
 - Finalizado script modal devolucao (vinicio)
 - Inicado testes modal devolucao (vinicio)
-- 
+- Finalizado tela de devolução de produtos (Vctor)
+- Criado Modal de observação (Victor)
+- Iniciado testes unitários modal de observação (Victor)
 
 ## [0.0] - 24-11-2023 
 ### Added
