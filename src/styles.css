@@ -38,16 +38,17 @@
 
 
 body{
-    --cor-cinza: #878787;
     margin: 0;
     height: 100%;
-    font-size: 14px; 
     font-family: "Blinker-Regular";
     --cor-botao: #141414;
-    --cor-botao-hover: #2B2B2B;
+    --cor-botao-hover: #561111;
     --cor-texto-botao: #FFF;
     --botao-verde: #366731;
     --botao-verde-hover: #21512d;
+    --botao-vermelho: #DB4242;
+    --botao-vermelho-hover: #c73131;
+    --cor-cinza: #878787;
 }
 
 button{

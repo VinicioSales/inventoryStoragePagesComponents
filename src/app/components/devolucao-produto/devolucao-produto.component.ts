@@ -36,6 +36,8 @@ export class DevolucaoProdutoComponent implements OnInit{
   mostrarModal: boolean = false;
   dadosProdutos: any = '' 
   produtos: any = ''
+  mostrarObservacao: boolean = false
+  mostrarModalDevolucao: boolean = false
 
   ngOnInit(){
     this.produtos = [
@@ -150,5 +152,20 @@ export class DevolucaoProdutoComponent implements OnInit{
 
   }
     
-  
+  modalObservacao(event: Event){
+    this.mostrarObservacao = true;
+  }
+
+  modalDevolucaoProdutos(event:Event){
+    this.mostrarModalDevolucao = true
+  }
+
+  handleFecharModalObservacao(){
+    this.mostrarObservacao = false
+  }
+
+  handleAdicionarObservacao(texto:string){
+    console.log('texto da observação:', texto)
+    this.mostrarObservacao = false
+  }
 }

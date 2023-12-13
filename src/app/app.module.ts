@@ -27,6 +27,7 @@ import { HomeComponent } from './components/home/home.component';
 import { RedefinirSenhaComponent } from './components/redefinir-senha/redefinir-senha.component';
 import { DevolucaoProdutoComponent } from './components/devolucao-produto/devolucao-produto.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ModalObservacaoComponent } from './components/modal-observacao/modal-observacao.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     EsqueciSenhaComponent,
     RedefinirSenhaComponent,
     DevolucaoProdutoComponent,
+    ModalObservacaoComponent,
     
   ],
   imports: [
