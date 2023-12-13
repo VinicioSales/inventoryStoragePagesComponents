@@ -17,15 +17,10 @@
     display: flex;
     flex-direction: column;
     margin-top: 105px;
-    /* gap: 50px; */
-    /* display: grid;
+    padding-bottom: 120px;
     flex-grow: 1;
-    overflow-y: auto; 
-    grid-template-rows:  15% 50% 15%; 
-    grid-template-columns: 1fr;
-    grid-template-areas: "header"
-                         "body"
-                         "footer" */
+    overflow: hidden;
+  
 
 }
 
@@ -53,6 +48,7 @@
 }
 
 .inputs{
+    padding-top: 5px;
     grid-area: inputs;
     display: flex;
     gap: 28px;
@@ -66,9 +62,8 @@
 .linha-tabela {
     color: var(--cor-cinza);
     background: var(--background);
-    padding: 25px 15px 25px 15px;
+    box-sizing: border-box; 
     margin-left: 50px;
-    margin-right: 50px;
     display: grid;
     grid-template-columns:      8% 15% 14% 20% 15% 15% 10%;
     grid-template-areas:        "checkbox cod-solicitacao cod-produto produto quantidade uni-medida centro-custo";
@@ -76,11 +71,15 @@
 
 .header-tabela {
     margin-top: 16px;
+    padding: 25px 15px; 
 }
 
 .linha-tabela{
     color: var(--cor-secundaria);
-    margin-top: 5px;
+    margin-top: 2px;
+    padding: 10px 15px 10px 15px;
+    
+    
 }
 
 .checkbox,
@@ -124,13 +123,19 @@
 .div-botao{
     grid-area: div-botao;
     display: flex;
-    justify-content: end;
-    margin-right: 50px;
-    margin-left: 50px;
+    justify-content: flex-end;
+    margin-right: 0px;
+    margin-left: 0px;
     margin-top: 20px;
     background: var(--background);
     align-items: center;    
     height: 90px;
+    position: fixed;
+    bottom: 20px;
+    right: 50px;
+    left: 50px;
+    width: auto;
+    
 }
 
 .botao{
@@ -143,7 +148,29 @@
 .codProduto-linha-tabela,
 .quantidade-linha-tabela,
 .uniMedida-linha-tabela,
-.centroCusto-linha-tabela{
+.centroCusto-linha-tabela
+{
     display: flex;
     justify-content: center;
+    align-items: center;
+}
+
+.produto-linha-tabela{
+    display: flex;
+    align-items: center;
+    padding-left: 5px;
+}
+
+
+
+.tabela-scroll {
+    overflow-y: auto; 
+    max-height: calc(100vh - 250px);
+    box-sizing: border-box; 
+}
+
+
+.header-tabela,
+.tabela-scroll {
+    margin-right: 50px; 
 }

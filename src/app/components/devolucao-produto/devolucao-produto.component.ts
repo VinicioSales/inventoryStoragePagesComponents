@@ -40,14 +40,44 @@ export class DevolucaoProdutoComponent implements OnInit{
   ngOnInit(){
     this.produtos = [
       {
-        codSolicitacao: '',
-        codProduto: '',
-        produto: '',
-        quantidade: '',
-        uniMedida: '',
-        centroCusto: '',
-        usuario: " ",
-        data: ''
+        codSolicitacao: '123456',
+        codProduto: '00260',
+        produto: 'Resma de papel a4 500 folhas',
+        quantidade: '16',
+        uniMedida: 'UND',
+        centroCusto: '3232',
+        usuario: 'Mateus',
+        data: '11/12/2023'
+      },     
+      {
+        codSolicitacao: '654321',
+        codProduto: '00370',
+        produto: 'Caixa de grampeador 26/6',
+        quantidade: '50',
+        uniMedida: 'CX',
+        centroCusto: '3030',
+        usuario: 'João',
+        data: '11/12/2023'
+      },     
+      {
+        codSolicitacao: '753951',
+        codProduto: '00380',
+        produto: 'Caixa de caneta com 50 unidades',
+        quantidade: '2',
+        uniMedida: 'CX',
+        centroCusto: '2595',
+        usuario: 'Maria',
+        data: '11/12/2023'
+      },     
+      {
+        codSolicitacao: '753258',
+        codProduto: '00910',
+        produto: 'Canetas hidrocor kit 12',
+        quantidade: '10',
+        uniMedida: 'CX',
+        centroCusto: '025874',
+        usuario: 'Lucas',
+        data: '11/12/2023'
       },     
     ]    
   }  
