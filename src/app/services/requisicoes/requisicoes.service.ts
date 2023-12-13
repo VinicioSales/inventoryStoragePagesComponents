@@ -34,8 +34,9 @@ export class RequisicoesService {
   }
 
   //NOTE - revolverProdutos
-  devolverProdutos(listaProdutosParaDevolucao: ProdutoDevolucao[]): Observable<any> {
-    return this.http.post<ProdutoDevolucao[]>(`${urlBackend}${rotaDevolucaoProdutos}`, {listaProdutosParaDevolucao});
+  devolverProdutos(dados: { produtos: ProdutoDevolucao[]; observacoes: string; nomeUsuario: string; }): Observable<any> {
+    return this.http.post<any>(`${urlBackend}${rotaDevolucaoProdutos}`, dados);
   }
+
 
 }

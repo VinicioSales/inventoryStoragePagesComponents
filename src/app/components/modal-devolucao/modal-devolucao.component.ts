@@ -93,8 +93,9 @@ export class ModalDevolucaoComponent {
         throw new Error('Nome de usuário não encontrado no armazenamento local.');
       }
       const dadosSolicitacao = {
+        nomeUsuario: nomeUsuario,
+        observacoes: this.observacoes,
         produtos: this.listaProdutosParaDevolucao,
-        nomeUsuario: nomeUsuario
       };
 
       this.requisicoesService.getPdfDevolucao(dadosSolicitacao)
@@ -137,7 +138,19 @@ export class ModalDevolucaoComponent {
   //NOTE - onConfirmarDevolucao
   onConfirmarDevolucao() {
     try {
-      this.requisicoesService.devolverProdutos(this.listaProdutosParaDevolucao).subscribe({
+      const nomeUsuario = localStorage.getItem(nomeUsuarioStorage);
+      if (!nomeUsuario) {
+        throw new Error('Nome de usuário não encontrado no armazenamento local.');
+      }
+
+      const dadosDevolucao = {
+        produtos: this.listaProdutosParaDevolucao,
+        observacoes: this.observacoes,
+        nomeUsuario: nomeUsuario,
+        pdf: this.pdfBase64,
+      }
+
+      this.requisicoesService.devolverProdutos(dadosDevolucao).subscribe({
         next: this.handleSuccess.bind(this),
         error: this.handleError.bind(this),
       });
