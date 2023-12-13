@@ -15,8 +15,10 @@ import { MockServiceProdutosService } from 'src/app/mock/mock-service-produtos.s
 })
 export class ModalDevolucaoComponent {
   pdfBase64: string = '';
+  observacoes: string = "";
   mostrarPdf: boolean = false;
   sucessoDevolucao: boolean = true;
+  mostrarModalObservacao: boolean = false;
   backgroundBotaoDevolver: string = 'var(--botao-verde)'
   backgroundBotaoCancelar: string = 'var(--botao-vermelho)'
   backgroundBotaoDevolverHover: string = 'var(--botao-verde-hover)'
@@ -177,5 +179,19 @@ export class ModalDevolucaoComponent {
       this.mostrarPdf = false;
     }
   
+  //NOTE - onObservacao
+  onObservacao() {
+    this.mostrarModalObservacao = true;
+  }
 
+  //NOTE - handleObervacoes
+  handleObervacoes(observacoes: string) {
+    this.observacoes = observacoes;
+    this.mostrarModalObservacao = false;
+  }
+
+  //NOTE - handleCancelarObservacoes
+  handleCancelarObservacoes() {
+    this.mostrarModalObservacao = false;
+  }
 }

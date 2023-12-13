@@ -34,6 +34,7 @@ import { BotaoConfirmarComponent } from './components/botao-confirmar/botao-conf
 import { RequisitarProdutosComponent } from './components/requisitar-produtos/requisitar-produtos.component';
 import { ModalDevolucaoComponent } from './components/modal-devolucao/modal-devolucao.component';
 import { ToggleComponent } from './components/toggle/toggle.component';
+import { ModalObservacaoComponent } from './components/modal-observacao/modal-observacao.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { ToggleComponent } from './components/toggle/toggle.component';
     BotaoConfirmarComponent,
     ModalDevolucaoComponent,
     ToggleComponent,
+    ModalObservacaoComponent,
   ],
   imports: [
     FormsModule ,

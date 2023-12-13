@@ -4,6 +4,11 @@
     (criarSolicitacao)="onConfirmarDevolucao()"
     [base64String]="pdfBase64">
 </app-modal-pdf>
+<app-modal-observacao
+    *ngIf="mostrarModalObservacao"
+    (fecharModal)="handleCancelarObservacoes()"
+    (adicionarObservacao)="handleObervacoes($event)">
+</app-modal-observacao>
 <div class="background">
     <div class="modal-devolucao">
         <app-modal-geral
@@ -73,22 +78,32 @@
             </div>
         </div>
         <div class="footer">
-            <app-botao
-                width="180px"
-                height="30px"
-                texto="Cancelar"
-                (click)="onCancelar()"
-                [background]="backgroundBotaoCancelar"
-                [backgroundHover]="backgroundBotaoCancelarHover">
-            </app-botao>
-            <app-botao
-                height="30px"
-                width="180px"
-                texto="Devolver"
-                (click)="onDevolver()"
-                [background]="backgroundBotaoDevolver"
-                [backgroundHover]="backgroundBotaoDevolverHover">
-            </app-botao>
+            <div>
+                <app-botao
+                    width="120px"
+                    height="30px"
+                    texto="Observações"
+                    (click)="onObservacao()">
+                </app-botao>
+            </div>
+            <div class="menu-botoes">
+                <app-botao
+                    width="180px"
+                    height="30px"
+                    texto="Cancelar"
+                    (click)="onCancelar()"
+                    [background]="backgroundBotaoCancelar"
+                    [backgroundHover]="backgroundBotaoCancelarHover">
+                </app-botao>
+                <app-botao
+                    height="30px"
+                    width="180px"
+                    texto="Devolver"
+                    (click)="onDevolver()"
+                    [background]="backgroundBotaoDevolver"
+                    [backgroundHover]="backgroundBotaoDevolverHover">
+                </app-botao>
+            </div>
         </div>
     </div>
 </div>
