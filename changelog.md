@@ -1,6 +1,14 @@
 ## ChangeLog
 
 Todas as mudanças do projeto serão documentados neste arquivo.
+
+## [0.0] - 13-12-2023 
+### Added
+- Finalizado layout modal devolucao (vinicio)
+- Finalizado script modal devolucao (vinicio)
+- Inicado testes modal devolucao (vinicio)
+- 
+
 ## [0.0] - 24-11-2023 
 ### Added
 - Criado rota para home (victor)
