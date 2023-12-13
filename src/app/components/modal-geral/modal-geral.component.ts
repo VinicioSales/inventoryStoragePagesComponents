@@ -16,6 +16,7 @@ export class ModalGeralComponent {
 
   @Output() fecharModal = new EventEmitter<void>();
 
+
   //NOTE - onClick
   onClick() {
     this.fecharModal.emit();

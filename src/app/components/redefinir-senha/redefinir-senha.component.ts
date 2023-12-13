@@ -57,7 +57,6 @@ export class RedefinirSenhaComponent {
 
   //NOTE - validarCampos
   validarCampos() {
-    debugger;
     if (this.valorNovaSenha.trim() == '' && this.valorConfirmarNovaSenha.trim() == '' && this.valorCodigoVerificacao.trim() == '') {
       this.modalService.exibirMensagemModal(ModalService.MENSAGEM_CAMPOS_VAZIOS);
       return false;

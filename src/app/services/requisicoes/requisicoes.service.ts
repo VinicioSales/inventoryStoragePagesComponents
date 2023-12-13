@@ -1,9 +1,9 @@
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Produtos, Produto } from 'src/models/produto/produto.models'
+import { Produtos, Produto, ProdutoDevolucao } from 'src/models/produto/produto.models'
 import { PdfResponse } from 'src/models/pdf-response/pdf-response.models'
-import { urlBackend, rotaProdutos, rotaPdf, rotaSolicitacao } from 'src/app/static'
+import { urlBackend, rotaProdutos, rotaPdf, rotaSolicitacao, rotaDevolucaoProdutos, rotaPdfDevolucao } from 'src/app/static'
 
 
 @Injectable({
@@ -26,6 +26,16 @@ export class RequisicoesService {
   //NOTE - getPdf
   getPdf(dadosSolicitacao: Object) {
     return this.http.post<PdfResponse>(`${urlBackend}${rotaPdf}`, {dadosSolicitacao});
+  }
+  
+  //NOTE - getPdfDevolucao
+  getPdfDevolucao(dadosDevolucao: Object) {
+    return this.http.post<PdfResponse>(`${urlBackend}${rotaPdfDevolucao}`, {dadosDevolucao});
+  }
+
+  //NOTE - revolverProdutos
+  devolverProdutos(listaProdutosParaDevolucao: ProdutoDevolucao[]): Observable<any> {
+    return this.http.post<ProdutoDevolucao[]>(`${urlBackend}${rotaDevolucaoProdutos}`, {listaProdutosParaDevolucao});
   }
 
 }

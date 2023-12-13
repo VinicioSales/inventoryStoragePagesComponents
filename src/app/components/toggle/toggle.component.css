@@ -14,7 +14,7 @@
     cursor: pointer;
 }
 
-.container-toggle {
+.container-toggle-on {
     justify-content: end;
     background: rgb(72, 164, 72);
 }

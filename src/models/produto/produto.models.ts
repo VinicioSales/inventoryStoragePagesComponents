@@ -13,3 +13,13 @@ export interface Produto {
     codigoProduto: string
     unidadeMedida: string,
 }
+
+export interface ProdutoDevolucao {
+    quantidade: number,
+    nomeProduto: string,
+    centroCusto: string
+    codigoProduto: string
+    unidadeMedida: string,
+    codigoSolicitacao: number,
+    devolucaoCompleta: boolean,
+}

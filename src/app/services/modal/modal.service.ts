@@ -1,5 +1,5 @@
 import { BehaviorSubject } from 'rxjs';
-import { Injectable } from '@angular/core';
+import { Injectable, } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +7,7 @@ import { Injectable } from '@angular/core';
 export class ModalService {
 
   constructor() { }
+
 
   static readonly MENSAGEM_EMAIL_INVALIDO = 'Email inválido!';
   static readonly MENSAGEM_CAMPOS_VAZIOS = 'Preencha todos os campos!';
@@ -17,6 +18,7 @@ export class ModalService {
   static readonly MENSAGEM_SENHA_REDEFINIDA = 'Senha redefinida com sucesso!';
   static readonly MENSAGEM_DATA_ENTREGA_VAZIO = 'Selecione a data de entrega!';
   static readonly MENSAGEM_PRODUTO_NAO_SELECIONADO = 'Produto não selecionado';
+  static readonly MENSAGEM_PRODUTOS_DEVOLVIDOS = 'Produtos devolvidos com sucesso!';
   static readonly MENSAGEM_SENHA_CURTA = 'A senha deve ter no mínimo 8 caracteres!';
   static readonly MENSAGEM_QUANTIDADE_NAO_SELECIONADO = 'Quantidade não selecionado';
   static readonly MENSAGEM_SEM_PRODUTOS_SELECIONADOS = 'Selecione algum produto primeiro!';

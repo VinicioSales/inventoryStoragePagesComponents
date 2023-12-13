@@ -1,7 +1,7 @@
 .modal-ajuda {
     position: absolute;
     height: 90px;
-    width: 200px;
+    width: 300px;
     border: 0.5px solid var(--cor-cinza);
     border-radius: 1px;
     display: flex;

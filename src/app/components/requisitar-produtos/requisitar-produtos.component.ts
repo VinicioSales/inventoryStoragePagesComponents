@@ -266,8 +266,6 @@ export class RequisitarProdutosComponent implements OnInit {
 
   //NOTE - onSolicitar
   onSolicitar() {
-    console.log('data');
-    console.log(this.dataEntrega);
     if (this.produtosSelecionados.length === 0) {
       this.modalService.exibirMensagemModal(ModalService.MENSAGEM_SEM_PRODUTOS_SELECIONADOS);
     } else if (!this.dataEntrega) {

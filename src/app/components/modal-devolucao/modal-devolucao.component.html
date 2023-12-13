@@ -1,8 +1,14 @@
+<app-modal-pdf
+    *ngIf="mostrarPdf"
+    (cancelarPdf)="onFecharModalPdf()"
+    (criarSolicitacao)="onConfirmarDevolucao()"
+    [base64String]="pdfBase64">
+</app-modal-pdf>
 <div class="background">
     <div class="modal-devolucao">
         <app-modal-geral
             *ngIf="modalService.mostrarModal$ | async"
-            (fecharModal)="modalService.fecharModal()"
+            (fecharModal)="onModalGeralFechar()"
             [mensagem]="modalService.mensagemModal$ | async">
         </app-modal-geral>
         <div class="header">
@@ -11,7 +17,7 @@
         <div class="header-tabela">
             <div class="devolucao-completa">
                 <div class="botao-ajuda">
-                    <app-botao-ajuda></app-botao-ajuda>
+                    <app-botao-ajuda [texto]="textoAjuda"></app-botao-ajuda>
                 </div>
                 <div class="texto-devolucao-completa">
                     DEVOLUÇÃO COMPLETA
@@ -39,7 +45,7 @@
         <div class="tabela">
             <div class="linha-tabela" *ngFor="let produto of listaProdutosParaDevolucao">
                 <div class="devolucao-completa">
-                    <mat-slide-toggle></mat-slide-toggle>
+                    <app-toggle [onToggleChange]="onToggleChange.bind(this, produto.codigoProduto)"></app-toggle>
                 </div>
                 <div class="codigo-solicitacao">
                     {{ produto.codigoSolicitacao }}
@@ -53,7 +59,9 @@
                 <div class="quantidade">
                     <app-input-contador
                         height="25px"
-                        width="100%">
+                        width="100%"
+                        [valor]="produto.quantidade"
+                        (valorChange)="selecionarQuantidade(produto.codigoProduto, $event)">
                     </app-input-contador>
                 </div>
                 <div class="unidade-medida">
@@ -69,6 +77,7 @@
                 width="180px"
                 height="30px"
                 texto="Cancelar"
+                (click)="onCancelar()"
                 [background]="backgroundBotaoCancelar"
                 [backgroundHover]="backgroundBotaoCancelarHover">
             </app-botao>
@@ -76,6 +85,7 @@
                 height="30px"
                 width="180px"
                 texto="Devolver"
+                (click)="onDevolver()"
                 [background]="backgroundBotaoDevolver"
                 [backgroundHover]="backgroundBotaoDevolverHover">
             </app-botao>
