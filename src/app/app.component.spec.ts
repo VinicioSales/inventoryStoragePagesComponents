@@ -2,6 +2,7 @@ import { FormsModule } from '@angular/forms'
 import { AppComponent } from './app.component';
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { InputComponent } from 'src/app/components/input/input.component';
 import { BotaoComponent } from 'src/app/components/botao/botao.component';
 import { LogoBfComponent } from 'src/app/components/logo-bf/logo-bf.component';
@@ -15,6 +16,7 @@ import { BotaoEditarComponent } from 'src/app/components/botao-editar/botao-edit
 import { BotaoRemoverComponent } from 'src/app/components/botao-remover/botao-remover.component';
 import { InputDropdownComponent } from 'src/app/components/input-dropdown/input-dropdown.component';
 import { InputContadorComponent } from 'src/app/components/input-contador/input-contador.component';
+import { ModalDevolucaoComponent } from 'src/app/components/modal-devolucao/modal-devolucao.component';
 import { InputPesquisarComponent } from 'src/app/components/input-pesquisar/input-pesquisar.component';
 
 
@@ -22,7 +24,9 @@ describe('AppComponent', () => {
   beforeEach(() => TestBed.configureTestingModule({
     imports: [
       FormsModule,
-      RouterTestingModule,],
+      RouterTestingModule,
+      HttpClientTestingModule,
+    ],
     declarations: [
       AppComponent,
       InputComponent,
@@ -39,6 +43,7 @@ describe('AppComponent', () => {
       InputDropdownComponent,
       InputContadorComponent,
       InputPesquisarComponent,
+      ModalDevolucaoComponent,
     ]
   }));
 
