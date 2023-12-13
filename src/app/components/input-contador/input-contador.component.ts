@@ -14,7 +14,7 @@ export class InputContadorComponent implements OnInit, OnDestroy {
   
   // Inputs
   @Input() width: string = '100%';
-  @Input() height: string = '50px';
+  @Input() height: string = '100%';
   @Input() widthInput: string = '100%';
   @Input() placeholder: string = 'input';
 

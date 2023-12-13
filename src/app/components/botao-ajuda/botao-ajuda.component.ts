@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { TemaService } from '../../services/tema.service';
 import { ImagemService } from '../../services/imagem.service'; // Importe o ImagemService
 
@@ -11,6 +11,9 @@ export class BotaoAjudaComponent {
   public imgSrc?: string;
   private imgTemaClaro: string = 'assets/img/ajuda.png';
   private imgTemaEscuro: string = 'assets/img/ajuda.png';
+
+  @Input() texto: string = "";
+  @Input() mostrarModalAjuda: boolean = false;
   
   @Output() botaoClicado = new EventEmitter<void>();
   
@@ -31,5 +34,17 @@ export class BotaoAjudaComponent {
   //NOTE - onClick
   onClick() {
     this.botaoClicado.emit();
+  }
+
+  //NOTE - onMostrarModalAjuda
+  onMostrarModalAjuda() {
+    if (this.texto.trim()) {
+      this.mostrarModalAjuda = true;
+    }
+  }
+
+  //NOTE - offMostrarModalAjuda
+  offMostrarModalAjuda() {
+    this.mostrarModalAjuda = false;
   }
 }

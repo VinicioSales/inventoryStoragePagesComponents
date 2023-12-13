@@ -36,7 +36,6 @@
 .header-tabela,
 .linha-tabela {
     background: var(--background);
-    padding: 25px 15px 25px 15px;
     margin: 0 50px 0 50px;
     margin-trim: 0 50px 0 50px;
     display: grid;
@@ -46,10 +45,13 @@
 
 .header-tabela {
     color: var(--cor-cinza);
+    padding: 25px 15px 25px 15px;
 }
 
 .linha-tabela {
     font-size: 1rem;
+    padding: 18px 15px 18px 15px;
+
 }
 
 .devolucao-completa {
