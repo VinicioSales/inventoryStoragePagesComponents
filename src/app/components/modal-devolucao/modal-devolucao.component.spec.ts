@@ -1,6 +1,7 @@
 import { of, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { fakeAsync, tick } from '@angular/core/testing';
+import { HttpErrorResponse } from '@angular/common/http';
 import { BotaoComponent } from '../botao/botao.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
@@ -10,7 +11,6 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { BotaoAjudaComponent } from '../botao-ajuda/botao-ajuda.component';
 import { RequisicoesService } from '../../services/requisicoes/requisicoes.service';
 import { MockServiceProdutosService } from 'src/app/mock/mock-service-produtos.service';
-import { HttpErrorResponse } from '@angular/common/http';
 
 describe('ModalDevolucaoComponent', () => {
   let component: ModalDevolucaoComponent;
