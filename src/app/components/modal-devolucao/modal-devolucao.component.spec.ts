@@ -57,4 +57,55 @@ fdescribe('ModalDevolucaoComponent', () => {
     });
   });
   //!SECTION
+
+  //SECTION - onToggleChange
+  describe('onToggleChange', () => {
+    beforeEach(() => {
+      component.listaProdutosParaDevolucao = [
+        { 
+          quantidade: 10, 
+          nomeProduto: 'Produto 123', 
+          centroCusto: 'CC123', 
+          codigoProduto: '123', 
+          unidadeMedida: 'un', 
+          codigoSolicitacao: 1, 
+          devolucaoCompleta: false 
+        },
+        { 
+          quantidade: 5, 
+          nomeProduto: 'Produto 456', 
+          centroCusto: 'CC456', 
+          codigoProduto: '456', 
+          unidadeMedida: 'un', 
+          codigoSolicitacao: 2, 
+          devolucaoCompleta: false 
+        }
+      ];
+    });
+
+    //NOTE - deve alterar o status de devolução de um produto existente
+    it('deve alterar o status de devolução de um produto existente', () => {
+      component.onToggleChange('123', true);
+      const produtoAlterado = component.listaProdutosParaDevolucao.find(p => p.codigoProduto === '123');
+      if (produtoAlterado) {
+        expect(produtoAlterado.devolucaoCompleta).toBeTrue();
+      }
+    });
+
+    //NOTE - deve exibir erro quando o produto não é encontrado
+    it('deve exibir erro quando o produto não é encontrado', () => {
+      spyOn(console, 'error');
+      component.onToggleChange('999', true);
+      expect(console.error).toHaveBeenCalledWith('Produto não encontrado:', '999');
+    });
+
+    //NOTE - deve tratar exceções durante a alteração do status de devolução
+    it('deve tratar exceções durante a alteração do status de devolução', () => {
+      spyOn(console, 'error');
+      spyOn(component.listaProdutosParaDevolucao, 'find').and.throwError('Erro inesperado');
+      component.onToggleChange('123', true);
+      expect(console.error).toHaveBeenCalledWith('Erro ao alterar status de devolução', jasmine.any(Error));
+    });
+  });
+  //!SECTION
 });
