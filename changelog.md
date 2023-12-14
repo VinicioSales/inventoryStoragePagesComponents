@@ -4,6 +4,10 @@ Todas as mudanças do projeto serão documentados neste arquivo.
 
 ## [0.0] - 13-12-2023 
 ### Added
+- Teste unitário tela de devolução de produtos (Victor)
+
+## [0.0] - 13-12-2023 
+### Added
 - Finalizado layout modal devolucao (vinicio)
 - Finalizado script modal devolucao (vinicio)
 - Inicado testes modal devolucao (vinicio)
