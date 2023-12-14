@@ -187,10 +187,10 @@ export class ModalDevolucaoComponent {
     }
   }
 
-    //NOTE - fecharModalPdf
-    onFecharModalPdf() {
-      this.mostrarPdf = false;
-    }
+  //NOTE - fecharModalPdf
+  onFecharModalPdf() {
+    this.mostrarPdf = false;
+  }
   
   //NOTE - onObservacao
   onObservacao() {

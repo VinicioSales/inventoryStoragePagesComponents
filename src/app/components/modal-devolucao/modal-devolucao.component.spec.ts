@@ -12,7 +12,7 @@ import { RequisicoesService } from '../../services/requisicoes/requisicoes.servi
 import { MockServiceProdutosService } from 'src/app/mock/mock-service-produtos.service';
 import { HttpErrorResponse } from '@angular/common/http';
 
-fdescribe('ModalDevolucaoComponent', () => {
+describe('ModalDevolucaoComponent', () => {
   let component: ModalDevolucaoComponent;
   let fixture: ComponentFixture<ModalDevolucaoComponent>;
   let mockServiceProdutosService: MockServiceProdutosService;
@@ -330,6 +330,118 @@ fdescribe('ModalDevolucaoComponent', () => {
       expect(console.error).toHaveBeenCalled();
     }));
     
+  });
+  //!SECTION
+
+   //SECTION - handleError
+    describe('handleError', () => {
+      it('deve registrar no console e exibir mensagem de erro', fakeAsync(() => {
+        const errorMessage = 'Erro ao processar a solicitação';
+        const errorResponse = new HttpErrorResponse({
+          error: { message: errorMessage },
+          status: 500,
+          statusText: 'Internal Server Error'
+        });
+
+        spyOn(localStorage, 'getItem').and.returnValue('usuario_teste');
+        spyOn(requisicoesService, 'devolverProdutos').and.returnValue(throwError(() => errorResponse));
+        spyOn(console, 'error');
+        spyOn(modalService, 'exibirMensagemModal');
+
+        component.onConfirmarDevolucao();
+        tick();
+
+        expect(console.error).toHaveBeenCalledWith(errorMessage);
+        expect(modalService.exibirMensagemModal).toHaveBeenCalledWith(errorMessage);
+      }));
+    });
+    //!SECTION
+
+  //SECTION - onModalGeralFechar
+  describe('onModalGeralFechar', () => {
+    //NOTE - deve fechar o modal e emitir o evento fecharModalDevolucao se sucessoDevolucao é verdadeiro
+    it('deve fechar o modal e emitir o evento fecharModalDevolucao se sucessoDevolucao é verdadeiro', () => {
+      spyOn(modalService, 'fecharModal');
+      spyOn(component.fecharModalDevolucao, 'emit');
+      component.sucessoDevolucao = true;
+
+      component.onModalGeralFechar();
+
+      expect(modalService.fecharModal).toHaveBeenCalled();
+      expect(component.fecharModalDevolucao.emit).toHaveBeenCalled();
+    });
+
+    //NOTE - deve fechar o modal mas não emitir o evento se sucessoDevolucao é falso
+    it('deve fechar o modal mas não emitir o evento se sucessoDevolucao é falso', () => {
+      spyOn(modalService, 'fecharModal');
+      spyOn(component.fecharModalDevolucao, 'emit');
+      component.sucessoDevolucao = false;
+
+      component.onModalGeralFechar();
+
+      expect(modalService.fecharModal).toHaveBeenCalled();
+      expect(component.fecharModalDevolucao.emit).not.toHaveBeenCalled();
+    });
+
+    //NOTE - deve tratar exceções durante o fechamento do modal
+    it('deve tratar exceções durante o fechamento do modal', () => {
+      spyOn(modalService, 'fecharModal').and.throwError('Erro ao fechar modal');
+      spyOn(console, 'error');
+
+      component.onModalGeralFechar();
+
+      expect(console.error).toHaveBeenCalledWith('Erro ao fechar modal geral', jasmine.any(Error));
+    });
+  });
+  //!SECTION
+
+  describe('onFecharModalPdf', () => {
+    //NOTE - deve definir mostrarPdf como false
+    it('deve definir mostrarPdf como false', () => {
+      component.mostrarPdf = true; // Configuração inicial para garantir que a propriedade será alterada
+
+      component.onFecharModalPdf();
+
+      expect(component.mostrarPdf).toBeFalse();
+    });
+  });
+  //!SECTION
+
+  //SECTION - onObservacao
+  describe('onObservacao', () => {
+    //NOTE - deve definir mostrarModalObservacao como true
+    it('deve definir mostrarModalObservacao como true', () => {
+      component.onObservacao();
+
+      expect(component.mostrarModalObservacao).toBeTrue();
+    });
+  });
+  //!SECTION
+
+  //SECTION - handleObservacoes
+  describe('handleObservacoes', () => {
+    const novaObservacao = 'Nova observação';
+
+    //NOTE - deve atualizar a observação e definir mostrarModalObservacao como false
+    it('deve atualizar a observação e definir mostrarModalObservacao como false', () => {
+      component.handleObervacoes(novaObservacao);
+
+      expect(component.observacoes).toEqual(novaObservacao);
+      expect(component.mostrarModalObservacao).toBeFalse();
+    });
+  });
+  //!SECTION
+
+  //SECTION - handleCancelarObservacoes
+  describe('handleCancelarObservacoes', () => {
+    //NOTE - deve definir mostrarModalObservacao como false
+    it('deve definir mostrarModalObservacao como false', () => {
+      component.mostrarModalObservacao = true;
+  
+      component.handleCancelarObservacoes();
+  
+      expect(component.mostrarModalObservacao).toBe(false);
+    });
   });
   //!SECTION
 });
