@@ -2,9 +2,11 @@
 
 Todas as mudanças do projeto serão documentados neste arquivo.
 
-## [0.0] - 13-12-2023 
+## [0.0] - 14-12-2023 
 ### Added
 - Teste unitário tela de devolução de produtos (Victor)
+- Reunião alinhamento com cliente (vinicio, victor, Sajah)
+- Finalização testes modal devolucao (vinicio)
 
 ## [0.0] - 13-12-2023 
 ### Added
