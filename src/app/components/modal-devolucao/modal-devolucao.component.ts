@@ -114,27 +114,6 @@ export class ModalDevolucaoComponent {
     }
   }
 
-
-  // //NOTE - onConfirmarDevolucao
-  // onConfirmarDevolucao() {
-  //   this.requisicoesService.devolverProdutos(this.listaProdutosParaDevolucao).subscribe({
-  //     next:  (response) => {
-  //       this.sucessoDevolucao = true;
-  //       console.log(response);
-
-  //       this.onFecharModalPdf();
-
-  //       this.modalService.exibirMensagemModal(`Solicitacao de devolução criada com código: ${response.codigoSolicitacao}`);
-  //     },
-
-  //     error: (error) => {
-  //       console.error(error.error.message);
-
-  //       this.modalService.exibirMensagemModal(error.error.message);
-  //     }
-  //   });
-  // }
-
   //NOTE - onConfirmarDevolucao
   onConfirmarDevolucao() {
     try {
