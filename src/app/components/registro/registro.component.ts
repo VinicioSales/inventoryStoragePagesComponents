@@ -54,7 +54,7 @@ export class RegistroComponent {
   senhaValue: string = '';
   confirmarSenhaValue: string = '';
   mensagemModal: string = '';
-  id_notion:string = '';
+  idNotion:string = '';
   mostrarModal: boolean = false;
 
   onNomeValueChanged(inputNome: string) {
@@ -156,7 +156,7 @@ export class RegistroComponent {
     const credenciaisValidadas = this.validarCredenciais();
     if (credenciaisValidadas){
       
-      this.authService.registrarUsuario(this.nomeValue, this.emailValue, this.senhaValue, this.id_notion).subscribe({
+      this.authService.registrarUsuario(this.nomeValue, this.emailValue, this.senhaValue, this.idNotion).subscribe({
         next: (response) => {
           
           this.exibirMensagemModal(RegistroComponent.MENSAGEM_REGISTRO_CONCLUIDO);            

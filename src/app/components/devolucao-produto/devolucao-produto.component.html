@@ -1,4 +1,3 @@
-<app-modal-observacao *ngIf="mostrarObservacao" (fecharModal)="handleFecharModalObservacao()" (adicionarObservacao)="handleAdicionarObservacao($event)"></app-modal-observacao>
 <app-modal-geral *ngIf="mostrarModal" [mensagem]="dadosProdutos"></app-modal-geral>
 <div class="page">  
     <div class="header">
@@ -33,7 +32,7 @@
         <div class="tabela-scroll">
             <ng-container *ngFor="let produto of produtos">
                 <div class="linha-tabela" *ngIf="aplicarFiltros(produto)">
-                    <mat-checkbox class="checkbox" (change)="onCheckboxChange(produto, $event.checked)"></mat-checkbox>
+                    <mat-checkbox  class="checkbox" (change)="onCheckboxChange(produto, $event.checked)"></mat-checkbox>
                     <div class="codSolicitacao-linha-tabela">{{produto.codSolicitacao}}</div>
                     <div class="codProduto-linha-tabela">{{produto.codProduto}}</div>
                     <div class="produto-linha-tabela">{{produto.produto}}</div>
@@ -44,7 +43,6 @@
             </ng-container>       
         </div>
         <div class="div-botao">
-            <app-botao class="botao" texto="Adicionar observação" width="183px" height="30px" (click) = "modalObservacao($event)"></app-botao>
             <app-botao class="botao" texto="Continuar" width="183px" height="30px" (click) = "modalDevolucao($event)"></app-botao>
             
         </div>

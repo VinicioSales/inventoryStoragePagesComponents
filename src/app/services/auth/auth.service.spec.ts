@@ -164,15 +164,15 @@ fdescribe('AuthService', () => {
     //NOTE - deve chamar o método registrarUsuario e verificar a resposta
     it('deve chamar o método registrarUsuario e verificar a resposta', () =>{
       // Definindo os dados de teste
-      const testData = { nome: 'Teste', email: 'teste@teste.com', senha: '123456' };
+      const testData = { nome: 'Teste', email: 'teste@teste.com', senha: '123456',idNotion:'987654321' };
       const mockResponse = { success: true };
 
-      service.registrarUsuario(testData.nome, testData.email, testData.senha).subscribe(response => {
+      service.registrarUsuario(testData.nome, testData.email, testData.senha, testData.idNotion).subscribe(response => {
         expect(response).toEqual(mockResponse);
       });
 
        // Simulando a resposta do servidor
-       const req = httpMock.expectOne(`${urlBackend}/${rotaRegistrarUsuarios}`);
+       const req = httpMock.expectOne(`${urlBackend}${rotaRegistrarUsuarios}`);
        req.flush(mockResponse);
 
     });
@@ -180,13 +180,13 @@ fdescribe('AuthService', () => {
     //NOTE - deve verificar o método da requisição HTTP
     it('deve verificar o método da requisição HTTP', () =>{
       // Definindo os dados de teste
-      const testData = { nome: 'Teste', email: 'teste@teste.com', senha: '123456' };
+      const testData = { nome: 'Teste', email: 'teste@teste.com', senha: '123456', idNotion:'987654321' };
 
       // Chamando o método registrarUsuario
-      service.registrarUsuario(testData.nome, testData.email, testData.senha).subscribe();
+      service.registrarUsuario(testData.nome, testData.email, testData.senha, testData.idNotion).subscribe();
 
       // Verificando o método da requisição HTTP
-      const req = httpMock.expectOne(`${urlBackend}/${rotaRegistrarUsuarios}`);
+      const req = httpMock.expectOne(`${urlBackend}${rotaRegistrarUsuarios}`);
       expect(req.request.method).toBe('POST');
 
       // Simulando a resposta do servidor
@@ -196,13 +196,13 @@ fdescribe('AuthService', () => {
     //NOTE - deve verificar o corpo da requisição HTTP
     it('deve verificar o corpo da requisição HTTP', () =>{
        // Definindo os dados de teste
-       const testData = { nome: 'Teste', email: 'teste@teste.com', senha: '123456' };
+       const testData = { username: 'Teste', email: 'teste@teste.com', password: '123456',idNotion:'987654321'  };
 
        // Chamando o método registrarUsuario
-       service.registrarUsuario(testData.nome, testData.email, testData.senha).subscribe();
+       service.registrarUsuario(testData.username, testData.email, testData.password, testData.idNotion).subscribe();
 
        // Verificando o corpo da requisição HTTP
-       const req = httpMock.expectOne(`${urlBackend}/${rotaRegistrarUsuarios}`);
+       const req = httpMock.expectOne(`${urlBackend}${rotaRegistrarUsuarios}`);
        expect(req.request.body).toEqual(testData);
 
        // Simulando a resposta do servidor

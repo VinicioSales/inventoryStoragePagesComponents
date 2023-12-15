@@ -69,8 +69,7 @@ export class AuthService {
 
 
   //NOTE - Registrar usuário
-  registrarUsuario(username: string, email: string, password: string, id_notion: string): Observable<any>{
-    id_notion = ''
-    return this.http.post(`${urlBackend}${rotaRegistrarUsuarios}`,{username, email,password, id_notion});
+  registrarUsuario(username: string, email: string, password: string, idNotion: string): Observable<any>{
+    return this.http.post(`${urlBackend}${rotaRegistrarUsuarios}`,{username, email,password, idNotion});
   }
 }

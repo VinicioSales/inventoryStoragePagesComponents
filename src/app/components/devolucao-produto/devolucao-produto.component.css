@@ -78,6 +78,7 @@
     color: var(--cor-secundaria);
     margin-top: 2px;
     padding: 10px 15px 10px 15px;
+    font-size: 1rem;
     
     
 }
@@ -93,6 +94,7 @@
     justify-content: center;
 
 }
+
 
 .cod-solicitacao{
     grid-area: cod-solicitacao;   
@@ -174,3 +176,9 @@
 .tabela-scroll {
     margin-right: 50px; 
 }
+
+.checkbox{
+    color: black;
+}
+
+

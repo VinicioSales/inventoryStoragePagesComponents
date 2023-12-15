@@ -22,6 +22,7 @@ describe('RegistroComponent', () => {
   let httpTestingController: HttpTestingController;
 
   beforeEach(async () => {
+    httpTestingController = TestBed.inject(HttpTestingController);
     const authServiceSpy = jasmine.createSpyObj('AuthService', ['redefinirSenha', 'registrarUsuario']);
     const routerSpy = jasmine.createSpyObj('Router', ['navigate']);
     authServiceSpy.registrarUsuario.and.returnValue(of({}));
