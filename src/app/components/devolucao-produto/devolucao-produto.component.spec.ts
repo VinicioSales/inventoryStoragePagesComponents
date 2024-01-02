@@ -11,7 +11,7 @@ import { BotaoTemaComponent } from '../botao-tema/botao-tema.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { FormsModule } from '@angular/forms';
 
-fdescribe('DevolucaoProdutoComponent', () => {
+describe('DevolucaoProdutoComponent', () => {
   let component: DevolucaoProdutoComponent;
   let fixture: ComponentFixture<DevolucaoProdutoComponent>;
   let router: jasmine.SpyObj<Router>;
