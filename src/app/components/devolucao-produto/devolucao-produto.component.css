@@ -119,6 +119,7 @@
 
 .centro-custo{
     grid-area: centro-custo;
+    white-space: nowrap; 
 }
 
 

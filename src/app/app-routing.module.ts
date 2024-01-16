@@ -9,6 +9,8 @@ import { EsqueciSenhaComponent } from './components/esqueci-senha/esqueci-senha.
 import { RedefinirSenhaComponent } from './components/redefinir-senha/redefinir-senha.component';
 import {DevolucaoProdutoComponent} from './components/devolucao-produto/devolucao-produto.component';
 
+
+
 //FIXME - REMOVER COMENTARIOS DO CANACTIVATE
 const routes: Routes = [
   {path:'', component: LoginComponent},
