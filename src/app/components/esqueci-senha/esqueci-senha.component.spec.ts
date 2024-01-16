@@ -8,14 +8,18 @@ import { LogoBfComponent } from '../logo-bf/logo-bf.component';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { EsqueciSenhaComponent } from './esqueci-senha.component';
+import { ModalService } from 'src/app/services/modal/modal.service';
 
 describe('EsqueciSenhaComponent', () => {
   let component: EsqueciSenhaComponent;
   let fixture: ComponentFixture<EsqueciSenhaComponent>;
   let authServiceMock: jasmine.SpyObj<AuthService>;
+  let modalServiceMock: jasmine.SpyObj<ModalService>;
 
   beforeEach(() => {
     authServiceMock = jasmine.createSpyObj('AuthService', ['recuperarSenha']);
+    modalServiceMock = jasmine.createSpyObj('ModalService', ['exibirMensagemModal']);
+
 
     TestBed.configureTestingModule({
       imports: [
@@ -29,7 +33,8 @@ describe('EsqueciSenhaComponent', () => {
         EsqueciSenhaComponent,
       ],
       providers: [
-        { provide: AuthService, useValue: authServiceMock }
+        { provide: AuthService, useValue: authServiceMock },
+        { provide: ModalService, useValue: modalServiceMock }
       ]
     });
 
@@ -60,48 +65,35 @@ describe('EsqueciSenhaComponent', () => {
   });
   // !SECTION
 
-  // SECTION - exibirMensagemModal
-  describe('exibirMensagemModal', () => {
-    // NOTE - deve exibir o modal com a mensagem fornecida
-    it('deve exibir o modal com a mensagem fornecida', () => {
-      const mensagem = 'Mensagem de teste';
-      component.exibirMensagemModal(mensagem);
-      expect(component.mostrarModal).toBeTrue();
-      expect(component.mensagemModal).toBe(mensagem);
-    });
-  });
-  // !SECTION
+
+
 
   // SECTION - onRecuperarSenha
   describe('onRecuperarSenha', () => {
+    const emailMock = 'test@example.com';
+
     // NOTE - deve exibir mensagem de sucesso quando o email for enviado
     it('deve exibir mensagem de sucesso quando o email for enviado', () => {
-      const valorEmail = 'test@example.com';
       authServiceMock.recuperarSenha.and.returnValue(of({}));
-      component.valorEmail = valorEmail;
+      component.valorEmail = emailMock;
       component.onRecuperarSenha();
-      expect(authServiceMock.recuperarSenha).toHaveBeenCalledWith(valorEmail);
-      expect(component.mostrarModal).toBeTrue();
-      expect(component.mensagemModal).toContain(valorEmail);
+      expect(authServiceMock.recuperarSenha).toHaveBeenCalledWith(emailMock);
+      expect(modalServiceMock.exibirMensagemModal).toHaveBeenCalledWith(`Token de recuperação enviado para o email ${emailMock}`);
+      expect(component.carregando).toBeFalse();
     });
 
-    // NOTE - deve exibir mensagem de email não encontrado para erro 404
-    it('deve exibir mensagem de email não encontrado para erro 404', () => {
-      const errorResponse = new HttpErrorResponse({ status: 404 });
+    // NOTE - deve exibir a mensagem de erro em caso de falha
+    it('deve exibir a mensagem de erro em caso de falha', () => {
+      const errorMsg = 'Erro ao enviar email';
+      const errorResponse = new HttpErrorResponse({ status: 404, error: { message: errorMsg } });
       authServiceMock.recuperarSenha.and.returnValue(throwError(() => errorResponse));
+      component.valorEmail = emailMock;
       component.onRecuperarSenha();
-      expect(component.mostrarModal).toBeTrue();
-      expect(component.mensagemModal).toBe('Email não encontrado');
-    });
-
-    // NOTE - deve exibir mensagem de erro desconhecido para outros erros
-    it('deve exibir mensagem de erro desconhecido para outros erros', () => {
-      const errorResponse = new HttpErrorResponse({ status: 500, statusText: 'Internal Server Error' });
-      authServiceMock.recuperarSenha.and.returnValue(throwError(() => errorResponse));
-      component.onRecuperarSenha();
-      expect(component.mostrarModal).toBeTrue();
-      expect(component.mensagemModal).toBe(`Erro desconhecido: ${errorResponse.message}`);
+      expect(authServiceMock.recuperarSenha).toHaveBeenCalledWith(emailMock);
+      expect(modalServiceMock.exibirMensagemModal).toHaveBeenCalledWith(errorMsg);
+      expect(component.carregando).toBeFalse();
     });
   });
+
   // !SECTION
 });

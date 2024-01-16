@@ -7,6 +7,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { EsqueciSenhaComponent } from './components/esqueci-senha/esqueci-senha.component';
 import { RedefinirSenhaComponent } from './components/redefinir-senha/redefinir-senha.component';
+import { RequisitarProdutosComponent } from './components/requisitar-produtos/requisitar-produtos.component';
 import {DevolucaoProdutoComponent} from './components/devolucao-produto/devolucao-produto.component';
 
 
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path:'esqueci-senha', component: EsqueciSenhaComponent},
   {path:'home', component: HomeComponent, /*canActivate: [AuthGuard]*/},
   {path:'redefinir-senha', component: RedefinirSenhaComponent, /*canActivate: [AuthGuard]*/},
+  {path:'requisitar-produtos', component: RequisitarProdutosComponent, /*canActivate: [AuthGuard]*/},
   {path:'devolucao-produto', component: DevolucaoProdutoComponent},
 ];
 

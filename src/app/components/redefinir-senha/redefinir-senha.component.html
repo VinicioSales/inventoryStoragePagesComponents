@@ -1,9 +1,8 @@
+<app-carregamento *ngIf="carregando"></app-carregamento>
 <app-modal-geral
-    *ngIf="mostrarModal"
-    [mensagem]="mensagemModal"
-    textoBotao="Fechar"
-    [corBotao]="corBotao"
-    (fecharModal)="handleFecharModal()">
+    *ngIf="modalService.mostrarModal$ | async"
+    (fecharModal)="modalService.fecharModal()"
+    [mensagem]="modalService.mensagemModal$ | async">
 </app-modal-geral>
 <div class="pagina-redefinir-senha">
     <div class="container-redefinir-senha">

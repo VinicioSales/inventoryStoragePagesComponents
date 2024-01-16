@@ -20,3 +20,7 @@
     box-shadow: var(--box-shadow); 
 
 }
+
+input[type="date"] {
+    cursor: pointer;
+}

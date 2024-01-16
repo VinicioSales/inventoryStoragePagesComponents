@@ -1,0 +1,109 @@
+<app-modal-pdf
+    *ngIf="mostrarPdf"
+    (cancelarPdf)="onFecharModalPdf()"
+    (criarSolicitacao)="onConfirmarDevolucao()"
+    [base64String]="pdfBase64">
+</app-modal-pdf>
+<app-modal-observacao
+    *ngIf="mostrarModalObservacao"
+    (fecharModal)="handleCancelarObservacoes()"
+    (adicionarObservacao)="handleObervacoes($event)">
+</app-modal-observacao>
+<div class="background">
+    <div class="modal-devolucao">
+        <app-modal-geral
+            *ngIf="modalService.mostrarModal$ | async"
+            (fecharModal)="onModalGeralFechar()"
+            [mensagem]="modalService.mensagemModal$ | async">
+        </app-modal-geral>
+        <div class="header">
+            <div class="titulo">Produtos Para Devolução</div>
+        </div>
+        <div class="header-tabela">
+            <div class="devolucao-completa">
+                <div class="botao-ajuda">
+                    <app-botao-ajuda [texto]="textoAjuda"></app-botao-ajuda>
+                </div>
+                <div class="texto-devolucao-completa">
+                    DEVOLUÇÃO COMPLETA
+                </div>
+            </div>
+            <div class="codigo-solicitacao">
+                COD. SOLICITAÇÃO
+            </div>
+            <div class="codigo-produto">
+                COD. PRODUTO
+            </div>
+            <div class="produto">
+                PRODUTO
+            </div>
+            <div class="quantidade">
+                QUANTIDADE
+            </div>
+            <div class="unidade-medida">
+                UNI. MEDIDA
+            </div>
+            <div class="centro-custo">
+                CENTRO DE CUSTO
+            </div>
+        </div>
+        <div class="tabela">
+            <div class="linha-tabela" *ngFor="let produto of listaProdutosParaDevolucao">
+                <div class="devolucao-completa">
+                    <app-toggle [onToggleChange]="onToggleChange.bind(this, produto.codigoProduto)"></app-toggle>
+                </div>
+                <div class="codigo-solicitacao">
+                    {{ produto.codigoSolicitacao }}
+                </div>
+                <div class="codigo-produto">
+                    {{ produto.codigoProduto }}
+                </div>
+                <div class="produto">
+                    {{ produto.nomeProduto }}
+                </div>
+                <div class="quantidade">
+                    <app-input-contador
+                        height="25px"
+                        width="100%"
+                        [valor]="produto.quantidade"
+                        (valorChange)="selecionarQuantidade(produto.codigoProduto, $event)">
+                    </app-input-contador>
+                </div>
+                <div class="unidade-medida">
+                    {{ produto.unidadeMedida }}
+                </div>
+                <div class="centro-custo">
+                    {{ produto.centroCusto }}
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div>
+                <app-botao
+                    width="120px"
+                    height="30px"
+                    texto="Observações"
+                    (click)="onObservacao()">
+                </app-botao>
+            </div>
+            <div class="menu-botoes">
+                <app-botao
+                    width="180px"
+                    height="30px"
+                    texto="Cancelar"
+                    (click)="onCancelar()"
+                    [background]="backgroundBotaoCancelar"
+                    [backgroundHover]="backgroundBotaoCancelarHover">
+                </app-botao>
+                <app-botao
+                    height="30px"
+                    width="180px"
+                    texto="Devolver"
+                    (click)="onDevolver()"
+                    [background]="backgroundBotaoDevolver"
+                    [backgroundHover]="backgroundBotaoDevolverHover">
+                </app-botao>
+            </div>
+        </div>
+    </div>
+</div>

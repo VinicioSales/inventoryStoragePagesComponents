@@ -1,3 +1,16 @@
+.modal-ajuda {
+    position: absolute;
+    height: 90px;
+    width: 300px;
+    border: 0.5px solid var(--cor-cinza);
+    border-radius: 1px;
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    background: rgb(202, 202, 202);
+    color: var(--cor-secundaria);
+}
+
 .componente-botao-ajuda {
     width: 19px;
     height: 23px;

@@ -48,6 +48,9 @@ body{
     --botao-vermelho: #DB4242;
     --botao-vermelho-hover: #c73131;
     --cor-cinza: #878787;
+    --botao-vermelho: #DB4242;
+    --botao-vermelho-hover: #c73131;
+    --cor-cinza: #878787;
 }
 
 button{
@@ -57,6 +60,7 @@ button{
 :root{
     --background: #F9F9F9;
     --background-2: #F0F0F0;
+    --background-principal: #F9F9F9;
     --drop_shadow: rgba(25, 40, 71, 0.25);
     --font-regular: 'Blinker-Regular';
     --font-semiBold: 'Blinker-SemiBold';
@@ -65,6 +69,7 @@ button{
     --font-thin: 'Blinker-Thin';
     --cor-primaria: #FFF;
     --cor-secundaria: #141414;
+    --hover-dropdown: rgba(0, 0, 0, 0.05);
     --cor-terceira: #FFF;
     --box-shadow: 0 0 0 2px rgba(25, 25, 25, 0.80);
 }
@@ -72,12 +77,40 @@ button{
 :root .dark-theme{
     --background: #262626;
     --background-2: #141414;
+    --background-principal: #141414;
     --cor-terceira: #141414;
     --drop_shadow:#000000;
     --cor-primaria: #262626;
+    --hover-dropdown: rgba(255, 255, 255, 0.05);
     --cor-secundaria: #FFF;
     --box-shadow: 0 0 0 2px #FFF;
     
+}
+
+html, body { height: 100%; font-size: 14px;}
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 2px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 1px;
+}
+
+html, body { height: 100%; font-size: 14px;}
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 2px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 1px;
 }
 
 

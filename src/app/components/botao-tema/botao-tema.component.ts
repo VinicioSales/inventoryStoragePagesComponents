@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TemaService } from '../../services/tema.service';
 import { ImagemService } from 'src/app/services/imagem.service';
 
@@ -7,7 +7,7 @@ import { ImagemService } from 'src/app/services/imagem.service';
   templateUrl: './botao-tema.component.html',
   styleUrls: ['./botao-tema.component.css']
 })
-export class BotaoTemaComponent {
+export class BotaoTemaComponent implements OnInit{
   imgSrc?: string;
   private imgTemaClaro: string = 'assets/img/button-to-dark-mode.png';
   private imgTemaEscuro: string = 'assets/img/button-to-light-mode.png';
@@ -19,6 +19,21 @@ export class BotaoTemaComponent {
     this.temaService.temaEscuroLigado$.subscribe(() => {
       this.atualizarImg();
     });
+  }
+
+  //NOTE - ngOnInite
+  ngOnInit(): void {
+    this.aplicarClasseTema();
+  }
+
+  //NOTE - aplicarClasseTema
+  aplicarClasseTema() {
+    if (this.temaService.temaEscuroLigado) {
+      document.body.classList.add('dark-theme');
+    
+    } else {
+      document.body.classList.remove('dark-theme');
+    }
   }
 
   //NOTE - atualizarImg

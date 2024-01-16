@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { urlBackend, rotaRegistrarUsuarios } from 'src/app/services/static'
+import { urlBackend, rotaLogin, rotaEsqueciSenha, rotaRedefinirSenha, rotaRegistrarUsuarios } from 'src/app/static'
 
 
 @Injectable({
@@ -38,7 +38,11 @@ export class AuthService {
 
   //NOTE - login
   login(email: string, senha: string): Observable<any> {
-    return this.http.post(`${urlBackend}/login`, { email, senha });
+    const data = {
+      username: email,
+      password: senha
+    }
+    return this.http.post(`${urlBackend}${rotaLogin}`, data);
   }
 
   //NOTE - isLoggedIn
@@ -59,12 +63,12 @@ export class AuthService {
 
   //NOTE recuperarSenha
   recuperarSenha(email: string): Observable<any> {
-    return this.http.post(`${urlBackend}/recuperar-senha`, { email });
+    return this.http.post(`${urlBackend}${rotaEsqueciSenha}`, { email });
   }
 
   //NOTE - redefinirSenha
   redefinirSenha(novaSenha: string, codigoVerificacao: string): Observable<any> {
-    return this.http.post(`${urlBackend}/redefinir-senha`, { novaSenha, codigoVerificacao });
+    return this.http.post(`${urlBackend}${rotaRedefinirSenha}`, { novaSenha, codigoVerificacao });
   }
 
 

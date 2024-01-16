@@ -2,6 +2,7 @@ import { Router } from '@angular/router';
 import { Component, Input } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AuthService } from '../../services/auth/auth.service';
+import { ModalService } from 'src/app/services/modal/modal.service'
 
 @Component({
   selector: 'app-login',
@@ -11,22 +12,15 @@ import { AuthService } from '../../services/auth/auth.service';
 export class LoginComponent {
   constructor(
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    public modalService: ModalService,
   ) {}
-
-  static readonly MENSAGEM_EMAIL_INVALIDO = 'Email inválido!';
-  static readonly MENSAGEM_SENHA_INVALIDA = 'Senha inválida!';
-  static readonly MENSAGEM_CAMPOS_VAZIOS = 'Preencha todos os campos!';
-  static readonly MENSAGEM_DADOS_INVALIDOS = 'Email ou senha inválidos!'
-  static readonly MENSAGEM_USUARIO_NAO_ENCONTRADO = 'Usuário não encontrado!'
-  static readonly MENSAGEM_FORMATO_DADOS_INCORRETO = 'Revise a formatação dos dados!'
-  static readonly MENSAGEM_INTERNAL_ERROR = 'Ocorreu um erro inesperado. Tente novamento em alguns instantes. Caso persista, entre em contato com o suporte!'
-
 
   @Input() valorEmail?: string;
   @Input() valorSenha?: string;
   @Input() mensagemModal: string = '';
   
+  carregando: boolean = false;
   mostrarModal: boolean = false;
 
   //NOTE - navegarRotaEsqueciSenha
@@ -58,28 +52,17 @@ export class LoginComponent {
   //NOTE - validarCredenciais
   validarCredenciais(): boolean {
     if (!this.valorEmail || !this.valorSenha) {
-      this.exibirMensagemModal(LoginComponent.MENSAGEM_CAMPOS_VAZIOS);
+      this.modalService.exibirMensagemModal(ModalService.MENSAGEM_CAMPOS_VAZIOS);
       return false;
     }
     
     if (!this.validarEmail(this.valorEmail)) {
-      this.exibirMensagemModal(LoginComponent.MENSAGEM_EMAIL_INVALIDO);
-      return false;
-    }
-    
-    if (!this.validarSenha(this.valorSenha)) {
-      this.exibirMensagemModal(LoginComponent.MENSAGEM_SENHA_INVALIDA);
+      this.modalService.exibirMensagemModal(ModalService.MENSAGEM_EMAIL_INVALIDO);
       return false;
     }
 
     this.fecharMensagemModal();
     return true;
-  }
-
-  //NOTE - exibirMensagemModal
-  exibirMensagemModal(mensagem: string): void {
-    this.mostrarModal = true;
-    this.mensagemModal = mensagem;
   }
 
   //NOTE - fecharMensagemModal
@@ -103,36 +86,25 @@ export class LoginComponent {
 
   //NOTE - logar
   logar() {
+    this.carregando = true;
+
     this.authService.login(this.valorEmail!, this.valorSenha!).subscribe({
       next: (response) => {
+        console.log(response);
         const  token = response.token;
 
         if (token) {
           localStorage.setItem('token_de_autenticacao', token);
           this.router.navigate(['/home']);
         }
+        
+        this.carregando = false;
       },
+      
       error: (error: HttpErrorResponse) => {
-        switch (error.status) {
-          case 400:
-            this.exibirMensagemModal(LoginComponent.MENSAGEM_FORMATO_DADOS_INCORRETO);
-            break
-
-          case 403:
-            this.exibirMensagemModal(LoginComponent.MENSAGEM_DADOS_INVALIDOS);
-            break
-
-          case 404:
-            this.exibirMensagemModal(LoginComponent.MENSAGEM_USUARIO_NAO_ENCONTRADO);
-            break
-          
-          case 500:
-            this.exibirMensagemModal(LoginComponent.MENSAGEM_INTERNAL_ERROR);
-            break
-
-          default:
-            this.exibirMensagemModal(`Erro desconhecido: ${error.message}`);
-        }
+        this.modalService.exibirMensagemModal(error.error.message);
+        console.log(error.error.message);
+        this.carregando = false;
       }
     });
   }

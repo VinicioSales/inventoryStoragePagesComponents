@@ -9,12 +9,13 @@ export class ModalGeralComponent {
   height: string = '23px'
   corBotaoHover: string = 'var(--botao-verde-hover)'
 
-  @Input() mensagem: string = '';
+  @Input() mensagem: any = '';
   @Input() textoBotao: string = 'Confirmar'
   @Input() corBotao: string = 'var(--botao-verde)'
 
 
   @Output() fecharModal = new EventEmitter<void>();
+
 
   //NOTE - onClick
   onClick() {

@@ -1,7 +1,8 @@
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth/auth.service'
 import { Component, Input } from '@angular/core';
+import { AuthService } from 'src/app/services/auth/auth.service'
 
+import { urlNotion } from 'src/app/static'
 
 @Component({
   selector: 'app-home',
@@ -30,7 +31,7 @@ export class HomeComponent {
 
   //NOTE - navegarRotaSolicitarProdutos
   navegarRotaSolicitarProdutos() {
-    this.router.navigate(['/solicitar-produtos']);
+    this.router.navigate(['/requisitar-produtos']);
   }
   
   //NOTE - navegarRotaDevolverProdutos
@@ -41,6 +42,6 @@ export class HomeComponent {
   //FIXME - ADICIONAR LINK DO NOTION
   //NOTE - onNotion
   onNotion() {
-    window.open('https://www.google.com/', '_blanc');
+    window.open(urlNotion, '_blanc');
   }
 }

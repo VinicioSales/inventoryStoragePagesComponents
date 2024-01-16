@@ -24,5 +24,6 @@ export class LogoBfComponent {
 
   atualizarImg() {
     this.imgSrc = this.imagemService.atualizarImg(this.imgTemaClaro, this.imgTemaEscuro);
+    console.log(this.imgSrc)
   }
 }

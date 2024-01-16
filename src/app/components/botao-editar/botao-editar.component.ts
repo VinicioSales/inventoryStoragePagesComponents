@@ -1,6 +1,6 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { TemaService } from '../../services/tema.service';
-import { ImagemService } from '../../services/imagem.service'; // Importe o ImagemService
+import { ImagemService } from '../../services/imagem.service';
 
 @Component({
   selector: 'app-botao-editar',

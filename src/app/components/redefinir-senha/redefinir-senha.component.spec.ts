@@ -1,7 +1,6 @@
 import { of, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { By } from '@angular/platform-browser';
 import { BotaoComponent } from '../botao/botao.component';
 import { InputComponent } from '../input/input.component';
 import { LogoBfComponent } from '../logo-bf/logo-bf.component';
@@ -47,16 +46,6 @@ describe('RedefinirSenhaComponent', () => {
     router = TestBed.inject(Router) as jasmine.SpyObj<Router>;
   });
 
-  // SECTION - handleFecharModal
-  describe('handleFecharModal', () => {
-    it('deve fechar o modal e limpar a mensagem', () => {
-      component.mostrarModal = true;
-      component.mensagemModal = 'Teste';
-      component.handleFecharModal();
-      expect(component.mostrarModal).toBeFalse();
-      expect(component.mensagemModal).toBe('');
-    });
-  });
 
   // SECTION - onValorInputChange
   describe('onValorInputChange', () => {
@@ -79,15 +68,8 @@ describe('RedefinirSenhaComponent', () => {
     });
   });
 
-  // SECTION - exibirMensagemModal
-  describe('exibirMensagemModal', () => {
-    it('deve exibir uma mensagem no modal', () => {
-      const mensagemTeste = 'Mensagem de teste';
-      component.exibirMensagemModal(mensagemTeste);
-      expect(component.mostrarModal).toBeTrue();
-      expect(component.mensagemModal).toBe(mensagemTeste);
-    });
-  });
+
+
 
   // SECTION - validarSenhas
   describe('validarSenhas', () => {
@@ -96,8 +78,6 @@ describe('RedefinirSenhaComponent', () => {
       component.valorNovaSenha = '123';
       component.valorConfirmarNovaSenha = '123';
       expect(component.validarSenhas()).toBeFalse();
-      expect(component.mostrarModal).toBeTrue();
-      expect(component.mensagemModal).toBe(RedefinirSenhaComponent.MENSAGEM_SENHA_CURTA);
     });
 
     // NOTE - deve retornar false se as senhas não conferem
@@ -105,8 +85,6 @@ describe('RedefinirSenhaComponent', () => {
       component.valorNovaSenha = '12345678';
       component.valorConfirmarNovaSenha = '12345679';
       expect(component.validarSenhas()).toBeFalse();
-      expect(component.mostrarModal).toBeTrue();
-      expect(component.mensagemModal).toBe(RedefinirSenhaComponent.MENSAGEM_SENHAS_DIFERENTES);
     });
 
     // NOTE - deve retornar true se as senhas conferem e têm o comprimento correto
@@ -114,9 +92,11 @@ describe('RedefinirSenhaComponent', () => {
       component.valorNovaSenha = '12345678';
       component.valorConfirmarNovaSenha = '12345678';
       expect(component.validarSenhas()).toBeTrue();
-      expect(component.mostrarModal).toBeFalse();
     });
   });
+  //!SECTION
+
+
 
   // SECTION - validarCampos
   describe('validarCampos', () => {
@@ -126,8 +106,6 @@ describe('RedefinirSenhaComponent', () => {
       component.valorConfirmarNovaSenha = '';
       component.valorCodigoVerificacao = '';
       expect(component.validarCampos()).toBeFalse();
-      expect(component.mostrarModal).toBeTrue();
-      expect(component.mensagemModal).toBe(RedefinirSenhaComponent.MENSAGEM_CAMPOS_VAZIOS);
     });
 
     // NOTE - deve retornar false e mostrar modal se o campo nova senha estiver vazio
@@ -136,8 +114,6 @@ describe('RedefinirSenhaComponent', () => {
       component.valorConfirmarNovaSenha = '12345678';
       component.valorCodigoVerificacao = '123456';
       expect(component.validarCampos()).toBeFalse();
-      expect(component.mostrarModal).toBeTrue();
-      expect(component.mensagemModal).toBe(RedefinirSenhaComponent.MENSAGEM_NOVA_SENHA_VAZIO);
     });
 
     // NOTE - deve retornar false e mostrar modal se o campo confirmar nova senha estiver vazio
@@ -146,8 +122,6 @@ describe('RedefinirSenhaComponent', () => {
       component.valorConfirmarNovaSenha = '';
       component.valorCodigoVerificacao = '123456';
       expect(component.validarCampos()).toBeFalse();
-      expect(component.mostrarModal).toBeTrue();
-      expect(component.mensagemModal).toBe(RedefinirSenhaComponent.MENSAGEM_CONFIRMAR_NOVA_SENHA_VAZIO);
     });
 
     // NOTE - deve retornar false e mostrar modal se o campo código de verificação estiver vazio
@@ -156,8 +130,6 @@ describe('RedefinirSenhaComponent', () => {
       component.valorConfirmarNovaSenha = '12345678';
       component.valorCodigoVerificacao = '';
       expect(component.validarCampos()).toBeFalse();
-      expect(component.mostrarModal).toBeTrue();
-      expect(component.mensagemModal).toBe(RedefinirSenhaComponent.MENSAGEM_CODIGO_VERIFICACAO_VAZIO);
     });
 
     // NOTE - deve retornar true se todos os campos estiverem preenchidos
@@ -168,6 +140,10 @@ describe('RedefinirSenhaComponent', () => {
       expect(component.validarCampos()).toBeTrue();
     });
   });
+  //!SECTION
+
+
+
 
   // SECTION - onRedefinirSenha
   describe('onRedefinirSenha', () => {
@@ -194,8 +170,6 @@ describe('RedefinirSenhaComponent', () => {
 
       component.onRedefinirSenha();
 
-      expect(component.mostrarModal).toBeTrue();
-      expect(component.mensagemModal).toBe(RedefinirSenhaComponent.MENSAGEM_CODIGO_VERIFICACAO_INVALIDO);
     });
 
     // NOTE - não deve chamar authService.redefinirSenha se as validações falharem
@@ -216,23 +190,7 @@ describe('RedefinirSenhaComponent', () => {
       authService.redefinirSenha.and.returnValue(throwError(() => errorResponse));
 
       component.onRedefinirSenha();
-
-      expect(component.mostrarModal).toBeTrue();
-      expect(component.mensagemModal).toBe(RedefinirSenhaComponent.MENSAGEM_ERRO_INTERNO);
-    });
-
-    // NOTE - deve exibir mensagem de erro genérica para outros códigos de status
-    it('deve exibir mensagem de erro genérica para outros códigos de status', () => {
-      component.valorNovaSenha = '12345678';
-      component.valorConfirmarNovaSenha = '12345678';
-      component.valorCodigoVerificacao = '123456';
-      const errorResponse = { status: 404, statusText: 'Not Found' };
-      authService.redefinirSenha.and.returnValue(throwError(() => errorResponse));
-
-      component.onRedefinirSenha();
-
-      expect(component.mostrarModal).toBeTrue();
-      expect(component.mensagemModal).toBe('Erro desconhecido: [object Object]');
     });
   });
+  //!SECTION
 });

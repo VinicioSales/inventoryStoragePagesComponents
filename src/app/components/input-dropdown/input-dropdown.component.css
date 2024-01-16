@@ -31,7 +31,7 @@
     flex: 1 0 0;
     align-self: stretch;
     border: none;
-    background: var(--cor-primaria);
+    background: var(--cor-terceira);
     color: var(--cor-secundaria);
     border-top-left-radius: 10px;
     font-family: var(--font-regular);
@@ -45,7 +45,7 @@
     border: none;
     display: flex;
     width: 30px;
-    background: var(--cor-primaria);
+    background: var(--cor-terceira);
     border-top-right-radius: 10px;
 }
 
@@ -67,7 +67,7 @@
     max-height: 150px;
     overflow-y: auto;
     color: var(--cor-secundaria);
-    background-color: var(--cor-primaria);
+    background: var(--cor-terceira);
     border-radius: 0 0 8px 8px;
     box-shadow: 
         -4px 0 4px -2px rgba(25, 40, 71, 0.08),   /* Esquerda */
@@ -91,6 +91,6 @@
 }
 
 .dropdown-item:hover {
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: var(--hover-dropdown);
 }
 

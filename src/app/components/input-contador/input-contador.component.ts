@@ -1,7 +1,7 @@
 import { Subscription } from 'rxjs';
 import { TemaService } from '../../services/tema.service';
 import { ImagemService } from 'src/app/services/imagem.service';
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
 
 
 @Component({
@@ -13,13 +13,16 @@ export class InputContadorComponent implements OnInit, OnDestroy {
   private subscription = new Subscription();
   
   // Inputs
-  @Input() width: string = '293px';
-  @Input() height: string = '50px';
+  @Input() width: string = '100%';
+  @Input() height: string = '100%';
+  @Input() widthInput: string = '100%';
   @Input() placeholder: string = 'input';
+
+  @Output() valorChange = new EventEmitter<number>();
 
   // Variáveis
   imgSrc?: string;
-  valor: number = 0;
+  _valor: number = 0;
   imgTemaEscuro: string = 'assets/img/dropdown-dark-mode.png';
   imgTemaClaro: string = 'assets/img/dropdown-light-mode.png';
 
@@ -36,6 +39,17 @@ export class InputContadorComponent implements OnInit, OnDestroy {
     );
   }
 
+  //NOTE - set valor
+  @Input()
+  set valor(value: number) {
+    this._valor = value;
+  }
+
+  //NOTE - get valor
+  get valor(): number {
+    return this._valor;
+  }
+
   //NOTE - ngOnDestroy
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
@@ -44,7 +58,6 @@ export class InputContadorComponent implements OnInit, OnDestroy {
   //NOTE - atualizarImg
   atualizarImg() {
     this.imgSrc = this.imagemService.atualizarImg(this.imgTemaClaro, this.imgTemaEscuro);
-    console.log(this.imgSrc);
   }
 
   //NOTE - onInputFocus
@@ -55,6 +68,12 @@ export class InputContadorComponent implements OnInit, OnDestroy {
   //NOTE - onInputBlur
   onInputBlur(div: HTMLElement) {
     div.classList.remove('focused');
+  }
+
+  //NOTE - atualizarValor
+  atualizarValor(novoValor: number) {
+    this.valor = novoValor;
+    this.valorChange.emit(this.valor);
   }
 
   //NOTE - onInput
@@ -84,6 +103,8 @@ export class InputContadorComponent implements OnInit, OnDestroy {
     } else {
         this.valor = 0;
     }
+
+    this.atualizarValor(this.valor);
   }
 
   //NOTE - onDiminuir
@@ -99,6 +120,8 @@ export class InputContadorComponent implements OnInit, OnDestroy {
     if (this.valor < 0) {
       this.valor = 0;
     }
+
+    this.atualizarValor(this.valor);
   }
   
   //NOTE - onAumentar
@@ -110,6 +133,8 @@ export class InputContadorComponent implements OnInit, OnDestroy {
     } else {
       this.valor = valorNumerico + 1;
     }
+
+    this.atualizarValor(this.valor);
   }
   
 }

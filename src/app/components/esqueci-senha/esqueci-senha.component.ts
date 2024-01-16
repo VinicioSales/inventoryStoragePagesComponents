@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AuthService } from '../../services/auth/auth.service';
+import { ModalService } from 'src/app/services/modal/modal.service'
 
 
 @Component({
@@ -11,12 +12,12 @@ import { AuthService } from '../../services/auth/auth.service';
 export class EsqueciSenhaComponent {
   constructor(
     private authService: AuthService,
+    public modalService: ModalService,
   ) {}
 
   
-  @Input() mensagemModal: string = '';
-
   valorEmail: string = '';
+  carregando: boolean = false;
   mostrarModal: boolean = false;
 
 
@@ -30,24 +31,21 @@ export class EsqueciSenhaComponent {
     this.valorEmail = novoValor;
   }
 
-  //NOTE - exibirMensagemModal
-  exibirMensagemModal(mensagem: string): void {
-    this.mostrarModal = true;
-    this.mensagemModal = mensagem;
-  }
 
   //NOTE - onRecuperarSenha
   onRecuperarSenha() {
+    this.carregando = true;
     this.authService.recuperarSenha(this.valorEmail!).subscribe({
       next: (response) => {
-        this.exibirMensagemModal(`Token de recuperação enviado para o email ${this.valorEmail}`)
+      this.modalService.exibirMensagemModal(`Token de recuperação enviado para o email ${this.valorEmail}`);
+
+        this.carregando = false;
       },
       error: (error: HttpErrorResponse) => {
-        if (error.status === 404) {
-          this.exibirMensagemModal('Email não encontrado');
-        } else {
-          this.exibirMensagemModal(`Erro desconhecido: ${error.message}`);
-        }
+        console.error(error.error.message);
+        this.modalService.exibirMensagemModal(error.error.message);
+
+        this.carregando = false;
       }
     });
   }

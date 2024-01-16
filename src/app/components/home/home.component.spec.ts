@@ -1,4 +1,5 @@
 import { Router } from '@angular/router';
+import { urlNotion } from 'src/app/static';
 import { TestBed } from '@angular/core/testing';
 import { HomeComponent } from './home.component';
 import { AuthService } from 'src/app/services/auth/auth.service';
@@ -74,10 +75,10 @@ describe('HomeComponent', () => {
   // SECTION - navegarRotaSolicitarProdutos
   describe('navegarRotaSolicitarProdutos', () => {
     
-    // NOTE - deve navegar para a rota de solicitar produtos
-    it('deve navegar para a rota de solicitar produtos', () => {
+    // NOTE - deve navegar para a rota de requisitar produtos
+    it('deve navegar para a rota de requisitar produtos', () => {
       component.navegarRotaSolicitarProdutos();
-      expect(router.navigate).toHaveBeenCalledWith(['/solicitar-produtos']);
+      expect(router.navigate).toHaveBeenCalledWith(['/requisitar-produtos']);
     });
 
   });
@@ -107,7 +108,7 @@ describe('HomeComponent', () => {
     it('deve abrir a URL do Notion', () => {
       spyOn(window, 'open');
       component.onNotion();
-      expect(window.open).toHaveBeenCalledWith('https://www.google.com/', '_blanc');
+      expect(window.open).toHaveBeenCalledWith(urlNotion, '_blanc');
     });
 
   });
