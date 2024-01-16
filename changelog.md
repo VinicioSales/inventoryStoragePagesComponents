@@ -2,12 +2,14 @@
 
 Todas as mudanças do projeto serão documentados neste arquivo.
 
-## [0.0] - 16-12-2023 
+## [0.0] - 16-01-2024 
 ### Added
 - Finalizado tela de devolução de produtos (Victor)
 - Feito Merge com branch dev (Victor)
 - Corrigido conflitos (Victor)
 - Adicionado modal de devolucao de produtos no componente devolucao_de_produtos (Victor)
+- Finalizado layout tela de devolução parcial (Vinicio)
+- Iniciado script tela devolução parcial (Vinicio) 
 
 
 ## [0.0] - 14-12-2023 
