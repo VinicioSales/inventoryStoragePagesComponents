@@ -39,41 +39,41 @@ export class DevolucaoProdutoComponent implements OnInit{
   ngOnInit(){
     this.produtos = [
       {
-        codSolicitacao: '123456',
-        codProduto: '00260',
-        produto: 'Resma de papel a4 500 folhas',
+        codigoSolicitacao: '123456',
+        codigoProduto: '00260',
+        nomeProduto: 'Resma de papel a4 500 folhas',
         quantidade: '16',
-        uniMedida: 'UND',
+        unidadeMedida: 'UND',
         centroCusto: '3232',
         usuario: 'Mateus',
         data: '11/12/2023'
       },     
       {
-        codSolicitacao: '654321',
-        codProduto: '00370',
-        produto: 'Caixa de grampeador 26/6',
+        codigoSolicitacao: '654321',
+        codigoProduto: '00370',
+        nomeProduto: 'Caixa de grampeador 26/6',
         quantidade: '50',
-        uniMedida: 'CX',
+        unidadeMedida: 'CX',
         centroCusto: '3030',
         usuario: 'João',
         data: '11/12/2023'
       },     
       {
-        codSolicitacao: '753951',
-        codProduto: '00380',
-        produto: 'Caixa de caneta com 50 unidades',
+        codigoSolicitacao: '753951',
+        codigoProduto: '00380',
+        nomeProduto: 'Caixa de caneta com 50 unidades',
         quantidade: '2',
-        uniMedida: 'CX',
+        unidadeMedida: 'CX',
         centroCusto: '2595',
         usuario: 'Maria',
         data: '11/12/2023'
       },     
       {
-        codSolicitacao: '753258',
-        codProduto: '00910',
-        produto: 'Canetas hidrocor kit 12',
+        codigoSolicitacao: '753258',
+        codigoProduto: '00910',
+        nomeProduto: 'Canetas hidrocor kit 12',
         quantidade: '10',
-        uniMedida: 'CX',
+        unidadeMedida: 'CX',
         centroCusto: '025874',
         usuario: 'Lucas',
         data: '11/12/2023'
@@ -106,8 +106,8 @@ export class DevolucaoProdutoComponent implements OnInit{
     const filtroDataNorm = this.normalizarTexto(this.filtroData);
     const filtroUsuarioNorm = this.normalizarTexto(this.filtroUsuario);
   
-    const produtoNorm = this.normalizarTexto(produto.produto);
-    const codProdutoNorm = this.normalizarTexto(produto.codProduto);
+    const produtoNorm = this.normalizarTexto(produto.nomeProduto);
+    const codProdutoNorm = this.normalizarTexto(produto.codigoProduto);
     const usuarioNorm = this.normalizarTexto(produto.usuario);
     const dataNorm = this.normalizarTexto(produto.data);
   
@@ -124,10 +124,10 @@ export class DevolucaoProdutoComponent implements OnInit{
   onCheckboxChange(produto: any, isChecked: boolean) {
     if (isChecked) {
       // Adiciona o produto ao objeto selectedProdutos
-      this.selectedProdutos[produto.codProduto] = produto;
+      this.selectedProdutos[produto.codigoProduto] = produto;
     } else {
       // Remove o produto do objeto selectedProdutos
-      delete this.selectedProdutos[produto.codProduto];
+      delete this.selectedProdutos[produto.codigoProduto];
     }
   }
   
@@ -135,11 +135,11 @@ export class DevolucaoProdutoComponent implements OnInit{
     this.mostrarModal = true;
     const  produtosSelecionados = Object.values(this.selectedProdutos) 
     .map(produto => ({
-      "codSolicitacao": produto.codSolicitacao,
-      "codProduto": produto.codProduto,
-      "produto": produto.produto,
+      "codigoSolicitacao": produto.codigoSolicitacao,
+      "codigoProduto": produto.codigoProduto,
+      "nomeProduto": produto.nomeProduto,
       "quantidade": produto.quantidade,
-      "uniMedida": produto.uniMedida,
+      "unidadeMedida": produto.unidadeMedida,
       "centroCusto": produto.centroCusto,
       "usuario": produto.usuario,
       "data": produto.data

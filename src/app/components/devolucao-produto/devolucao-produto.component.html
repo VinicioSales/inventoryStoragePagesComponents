@@ -1,4 +1,5 @@
-<app-modal-geral *ngIf="mostrarModal" [mensagem]="dadosProdutos"></app-modal-geral>
+<!-- <app-modal-geral  [mensagem]="dadosProdutos"></app-modal-geral> -->
+<app-modal-devolucao *ngIf="mostrarModal" [listaProdutosParaDevolucao]="dadosProdutos"></app-modal-devolucao>
 <div class="page">  
     <div class="header">
         <app-logo-bf></app-logo-bf>
@@ -33,9 +34,9 @@
             <ng-container *ngFor="let produto of produtos">
                 <div class="linha-tabela" *ngIf="aplicarFiltros(produto)">
                     <mat-checkbox  class="checkbox" (change)="onCheckboxChange(produto, $event.checked)"></mat-checkbox>
-                    <div class="codSolicitacao-linha-tabela">{{produto.codSolicitacao}}</div>
-                    <div class="codProduto-linha-tabela">{{produto.codProduto}}</div>
-                    <div class="produto-linha-tabela">{{produto.produto}}</div>
+                    <div class="codigoSolicitacao-linha-tabela">{{produto.codigoSolicitacao}}</div>
+                    <div class="codProduto-linha-tabela">{{produto.codigoProduto}}</div>
+                    <div class="produto-linha-tabela">{{produto.nomeProduto}}</div>
                     <div class="quantidade-linha-tabela">{{produto.quantidade}}</div>
                     <div class="uniMedida-linha-tabela">{{produto.uniMedida}}</div>
                     <div class="centroCusto-linha-tabela">{{produto.centroCusto}}</div>
