@@ -1,4 +1,5 @@
 <app-modal-devolucao *ngIf="mostrarModal" [listaProdutosParaDevolucao]="dadosProdutos" (fecharModalDevolucao)="onCancelarModalDevolucao()"></app-modal-devolucao>
+<app-modal-geral *ngIf="mostrarModalAviso" [mensagem]="mensagemModal" (fecharModal)="handleFecharModal()"></app-modal-geral>
 <div class="page">  
     <div class="header">
         <app-logo-bf></app-logo-bf>

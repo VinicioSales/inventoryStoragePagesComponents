@@ -35,6 +35,8 @@ export class DevolucaoProdutoComponent implements OnInit{
   dadosProdutos: any = '' 
   produtos: any = ''
   mostrarModalDevolucao: boolean = false;
+  mostrarModalAviso: boolean = false;
+  mensagemModal: string = 'Por favor, selecione ao menos um produto para devolução.'
 
   ngOnInit(){
     this.produtos = [
@@ -132,20 +134,26 @@ export class DevolucaoProdutoComponent implements OnInit{
   }
   
   modalDevolucao(event: Event){
-    this.mostrarModal = true;
-    const  produtosSelecionados = Object.values(this.selectedProdutos) 
-    .map(produto => ({
-      "codigoSolicitacao": produto.codigoSolicitacao,
-      "codigoProduto": produto.codigoProduto,
-      "nomeProduto": produto.nomeProduto,
-      "quantidade": produto.quantidade,
-      "unidadeMedida": produto.unidadeMedida,
-      "centroCusto": produto.centroCusto,
-      "usuario": produto.usuario,
-      "data": produto.data
-    }));
-        
-    this.dadosProdutos = produtosSelecionados;    
+    if(Object.keys(this.selectedProdutos).length > 0){
+        this.mostrarModal = true;
+        const  produtosSelecionados = Object.values(this.selectedProdutos) 
+        .map(produto => ({
+          "codigoSolicitacao": produto.codigoSolicitacao,
+          "codigoProduto": produto.codigoProduto,
+          "nomeProduto": produto.nomeProduto,
+          "quantidade": produto.quantidade,
+          "unidadeMedida": produto.unidadeMedida,
+          "centroCusto": produto.centroCusto,
+          "usuario": produto.usuario,
+          "data": produto.data
+        }));
+          
+      this.dadosProdutos = produtosSelecionados; 
+
+    }else{
+      this.mostrarModalAviso = true;
+    }
+       
 
   }
     
@@ -155,6 +163,10 @@ export class DevolucaoProdutoComponent implements OnInit{
 
   onCancelarModalDevolucao(){
     this.mostrarModal = false
+  }
+
+  handleFecharModal(){
+    this.mostrarModalAviso = false;
   }
 
 

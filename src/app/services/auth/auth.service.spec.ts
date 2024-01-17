@@ -4,7 +4,7 @@ import { TestBed } from '@angular/core/testing';
 import { rotaRegistrarUsuarios, urlBackend, rotaEsqueciSenha, rotaLogin } from 'src/app/static';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
-fdescribe('AuthService', () => {
+describe('AuthService', () => {
   let router: Router;
   let service: AuthService;
   let httpMock: HttpTestingController;

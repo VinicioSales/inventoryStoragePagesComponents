@@ -10,6 +10,8 @@ import { DevolucaoProdutoComponent } from './devolucao-produto.component';
 import { BotaoTemaComponent } from '../botao-tema/botao-tema.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { FormsModule } from '@angular/forms';
+import { ModalDevolucaoComponent } from '../modal-devolucao/modal-devolucao.component';
+import { HomeComponent } from '../home/home.component';
 
 fdescribe('DevolucaoProdutoComponent', () => {
   let component: DevolucaoProdutoComponent;
@@ -30,6 +32,8 @@ fdescribe('DevolucaoProdutoComponent', () => {
         BotaoHomeComponent,   
         LogoBfComponent,
         BotaoTemaComponent,
+        ModalDevolucaoComponent,
+        HomeComponent,
       ],
       providers: [
         { provide: Router, useValue: routerSpy },
@@ -100,14 +104,14 @@ fdescribe('DevolucaoProdutoComponent', () => {
   //SECTION - aplicarFiltros
   describe('aplicarFiltros', () => {
     const produtoMock = {
-      produto: 'Produto Teste',
-      codProduto: '123',
+      nomeProduto: 'Produto Teste',
+      codigoProduto: '123',
       usuario: 'Usuario Teste',
       data: '2023-01-01'
     };
 
     it('deve retornar true quando todos os filtros correspondem', () => {
-      component.filtroProduto = 'Produto';
+      component.filtroProduto = 'produto';
       component.filtroData = '2023-01-01';
       component.filtroUsuario = 'Usuario';
 
@@ -123,14 +127,14 @@ fdescribe('DevolucaoProdutoComponent', () => {
     });
 
     it('deve retornar true quando alguns filtros correspondem', () => {
-      component.filtroProduto = 'Produto';
+      component.filtroProduto = 'produto';
       component.filtroData = ''; // Sem filtro de data
       component.filtroUsuario = 'Usuario';
   
       // Mock de produto que corresponde ao filtroProduto e filtroUsuario
       const produtoMock = {
-          produto: 'Produto Teste',
-          codProduto: '123',
+          nomeProduto: 'Produto Teste',
+          codigoProduto: '123',
           usuario: 'Usuario Teste',
           data: '2023-01-01'
       };
@@ -155,7 +159,7 @@ fdescribe('DevolucaoProdutoComponent', () => {
     beforeEach(() => {
         // Mock de um produto
         produtoMock = {
-            codProduto: '123',
+            codigoProduto: '123',
             nome: 'Produto Teste'
         };
 
@@ -167,18 +171,18 @@ fdescribe('DevolucaoProdutoComponent', () => {
     it('deve adicionar um produto ao selectedProdutos quando isChecked é true', () => {
         component.onCheckboxChange(produtoMock, true);
 
-        expect(component.selectedProdutos[produtoMock.codProduto]).toEqual(produtoMock);
+        expect(component.selectedProdutos[produtoMock.codigoProduto]).toEqual(produtoMock);
     });
 
     //NOTE -  Testa a remoção de um produto do selectedProdutos
     it('deve remover um produto do selectedProdutos quando isChecked é false', () => {
         // Primeiro adiciona o produto
-        component.selectedProdutos[produtoMock.codProduto] = produtoMock;
+        component.selectedProdutos[produtoMock.codigoProduto] = produtoMock;
 
         // Depois desmarca o checkbox
         component.onCheckboxChange(produtoMock, false);
 
-        expect(component.selectedProdutos[produtoMock.codProduto]).toBeUndefined();
+        expect(component.selectedProdutos[produtoMock.codigoProduto]).toBeUndefined();
     });
 });
 
@@ -190,21 +194,21 @@ describe('modalDevolucao', () => {
   beforeEach(() => {
       // Mock de produtos
       produtoMock1 = {
-          codSolicitacao: '001',
-          codProduto: 'A1',
-          produto: 'Produto 1',
+          codigoSolicitacao: '001',
+          codigoProduto: 'A1',
+          nomeProduto: 'Produto 1',
           quantidade: 10,
-          uniMedida: 'Unidade',
+          unidadeMedida: 'Unidade',
           centroCusto: 'CC1',
           usuario: 'Usuario 1',
           data: '2023-01-01'
       };
       produtoMock2 = {
-          codSolicitacao: '002',
-          codProduto: 'A2',
-          produto: 'Produto 2',
+          codigoSolicitacao: '002',
+          codigoProduto: 'A2',
+          nomeProduto: 'Produto 2',
           quantidade: 20,
-          uniMedida: 'Unidade',
+          unidadeMedida: 'Unidade',
           centroCusto: 'CC2',
           usuario: 'Usuario 2',
           data: '2023-01-02'
@@ -212,8 +216,8 @@ describe('modalDevolucao', () => {
 
       // Configura o estado inicial do componente
       component.selectedProdutos = {
-          [produtoMock1.codProduto]: produtoMock1,
-          [produtoMock2.codProduto]: produtoMock2
+          [produtoMock1.codigoProduto]: produtoMock1,
+          [produtoMock2.codigoProduto]: produtoMock2
       };
       component.mostrarModal = false;
   });
@@ -227,21 +231,21 @@ describe('modalDevolucao', () => {
       // Verifica se os dados dos produtos selecionados estão corretos
       expect(component.dadosProdutos).toEqual([
           {
-              codSolicitacao: produtoMock1.codSolicitacao,
-              codProduto: produtoMock1.codProduto,
-              produto: produtoMock1.produto,
+              codigoSolicitacao: produtoMock1.codigoSolicitacao,
+              codigoProduto: produtoMock1.codigoProduto,
+              nomeProduto: produtoMock1.nomeProduto,
               quantidade: produtoMock1.quantidade,
-              uniMedida: produtoMock1.uniMedida,
+              unidadeMedida: produtoMock1.unidadeMedida,
               centroCusto: produtoMock1.centroCusto,
               usuario: produtoMock1.usuario,
               data: produtoMock1.data
           },
           {
-              codSolicitacao: produtoMock2.codSolicitacao,
-              codProduto: produtoMock2.codProduto,
-              produto: produtoMock2.produto,
+              codigoSolicitacao: produtoMock2.codigoSolicitacao,
+              codigoProduto: produtoMock2.codigoProduto,
+              nomeProduto: produtoMock2.nomeProduto,
               quantidade: produtoMock2.quantidade,
-              uniMedida: produtoMock2.uniMedida,
+              unidadeMedida: produtoMock2.unidadeMedida,
               centroCusto: produtoMock2.centroCusto,
               usuario: produtoMock2.usuario,
               data: produtoMock2.data
@@ -256,6 +260,25 @@ describe('modalDevolucaoProdutos', () => {
   it('deve definir mostrarModalDevolucao como true', () => {
     component.modalDevolucaoProdutos(new Event('click'));
     expect(component.mostrarModalDevolucao).toBeTrue();
+  });
+});
+
+//SECTION - onCancelarModalDevolucao
+describe('onCancelarModalDevolucao', () => {
+  //NOTE - deve definir mostrarModal como false
+  it('deve definir mostrarModal como false', () => {
+    component.mostrarModal = true; 
+    component.onCancelarModalDevolucao(); 
+    expect(component.mostrarModal).toBeFalse(); 
+  });
+});
+
+//SECTION - navegarParaHome
+describe('navegarParaHome', () => {
+  //NOTE - deve navegar para a rota /home
+  it('deve navegar para a rota /home', () => {
+    component.navegarParaHome();
+    expect(router.navigate).toHaveBeenCalledWith(['/home']);
   });
 });
 
