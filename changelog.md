@@ -6,6 +6,8 @@ Todas as mudanças do projeto serão documentados neste arquivo.
 ### Added
 - Finalizado testes unitários da tela de devolução de produtos (Victor)
 - Criado modal de aviso caso o cliente não selecione um produto para devolução (Victor)
+- Colocado quantidade maximo na aprovacao parcial (Vinicio)
+- Iniciado seleção total dos produtos (Vinicio)
 
 ## [0.0] - 16-01-2024 
 ### Added
