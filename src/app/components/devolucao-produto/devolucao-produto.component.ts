@@ -34,7 +34,7 @@ export class DevolucaoProdutoComponent implements OnInit{
   mostrarModal: boolean = false;
   dadosProdutos: any = '' 
   produtos: any = ''
-  mostrarModalDevolucao: boolean = false
+  mostrarModalDevolucao: boolean = false;
 
   ngOnInit(){
     this.produtos = [
@@ -153,6 +153,9 @@ export class DevolucaoProdutoComponent implements OnInit{
     this.mostrarModalDevolucao = true
   }
 
+  onCancelarModalDevolucao(){
+    this.mostrarModal = false
+  }
 
 
 

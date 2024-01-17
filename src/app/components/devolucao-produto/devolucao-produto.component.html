@@ -1,5 +1,4 @@
-<!-- <app-modal-geral  [mensagem]="dadosProdutos"></app-modal-geral> -->
-<app-modal-devolucao *ngIf="mostrarModal" [listaProdutosParaDevolucao]="dadosProdutos"></app-modal-devolucao>
+<app-modal-devolucao *ngIf="mostrarModal" [listaProdutosParaDevolucao]="dadosProdutos" (fecharModalDevolucao)="onCancelarModalDevolucao()"></app-modal-devolucao>
 <div class="page">  
     <div class="header">
         <app-logo-bf></app-logo-bf>
@@ -38,7 +37,7 @@
                     <div class="codProduto-linha-tabela">{{produto.codigoProduto}}</div>
                     <div class="produto-linha-tabela">{{produto.nomeProduto}}</div>
                     <div class="quantidade-linha-tabela">{{produto.quantidade}}</div>
-                    <div class="uniMedida-linha-tabela">{{produto.uniMedida}}</div>
+                    <div class="uniMedida-linha-tabela">{{produto.unidadeMedida}}</div>
                     <div class="centroCusto-linha-tabela">{{produto.centroCusto}}</div>
                 </div>
             </ng-container>       
