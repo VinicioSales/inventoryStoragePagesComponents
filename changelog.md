@@ -2,6 +2,11 @@
 
 Todas as mudanças do projeto serão documentados neste arquivo.
 
+## [0.0] - 17-01-2024 
+### Added
+- Finalizado testes unitários da tela de devolução de produtos (Victor)
+- Criado modal de aviso caso o cliente não selecione um produto para devolução (Victor)
+
 ## [0.0] - 16-01-2024 
 ### Added
 - Finalizado tela de devolução de produtos (Victor)
