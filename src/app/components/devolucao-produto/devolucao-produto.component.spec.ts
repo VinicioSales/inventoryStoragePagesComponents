@@ -12,6 +12,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { FormsModule } from '@angular/forms';
 import { ModalDevolucaoComponent } from '../modal-devolucao/modal-devolucao.component';
 import { HomeComponent } from '../home/home.component';
+import { ModalGeralComponent } from '../modal-geral/modal-geral.component';
 
 fdescribe('DevolucaoProdutoComponent', () => {
   let component: DevolucaoProdutoComponent;
@@ -34,6 +35,7 @@ fdescribe('DevolucaoProdutoComponent', () => {
         BotaoTemaComponent,
         ModalDevolucaoComponent,
         HomeComponent,
+        ModalGeralComponent
       ],
       providers: [
         { provide: Router, useValue: routerSpy },
@@ -282,6 +284,13 @@ describe('navegarParaHome', () => {
   });
 });
 
+describe('handleFecharModal', () => {
+  it('deve definir mostrarModalAviso como false', () => {
+    component.mostrarModalAviso = true; 
+    component.handleFecharModal();
+    expect(component.mostrarModalAviso).toBeFalse(); 
+  });
+});
 
 
 });
