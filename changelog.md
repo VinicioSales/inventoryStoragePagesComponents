@@ -6,6 +6,9 @@ Todas as mudanças do projeto serão documentados neste arquivo.
 ### Added
 - Finalziado função de selecionar todos os produtos (Vinicio)
 - Iniciado tratamento de erros nos métodos (Vinicio)
+- Alterado modal observaca para o texto de observacoes ser mantido após o fechamento do modal (victor)
+- criado serviço getProdutosDevolucao (victor)
+- Iniciado teste unitários função getProdutosDevolucao (Victor)
 
 ## [0.0] - 17-01-2024 
 ### Added
