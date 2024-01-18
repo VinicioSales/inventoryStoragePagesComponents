@@ -3,6 +3,9 @@ import { TemaService } from '../../services/tema.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { Router } from '@angular/router';
 import { NgModel } from '@angular/forms';
+import { MockProdutosService } from 'src/app/mock-produtos';
+import { RequisicoesService } from 'src/app/services/requisicoes/requisicoes.service';
+import { ProdutoDevolucao } from 'src/models/produto/produto.models';
 
 
 
@@ -16,9 +19,13 @@ import { NgModel } from '@angular/forms';
 
 export class DevolucaoProdutoComponent implements OnInit{
 
+  produtos: ProdutoDevolucao[] = [];
+
   constructor(
     private router: Router,
     private authService: AuthService,
+    private mockProdutosService: MockProdutosService,
+    private requisicoesService: RequisicoesService,
     ) {
     
   }
@@ -33,55 +40,28 @@ export class DevolucaoProdutoComponent implements OnInit{
   filtroUsuario: string = '';
   mostrarModal: boolean = false;
   dadosProdutos: any = '' 
-  produtos: any = ''
+  // produtos: any = ''
   mostrarModalDevolucao: boolean = false;
   mostrarModalAviso: boolean = false;
   mensagemModal: string = 'Por favor, selecione ao menos um produto para devolução.'
 
   ngOnInit(){
-    this.produtos = [
-      {
-        codigoSolicitacao: '123456',
-        codigoProduto: '00260',
-        nomeProduto: 'Resma de papel a4 500 folhas',
-        quantidade: '16',
-        unidadeMedida: 'UND',
-        centroCusto: '3232',
-        usuario: 'Mateus',
-        data: '11/12/2023'
-      },     
-      {
-        codigoSolicitacao: '654321',
-        codigoProduto: '00370',
-        nomeProduto: 'Caixa de grampeador 26/6',
-        quantidade: '50',
-        unidadeMedida: 'CX',
-        centroCusto: '3030',
-        usuario: 'João',
-        data: '11/12/2023'
-      },     
-      {
-        codigoSolicitacao: '753951',
-        codigoProduto: '00380',
-        nomeProduto: 'Caixa de caneta com 50 unidades',
-        quantidade: '2',
-        unidadeMedida: 'CX',
-        centroCusto: '2595',
-        usuario: 'Maria',
-        data: '11/12/2023'
-      },     
-      {
-        codigoSolicitacao: '753258',
-        codigoProduto: '00910',
-        nomeProduto: 'Canetas hidrocor kit 12',
-        quantidade: '10',
-        unidadeMedida: 'CX',
-        centroCusto: '025874',
-        usuario: 'Lucas',
-        data: '11/12/2023'
-      },     
-    ]    
+    // this.produtos = this.mockProdutosService.getProdutos();
+    this.carregarProdutosDevolucao();    
   }  
+
+  carregarProdutosDevolucao() {
+    this.requisicoesService.getProdutosDevolucao().subscribe(
+      (produtos: ProdutoDevolucao[]) => {
+        this.produtos = produtos;
+      },
+      error => {
+        console.error('Erro ao carregar produtos de devolução', error);
+      }
+    );
+  }
+
+
 
   //NOTE - Método para atualizar o valores dos filtros
   atualizarFiltroProduto(event: Event) {

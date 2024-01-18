@@ -38,5 +38,10 @@ export class RequisicoesService {
     return this.http.post<any>(`${urlBackend}${rotaDevolucaoProdutos}`, dados);
   }
 
+  //NOTE - Devolução de produto
+  getProdutosDevolucao(){
+    return this.http.get<ProdutoDevolucao[]>(`${urlBackend}${rotaDevolucaoProdutos}`);
+  }
+
 
 }
