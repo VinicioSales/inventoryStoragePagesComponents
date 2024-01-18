@@ -7,7 +7,7 @@ import { Component, EventEmitter,  Output, Input } from '@angular/core';
   styleUrls: ['./modal-observacao.component.css']
 })
 export class ModalObservacaoComponent {
-  textoObservacao: string = '';
+  @Input() textoObservacao: string = '';
 
   height: string = '23px'
   corBotaoHover: string = 'var(--botao-verde-hover)'
@@ -19,6 +19,8 @@ export class ModalObservacaoComponent {
 
   @Output() fecharModal = new EventEmitter<void>();
   @Output() adicionarObservacao = new EventEmitter<string>();
+
+  
 
 
   //NOTE - onClick

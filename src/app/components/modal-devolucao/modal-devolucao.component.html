@@ -6,6 +6,7 @@
 </app-modal-pdf>
 <app-modal-observacao
     *ngIf="mostrarModalObservacao"
+    [textoObservacao]="observacoes"
     (fecharModal)="handleCancelarObservacoes()"
     (adicionarObservacao)="handleObervacoes($event)">
 </app-modal-observacao>
