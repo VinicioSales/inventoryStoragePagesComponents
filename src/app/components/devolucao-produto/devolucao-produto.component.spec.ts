@@ -14,14 +14,21 @@ import { ModalDevolucaoComponent } from '../modal-devolucao/modal-devolucao.comp
 import { HomeComponent } from '../home/home.component';
 import { ModalGeralComponent } from '../modal-geral/modal-geral.component';
 
+import { of, throwError } from 'rxjs';
+import { RequisicoesService } from 'src/app/services/requisicoes/requisicoes.service';
+import { ProdutoDevolucao } from 'src/models/produto/produto.models';
+
+
 fdescribe('DevolucaoProdutoComponent', () => {
   let component: DevolucaoProdutoComponent;
   let fixture: ComponentFixture<DevolucaoProdutoComponent>;
   let router: jasmine.SpyObj<Router>;
+  let requisicoesServiceMock: jasmine.SpyObj<RequisicoesService>;
 
   beforeEach( async() => {
     const routerSpy = jasmine.createSpyObj('Router', ['navigate']);
-
+    requisicoesServiceMock = jasmine.createSpyObj('RequisicoesService', ['getProdutosDevolucao']);
+    
     await TestBed.configureTestingModule({
       imports:[HttpClientTestingModule,
         MatCheckboxModule,
@@ -38,14 +45,17 @@ fdescribe('DevolucaoProdutoComponent', () => {
         ModalGeralComponent
       ],
       providers: [
-        { provide: Router, useValue: routerSpy },
+        { provide: Router, useValue: routerSpy,  },
+        
       ]
     }).compileComponents();
+    
     fixture = TestBed.createComponent(DevolucaoProdutoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-
     router = TestBed.inject(Router) as jasmine.SpyObj<Router>;
+    
+    requisicoesServiceMock = TestBed.inject(RequisicoesService) as jasmine.SpyObj<RequisicoesService>;
   });
 
   it('should create', () => {
@@ -290,6 +300,40 @@ describe('handleFecharModal', () => {
     component.handleFecharModal();
     expect(component.mostrarModalAviso).toBeFalse(); 
   });
+});
+
+describe('carregarProdutosDevolucao',() =>{
+    it('deve carregar produtos de devolução', () => {
+      const mockProdutos: ProdutoDevolucao[] = [{ 
+      quantidade: 12,
+      nomeProduto: 'string',
+      centroCusto: 'string',
+      codigoProduto: 'string',
+      unidadeMedida: 'string',
+      codigoSolicitacao: 20,
+      devolucaoCompleta: true,
+      }];
+      requisicoesServiceMock.getProdutosDevolucao.and.returnValue(of(mockProdutos));
+
+      component.carregarProdutosDevolucao();
+    
+      expect(component.produtos).toEqual(mockProdutos);
+      expect(requisicoesServiceMock.getProdutosDevolucao).toHaveBeenCalled();
+      
+    });
+
+    // it('deve lidar com erro ao carregar produtos de devolução', () => {
+    //   const error = new Error('Erro ao carregar');
+    //   requisicoesServiceMock.getProdutosDevolucao.and.returnValue(throwError(error));
+  
+    //   component.carregarProdutosDevolucao();
+  
+    //   // Aqui você pode verificar como o componente reage ao erro
+    //   // Por exemplo, se ele armazena uma mensagem de erro, verifica essa mensagem
+    //   // Ou se ele apenas registra o erro, pode não haver necessidade de um expect
+    //   expect(requisicoesServiceMock.getProdutosDevolucao).toHaveBeenCalled();
+    // });
+
 });
 
 
