@@ -2,6 +2,11 @@
 
 Todas as mudanças do projeto serão documentados neste arquivo.
 
+## [0.0] - 18-01-2024 
+### Added
+- Finalziado função de selecionar todos os produtos (Vinicio)
+- Iniciado tratamento de erros nos métodos (Vinicio)
+
 ## [0.0] - 17-01-2024 
 ### Added
 - Finalizado testes unitários da tela de devolução de produtos (Victor)
