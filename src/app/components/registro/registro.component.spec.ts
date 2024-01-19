@@ -14,7 +14,7 @@ import { of, throwError } from 'rxjs';
 
 
 
-describe('RegistroComponent', () => {
+fdescribe('RegistroComponent', () => {
   let component: RegistroComponent;
   let fixture: ComponentFixture<RegistroComponent>;
   let authService: jasmine.SpyObj<AuthService>;

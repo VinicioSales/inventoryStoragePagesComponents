@@ -5,7 +5,7 @@ import { urlBackend, rotaPdf, rotaSolicitacao, rotaDevolucaoProdutos } from 'src
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ProdutoDevolucao } from 'src/models/produto/produto.models';
 
-fdescribe('RequisicoesService', () => {
+describe('RequisicoesService', () => {
   let service: RequisicoesService;
   let httpTestingController: HttpTestingController;
 
