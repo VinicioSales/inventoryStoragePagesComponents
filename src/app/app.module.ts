@@ -37,6 +37,7 @@ import { ModalDevolucaoComponent } from './components/modal-devolucao/modal-devo
 import { ToggleComponent } from './components/toggle/toggle.component';
 import { ModalObservacaoComponent } from './components/modal-observacao/modal-observacao.component';
 import { DevolucaoProdutoComponent } from './components/devolucao-produto/devolucao-produto.component';
+import { InputSenhaComponent } from './components/input-senha/input-senha.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import { DevolucaoProdutoComponent } from './components/devolucao-produto/devolu
     ModalObservacaoComponent,
     DevolucaoProdutoComponent,
     ModalObservacaoComponent,
+    InputSenhaComponent,
     
   ],
   imports: [
