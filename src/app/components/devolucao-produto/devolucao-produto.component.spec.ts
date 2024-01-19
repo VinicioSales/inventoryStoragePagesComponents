@@ -19,7 +19,7 @@ import { RequisicoesService } from 'src/app/services/requisicoes/requisicoes.ser
 import { ProdutoDevolucao } from 'src/models/produto/produto.models';
 
 
-fdescribe('DevolucaoProdutoComponent', () => {
+describe('DevolucaoProdutoComponent', () => {
   let component: DevolucaoProdutoComponent;
   let fixture: ComponentFixture<DevolucaoProdutoComponent>;
   let router: jasmine.SpyObj<Router>;
@@ -326,9 +326,6 @@ describe('carregarProdutosDevolucao',() =>{
   
       component.carregarProdutosDevolucao();
   
-      // Aqui você pode verificar como o componente reage ao erro
-      // Por exemplo, se ele armazena uma mensagem de erro, verifica essa mensagem
-      // Ou se ele apenas registra o erro, pode não haver necessidade de um expect
       expect(requisicoesServiceMock.getProdutosDevolucao).toHaveBeenCalled();
     });
 

@@ -1,10 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 import { RequisicoesService } from './requisicoes.service';
 import { Produto } from 'src/models/produto/produto.models'
-import { urlBackend, rotaPdf, rotaSolicitacao } from 'src/app/static'
+import { urlBackend, rotaPdf, rotaSolicitacao, rotaDevolucaoProdutos } from 'src/app/static'
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { ProdutoDevolucao } from 'src/models/produto/produto.models';
 
-describe('RequisicoesService', () => {
+fdescribe('RequisicoesService', () => {
   let service: RequisicoesService;
   let httpTestingController: HttpTestingController;
 
@@ -60,5 +61,30 @@ describe('RequisicoesService', () => {
       req.flush({}); // Resposta simulada para a requisição
     });
   });
+
+  //SECTION - getProdutosDevolucao
+  describe('getProdutosDevolucao', () => {
+    //NOTE - deve retornar os dados dos para devolução
+    it('deve retornar os dados dos para devolução', () => {
+      const mockProdutos: ProdutoDevolucao[] = [{
+        quantidade: 12,
+        nomeProduto: 'string',
+        centroCusto: 'string',
+        codigoProduto: 'string',
+        unidadeMedida: 'string',
+        codigoSolicitacao: 20,
+        devolucaoCompleta: true,
+      }];
+  
+      service.getProdutosDevolucao().subscribe(produtos => {
+        expect(produtos).toEqual(mockProdutos);
+      });
+  
+      const req = httpTestingController.expectOne(`${urlBackend}${rotaDevolucaoProdutos}`);
+      expect(req.request.method).toEqual('GET');
+      req.flush(mockProdutos);
+    });
+
+  })
 
 });
