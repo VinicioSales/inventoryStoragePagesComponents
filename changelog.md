@@ -1,11 +1,13 @@
 ## ChangeLog
 
 Todas as mudanças do projeto serão documentados neste arquivo.
-## [0.0] - 18-01-2024 
+
+## [0.0] - 19-01-2024 
 ### Added
 - Criado componente input login (victor)
 - feito merge da branch devolucao de produto na dev (victor)
 - finalizado teste unitario no componente de devolucao de produto e servico de obter produtos para devolucao (victor)
+- Add Error Handler global no sistema (Vinicio)
 
 ## [0.0] - 18-01-2024 
 ### Added
