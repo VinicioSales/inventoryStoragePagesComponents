@@ -46,15 +46,13 @@ fdescribe('DevolucaoProdutoComponent', () => {
       ],
       providers: [
         { provide: Router, useValue: routerSpy,  },
-        
+        { provide: RequisicoesService, useValue: requisicoesServiceMock }
       ]
     }).compileComponents();
     
     fixture = TestBed.createComponent(DevolucaoProdutoComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
     router = TestBed.inject(Router) as jasmine.SpyObj<Router>;
-    
     requisicoesServiceMock = TestBed.inject(RequisicoesService) as jasmine.SpyObj<RequisicoesService>;
   });
 
@@ -322,17 +320,17 @@ describe('carregarProdutosDevolucao',() =>{
       
     });
 
-    // it('deve lidar com erro ao carregar produtos de devolução', () => {
-    //   const error = new Error('Erro ao carregar');
-    //   requisicoesServiceMock.getProdutosDevolucao.and.returnValue(throwError(error));
+    it('deve lidar com erro ao carregar produtos de devolução', () => {
+      const error = new Error('Erro ao carregar');
+      requisicoesServiceMock.getProdutosDevolucao.and.returnValue(throwError(error));
   
-    //   component.carregarProdutosDevolucao();
+      component.carregarProdutosDevolucao();
   
-    //   // Aqui você pode verificar como o componente reage ao erro
-    //   // Por exemplo, se ele armazena uma mensagem de erro, verifica essa mensagem
-    //   // Ou se ele apenas registra o erro, pode não haver necessidade de um expect
-    //   expect(requisicoesServiceMock.getProdutosDevolucao).toHaveBeenCalled();
-    // });
+      // Aqui você pode verificar como o componente reage ao erro
+      // Por exemplo, se ele armazena uma mensagem de erro, verifica essa mensagem
+      // Ou se ele apenas registra o erro, pode não haver necessidade de um expect
+      expect(requisicoesServiceMock.getProdutosDevolucao).toHaveBeenCalled();
+    });
 
 });
 
