@@ -2,6 +2,15 @@
 
 Todas as mudanças do projeto serão documentados neste arquivo.
 
+## [0.0] - 22-01-2024 
+### fixes
+- Corrigido componente de registro (Victor)
+- feito testes unitarios no componente de registro (Victor)
+
+### Added
+- Feito merge da branch devolucao-de-produto para dev
+
+
 ## [0.0] - 19-01-2024 
 ### Added
 - Criado componente input login (victor)
