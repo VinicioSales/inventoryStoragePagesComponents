@@ -5,7 +5,7 @@ import { RegistroComponent } from './registro.component';
 import {InputComponent} from 'src/app/components/input/input.component';
 import {BotaoComponent} from 'src/app/components/botao/botao.component';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-
+import { InputSenhaComponent } from '../input-senha/input-senha.component';
 
 import { FormsModule } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth/auth.service';
@@ -22,7 +22,6 @@ fdescribe('RegistroComponent', () => {
   let httpTestingController: HttpTestingController;
 
   beforeEach(async () => {
-    httpTestingController = TestBed.inject(HttpTestingController);
     const authServiceSpy = jasmine.createSpyObj('AuthService', ['redefinirSenha', 'registrarUsuario']);
     const routerSpy = jasmine.createSpyObj('Router', ['navigate']);
     authServiceSpy.registrarUsuario.and.returnValue(of({}));
@@ -35,6 +34,7 @@ fdescribe('RegistroComponent', () => {
         LogoBfComponent,
         InputComponent,
         BotaoComponent,
+        InputSenhaComponent
         
       ],
       providers: [

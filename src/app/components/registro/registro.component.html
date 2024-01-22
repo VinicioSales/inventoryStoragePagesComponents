@@ -8,10 +8,12 @@
             <h2>Registrar</h2>
         </div>
         
-        <app-input placeholder="nome" class="name" (valorChange)="onNomeValueChanged($event)" (keyup.enter)="onRegistro()"></app-input>      
-        <app-input width="100%" placeholder="email" class="email" (valorChange)="onEmailValueChanged($event)" (keyup.enter)="onRegistro()"></app-input>
-        <app-input type="password" placeholder="senha" class="password" (valorChange)="onSenhaValueChanged($event)"(keyup.enter)="onRegistro()"></app-input>
-        <app-input type="password" placeholder="confirmar senha" class="confirm_password" (valorChange)="onConfirmarSenhaValueChanged($event)" (keyup.enter)="onRegistro()"></app-input>
+        <app-input placeholder="nome" class="name" (valorChange)="onNomeValueChanged($event)"></app-input>      
+        <app-input width="100%" placeholder="email" class="email" (valorChange)="onEmailValueChanged($event)" ></app-input>
+        <!-- <app-input type="password" placeholder="senha" class="password" (valorChange)="onSenhaValueChanged($event)"></app-input> -->
+        <!-- <app-input type="password" placeholder="confirmar senha" class="confirm_password" (valorChange)="onConfirmarSenhaValueChanged($event)"></app-input> -->
+        <app-input-senha  class="password" (mudarVizualizacaoSenha)="handleVizualizacaoSenha()" [mostrarSenha]="mostrarSenha" (valorChange)="onSenhaValueChanged($event)"></app-input-senha>
+        <app-input-senha placeholder="confirmar senha" (mudarVizualizacaoSenha)="handleVizualizacaoSenha()" [mostrarSenha]="mostrarSenha" class="confirm_password" (valorChange)="onConfirmarSenhaValueChanged($event)"></app-input-senha>
         <app-botao class="botao" texto="Registrar" width="100%" (click) = "onRegistro()" ></app-botao>
        
         <div class="footer">              

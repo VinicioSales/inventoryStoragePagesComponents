@@ -42,8 +42,6 @@ export class RegistroComponent {
   static readonly MENSAGEM_REGISTRO_CONCLUIDO = 'Usuário cadastrado com sucesso!';
   static readonly MENSAGEM_EMAIL_JA_REGISTRADO = 'Email já registrado';
   static readonly MENSAGEM_INTERNAL_SERVER_ERROR = 'Ocorreu um erro inesperado, tente de novo em alguns instantes. Se o erro persistir, entre em contato com o suporte.'
-  static readonly MENSAGEM_USUARIO_NAO_ENCONTRADO_NO_NOTION = 'Usuário não encontrado no Notion'
-  static readonly MENSAGEM_USUARIO_JA_REGISTRADO = 'Usuário já registrado'
 
 
   
@@ -53,9 +51,14 @@ export class RegistroComponent {
   emailValue: string = '';  
   senhaValue: string = '';
   confirmarSenhaValue: string = '';
+  idNotion: string = '';
   mensagemModal: string = '';
-  idNotion:string = '';
   mostrarModal: boolean = false;
+  mostrarSenha: boolean = false;
+
+  handleVizualizacaoSenha() {
+    this.mostrarSenha = !this.mostrarSenha;
+  }
 
   onNomeValueChanged(inputNome: string) {
     // Esta função será acionada quando o valor do input de nome mudar
@@ -168,15 +171,9 @@ export class RegistroComponent {
         error: (error) => {
           if (error.status === 409) {
             this.exibirMensagemModal(RegistroComponent.MENSAGEM_EMAIL_JA_REGISTRADO);
-          } else if (error.status === 500) {
+          } else if (error.status === 403) {
             this.exibirMensagemModal(RegistroComponent.MENSAGEM_INTERNAL_SERVER_ERROR);
-          }  
-          else if(error.status === 404){
-            this.exibirMensagemModal(RegistroComponent.MENSAGEM_USUARIO_NAO_ENCONTRADO_NO_NOTION);
-          }  
-          else if(error.status === 400){
-            this.exibirMensagemModal(RegistroComponent.MENSAGEM_USUARIO_JA_REGISTRADO)
-          }
+          }      
           else {
             this.exibirMensagemModal(`Erro desconhecido: ${error}`);
           }

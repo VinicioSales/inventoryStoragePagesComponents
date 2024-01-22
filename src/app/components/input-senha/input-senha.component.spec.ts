@@ -4,7 +4,7 @@ import { TemaService } from 'src/app/services/tema.service';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 
-fdescribe('InputSenhaComponent', () => {
+describe('InputSenhaComponent', () => {
   let component: InputSenhaComponent;
   let fixture: ComponentFixture<InputSenhaComponent>;
 
