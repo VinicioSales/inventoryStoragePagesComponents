@@ -25,7 +25,7 @@ export class RequisitarProdutosComponent implements OnInit {
 
   //NOTE - ngOnInit
   ngOnInit(): void {
-    this.requisicoesService.getProdutos().subscribe((data: Produtos[]) => {
+    this.mockServiceProdutosService.getProdutos().subscribe((data: Produtos[]) => {
       this.listaProdutos = data;
       this.nomeProdutoLista = this.listaProdutos.map(produto => produto.nomeProduto);
     });
@@ -279,7 +279,7 @@ export class RequisitarProdutosComponent implements OnInit {
         dataEntrega: this.dataEntrega,
         nomeUsuario: nomeUsuario
       };
-      this.requisicoesService.getPdf(dadosSolicitacao).subscribe({
+      this.mockServiceProdutosService.getPdf(dadosSolicitacao).subscribe({
         next: (response: PdfResponse) => {
           this.pdfBase64 = response.pdfBase64;
           this.mostrarPdf = true;
