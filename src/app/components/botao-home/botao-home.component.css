@@ -1,0 +1,8 @@
+.componente-botao-home {
+    width: 19px;
+    height: 23px;
+    flex-shrink: 0;
+    border: none;
+    display: flex;
+}
+

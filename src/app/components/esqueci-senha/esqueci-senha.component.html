@@ -1,0 +1,29 @@
+<app-carregamento *ngIf="carregando"></app-carregamento>
+<app-modal-geral
+    *ngIf="modalService.mostrarModal$ | async"
+    (fecharModal)="modalService.fecharModal()"
+    [mensagem]="modalService.mensagemModal$ | async">
+</app-modal-geral>
+<div class="pagina-esqueci-senha">
+    <div class="container-esqueci-senha">
+        <div class="header">
+            <app-logo-bf></app-logo-bf>
+            <app-botao-tema></app-botao-tema>
+        </div>
+        <div class="titulo">Insira seu email</div>
+        <app-input
+            class="input-email"
+            placeholder="email"
+            (valorChange)="onValorInputChange($event)">
+        </app-input>
+        <app-botao
+            width="100%"
+            texto="Recuperar senha"
+            (click)="onRecuperarSenha()"
+            class="botao-recuperar-senha">
+        </app-botao>
+        <div class="footer">
+            <a href="https://site.parceirosolucoes.com.br" target="_blank">Feito por Parceiro Soluções</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+<div class="background">
+    <div class="container-background">
+        <div class="container-modal-observacao"> 
+            <p>Observaçoes</p>
+            <textarea class="observacao" name="" [(ngModel)]="textoObservacao" placeholder="Observação..." id="" cols="80" rows="8"></textarea>
+            <div class="container-botoes">
+                <app-botao
+                texto="Cancelar"
+                width="90px"
+                class="botao-cancelar"
+                [height]="height"
+                (click)="onClick()"            
+                [background]="corBotaoVermelho"
+                [backgroundHover]="corBotaoHoverVernelho">
+            </app-botao>
+
+                <app-botao
+                texto="Adicionar"
+                width="90px"
+                class="botao-adicionar"
+                [height]="height"
+                (click)="onAdicionar()"            
+                [background]="corBotao"
+                [backgroundHover]="corBotaoHover">
+            </app-botao>
+            
+            </div>
+        </div>
+    </div>
+</div>

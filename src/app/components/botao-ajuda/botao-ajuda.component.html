@@ -1,0 +1,14 @@
+<div class="container-botao-ajuda"
+    (mouseenter)="onMostrarModalAjuda()"
+    (mouseleave)="offMostrarModalAjuda()">
+    <div class="modal-ajuda" *ngIf="mostrarModalAjuda">
+        {{texto}}
+    </div>
+    <button
+        class="componente-botao-ajuda">
+        <img class="img-ajuda"
+            [src]="imgSrc"
+            alt="Ajuda"
+            (click)="onClick()">
+    </button>
+</div>

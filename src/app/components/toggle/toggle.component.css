@@ -1,0 +1,28 @@
+.container-toggle,
+.container-toggle-on {
+    background: var(--cor-secundaria);
+    height: 18px;
+    width: 30px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    padding: 0 2px;
+}
+
+.container-toggle:hover,
+.container-toggle-on:hover {
+    cursor: pointer;
+}
+
+.container-toggle-on {
+    justify-content: end;
+    background: rgb(72, 164, 72);
+}
+
+.bola {
+    height:14px;
+    width:14px;
+    border-radius: 50%;
+    background: var(--cor-primaria);
+}
+

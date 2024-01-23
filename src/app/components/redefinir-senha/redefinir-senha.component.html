@@ -1,0 +1,41 @@
+<app-carregamento *ngIf="carregando"></app-carregamento>
+<app-modal-geral
+    *ngIf="modalService.mostrarModal$ | async"
+    (fecharModal)="modalService.fecharModal()"
+    [mensagem]="modalService.mensagemModal$ | async">
+</app-modal-geral>
+<div class="pagina-redefinir-senha">
+    <div class="container-redefinir-senha">
+        <div class="header">
+            <app-logo-bf></app-logo-bf>
+            <app-botao-tema></app-botao-tema>
+        </div>
+        <div class="titulo">Redefinir senha</div>
+        <app-input
+            type="password"
+            class="input-nova-senha"
+            placeholder="nova senha"
+            (valorChange)="onValorInputChange($event, 'inputNovaSenha')">
+        </app-input>
+        <app-input
+            type="password"
+            class="input-confirmar-nova-senha"
+            placeholder="confimar nova senha"
+            (valorChange)="onValorInputChange($event, 'inputConfirmarNovaSenha')">
+        </app-input>
+        <app-input
+            class="codigo-veirificacao"
+            placeholder="codigo de verificação"
+            (valorChange)="onValorInputChange($event, 'inputCodigoVerificacao')">
+        </app-input>
+        <app-botao
+            width="100%"
+            texto="Redefinir senha"
+            (click)="onRedefinirSenha()"
+            class="botao-redefinir-senha">
+        </app-botao>
+        <div class="footer">
+            <a href="https://site.parceirosolucoes.com.br" target="_blank">Feito por Parceiro Soluções</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,197 @@
+.header {
+    padding: 0 50px 0 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--background);
+}
+
+.titulo {
+    font-size: 2.5rem;
+    font-family: var(--font-semiBold);
+    color: var(--cor-secundaria);
+}
+
+.menu-header {
+    display: flex;
+    gap: 28px;
+    margin-right: 10px;
+}
+
+
+
+.solicitar-produto-pagina {
+    padding: 0 50px 0 50px;
+    background: var(--background-2);
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    height: 100vh;
+    color: var(--cor-secundaria);
+}
+
+
+
+.pesquisa {
+    background: var(--background);
+    margin-top: 30px;
+    gap: 20px;
+    padding: 33px 25px 33px 25px;
+    display: grid;
+    grid-template-columns:  30% auto auto auto 15%;
+    grid-template-areas:    "produto uni-medida quantidade centro-custo botao-adicionar"
+}
+
+.selecionar-produto {
+    grid-area: produto;
+}
+
+.unidade-medida {
+    grid-area: uni-medida;
+}
+
+.quantidade {
+    grid-area: quantidade;
+}
+
+.centro-custo {
+    grid-area: centro-custo;
+}
+
+.botao-adicionar {
+    grid-area: botao-adicionar;
+    align-self: end;
+}
+
+.titulo-label {
+    font-size: 1.14rem;
+    font-family: var(--font-regular);
+}
+
+.selecionar-produto,
+.unidade-medida,
+.quantidade,
+.centro-custo {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+}
+
+
+
+.tabela {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.header-tabela,
+.linha-tabela {
+    background: var(--background);
+    padding: 25px 15px 25px 15px;
+    display: grid;
+    grid-template-columns:      auto 15% 30% 15% 15% 15%;
+    grid-template-areas:        "menu-linha codigo-produto produto quantidade uni-medida centro-custo";
+}
+
+.header-tabela {
+    color: var(--cor-cinza);
+}
+
+.cod-produto-header {
+    grid-area: codigo-produto;
+}
+
+.produto-header {
+    grid-area: produto;
+    
+}
+
+.quantidade-header {
+    grid-area: quantidade;
+
+}
+
+.unidade-medida-header {
+    grid-area: uni-medida;
+}
+
+.centro-custo-header {
+    grid-area: centro-custo;
+}
+
+.cod-produto-header,
+.quantidade-header,
+.unidade-medida-header,
+.centro-custo-header {
+    text-align: center;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+}
+
+
+
+
+.linha-tabela {
+    color: var(--cor-secundaria);
+    font-family: var(--font-regular);
+    font-size: 1rem;
+}
+
+.menu-linha {
+    grid-area: menu-linha;
+    display: flex;
+    gap: 37px;
+    justify-content: start;
+}
+
+.cod-produto-linha {
+    grid-area: codigo-produto;
+}
+
+.nome-produto-linha {
+    grid-area: produto;
+    display: flex;
+    align-items: center;
+}
+
+.quantidade-linha {
+    grid-area: quantidade;
+
+}
+
+.unidade-medida-linha {
+    grid-area: uni-medida;
+}
+
+.centro-custo-linha {
+    grid-area: centro-custo;
+}
+
+.cod-produto-linha,
+.quantidade-linha,
+.unidade-medida-linha,
+.centro-custo-linha {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer {
+    display: flex;
+    padding: 33px 25px 33px 25px;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--background);
+    margin-bottom: 50px;
+}
+
+.data {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+    width: 100%;
+}
+

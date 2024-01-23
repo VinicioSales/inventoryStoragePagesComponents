@@ -1,0 +1,10 @@
+.componente-botao-confirmar {
+    width: 19px;
+    height: 23px;
+    flex-shrink: 0;
+    border: none;
+}
+
+.componente-botao-confirmar:hover {
+    transform: scale(1.1);
+}

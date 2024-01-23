@@ -1,0 +1,186 @@
+<app-modal-geral
+    *ngIf="modalService.mostrarModal$ | async"
+    (fecharModal)="modalService.fecharModal()"
+    [mensagem]="modalService.mensagemModal$ | async">
+</app-modal-geral>
+<app-modal-pdf
+    *ngIf="mostrarPdf"
+    (cancelarPdf)="onFecharModalPdf()"
+    (criarSolicitacao)="onConfirmarSolicitacao()"
+    [base64String]="pdfBase64">
+</app-modal-pdf>
+<div class="header">
+    <app-logo-bf></app-logo-bf>
+    <div class="titulo">Solicitar Produto</div>
+    <nav class="menu-header">
+        <app-botao-tema></app-botao-tema>
+        <app-botao-home (click)="home()"></app-botao-home>
+    </nav>
+</div>
+<div class="solicitar-produto-pagina">
+    <div class="pesquisa">
+        <div class="selecionar-produto">
+            <label
+                for="produto"
+                class="titulo-label">
+                Produto
+                </label>
+            <app-input-dropdown
+                id="produto"
+                width="100%"
+                height="27px"
+                placeholder="produto"
+                [itens]="nomeProdutoLista"
+                [textoPesquisado]="nomeProdutoSelecionado"
+                (itemSelecionadoChange)="selecionarProduto($event)">
+            </app-input-dropdown>
+        </div>
+        <div class="unidade-medida">
+            <label
+                for="unidade-medida"
+                class="titulo-label">
+                Unidade de medida
+            </label>
+            <app-input-dropdown
+                id="unidade-medida"
+                height="27px"
+                width="100%"
+                [itens]="unidadeMedidaLista"
+                placeholder="unidade de medida"
+                [textoPesquisado]="unidadeMedidaSelecionado"
+                (itemSelecionadoChange)="selecionarUnidadeMedida($event)">
+            </app-input-dropdown>
+        </div>
+        <div class="quantidade">
+            <label
+                for="quantidade"
+                class="titulo-label">
+                Quantidade
+            </label>
+            <app-input-contador
+                id="quantidade"
+                widht="100%"
+                height="27px"
+                [valor]="quantidadeSelecionado"
+                (valorChange)="selecionarQuantidade($event)">
+            </app-input-contador>
+        </div>
+        <div class="centro-custo">
+            <label
+                for="centro-custo"
+                class="titulo-label">
+                Centro de custo
+            </label>
+            <app-input-dropdown
+                height="27px"
+                width="100%"
+                placeholder="centro de custo"
+                [itens]="centroCustoLista"
+                [textoPesquisado]="centroCustoSelecionado"
+                (itemSelecionadoChange)="selecionarCentroCusto($event)">
+            </app-input-dropdown>
+        </div>
+        <app-botao
+            class="botao-adicionar"
+            height="29px"
+            texto="Adicionar"
+            width="100%"
+            (click)="adicionarProduto()">
+        </app-botao>
+    </div>
+    <div class="tabela">
+        <div class="header-tabela">
+            <div class="cod-produto-header">CÓDIGO PRODUTO</div>
+            <div class="produto-header">PRODUTO</div>
+            <div class="quantidade-header">QUANTIDADE</div>
+            <div class="unidade-medida-header">UNI. MEDIDA</div>
+            <div class="centro-custo-header">CENTRO DE CUSTO</div>
+        </div>
+        <ng-container *ngFor="let produto of produtosSelecionados">
+            <div *ngIf="produtoEmEdicao === produto; else semEditar">
+                <div class="linha-tabela">
+                    <nav class="menu-linha">
+                        <app-botao-remover
+                            class="remover"
+                            (click)="removerProduto(produto)">
+                        </app-botao-remover>
+                        <app-botao-confirmar
+                            (click)="onConfirmarEdicao()">
+                        </app-botao-confirmar>
+                    </nav>
+                    <div class="cod-produto-linha">{{ produto.codigoProduto }}</div>
+                    <div class="nome-produto-linha">{{ produto.nomeProduto }}</div>
+                    <app-input-contador
+                        widht="100%"
+                        height="27px"
+                        id="quantidade"
+                        class="quantidade-linha"
+                        [valor]="quantidadeEditado"
+                        (valorChange)="editarQuantidade($event)">
+                    </app-input-contador>
+                    <app-input-dropdown
+                        width="91%"
+                        height="27px"
+                        id="unidade-medida"
+                        [itens]="unidadeMedidaListaEditado"
+                        class="unidade-medida-linha"
+                        placeholder="unidade de medida"
+                        [textoPesquisado]="unidadeMedidaEditado"
+                        (itemSelecionadoChange)="editarUnidadeMedida($event)">
+                    </app-input-dropdown>
+                    <app-input-dropdown
+                        height="27px"
+                        width="100%"
+                        class="centro-custo-linha"
+                        [itens]="centroCustoListaEditado"
+                        placeholder="centro de custo"
+                        [textoPesquisado]="centroCustoEditado"
+                        (itemSelecionadoChange)="editarCentroCusto($event)">
+                    </app-input-dropdown>
+                </div>
+            </div>
+            <ng-template #semEditar>
+                <div class="linha-tabela">
+                    <nav class="menu-linha">
+                        <app-botao-remover
+                            class="remover"
+                            (click)="removerProduto(produto)">
+                        </app-botao-remover>
+                        <app-botao-editar
+                            class="editar"
+                            (click)="editarProduto(produto)">
+                        </app-botao-editar>
+                    </nav>
+                    <div class="cod-produto-linha">{{ produto.codigoProduto }}</div>
+                    <div class="nome-produto-linha">{{ produto.nomeProduto }}</div>
+                    <div class="quantidade-linha">{{ produto.quantidade }}</div>
+                    <div class="unidade-medida-linha">{{ produto.unidadeMedida }}</div>
+                    <div class="centro-custo-linha">{{ produto.centroCusto }}</div>
+                </div>
+            </ng-template>
+        </ng-container>
+        
+    </div>
+    <div class="footer">
+        <div class="data">
+            <label
+                for="data"
+                class="titulo-label">
+                Data de entrega
+            </label>
+            <app-input
+                id="data"
+                type="date"
+                width="25%"
+                height="10px"
+                (valorChange)="handleDataEntrega($event)">
+            </app-input>
+        </div>
+        <app-botao
+            texto="Solicitar"
+            [background]="corBotaoSolicitar"
+            [backgroundHover]="corBotaoSolicitarHover"
+            (click)="onSolicitar()">
+        </app-botao>
+    </div>
+</div>

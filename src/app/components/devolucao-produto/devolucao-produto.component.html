@@ -1,0 +1,53 @@
+<app-modal-devolucao *ngIf="mostrarModal" [listaProdutosParaDevolucao]="dadosProdutos" (fecharModalDevolucao)="onCancelarModalDevolucao()"></app-modal-devolucao>
+<app-modal-geral *ngIf="mostrarModalAviso" [mensagem]="mensagemModal" (fecharModal)="handleFecharModal()"></app-modal-geral>
+<div class="page">  
+    <div class="header">
+        <app-logo-bf></app-logo-bf>
+        <div class="titulo">Devolução de Produtos</div>
+        <nav class="menu-header">
+            <app-botao-tema></app-botao-tema>
+            <app-botao-home (click)="navegarParaHome()"></app-botao-home>
+        </nav>
+       
+    </div>
+    
+    <div class="container">      
+
+        <div class="inputs">
+            <app-input-pesquisar (input)="atualizarFiltroProduto($event)" placeholder="pesquisar produto" width="320px" height="32px" ></app-input-pesquisar>
+            <app-input (input)="atualizarFiltroData($event)" type="date" width="320px" height="13px"></app-input>
+            <app-input-pesquisar (input)="atualizarFiltroUsuario($event)" placeholder="nome usuário" width="320px" height="32px"></app-input-pesquisar>
+
+        </div>
+        
+    
+        <div class="header-tabela">
+            <div class="cod-solicitacao">CÓD.SOLICITAÇÃO</div>
+            <div class="cod-produto">CÓD.PRODUTO</div>
+            <div class="produto">PRODUTO</div>
+            <div class="quantidade">QUANTIDADE</div>
+            <div class="uni-medida">UNI.MEDIDA</div>
+            <div class="centro-custo">CENTRO DE CUSTO</div>
+        </div>  
+        
+        <div class="tabela-scroll">
+            <ng-container *ngFor="let produto of produtos">
+                <div class="linha-tabela" *ngIf="aplicarFiltros(produto)">
+                    <mat-checkbox  class="checkbox" (change)="onCheckboxChange(produto, $event.checked)"></mat-checkbox>
+                    <div class="codigoSolicitacao-linha-tabela">{{produto.codigoSolicitacao}}</div>
+                    <div class="codProduto-linha-tabela">{{produto.codigoProduto}}</div>
+                    <div class="produto-linha-tabela">{{produto.nomeProduto}}</div>
+                    <div class="quantidade-linha-tabela">{{produto.quantidade}}</div>
+                    <div class="uniMedida-linha-tabela">{{produto.unidadeMedida}}</div>
+                    <div class="centroCusto-linha-tabela">{{produto.centroCusto}}</div>
+                </div>
+            </ng-container>       
+        </div>
+        <div class="div-botao">
+            <app-botao class="botao" texto="Continuar" width="183px" height="30px" (click) = "modalDevolucao($event)"></app-botao>
+            
+        </div>
+    </div>
+
+</div>
+

@@ -1,0 +1,19 @@
+<div
+    class="cotnainer-input-senha"
+    [style.width]="width"
+    [style.height]="height">
+    <div class="container-relativo">
+        <input
+            [type]="mostrarSenha ? 'text' : 'password'"
+            [placeholder]="placeholder"
+            [(ngModel)]="valor"
+            (ngModelChange)="onValorChange($event)">
+        <button
+            class="botao"
+            (click)="onClickVizualizacao()">
+            <img
+                [src]="imgSrc" 
+                alt="Visibilidade">
+        </button>
+    </div>
+</div>

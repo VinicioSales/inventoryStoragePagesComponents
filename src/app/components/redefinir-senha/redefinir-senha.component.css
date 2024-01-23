@@ -1,0 +1,102 @@
+.pagina-redefinir-senha {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--cor-secundaria);
+}
+
+.container-redefinir-senha {
+    width: 23%;
+    height: 75%;
+    background: var(--cor-primaria);
+    border-radius: 2px;
+    box-shadow: 2px 9px 12px 4px rgba(12, 12, 12, 0.25);
+    justify-self: center;
+    align-self: center;
+    padding: 0 20px 0 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows:     auto   
+                            auto
+                            auto
+                            auto
+                            auto
+                            13%;
+    grid-template-areas:    "header"
+                            "titulo"
+                            "nova-senha"
+                            "confirmar-nova-senha"
+                            "codigo-verificacao"
+                            "botao-redefinir-senha"
+                            "footer";
+}
+
+.header {
+    grid-area: header;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+app-botao-tema {
+    position: absolute;
+    right: 0;
+    margin-right: 12px;
+    align-self: start;
+    margin-top: 10px;
+}
+
+.titulo {
+    grid-area: titulo;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    font-size: 2.14rem;
+    font-family: var(--font-semiBold);
+}
+
+.input-nova-senha,
+.input-confirmar-nova-senha
+.codigo-verificacao {
+    width: 100%;
+    justify-self: center;
+}
+
+.input-nova-senha {
+    grid-area: nova-senha;
+}
+
+.input-confirmar-nova-senha {
+    grid-area: confirmar-nova-senha;
+}
+
+.codigo-verificacao {
+    grid-area: codigo-verificacao;
+}
+
+.footer {
+    grid-area: footer;
+    font-family: var(--font-light);
+    font-size: 0.85rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+a {
+    text-decoration: none;
+    color: var(--cor-secundaria);   
+}
+a:focus {
+    color: var(--cor-secundaria);
+}
+a:hover{
+    color: var(--cor-secundaria);
+}
+a:active{
+    color: var(--cor-secundaria);
+}
