@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "frontend-BF": {
+    "inventory-storage": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/frontend-bf",
+            "outputPath": "dist/inventory-storage",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -61,10 +61,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "frontend-BF:build:production"
+              "browserTarget": "inventory-storage:build:production"
             },
             "development": {
-              "browserTarget": "frontend-BF:build:development"
+              "browserTarget": "inventory-storage:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -72,7 +72,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "frontend-BF:build"
+            "browserTarget": "inventory-storage:build"
           }
         },
         "test": {
@@ -97,10 +97,6 @@
     }
   },
   "cli": {
-<<<<<<< HEAD
-    "analytics": "a8211edf-e465-4f77-a73f-d0d1c37ac265"
-=======
     "analytics": false
->>>>>>> dev
   }
 }

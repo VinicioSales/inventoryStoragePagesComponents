@@ -8,7 +8,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LoginComponent } from './login.component';
 import { InputComponent } from '../input/input.component';
 import { BotaoComponent } from '../botao/botao.component';
-import { LogoBfComponent } from '../logo-bf/logo-bf.component';
 import { AuthService } from '../../services/auth/auth.service';
 import { BotaoTemaComponent } from '../botao-tema/botao-tema.component';
 import { ModalService } from 'src/app/services/modal/modal.service';
@@ -38,7 +37,6 @@ describe('LoginComponent', () => {
         LoginComponent,
         BotaoComponent,
         InputComponent,
-        LogoBfComponent,
         BotaoTemaComponent,
       ],
       providers: [

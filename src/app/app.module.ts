@@ -14,7 +14,6 @@ import { HomeComponent } from './components/home/home.component';
 import { InputComponent } from './components/input/input.component';
 import { BotaoComponent } from './components/botao/botao.component';
 import { LoginComponent } from './components/login/login.component';
-import { LogoBfComponent } from './components/logo-bf/logo-bf.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { ModalPdfComponent } from './components/modal-pdf/modal-pdf.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -46,7 +45,6 @@ import { InputSenhaComponent } from './components/input-senha/input-senha.compon
     InputComponent,
     BotaoComponent,
     LoginComponent,
-    LogoBfComponent,
     ModalPdfComponent,
     RegistroComponent,
     BotaoSairComponent,

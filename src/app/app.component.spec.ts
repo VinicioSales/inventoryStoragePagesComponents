@@ -5,7 +5,6 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { InputComponent } from 'src/app/components/input/input.component';
 import { BotaoComponent } from 'src/app/components/botao/botao.component';
-import { LogoBfComponent } from 'src/app/components/logo-bf/logo-bf.component';
 import { ModalPdfComponent } from 'src/app/components/modal-pdf/modal-pdf.component';
 import { BotaoSairComponent } from 'src/app/components/botao-sair/botao-sair.component';
 import { BotaoHomeComponent } from 'src/app/components/botao-home/botao-home.component';
@@ -31,7 +30,6 @@ describe('AppComponent', () => {
       AppComponent,
       InputComponent,
       BotaoComponent,
-      LogoBfComponent,
       ModalPdfComponent,
       BotaoSairComponent,
       BotaoHomeComponent,
@@ -53,17 +51,10 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'frontend-BF'`, () => {
+  it(`should have as title 'inventory-storage'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('frontend-BF');
+    expect(app.title).toEqual('inventory-storage');
   });
-
-  // it('should render title', () => {
-  //   const fixture = TestBed.createComponent(AppComponent);
-  //   fixture.detectChanges();
-  //   const compiled = fixture.nativeElement as HTMLElement;
-  //   expect(compiled.textContent).toContain('frontend-BF');
-  // });
   
 });

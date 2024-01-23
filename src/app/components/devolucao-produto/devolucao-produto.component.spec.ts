@@ -5,7 +5,6 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import {BotaoComponent} from 'src/app/components/botao/botao.component'
 import { BotaoHomeComponent } from '../botao-home/botao-home.component';
 import { Router } from '@angular/router';
-import { LogoBfComponent } from '../logo-bf/logo-bf.component'; 
 import { DevolucaoProdutoComponent } from './devolucao-produto.component';
 import { BotaoTemaComponent } from '../botao-tema/botao-tema.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -38,7 +37,6 @@ describe('DevolucaoProdutoComponent', () => {
         InputComponent,         
         BotaoComponent, 
         BotaoHomeComponent,   
-        LogoBfComponent,
         BotaoTemaComponent,
         ModalDevolucaoComponent,
         HomeComponent,

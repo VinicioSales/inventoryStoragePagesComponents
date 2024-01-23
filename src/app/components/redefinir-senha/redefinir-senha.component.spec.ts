@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { BotaoComponent } from '../botao/botao.component';
 import { InputComponent } from '../input/input.component';
-import { LogoBfComponent } from '../logo-bf/logo-bf.component';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RedefinirSenhaComponent } from './redefinir-senha.component';
@@ -28,7 +27,6 @@ describe('RedefinirSenhaComponent', () => {
       declarations: [
         BotaoComponent,
         InputComponent,
-        LogoBfComponent,
         BotaoTemaComponent,
         RedefinirSenhaComponent,
       ],

@@ -12,7 +12,6 @@ import { Produto, Produtos } from 'src/models/produto/produto.models'
 import { InputComponent } from 'src/app/components/input/input.component'
 import { BotaoComponent } from 'src/app/components/botao/botao.component'
 import { RequisitarProdutosComponent } from './requisitar-produtos.component';
-import { LogoBfComponent } from 'src/app/components/logo-bf/logo-bf.component'
 import { BotaoTemaComponent } from 'src/app/components/botao-tema/botao-tema.component'
 import { BotaoHomeComponent } from 'src/app/components/botao-home/botao-home.component'
 import { InputContadorComponent } from 'src/app/components/input-contador/input-contador.component'
@@ -43,7 +42,6 @@ describe('RequisitarProdutosComponent', () => {
       declarations: [
         InputComponent,
         BotaoComponent,
-        LogoBfComponent,
         BotaoTemaComponent,
         BotaoHomeComponent,
         InputDropdownComponent,

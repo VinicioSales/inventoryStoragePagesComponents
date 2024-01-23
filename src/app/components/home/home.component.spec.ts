@@ -4,7 +4,6 @@ import { TestBed } from '@angular/core/testing';
 import { HomeComponent } from './home.component';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { BotaoComponent } from 'src/app/components/botao/botao.component'
-import { LogoBfComponent } from 'src/app/components/logo-bf/logo-bf.component'
 import { BotaoTemaComponent } from 'src/app/components/botao-tema/botao-tema.component'
 import { BotaoSairComponent } from 'src/app/components/botao-sair/botao-sair.component'
 
@@ -19,7 +18,6 @@ describe('HomeComponent', () => {
       declarations: [
         HomeComponent,
         BotaoComponent,
-        LogoBfComponent,
         BotaoSairComponent,
         BotaoTemaComponent,
       ],

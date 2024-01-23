@@ -36,7 +36,7 @@ export class HomeComponent {
   
   //NOTE - navegarRotaDevolverProdutos
   navegarRotaDevolverProdutos() {
-    this.router.navigate(['/devolver-produtos']);
+    this.router.navigate(['/devolucao-produto']);
   }
   
   //FIXME - ADICIONAR LINK DO NOTION

@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed, fakeAsync, tick  } from '@angular/core/testing'; 
 import {BotaoTemaComponent} from 'src/app/components/botao-tema/botao-tema.component';
-import {LogoBfComponent} from 'src/app/components/logo-bf/logo-bf.component';
 import { RegistroComponent } from './registro.component';
 import {InputComponent} from 'src/app/components/input/input.component';
 import {BotaoComponent} from 'src/app/components/botao/botao.component';
@@ -31,7 +30,6 @@ fdescribe('RegistroComponent', () => {
       declarations: [
         RegistroComponent,
         BotaoTemaComponent,
-        LogoBfComponent,
         InputComponent,
         BotaoComponent,
         InputSenhaComponent

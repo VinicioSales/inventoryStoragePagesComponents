@@ -4,7 +4,6 @@ import { AuthService } from '../../services/auth/auth.service';
 import { InputComponent } from '../input/input.component';
 import { BotaoTemaComponent } from '../botao-tema/botao-tema.component';
 import { BotaoComponent } from '../botao/botao.component';
-import { LogoBfComponent } from '../logo-bf/logo-bf.component';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { EsqueciSenhaComponent } from './esqueci-senha.component';
@@ -28,7 +27,6 @@ describe('EsqueciSenhaComponent', () => {
       declarations: [
         InputComponent,
         BotaoComponent,
-        LogoBfComponent,
         BotaoTemaComponent,
         EsqueciSenhaComponent,
       ],
