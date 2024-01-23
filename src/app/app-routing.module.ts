@@ -14,7 +14,7 @@ import {DevolucaoProdutoComponent} from './components/devolucao-produto/devoluca
 
 //FIXME - REMOVER COMENTARIOS DO CANACTIVATE
 const routes: Routes = [
-  {path:'', component: LoginComponent},
+  {path:'', component: HomeComponent},
   {path:'login', component: LoginComponent},
   {path:'registro', component: RegistroComponent},
   {path:'esqueci-senha', component: EsqueciSenhaComponent},
