@@ -1,4 +1,4 @@
-<app-modal-devolucao *ngIf="mostrarModal" [listaProdutosParaDevolucao]="dadosProdutos" (fecharModalDevolucao)="onCancelarModalDevolucao()"></app-modal-devolucao>
+<app-modal-devolucao *ngIf="mostrarModal" [listaProdutosParaDevolucao]="itensSelecionados" (fecharModalDevolucao)="onCancelarModalDevolucao()"></app-modal-devolucao>
 <app-modal-geral *ngIf="mostrarModalAviso" [mensagem]="mensagemModal" (fecharModal)="handleFecharModal()"></app-modal-geral>
 <div class="page">  
     <div class="header">
@@ -43,7 +43,7 @@
             </ng-container>       
         </div>
         <div class="div-botao">
-            <app-botao class="botao" texto="Continuar" width="183px" height="30px" (click) = "modalDevolucao($event)"></app-botao>
+            <app-botao class="botao" texto="Continuar" width="183px" height="30px" (click)="modalDevolucao($event)"></app-botao>
             
         </div>
     </div>

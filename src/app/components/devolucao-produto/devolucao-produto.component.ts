@@ -6,6 +6,7 @@ import { NgModel } from '@angular/forms';
 import { MockProdutosService } from 'src/app/mock-produtos';
 import { RequisicoesService } from 'src/app/services/requisicoes/requisicoes.service';
 import { ProdutoDevolucao } from 'src/models/produto/produto.models';
+import { MockServiceProdutosService } from 'src/app/mock/mock-service-produtos.service';
 
 
 
@@ -26,6 +27,8 @@ export class DevolucaoProdutoComponent implements OnInit{
     private authService: AuthService,
     private mockProdutosService: MockProdutosService,
     private requisicoesService: RequisicoesService,
+    private mockServiceProdutosService: MockServiceProdutosService,
+
     ) {
     
   }
@@ -40,7 +43,7 @@ export class DevolucaoProdutoComponent implements OnInit{
   filtroUsuario: string = '';
   mostrarModal: boolean = false;
   dadosProdutos: any = '' 
-  // produtos: any = ''
+  itensSelecionados: any = [];
   mostrarModalDevolucao: boolean = false;
   mostrarModalAviso: boolean = false;
   mensagemModal: string = 'Por favor, selecione ao menos um produto para devolução.'
@@ -51,7 +54,7 @@ export class DevolucaoProdutoComponent implements OnInit{
   }  
 
   carregarProdutosDevolucao() {
-    this.requisicoesService.getProdutosDevolucao().subscribe(
+    this.mockServiceProdutosService.getProdutosDevolucao().subscribe(
       (produtos: ProdutoDevolucao[]) => {
         this.produtos = produtos;
       },
@@ -90,13 +93,13 @@ export class DevolucaoProdutoComponent implements OnInit{
   
     const produtoNorm = this.normalizarTexto(produto.nomeProduto);
     const codProdutoNorm = this.normalizarTexto(produto.codigoProduto);
-    const usuarioNorm = this.normalizarTexto(produto.usuario);
-    const dataNorm = this.normalizarTexto(produto.data);
+    // const usuarioNorm = this.normalizarTexto(produto.usuario);
+    // const dataNorm = this.normalizarTexto(produto.data);
   
     return (
-      (filtroProdutoNorm ? produtoNorm.includes(filtroProdutoNorm) || codProdutoNorm.includes(filtroProdutoNorm) : true) &&
-      (filtroDataNorm ? dataNorm.includes(filtroDataNorm) : true) &&
-      (filtroUsuarioNorm ? usuarioNorm.includes(filtroUsuarioNorm) : true)
+      (filtroProdutoNorm ? produtoNorm.includes(filtroProdutoNorm) || codProdutoNorm.includes(filtroProdutoNorm) : true)
+      // (filtroDataNorm ? dataNorm.includes(filtroDataNorm) : true) &&
+      // (filtroUsuarioNorm ? usuarioNorm.includes(filtroUsuarioNorm) : true)
     );
   }
 
@@ -114,26 +117,33 @@ export class DevolucaoProdutoComponent implements OnInit{
   }
   
   modalDevolucao(event: Event){
-    if(Object.keys(this.selectedProdutos).length > 0){
-        this.mostrarModal = true;
-        const  produtosSelecionados = Object.values(this.selectedProdutos) 
-        .map(produto => ({
-          "codigoSolicitacao": produto.codigoSolicitacao,
-          "codigoProduto": produto.codigoProduto,
-          "nomeProduto": produto.nomeProduto,
-          "quantidade": produto.quantidade,
-          "unidadeMedida": produto.unidadeMedida,
-          "centroCusto": produto.centroCusto,
-          "usuario": produto.usuario,
-          "data": produto.data
-        }));
-          
-      this.dadosProdutos = produtosSelecionados; 
-
-    }else{
+    console.log(this.selectedProdutos);
+    if (Object.keys(this.selectedProdutos).length === 0) {
       this.mostrarModalAviso = true;
+      return
     }
-       
+
+    this.itensSelecionados = Object.values(this.selectedProdutos);
+    console.log(this.itensSelecionados)
+    // if(Object.keys(this.selectedProdutos).length > 0){
+    //     this.mostrarModal = true;
+    //     const  produtosSelecionados = Object.values(this.selectedProdutos) 
+    //     .map(produto => ({
+    //       "codigoSolicitacao": produto.codigoSolicitacao,
+    //       "codigoProduto": produto.codigoProduto,
+    //       "nomeProduto": produto.nomeProduto,
+    //       "quantidade": produto.quantidade,
+    //       "unidadeMedida": produto.unidadeMedida,
+    //       "centroCusto": produto.centroCusto,
+    //       "usuario": produto.usuario,
+    //       "data": produto.data
+    //     }));
+          
+    //   this.dadosProdutos = produtosSelecionados; 
+
+    // }else{
+      this.mostrarModal = true;
+    // }
 
   }
     
